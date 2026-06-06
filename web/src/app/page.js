@@ -1,0 +1,377 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import styles from './page.module.css';
+
+const FEATURES = [
+  { icon: '🤖', title: 'AI Wedding Planner', desc: 'Ask anything about your wedding and get personalized, expert-level answers in seconds.' },
+  { icon: '✅', title: 'Smart Checklist', desc: 'Auto-generated timeline tailored to your wedding date — never miss a milestone.' },
+  { icon: '💰', title: 'Budget Tracker', desc: 'Category breakdowns, payment tracking, and real-time overspend alerts to stay on target.' },
+  { icon: '👥', title: 'Guest Manager', desc: 'RSVP tracking, meal preferences, seating groups, and plus-one management made easy.' },
+  { icon: '💒', title: 'Vendor Directory', desc: 'Find, compare, and book trusted local vendors with real reviews and pricing.' },
+  { icon: '✉️', title: 'Digital Invitation Builder', desc: 'Browse curated luxury website templates, customize details, and generate RSVP links for your guest list.' },
+];
+
+const STEPS = [
+  { num: 1, title: 'Tell Us About Your Wedding', desc: 'Set your date, budget, style preferences, and guest count. It takes less than two minutes.' },
+  { num: 2, title: 'Get Your Personalized Plan', desc: 'Our AI instantly generates your custom checklist, budget breakdown, and planning timeline.' },
+  { num: 3, title: 'Plan With Confidence', desc: 'Track your progress, chat with your AI concierge anytime, and discover the perfect vendors.' },
+];
+
+const PRICING = [
+  {
+    tier: 'Free',
+    price: '$0',
+    interval: 'Free forever',
+    features: ['15 AI credits per month', 'Up to 20 checklist tasks', 'Basic budget overview', 'Vendor browsing', 'Community support'],
+    cta: 'Start Free',
+    featured: false,
+  },
+  {
+    tier: 'Event Pass',
+    price: '$99',
+    interval: 'One-time payment',
+    features: ['Unlimited AI conversations', 'Unlimited checklist tasks', 'Full budget tracker with categories', 'Complete guest list manager', 'Timeline builder', 'Smart vendor matching', 'Digital invitation builder & templates', 'Export & share plans'],
+    cta: 'Get Event Pass',
+    featured: true,
+    badge: 'Best Value',
+  },
+  {
+    tier: 'Forever + Concierge',
+    price: '$199',
+    interval: 'One-time payment',
+    features: ['Everything in Event Pass', 'Elysian planning consultation', 'Priority email support', 'Day-of coordinator tools', 'Vendor negotiation templates', 'Premium theme library', 'Lifetime plan access'],
+    cta: 'Go Premium',
+    featured: false,
+  },
+];
+
+const TESTIMONIALS = [
+  { quote: 'This app literally saved our sanity. We planned our entire 150-guest wedding in 4 months without a planner. The curated suggestions were spot-on!', name: 'Sarah & James K.', date: 'Married Oct 2025', image: '/couple1.png' },
+  { quote: 'The budget tracker alone is worth it. We came in $2K under budget and never felt stressed about money. Cannot recommend enough.', name: 'Maria & David L.', date: 'Married June 2025', image: '/couple2.png' },
+  { quote: 'I used the vow writer as a starting point and my partner was in tears. The checklist kept us on track even when life got crazy.', name: 'Alex & Jordan P.', date: 'Married Dec 2025', image: '/couple3.png' },
+];
+
+export default function LandingPage() {
+  const [visibleFeatures, setVisibleFeatures] = useState(new Set());
+  const [visibleSteps, setVisibleSteps] = useState(new Set());
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const featureRefs = useRef([]);
+  const stepRefs = useRef([]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = entry.target.getAttribute('data-idx');
+            const type = entry.target.getAttribute('data-type');
+            if (type === 'feature') {
+              setVisibleFeatures((prev) => new Set([...prev, idx]));
+            } else if (type === 'step') {
+              setVisibleSteps((prev) => new Set([...prev, idx]));
+            }
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    featureRefs.current.forEach((el) => el && observer.observe(el));
+    stepRefs.current.forEach((el) => el && observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className={styles.landingPage}>
+      {/* ====== HERO ====== */}
+      <section className={styles.hero}>
+        <div className={styles.heroBg} />
+
+        <div className={styles.floatingRings}>
+          <div className={`${styles.ring} ${styles.ring1}`} />
+          <div className={`${styles.ring} ${styles.ring2}`} />
+          <div className={`${styles.ring} ${styles.ring3}`} />
+          <div className={`${styles.ring} ${styles.ring4}`} />
+        </div>
+
+        <div className={styles.particles}>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className={styles.particle} />
+          ))}
+        </div>
+
+        <div className={styles.heroContent}>
+          <div className={styles.heroGlassCard}>
+            <div className={styles.heroEyebrow}>✨ OVAIMAGINATION DESIGN STUDIO</div>
+            <h1 className={styles.headline}>
+              Designed for <span className={styles.headlineGold}>Feeling</span>, Not Spectacle.
+            </h1>
+            <p className={styles.subheadline}>Every Couple Deserves a Beautiful, Divinely Inspired Day.</p>
+            <p className={styles.heroDescription}>
+              Quiet harmony and premium digital coordination for DIY couples who crave luxury — without the traditional planner price tag.
+            </p>
+            <div className={styles.heroCtas}>
+              <Link href="/auth" className={styles.ctaPrimary}>
+                Begin Your Journey <span>→</span>
+              </Link>
+              <button
+                className={styles.ctaOutline}
+                onClick={() => scrollToSection('features')}
+              >
+                Explore Details ↓
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== FEATURES ====== */}
+      <section className={styles.features} id="features">
+        <div className={styles.featuresInner}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionEyebrow}>Features</div>
+            <h2 className={styles.sectionTitle}>Everything You Need, One App</h2>
+            <p className={styles.sectionSubtitle}>
+              Six powerful tools designed to take the stress out of wedding planning and bring back the joy.
+            </p>
+          </div>
+
+          <div className={styles.featuresGrid}>
+            {FEATURES.map((f, i) => (
+              <div
+                key={i}
+                ref={(el) => (featureRefs.current[i] = el)}
+                data-idx={i}
+                data-type="feature"
+                className={`${styles.featureCard} ${visibleFeatures.has(String(i)) ? styles.visible : ''}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <span className={styles.featureIcon}>{f.icon}</span>
+                <h3 className={styles.featureTitle}>{f.title}</h3>
+                <p className={styles.featureDesc}>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== HOW IT WORKS ====== */}
+      <section className={styles.howItWorks} id="how-it-works">
+        <div className={styles.sectionHeader}>
+          <div className={styles.sectionEyebrow}>How It Works</div>
+          <h2 className={styles.sectionTitle}>Three Steps to Your Dream Wedding</h2>
+          <p className={styles.sectionSubtitle}>
+            No overwhelm. No spreadsheets. Just a clear path from &ldquo;we&rsquo;re engaged!&rdquo; to &ldquo;I do.&rdquo;
+          </p>
+        </div>
+
+        <div className={styles.stepsContainer}>
+          <div className={styles.stepsLine} />
+          {STEPS.map((s, i) => (
+            <div
+              key={i}
+              ref={(el) => (stepRefs.current[i] = el)}
+              data-idx={i}
+              data-type="step"
+              className={`${styles.step} ${visibleSteps.has(String(i)) ? styles.visible : ''}`}
+              style={{ transitionDelay: `${i * 200}ms` }}
+            >
+              <div className={styles.stepNumber}>{s.num}</div>
+              <div className={styles.stepContent}>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
+                <p className={styles.stepDesc}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ====== PRICING ====== */}
+      <section className={styles.pricing} id="pricing">
+        <div className={styles.pricingInner}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionEyebrow}>Pricing</div>
+            <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
+            <p className={styles.sectionSubtitle}>
+              No subscriptions, no hidden fees. Pay once and plan your perfect day.
+            </p>
+          </div>
+
+          <div className={styles.pricingGrid}>
+            {PRICING.map((plan, i) => (
+              <div
+                key={i}
+                className={`${styles.pricingCard} ${plan.featured ? styles.pricingCardFeatured : ''}`}
+              >
+                {plan.badge && <div className={styles.pricingBadge}>{plan.badge}</div>}
+                <div className={styles.pricingTier}>{plan.tier}</div>
+                <div className={styles.pricingPrice}>{plan.price}</div>
+                <div className={styles.pricingInterval}>{plan.interval}</div>
+                <ul className={styles.pricingFeatures}>
+                  {plan.features.map((feat, j) => (
+                    <li key={j}>{feat}</li>
+                  ))}
+                </ul>
+                <Link
+                  href="/auth"
+                  className={`${styles.pricingCta} ${plan.featured ? styles.pricingCtaPrimary : styles.pricingCtaOutline}`}
+                >
+                  {plan.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== TESTIMONIALS ====== */}
+      <section className={styles.testimonials} id="testimonials">
+        <div className={styles.testimonialsInner}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionEyebrow}>Testimonials</div>
+            <h2 className={styles.sectionTitle}>Trusted by Couples Planning Their Perfect Day</h2>
+          </div>
+
+          <div className={styles.slideshowContainer}>
+            <button 
+              className={`${styles.slideBtn} ${styles.slideBtnLeft}`}
+              onClick={() => setActiveTestimonial((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
+              aria-label="Previous Testimonial"
+            >
+              ←
+            </button>
+
+            <div className={styles.slideshowViewport}>
+              {TESTIMONIALS.map((t, idx) => {
+                const isActive = idx === activeTestimonial;
+                return (
+                  <div 
+                    key={idx} 
+                    className={`${styles.testimonialSlide} ${isActive ? styles.slideActive : styles.slideInactive}`}
+                  >
+                    <div className={styles.couplePhotoWrapper}>
+                      <img src={t.image} alt={t.name} className={styles.couplePhoto} />
+                      <div className={styles.photoFrameOverlay} />
+                    </div>
+
+                    <div className={styles.messageBubble}>
+                      <div className={styles.bubbleArrow} />
+                      <div className={styles.testimonialStars}>★★★★★</div>
+                      <p className={styles.testimonialQuote}>&ldquo;{t.quote}&rdquo;</p>
+                      <div className={styles.testimonialAuthorInfo}>
+                        <div className={styles.testimonialName}>{t.name}</div>
+                        <div className={styles.testimonialDate}>{t.date}</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <button 
+              className={`${styles.slideBtn} ${styles.slideBtnRight}`}
+              onClick={() => setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length)}
+              aria-label="Next Testimonial"
+            >
+              →
+            </button>
+          </div>
+
+          <div className={styles.dotsContainer}>
+            {TESTIMONIALS.map((_, idx) => (
+              <button
+                key={idx}
+                className={`${styles.dot} ${idx === activeTestimonial ? styles.dotActive : ''}`}
+                onClick={() => setActiveTestimonial(idx)}
+                aria-label={`Go to testimonial ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <div className={styles.statsBar}>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>2.1M</div>
+              <div className={styles.statLabel}>Weddings per year in the US</div>
+            </div>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>68%</div>
+              <div className={styles.statLabel}>Of couples plan DIY</div>
+            </div>
+            <div className={styles.statItem}>
+              <div className={styles.statValue}>$28K</div>
+              <div className={styles.statLabel}>Average wedding cost</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== FOOTER ====== */}
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <div className={styles.footerTop}>
+            <div>
+              <div className={styles.footerBrand}>✨ Elysian</div>
+              <p className={styles.footerDesc}>
+                AI Wedding Concierge by Elysian — luxury wedding planning tools for every couple, at every budget.
+              </p>
+              <div className={styles.footerSocials}>
+                <a href="#" className={styles.socialIcon} aria-label="Instagram">📷</a>
+                <a href="#" className={styles.socialIcon} aria-label="Twitter">🐦</a>
+                <a href="#" className={styles.socialIcon} aria-label="Pinterest">📌</a>
+                <a href="#" className={styles.socialIcon} aria-label="TikTok">🎵</a>
+              </div>
+            </div>
+            <div>
+              <div className={styles.footerColTitle}>Product</div>
+              <ul className={styles.footerLinks}>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+              </ul>
+            </div>
+            <div>
+              <div className={styles.footerColTitle}>Company</div>
+              <ul className={styles.footerLinks}>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <div className={styles.footerColTitle}>Legal</div>
+              <ul className={styles.footerLinks}>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className={styles.footerBottom}>
+            <div className={styles.footerCopy}>© 2026 OVAimagination Events. All rights reserved.</div>
+            <div className={styles.footerBottomLinks}>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Sitemap</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

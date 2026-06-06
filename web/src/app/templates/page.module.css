@@ -1,0 +1,1260 @@
+.templatesLayout {
+  background: transparent;
+  color: #f5f0e8;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.navbarSpacer {
+  height: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(201, 169, 110, 0.12);
+  color: #c9a96e;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f5f0e8;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #a0937d;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- GRID --- */
+.templatesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .templatesGrid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.templateCard {
+  background: rgba(26, 26, 46, 0.75);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.templateCard:hover {
+  transform: translateY(-5px);
+  border-color: #c9a96e;
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.15);
+}
+
+.cardPreviewBanner {
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+.cardPreviewContent {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  max-width: 220px;
+}
+
+.cardPreviewTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cardPreviewSub {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.cardBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f5f0e8;
+}
+
+.priceTag {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.priceFree {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.pricePaid {
+  background: rgba(201, 169, 110, 0.15);
+  color: #c9a96e;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+.cardStyleText {
+  font-size: 0.9rem;
+  color: #a0937d;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.vibeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 0.8rem;
+}
+
+.vibeLabel {
+  color: #6b6172;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.vibeValue {
+  color: #c9a96e;
+  background: rgba(201, 169, 110, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.btnRow {
+  display: flex;
+  gap: 12px;
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #c9a96e 0%, #b8944f 100%);
+  color: #0d0d1a;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201, 169, 110, 0.3);
+}
+
+.btnOutline {
+  padding: 12px 16px;
+  background: transparent;
+  color: #c9a96e;
+  border: 1.5px solid rgba(201, 169, 110, 0.3);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btnOutline:hover {
+  background: rgba(201, 169, 110, 0.08);
+  border-color: #c9a96e;
+}
+
+.modalMobileTabs {
+  display: none;
+}
+
+/* --- MODAL --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 13, 26, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #0d0d1a;
+  border: 1.5px solid rgba(201, 169, 110, 0.3);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 960px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(201, 169, 110, 0.25);
+  animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #a0937d;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #ff7b7b;
+}
+
+.modalBody {
+  display: flex;
+  height: 600px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .modalMobileTabs {
+    display: flex;
+    border-bottom: 1.5px solid rgba(201, 169, 110, 0.15);
+    background: #0d0d1a;
+    padding: 12px 60px 12px 16px;
+    gap: 10px;
+    z-index: 5;
+  }
+  
+  .mobileTabToggle {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: #a0937d;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(201, 169, 110, 0.12);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .mobileTabToggleActive {
+    color: #0d0d1a;
+    background: linear-gradient(135deg, #c9a96e 0%, #b8944f 100%);
+    border-color: #c9a96e;
+    box-shadow: 0 2px 10px rgba(201, 169, 110, 0.2);
+  }
+
+  .modalContent {
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .modalBody {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .editorPanel.mobileHidden,
+  .phoneColumn.mobileHidden {
+    display: none !important;
+  }
+
+  .editorPanel.mobileActive,
+  .phoneColumn.mobileActive {
+    display: flex !important;
+    flex: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .editorPanel {
+    border-right: none;
+    padding: 24px 20px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .phoneColumn {
+    padding: 24px 16px;
+    background: rgba(0, 0, 0, 0.25);
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .closeBtn {
+    top: 10px;
+    right: 16px;
+    font-size: 1.8rem;
+  }
+}
+
+/* --- EDITOR PANEL --- */
+.editorPanel {
+  flex: 1;
+  padding: 32px;
+  border-right: 1px solid rgba(201, 169, 110, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.editorTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #c9a96e;
+  margin-bottom: 2px;
+}
+
+.editorSubtitle {
+  font-size: 0.85rem;
+  color: #a0937d;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.editorGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editorLabel {
+  font-size: 0.8rem;
+  color: #a0937d;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.editorInput {
+  padding: 10px 14px;
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 10px;
+  color: #f5f0e8;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.editorInput:focus {
+  border-color: #c9a96e;
+}
+
+.editorPublishBtn {
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #c9a96e 0%, #b8944f 100%);
+  color: #0d0d1a;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.editorPublishBtn:hover {
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.35);
+}
+
+/* --- PHONE COLUMN & MOCKUP --- */
+.phoneColumn {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.phoneContainer {
+  width: 280px;
+  height: 520px;
+  background: #111;
+  border: 8px solid #222;
+  border-radius: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.phoneNotch {
+  width: 120px;
+  height: 20px;
+  background: #222;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.phoneScreen {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.phoneScreen::-webkit-scrollbar {
+  display: none;
+}
+
+.inviteContent {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+}
+
+.inviteOverline {
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.inviteTitle {
+  font-size: 1.8rem;
+  margin: 12px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.inviteDivider {
+  width: 60px;
+  border-bottom-width: 1.5px;
+  border-bottom-style: solid;
+  margin: 4px auto;
+}
+
+.inviteDate {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.inviteLocation {
+  font-size: 0.7rem;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.inviteDividerShort {
+  width: 30px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  margin: 10px auto;
+}
+
+.inviteDetails {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  font-style: italic;
+  padding: 0 6px;
+}
+
+.inviteRsvpBox {
+  margin-top: 12px;
+}
+
+.inviteRsvpBtn {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+/* --- ELYSIAN ARCH EDITORIAL DESIGN --- */
+.elysianInviteContainer {
+  background: #faf8f5;
+  color: #111111;
+  width: 100%;
+  min-height: 100%;
+  padding: 30px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  gap: 32px;
+  box-sizing: border-box;
+}
+
+.elysianHeroSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.elysianArcTextWrapper {
+  width: 100%;
+  max-width: 220px;
+  margin-bottom: -15px;
+  z-index: 2;
+}
+
+.elysianArcSvg {
+  width: 100%;
+  height: auto;
+}
+
+.elysianArcText {
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  font-weight: 700;
+  fill: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.elysianArchedImageFrame {
+  width: 170px;
+  height: 240px;
+  border-radius: 120px 120px 0 0;
+  overflow: hidden;
+  border: 1px solid rgba(26, 30, 28, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.elysianCouplePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.elysianWaveformSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  gap: 8px;
+}
+
+.waveformIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 30px;
+  margin-bottom: 4px;
+}
+
+.waveBar {
+  width: 2px;
+  background-color: #1a1a1a;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.waveBar1 { height: 10px; }
+.waveBar2 { height: 16px; }
+.waveBar3 { height: 24px; }
+.waveBar4 { height: 14px; }
+.waveBar5 { height: 28px; }
+.waveBar6 { height: 18px; }
+.waveBar7 { height: 22px; }
+.waveBar8 { height: 12px; }
+.waveBar9 { height: 8px; }
+
+.elysianWaveformSubtitle {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.elysianCoupleNames {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #111;
+  margin: 4px 0 0 0;
+  letter-spacing: -0.5px;
+}
+
+.elysianDateSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.elysianDateArchFrame {
+  width: 100%;
+  max-width: 200px;
+  border: 1px solid rgba(26, 30, 28, 0.15);
+  border-radius: 100px 100px 0 0;
+  padding: 30px 15px 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.elysianJoinUs {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #666;
+}
+
+.elysianDateLarge {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.elysianDetailsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.elysianTimeDetails {
+  font-size: 0.75rem;
+  color: #333;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.elysianLocationDetails {
+  font-size: 0.7rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.elysianTimelineSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.elysianTimelineHeading {
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.elysianTimelineContainer {
+  position: relative;
+  width: 100%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+.elysianTimelineLine {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 5px;
+  width: 1px;
+  background: rgba(26, 30, 28, 0.15);
+}
+
+.elysianTimelineItem {
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.elysianTimelineDot {
+  position: absolute;
+  left: -19px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid #faf8f5;
+  z-index: 2;
+}
+
+.elysianTimelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.elysianTimelineTime {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #666;
+}
+
+.elysianTimelineTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.elysianTimelineDesc {
+  font-size: 0.75rem;
+  color: #555;
+  line-height: 1.4;
+  margin: 2px 0 0 0;
+}
+
+.elysianRsvpContainer {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.elysianRsvpBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.elysianRsvpBtn:hover {
+  background-color: #333333;
+}
+
+/* --- REDESIGNED PREMIUM SHOWROOM & PHONE SIMULATOR TABS --- */
+
+.cardFeatureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cardFeatureItem {
+  font-size: 0.85rem;
+  color: #a0937d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.featureBullet {
+  color: #c9a96e;
+  font-weight: bold;
+}
+
+/* Accordions */
+.accordionGroup {
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 12px;
+  background: rgba(26, 26, 46, 0.4);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.accordionHeader {
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: #c9a96e;
+  font-size: 0.9rem;
+  background: rgba(201, 169, 110, 0.04);
+  transition: background 0.2s ease;
+}
+
+.accordionHeader:hover {
+  background: rgba(201, 169, 110, 0.08);
+}
+
+.accordionBody {
+  padding: 18px;
+  border-top: 1px solid rgba(201, 169, 110, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Phone Tabs Nav Bar */
+.phoneTabsNav {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background: #111;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.phoneTabBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  padding: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.phoneTabBtn:hover {
+  color: #fff;
+}
+
+.phoneTabActive {
+  color: #c9a96e !important;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tabIcon {
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+.tabLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Mockup Content Views */
+.mockupSectionContainer {
+  padding: 24px 16px;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.mockupSectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+.mockupSectionText {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.mockupSectionSub {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Dress Code swatches layout */
+.swatchesContainer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.swatchItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.swatchCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.swatchHex {
+  font-size: 0.6rem;
+  font-family: monospace;
+}
+
+/* Registry links grid */
+.registryLinksGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.registryMockupBtn {
+  width: 100%;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.registryMockupBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Entourage lists grid */
+.entourageListGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.entourageMockupCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.entourageMockupAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.entourageMockupRole {
+  font-size: 0.65rem;
+  font-weight: bold;
+  opacity: 0.65;
+}
+
+.entourageMockupName {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* RSVP Form controls */
+.rsvpMockupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.rsvpFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rsvpFormLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.rsvpRadioRow {
+  display: flex;
+  gap: 14px;
+}
+
+.rsvpRadioLabel {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.rsvpFormSelect {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 0.7rem;
+  outline: none;
+  font-family: inherit;
+  background: white;
+  color: #333;
+}
+
+.rsvpFormSubmitBtn {
+  margin-top: 8px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rsvpSuccessCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 12px;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.successIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #4ade80;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.successTitle {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.successText {
+  font-size: 0.7rem;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.rsvpResetBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Standard template mockup couple photo */
+.standardMockupPhotoFrame {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 12px 0;
+  border: 1.5px solid rgba(255,255,255,0.08);
+}
+
+.standardMockupPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Timeline schedule inside mockup */
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  padding-left: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.timelineItemCard {
+  position: relative;
+  width: 100%;
+}
+
+.timelineDotIndicator {
+  position: absolute;
+  left: -18px;
+  top: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid #faf8f5;
+}
+
+.timelineCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.timelineTimeLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.timelineTitleLabel {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.timelineDescLabel {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  margin: 2px 0 0 0;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .phoneColumn {
+    padding: 16px 8px !important;
+  }
+  .phoneContainer {
+    width: 270px;
+    height: 480px;
+    border-width: 6px;
+    border-radius: 32px;
+  }
+  .phoneNotch {
+    width: 100px;
+    height: 16px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+
