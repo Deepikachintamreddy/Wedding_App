@@ -5,26 +5,50 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 const FEATURES = [
-  { icon: '🤖', title: 'AI Wedding Planner', desc: 'Ask anything about your wedding and get personalized, expert-level answers in seconds.' },
+  { icon: '🤖', title: 'Smart Wedding Planner', desc: 'Ask anything about your wedding and get personalized, expert-level answers in seconds.' },
   { icon: '✅', title: 'Smart Checklist', desc: 'Auto-generated timeline tailored to your wedding date — never miss a milestone.' },
   { icon: '💰', title: 'Budget Tracker', desc: 'Category breakdowns, payment tracking, and real-time overspend alerts to stay on target.' },
   { icon: '👥', title: 'Guest Manager', desc: 'RSVP tracking, meal preferences, seating groups, and plus-one management made easy.' },
   { icon: '💒', title: 'Vendor Directory', desc: 'Find, compare, and book trusted local vendors with real reviews and pricing.' },
-  { icon: '✉️', title: 'Digital Invitation Builder', desc: 'Browse curated luxury website templates, customize details, and generate RSVP links for your guest list.' },
+  { icon: '✉️', title: 'Custom Websites & Invites', desc: 'Browse curated luxury website templates, customize details, and generate RSVP links for your guest list.' },
 ];
 
 const STEPS = [
-  { num: 1, title: 'Tell Us About Your Wedding', desc: 'Set your date, budget, style preferences, and guest count. It takes less than two minutes.' },
-  { num: 2, title: 'Get Your Personalized Plan', desc: 'Our AI instantly generates your custom checklist, budget breakdown, and planning timeline.' },
-  { num: 3, title: 'Plan With Confidence', desc: 'Track your progress, chat with your AI concierge anytime, and discover the perfect vendors.' },
+  { num: 1, title: 'Tell Us About Your Wedding', desc: 'Set your date, budget, style preferences, and guest count. Our onboarding takes less than two minutes.' },
+  { num: 2, title: 'Get Your Personalized Plan', desc: 'Elysian instantly generates your custom checklist, budget breakdown, and dynamic planning timeline.' },
+  { num: 3, title: 'Build Your Dream Team', desc: 'Browse our curated directory, compare reviews, and securely book the perfect vendors for your special day.' },
+  { num: 4, title: 'Manage Your Guests', desc: 'Send beautiful digital invitations, track real-time RSVPs, and organize seating charts effortlessly.' },
+  { num: 5, title: 'Plan With Confidence', desc: 'Track your progress, chat with your digital concierge anytime, and enjoy a stress-free wedding journey.' },
 ];
+
+const FAQS = [
+  { question: "What exactly is the Elysian Wedding Concierge?", answer: "Elysian is a luxury wedding planning platform powered by advanced technology. It acts as your personal wedding planner, helping you track budgets, manage guests, create timelines, and answer all your wedding-related questions instantly." },
+  { question: "Is Elysian actually free to use?", answer: "Yes! Our core features, including the personalized checklist, budget tracker, and virtual assistant, are completely free. We also offer a Premium tier with advanced features like digital invitations and a dedicated vendor directory." },
+  { question: "Can I use Elysian if I already have a human wedding planner?", answer: "Absolutely. Many couples use Elysian alongside a traditional planner to stay organized, manage their own tasks, and have 24/7 access to instant advice for the smaller details." },
+  { question: "How does the digital invitation builder work?", answer: "Our Premium tier includes access to luxury digital invitation templates. You can customize them with your wedding details, send them to your guest list via email or SMS, and track RSVPs directly within your Elysian dashboard." },
+];
+
+function FaqItem({ faq }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className={`${styles.faqItem} ${isOpen ? styles.open : ''}`}>
+      <button className={styles.faqQuestion} onClick={() => setIsOpen(!isOpen)}>
+        {faq.question}
+        <span className={styles.faqIcon}>+</span>
+      </button>
+      <div className={styles.faqAnswer}>
+        {faq.answer}
+      </div>
+    </div>
+  );
+}
 
 const PRICING = [
   {
     tier: 'Free',
     price: '$0',
     interval: 'Free forever',
-    features: ['15 AI credits per month', 'Up to 20 checklist tasks', 'Basic budget overview', 'Vendor browsing', 'Community support'],
+    features: ['15 concierge credits per month', 'Up to 20 checklist tasks', 'Basic budget overview', 'Vendor browsing', 'Standard wedding website template', 'Community support'],
     cta: 'Start Free',
     featured: false,
   },
@@ -32,7 +56,7 @@ const PRICING = [
     tier: 'Event Pass',
     price: '$99',
     interval: 'One-time payment',
-    features: ['Unlimited AI conversations', 'Unlimited checklist tasks', 'Full budget tracker with categories', 'Complete guest list manager', 'Timeline builder', 'Smart vendor matching', 'Digital invitation builder & templates', 'Export & share plans'],
+    features: ['Unlimited concierge conversations', 'Unlimited checklist tasks', 'Full budget tracker with categories', 'Complete guest list manager', 'Timeline builder', 'Smart vendor matching', 'Premium custom wedding websites & digital invites', 'Export & share plans'],
     cta: 'Get Event Pass',
     featured: true,
     badge: 'Best Value',
@@ -116,13 +140,13 @@ export default function LandingPage() {
 
         <div className={styles.heroContent}>
           <div className={styles.heroGlassCard}>
-            <div className={styles.heroEyebrow}>✨ OVAIMAGINATION DESIGN STUDIO</div>
+            <div className={styles.heroEyebrow}><img src="/logo-vn.png" alt="VN Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
             <h1 className={styles.headline}>
-              Designed for <span className={styles.headlineGold}>Feeling</span>, Not Spectacle.
+              Your Dream Wedding, <span className={styles.headlineGold}>Effortlessly Planned</span>.
             </h1>
-            <p className={styles.subheadline}>Every Couple Deserves a Beautiful, Divinely Inspired Day.</p>
+            <p className={styles.subheadline}>Experience premium digital coordination for your special day.</p>
             <p className={styles.heroDescription}>
-              Quiet harmony and premium digital coordination for DIY couples who crave luxury — without the traditional planner price tag.
+              Everything you need to orchestrate a beautifully curated wedding — without the traditional planner price tag.
             </p>
             <div className={styles.heroCtas}>
               <Link href="/auth" className={styles.ctaPrimary}>
@@ -173,7 +197,7 @@ export default function LandingPage() {
       <section className={styles.howItWorks} id="how-it-works">
         <div className={styles.sectionHeader}>
           <div className={styles.sectionEyebrow}>How It Works</div>
-          <h2 className={styles.sectionTitle}>Three Steps to Your Dream Wedding</h2>
+          <h2 className={styles.sectionTitle}>Five Steps to Your Dream Wedding</h2>
           <p className={styles.sectionSubtitle}>
             No overwhelm. No spreadsheets. Just a clear path from &ldquo;we&rsquo;re engaged!&rdquo; to &ldquo;I do.&rdquo;
           </p>
@@ -206,9 +230,6 @@ export default function LandingPage() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionEyebrow}>Pricing</div>
             <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
-            <p className={styles.sectionSubtitle}>
-              No subscriptions, no hidden fees. Pay once and plan your perfect day.
-            </p>
           </div>
 
           <div className={styles.pricingGrid}>
@@ -302,19 +323,21 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className={styles.statsBar}>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>2.1M</div>
-              <div className={styles.statLabel}>Weddings per year in the US</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>68%</div>
-              <div className={styles.statLabel}>Of couples plan DIY</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>$28K</div>
-              <div className={styles.statLabel}>Average wedding cost</div>
-            </div>
+
+        </div>
+      </section>
+
+      {/* ====== FAQ ====== */}
+      <section id="faq" className={styles.faqSection}>
+        <div className={styles.faqContainer}>
+          <div className={styles.faqHeader}>
+            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+            <p className={styles.sectionDesc}>Everything you need to know about Elysian.</p>
+          </div>
+          <div className={styles.faqList}>
+            {FAQS.map((faq, i) => (
+              <FaqItem key={i} faq={faq} />
+            ))}
           </div>
         </div>
       </section>
@@ -324,15 +347,20 @@ export default function LandingPage() {
         <div className={styles.footerInner}>
           <div className={styles.footerTop}>
             <div>
-              <div className={styles.footerBrand}>✨ Elysian</div>
+              <div className={styles.footerBrand}><img src="/logo-vn.png" alt="VN Logo" width={48} height={48} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> Elysian</div>
               <p className={styles.footerDesc}>
-                AI Wedding Concierge by Elysian — luxury wedding planning tools for every couple, at every budget.
+                Elysian Wedding Concierge — luxury wedding planning tools for every couple, at every budget.
               </p>
               <div className={styles.footerSocials}>
-                <a href="#" className={styles.socialIcon} aria-label="Instagram">📷</a>
-                <a href="#" className={styles.socialIcon} aria-label="Twitter">🐦</a>
-                <a href="#" className={styles.socialIcon} aria-label="Pinterest">📌</a>
-                <a href="#" className={styles.socialIcon} aria-label="TikTok">🎵</a>
+                <a href="#" className={styles.socialIcon} aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" className={styles.socialIcon} aria-label="Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
               </div>
             </div>
             <div>
@@ -358,12 +386,11 @@ export default function LandingPage() {
               <ul className={styles.footerLinks}>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Cookie Policy</a></li>
               </ul>
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <div className={styles.footerCopy}>© 2026 OVAimagination Events. All rights reserved.</div>
+
             <div className={styles.footerBottomLinks}>
               <a href="#">Privacy</a>
               <a href="#">Terms</a>

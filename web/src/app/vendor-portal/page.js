@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
 
 const INITIAL_INQUIRIES = [
-  { id: 'inq1', coupleNames: 'Sarah & David', date: '2026-05-25', message: 'Hello! We love your photography style. Do you have availability for July 15th, 2027 in Malibu, CA? We have a budget of $3,800 allocated.', status: 'Unread' },
+  { id: 'inq1', coupleNames: 'Vanessa & Noah', date: '2026-05-25', message: 'Hello! We love your photography style. Do you have availability for July 15th, 2027 in Malibu, CA? We have a budget of $3,800 allocated.', status: 'Unread' },
   { id: 'inq2', coupleNames: 'Emma & John', date: '2026-05-24', message: 'Hi, can you send over your detailed pricing sheet and a sample full wedding gallery?', status: 'Replied' },
 ];
 

@@ -11,13 +11,13 @@ const INITIAL_PENDING_VENDORS = [
 ];
 
 const INITIAL_COUPLES = [
-  { id: 'c1', name: 'Sarah & David', budget: '$50,000', location: 'Malibu, CA', plan: 'Event Pass', joinDate: '2026-05-20' },
+  { id: 'c1', name: 'Vanessa & Noah', budget: '$50,000', location: 'Malibu, CA', plan: 'Event Pass', joinDate: '2026-05-20' },
   { id: 'c2', name: 'Emma & John', budget: '$35,000', location: 'Pasadena, CA', plan: 'Monthly', joinDate: '2026-05-22' },
   { id: 'c3', name: 'Sophia & Liam', budget: '$75,000', location: 'Santa Monica, CA', plan: 'Free Tier', joinDate: '2026-05-25' },
 ];
 
 const INITIAL_REQUESTS = [
-  { id: 'req1', coupleName: 'Sarah & David', requestType: 'Coordination Assistance', message: 'Looking for a day-of coordinator recommendation from OVAimagination Events.', date: '2026-05-26' },
+  { id: 'req1', coupleName: 'Vanessa & Noah', requestType: 'Coordination Assistance', message: 'Looking for a day-of coordinator recommendation from OVAimagination Events.', date: '2026-05-26' },
   { id: 'req2', coupleName: 'Emma & John', requestType: 'Venue Matching', message: 'Need help finding an ocean view venue that allows external catering.', date: '2026-05-26' },
 ];
 

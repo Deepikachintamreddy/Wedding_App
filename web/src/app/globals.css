@@ -107,6 +107,10 @@ p {
   --color-accent-gold: #c9a96e;
   --color-accent-gold-light: #e2c992;
   --color-accent-gold-dark: #a88b4a;
+  --color-accent-rosegold: #b76e79;
+  --color-accent-rosegold-light: #e0b0b0;
+  --color-accent-rosegold-dark: #8c4b55;
+  --color-accent-copper: #c58f77;
   --color-text-primary: #f5f0e8;
   --color-text-secondary: #a0937d;
   --color-text-muted: #6b6157;
@@ -114,7 +118,7 @@ p {
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
   --color-info: #60a5fa;
-  --color-glass: rgba(201, 169, 110, 0.06);
+  --color-glass: rgba(13, 13, 26, 0.80);
   --color-glass-border: rgba(201, 169, 110, 0.15);
   --color-divider: rgba(201, 169, 110, 0.1);
 
@@ -122,6 +126,8 @@ p {
   --gradient-gold: linear-gradient(135deg, #c9a96e 0%, #e2c992 50%, #a88b4a 100%);
   --gradient-gold-horizontal: linear-gradient(90deg, #a88b4a, #c9a96e, #e2c992, #c9a96e, #a88b4a);
   --gradient-gold-text: linear-gradient(135deg, #e2c992, #c9a96e, #a88b4a);
+  --gradient-rosegold: linear-gradient(135deg, #b76e79 0%, #e0b0b0 50%, #8c4b55 100%);
+  --gradient-rosegold-text: linear-gradient(135deg, #e0b0b0, #b76e79, #8c4b55);
   --gradient-dark: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 100%);
   --gradient-surface: linear-gradient(135deg, rgba(201, 169, 110, 0.08), rgba(201, 169, 110, 0.02));
 

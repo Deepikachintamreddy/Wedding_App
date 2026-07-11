@@ -32,13 +32,13 @@ export function initializeStore() {
   
   if (!localStorage.getItem('wedding_user')) {
     setStorageItem('wedding_user', {
-      name: 'Sarah & David',
-      email: 'sarah.david@love.com',
+      name: 'Vanessa & Noah',
+      email: 'vanessa.noah@love.com',
       role: 'couple',
       weddingDate: '2027-07-15',
       location: 'Malibu, CA',
       budget: 50000,
-      theme: 'Elegant Navy & Gold',
+      theme: 'Rose Gold & Navy',
       onboardingComplete: true,
       aiCredits: 15,
     });

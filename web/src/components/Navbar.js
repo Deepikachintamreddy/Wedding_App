@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from './Navbar.module.css';
+import Monogram from './Monogram';
 
 const NAV_LINKS = {
   couple: [
     { label: 'Dashboard', href: '/dashboard' },
     { label: 'Invitations', href: '/templates' },
+    { label: 'Mood Board', href: '/moodboard' },
     { label: 'Checklist', href: '/checklist' },
     { label: 'Budget', href: '/budget' },
     { label: 'Guests', href: '/guests' },
@@ -31,6 +33,7 @@ const NAV_LINKS = {
     { label: 'Templates', href: '/templates' },
     { label: 'Pricing', href: '/#pricing' },
     { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'FAQ', href: '/#faq' },
   ],
 };
 
@@ -129,7 +132,7 @@ export default function Navbar() {
         <div className={styles.navInner}>
           {/* Brand */}
           <Link href="/" className={styles.brand}>
-            <span className={styles.brandIcon}>✨</span> Elysian
+            <Monogram size={64} className={styles.brandIcon} style={{ marginRight: '4px' }} /> Elysian
           </Link>
 
           {/* Desktop nav links */}

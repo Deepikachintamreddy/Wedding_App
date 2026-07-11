@@ -3,12 +3,11 @@ import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import './globals.css';
 
 export const metadata = {
-  title: 'AI Wedding Concierge | Elysian',
+  title: 'Elysian | Wedding Concierge',
   description:
-    'Your AI-powered luxury wedding planning assistant. Plan your perfect day with intelligent task management, vendor discovery, budget tracking, guest lists, and a personal AI concierge — all in one elegant experience.',
+    'Your premium luxury wedding planning assistant. Plan your perfect day with intelligent task management, vendor discovery, budget tracking, guest lists, and a personal virtual concierge — all in one elegant experience.',
   keywords: [
     'wedding planner',
-    'AI wedding',
     'wedding concierge',
     'luxury wedding',
     'wedding planning app',
@@ -47,8 +46,8 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <BackgroundSlideshow />
         <Navbar />
         {children}
