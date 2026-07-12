@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { api } from '@/lib/api';
 import styles from './page.module.css';
 
 const STEPS = [
@@ -66,65 +67,83 @@ export default function OnboardingPage() {
       setCurrentStep(5);
       setIsGenerating(true);
       
-      // Simulate generating checklist and budget breakdown
-      setTimeout(() => {
-        setIsGenerating(false);
-        const user = {
-          name: `${formData.partnerA} & ${formData.partnerB}`,
-          role: 'couple',
-          weddingDate: formData.weddingDate,
-          location: formData.location,
-          budget: Number(formData.budget),
-          theme: formData.theme,
-          onboardingComplete: true,
-          aiCredits: 15,
-        };
-        
-        localStorage.setItem('wedding_user', JSON.stringify(user));
-        
-        // Generate custom budget breakdown
-        const totalBudget = Number(formData.budget);
-        const customBudget = {
-          total: totalBudget,
-          categories: [
-            { name: 'Venue', estimated: Math.round(totalBudget * 0.36), actual: Math.round(totalBudget * 0.36), color: '#6366f1' },
-            { name: 'Catering', estimated: Math.round(totalBudget * 0.20), actual: Math.round(totalBudget * 0.20), color: '#f59e0b' },
-            { name: 'Planner', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.09), color: '#e2c992' },
-            { name: 'Photography', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.08), color: '#ec4899' },
-            { name: 'Florals', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.10), color: '#10b981' },
-            { name: 'Music', estimated: Math.round(totalBudget * 0.05), actual: Math.round(totalBudget * 0.04), color: '#3b82f6' },
-            { name: 'Attire', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.06), color: '#f472b6' },
-            { name: 'Misc', estimated: Math.round(totalBudget * 0.03), actual: Math.round(totalBudget * 0.02), color: '#94a3b8' },
-          ],
-          payments: [
-            { id: 'p_init_1', vendorName: 'Venue Down Payment', category: 'Venue', amount: Math.round(totalBudget * 0.18), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Check' },
-            { id: 'p_init_2', vendorName: 'Planner Booking Deposit', category: 'Planner', amount: Math.round(totalBudget * 0.04), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Credit Card' },
-          ]
-        };
-        localStorage.setItem('wedding_budget', JSON.stringify(customBudget));
+      const onboardingData = {
+        name: `${formData.partnerA} & ${formData.partnerB}`,
+        role: 'couple',
+        weddingDate: formData.weddingDate,
+        location: formData.location,
+        budget: Number(formData.budget),
+        theme: formData.theme,
+        onboardingComplete: true,
+      };
 
-        // Generate custom checklist tasks
-        const baseTasks = [
-          { id: 't1', title: `Lock in the final budget of $${formData.budget.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-06-15', notes: `Target styling: ${formData.theme}`, assignedTo: 'Both' },
-          { id: 't2', title: 'Compile drafts for guest count', category: 'Invitations', period: '12+ Months', completed: false, dueDate: '2026-06-25', notes: 'Initial target: 150 guests', assignedTo: 'Both' },
-          { id: 't3', title: `Research and book a venue in ${formData.location}`, category: 'Venue', period: '12+ Months', completed: false, dueDate: '2026-07-15', notes: '', assignedTo: 'Both' },
-          { id: 't4', title: 'Schedule wedding consultation with OVAimagination Events', category: 'Planner', period: '12+ Months', completed: false, dueDate: '2026-07-25', notes: '', assignedTo: 'Both' },
-          { id: 't5', title: 'Announce wedding to immediate families & wedding party', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-09-01', notes: '', assignedTo: 'Both' },
-          { id: 't6', title: 'Book Photographer & Videographer for couple shoots', category: 'Photography', period: '9 Months', completed: false, dueDate: '2026-09-15', notes: '', assignedTo: 'Bride' },
-          { id: 't7', title: `Design styling mockups matching ${formData.theme}`, category: 'Decor', period: '6 Months', completed: false, dueDate: '2027-01-10', notes: '', assignedTo: 'Bride' },
-          { id: 't8', title: 'Design and print wedding invitations', category: 'Invitations', period: '6 Months', completed: false, dueDate: '2027-01-20', notes: '', assignedTo: 'Both' },
-          { id: 't9', title: 'Order the wedding cake', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: '', assignedTo: 'Bride' },
-          { id: 't10', title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: '', assignedTo: 'Both' },
-          { id: 't11', title: 'Have final styling walk-through with florist and coordinator', category: 'Planner', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: '', assignedTo: 'Both' },
-          { id: 't12', title: 'Write personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'Elysian AI can help generate these!', assignedTo: 'Both' },
-          { id: 't13', title: 'Deliver rings & signed marriage license to Best Man', category: 'Rings', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Groom' },
-          { id: 't14', title: 'Relax and celebrate!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Both' }
-        ];
-        localStorage.setItem('wedding_tasks', JSON.stringify(baseTasks));
-        
-        window.dispatchEvent(new Event('wedding_store_update'));
-        router.push('/dashboard');
-      }, 2500);
+      if (api.isAuthenticated()) {
+        api.updateProfile(onboardingData)
+          .then(() => {
+            setIsGenerating(false);
+            window.dispatchEvent(new Event('wedding_store_update'));
+            router.push('/dashboard');
+          })
+          .catch((err) => {
+            console.error('Onboarding update error:', err);
+            setIsGenerating(false);
+            router.push('/dashboard');
+          });
+      } else {
+        // Simulate generating checklist and budget breakdown
+        setTimeout(() => {
+          setIsGenerating(false);
+          const user = {
+            ...onboardingData,
+            aiCredits: 15,
+          };
+          
+          localStorage.setItem('wedding_user', JSON.stringify(user));
+          
+          // Generate custom budget breakdown
+          const totalBudget = Number(formData.budget);
+          const customBudget = {
+            total: totalBudget,
+            categories: [
+              { name: 'Venue', estimated: Math.round(totalBudget * 0.36), actual: Math.round(totalBudget * 0.36), color: '#6366f1' },
+              { name: 'Catering', estimated: Math.round(totalBudget * 0.20), actual: Math.round(totalBudget * 0.20), color: '#f59e0b' },
+              { name: 'Planner', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.09), color: '#e2c992' },
+              { name: 'Photography', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.08), color: '#ec4899' },
+              { name: 'Florals', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.10), color: '#10b981' },
+              { name: 'Music', estimated: Math.round(totalBudget * 0.05), actual: Math.round(totalBudget * 0.04), color: '#3b82f6' },
+              { name: 'Attire', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.06), color: '#f472b6' },
+              { name: 'Misc', estimated: Math.round(totalBudget * 0.03), actual: Math.round(totalBudget * 0.02), color: '#94a3b8' },
+            ],
+            payments: [
+              { id: 'p_init_1', vendorName: 'Venue Down Payment', category: 'Venue', amount: Math.round(totalBudget * 0.18), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Check' },
+              { id: 'p_init_2', vendorName: 'Planner Booking Deposit', category: 'Planner', amount: Math.round(totalBudget * 0.04), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Credit Card' },
+            ]
+          };
+          localStorage.setItem('wedding_budget', JSON.stringify(customBudget));
+
+          // Generate custom checklist tasks
+          const baseTasks = [
+            { id: 't1', title: `Lock in the final budget of $${formData.budget.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-06-15', notes: `Target styling: ${formData.theme}`, assignedTo: 'Both' },
+            { id: 't2', title: 'Compile drafts for guest count', category: 'Invitations', period: '12+ Months', completed: false, dueDate: '2026-06-25', notes: 'Initial target: 150 guests', assignedTo: 'Both' },
+            { id: 't3', title: `Research and book a venue in ${formData.location}`, category: 'Venue', period: '12+ Months', completed: false, dueDate: '2026-07-15', notes: '', assignedTo: 'Both' },
+            { id: 't4', title: 'Schedule wedding consultation with OVAimagination Events', category: 'Planner', period: '12+ Months', completed: false, dueDate: '2026-07-25', notes: '', assignedTo: 'Both' },
+            { id: 't5', title: 'Announce wedding to immediate families & wedding party', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-09-01', notes: '', assignedTo: 'Both' },
+            { id: 't6', title: 'Book Photographer & Videographer for couple shoots', category: 'Photography', period: '9 Months', completed: false, dueDate: '2026-09-15', notes: '', assignedTo: 'Bride' },
+            { id: 't7', title: `Design styling mockups matching ${formData.theme}`, category: 'Decor', period: '6 Months', completed: false, dueDate: '2027-01-10', notes: '', assignedTo: 'Bride' },
+            { id: 't8', title: 'Design and print wedding invitations', category: 'Invitations', period: '6 Months', completed: false, dueDate: '2027-01-20', notes: '', assignedTo: 'Both' },
+            { id: 't9', title: 'Order the wedding cake', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: '', assignedTo: 'Bride' },
+            { id: 't10', title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: '', assignedTo: 'Both' },
+            { id: 't11', title: 'Have final styling walk-through with florist and coordinator', category: 'Planner', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: '', assignedTo: 'Both' },
+            { id: 't12', title: 'Write personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'Elysian AI can help generate these!', assignedTo: 'Both' },
+            { id: 't13', title: 'Deliver rings & signed marriage license to Best Man', category: 'Rings', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Groom' },
+            { id: 't14', title: 'Relax and celebrate!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Both' }
+          ];
+          localStorage.setItem('wedding_tasks', JSON.stringify(baseTasks));
+          
+          window.dispatchEvent(new Event('wedding_store_update'));
+          router.push('/dashboard');
+        }, 2500);
+      }
     } else {
       setCurrentStep((prev) => prev + 1);
     }

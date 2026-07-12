@@ -23,7 +23,7 @@ export default function AiChatPage() {
     {
       id: 'welcome',
       sender: 'ai',
-      text: `### 🧭 Welcome to the Elysian Wedding Concierge!
+      text: `### 🧭 Welcome to the VND Wedding Concierge!
 I am your personal AI assistant, trained in luxury wedding coordination by **OVAimagination Events**.
 
 You can ask me questions about your planning process, budget strategy, or vendor bookings. I can also help you write vows or speeches!
@@ -174,7 +174,7 @@ You can ask me questions about your planning process, budget strategy, or vendor
           <div className="flex-start items-center gap-3">
             <span style={{ fontSize: '2rem' }}>🤖</span>
             <div>
-              <h1 className="h4 font-heading text-gold mb-0">Elysian AI Concierge</h1>
+              <h1 className="h4 font-heading text-gold mb-0">VND AI Concierge</h1>
               <p className="caption text-muted mb-0">Partnered with OVAimagination Events</p>
             </div>
           </div>

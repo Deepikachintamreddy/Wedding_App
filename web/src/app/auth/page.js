@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { api } from '@/lib/api';
 import styles from './page.module.css';
 
 const VENDOR_CATEGORIES = [
@@ -123,46 +124,43 @@ export default function AuthPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsLoading(true);
+    setErrors({});
 
-    // Simulate API Request
-    setTimeout(() => {
-      setIsLoading(false);
-      
-      const businessesArray = selectedCategories.map((catId) => ({
-        category: catId,
-        name: businessesDetails[catId]?.name || formData.name + ' ' + catId,
-        rate: Number(businessesDetails[catId]?.rate) || 3500,
-        website: businessesDetails[catId]?.website || '',
-        notes: businessesDetails[catId]?.notes || '',
-      }));
-
-      // Setup user details
-      const user = {
-        name: role === 'couple' 
-          ? `${formData.name} & ${formData.partnerName || 'Partner'}` 
-          : (role === 'vendor' ? (businessesArray[0]?.name || formData.name) : formData.name || 'Admin User'),
-        email: formData.email,
-        role: role,
-        weddingDate: role === 'couple' ? '2027-07-15' : null,
-        location: role === 'couple' ? 'Malibu, CA' : null,
-        budget: role === 'couple' ? 50000 : null,
-        theme: role === 'couple' ? 'Elegant Navy & Gold' : null,
-        aiCredits: role === 'admin' ? 9999 : (role === 'vendor' ? 100 : 15),
-        onboardingComplete: activeTab === 'login', // if log in, skip onboarding
-        vendorCategory: role === 'vendor' ? selectedCategories[0] : null,
-        businesses: role === 'vendor' ? businessesArray : null,
-      };
-
-      localStorage.setItem('wedding_user', JSON.stringify(user));
-      // Trigger update for Navbar
-      window.dispatchEvent(new Event('wedding_store_update'));
-
+    try {
       if (activeTab === 'signup') {
+        const businessesArray = selectedCategories.map((catId) => ({
+          category: catId,
+          name: businessesDetails[catId]?.name || formData.name + ' ' + catId,
+          rate: Number(businessesDetails[catId]?.rate) || 3500,
+          website: businessesDetails[catId]?.website || '',
+          notes: businessesDetails[catId]?.notes || '',
+        }));
+
+        const signupData = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          role: role,
+          partnerName: formData.partnerName,
+          weddingDate: role === 'couple' ? '2027-07-15' : null,
+          location: role === 'couple' ? 'Malibu, CA' : null,
+          budget: role === 'couple' ? 50000 : null,
+          theme: role === 'couple' ? 'Elegant Navy & Gold' : null,
+          selectedCategories,
+          businesses: role === 'vendor' ? businessesArray : null
+        };
+
+        const result = await api.register(signupData);
+        const registeredUser = result.user;
+
+        // Trigger update for Navbar
+        window.dispatchEvent(new Event('wedding_store_update'));
+
         if (role === 'couple') {
           router.push('/onboarding');
         } else if (role === 'vendor') {
@@ -172,15 +170,30 @@ export default function AuthPage() {
         }
       } else {
         // Logging in
-        if (role === 'couple') {
-          router.push('/dashboard');
-        } else if (role === 'vendor') {
+        const result = await api.login(formData.email, formData.password);
+        const loggedUser = result.user;
+
+        // Trigger update for Navbar
+        window.dispatchEvent(new Event('wedding_store_update'));
+
+        if (loggedUser.role === 'couple') {
+          if (loggedUser.onboardingComplete) {
+            router.push('/dashboard');
+          } else {
+            router.push('/onboarding');
+          }
+        } else if (loggedUser.role === 'vendor') {
           router.push('/vendor-portal');
         } else {
           router.push('/admin');
         }
       }
-    }, 1200);
+    } catch (err) {
+      console.error('Authentication error:', err);
+      setErrors({ submit: err.message || 'Authentication failed' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -468,6 +481,12 @@ export default function AuthPage() {
             >
               {isLoading ? 'Processing...' : (activeTab === 'signup' ? 'Get Started' : 'Log In')}
             </button>
+
+            {errors.submit && (
+              <span className={styles.errorText} style={{ textAlign: 'center', display: 'block', marginTop: '12px' }}>
+                {errors.submit}
+              </span>
+            )}
 
             <div className={styles.divider}>
               <div className={styles.dividerLine}></div>

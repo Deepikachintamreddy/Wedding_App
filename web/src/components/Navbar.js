@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { api } from '@/lib/api';
 import styles from './Navbar.module.css';
 import Monogram from './Monogram';
 
@@ -114,10 +115,10 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('wedding_user');
-    localStorage.removeItem('wedding_profile');
+    api.logout();
     setUser(null);
     setDropdownOpen(false);
+    window.dispatchEvent(new Event('wedding_store_update'));
     router.push('/');
   };
 
@@ -132,7 +133,7 @@ export default function Navbar() {
         <div className={styles.navInner}>
           {/* Brand */}
           <Link href="/" className={styles.brand}>
-            <Monogram size={64} className={styles.brandIcon} style={{ marginRight: '4px' }} /> Elysian
+            <Monogram size={64} className={styles.brandIcon} style={{ marginRight: '4px' }} /> VND
           </Link>
 
           {/* Desktop nav links */}

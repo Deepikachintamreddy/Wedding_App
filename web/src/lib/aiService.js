@@ -3,6 +3,8 @@
  * Provides expert-level wedding planning advice based on keyword matching
  */
 
+import { api } from './api';
+
 const KEYWORD_RESPONSES = {
   budget: `### 💰 Budget Strategy & Best Practices
 A wedding budget is all about prioritization. Here is a standard breakdown recommended by **OVAimagination Events**:
@@ -16,7 +18,7 @@ A wedding budget is all about prioritization. Here is a standard breakdown recom
 7. **Invitations & Rings:** 3% - 5%
 8. **Emergency Cushion:** 5% (Critical!)
 
-**Elysian Pro-Tip:** Always define your "Non-Negotiables" first. If premium photography is your #1 priority, budget 15% for it and trim back on floristry or invitations. You can track this in our **Budget Tracker** tab.`,
+**VND Pro-Tip:** Always define your "Non-Negotiables" first. If premium photography is your #1 priority, budget 15% for it and trim back on floristry or invitations. You can track this in our **Budget Tracker** tab.`,
 
   venue: `### 🏛️ Choosing Your Perfect Venue
 Finding the right venue is the biggest planning milestone. Consider these factors:
@@ -56,7 +58,7 @@ Your checklist should be sorted by time periods:
 
 Go to the **Checklist** tab to view your timeline and check off tasks as you go.`,
 
-  pricing: `### 🎟️ Elysian Pricing & Plans
+  pricing: `### 🎟️ VND Pricing & Plans
 We offer flexible pricing options designed for different planning stages:
 
 - **Free Tier:** 15 AI credits per month, up to 20 checklist tasks. Perfect for exploring and starting your plan.
@@ -71,7 +73,7 @@ Planning a wedding is a single-event journey. That's why we support a **Hybrid P
 
 You can purchase or upgrade in the Profile section of your Dashboard!`,
 
-  pass: `### 🎟️ The Elysian Event Pass ($99)
+  pass: `### 🎟️ The VND Event Pass ($99)
 The **Event Pass** is our most popular option. For a one-time fee of $99, you get:
 - **Unlimited AI Conversations** (No monthly credit limits).
 - **Full-featured Budget & Guest Trackers**.
@@ -229,14 +231,14 @@ A marriage license is what makes it legal!
 - **Documents needed:** Government-issued photo IDs, birth certificates, and divorce decrees (if applicable).
 - **After the ceremony:** The officiant, couple, and witnesses sign it. The officiant must mail it back within a set number of days.`,
 
-  speechwriter: `### 🤖 Elysian AI Speech & Vow Assistant
+  speechwriter: `### 🤖 VND AI Speech & Vow Assistant
 I can help write your vows or a toast! Just write your prompt like this:
 - *"Write a groom vow. I love her laugh, she is a designer, we met in college."*
 - *"Write a Maid of Honor speech. The bride is my sister Emily, she loves traveling, she met Thomas at a concert."*
 
 I will draft a premium, customized speech for you!`,
 
-  help: `### 🧭 Welcome to the Elysian Wedding Concierge!
+  help: `### 🧭 Welcome to the VND Wedding Concierge!
 I am your personal AI assistant, trained in luxury wedding coordination by **OVAimagination Events**.
 
 You can ask me questions about your planning process, budget strategy, or vendor bookings. I can also help you write vows or speeches!
@@ -249,6 +251,15 @@ You can ask me questions about your planning process, budget strategy, or vendor
 };
 
 export async function getAiResponse(message, userCredits = 15) {
+  if (api.isAuthenticated()) {
+    try {
+      const response = await api.sendAiChat(message);
+      return response; // returns { success, text, creditsUsed, aiCredits }
+    } catch (err) {
+      console.error('AI chat API error, using local fallback:', err);
+    }
+  }
+
   // Simulate network latency
   await new Promise(resolve => setTimeout(resolve, 800));
 
@@ -281,7 +292,7 @@ To continue chatting with your AI Concierge, you can:
 
   // Fallback generic response if no keywords found
   if (!responseText) {
-    responseText = `### 💍 Elysian AI Wedding Assistant
+    responseText = `### 💍 VND AI Wedding Assistant
 Thank you for your message! You asked about: *"${message}"*.
 
 As your AI planner, I recommend:

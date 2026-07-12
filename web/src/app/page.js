@@ -140,7 +140,7 @@ export default function LandingPage() {
 
         <div className={styles.heroContent}>
           <div className={styles.heroGlassCard}>
-            <div className={styles.heroEyebrow}><img src="/logo-vn.png" alt="VN Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
+            <div className={styles.heroEyebrow}><img src="/logo.png" alt="Elysian Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
             <h1 className={styles.headline}>
               Your Dream Wedding, <span className={styles.headlineGold}>Effortlessly Planned</span>.
             </h1>
@@ -347,9 +347,9 @@ export default function LandingPage() {
         <div className={styles.footerInner}>
           <div className={styles.footerTop}>
             <div>
-              <div className={styles.footerBrand}><img src="/logo-vn.png" alt="VN Logo" width={48} height={48} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> Elysian</div>
+              <div className={styles.footerBrand}><img src="/logo.png" alt="VND Logo" width={48} height={48} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> VND</div>
               <p className={styles.footerDesc}>
-                Elysian Wedding Concierge — luxury wedding planning tools for every couple, at every budget.
+                VND Wedding Concierge — luxury wedding planning tools for every couple, at every budget.
               </p>
               <div className={styles.footerSocials}>
                 <a href="#" className={styles.socialIcon} aria-label="Instagram">
