@@ -1,5 +1,5 @@
 /**
- * Elysian Wedding Concierge — Comprehensive Mock Data (Mobile)
+ * VND Wedding Concierge — Comprehensive Mock Data (Mobile)
  */
 
 export interface Task {
@@ -95,7 +95,7 @@ export const MOCK_TASKS: Task[] = [
   { id: 't5', title: 'Select wedding party and ask them to participate', category: 'Misc', period: '9 Months', completed: true, dueDate: '2026-09-01', notes: 'All bridesmaids and groomsmen confirmed!', assignedTo: 'Both' },
   { id: 't6', title: 'Research and hire photographer & videographer', category: 'Photography', period: '9 Months', completed: true, dueDate: '2026-09-15', notes: 'Booked Golden Hour Studios.', assignedTo: 'Bride' },
   { id: 't7', title: 'Shop for wedding gown and initial fittings', category: 'Attire', period: '9 Months', completed: true, dueDate: '2026-10-05', notes: 'Found the dress at Bellissima Bridal.', assignedTo: 'Bride' },
-  { id: 't8', title: 'Launch wedding website and add countdown', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-10-20', notes: 'Using Elysian countdown page builder.', assignedTo: 'Groom' },
+  { id: 't8', title: 'Launch wedding website and add countdown', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-10-20', notes: 'Using VND countdown page builder.', assignedTo: 'Groom' },
   { id: 't9', title: 'Finalize catering menu and bar options', category: 'Catering', period: '6 Months', completed: false, dueDate: '2027-01-15', notes: 'Tasting scheduled for next week.', assignedTo: 'Both' },
   { id: 't10', title: 'Order invitations and save-the-date cards', category: 'Invitations', period: '6 Months', completed: true, dueDate: '2027-01-20', notes: 'Sent save-the-dates! Invitations received.', assignedTo: 'Bride' },
   { id: 't11', title: 'Hire florist and design centerpiece concepts', category: 'Florals', period: '6 Months', completed: false, dueDate: '2027-02-05', notes: 'Proposed white roses and gold eucalyptus.', assignedTo: 'Bride' },
@@ -103,11 +103,11 @@ export const MOCK_TASKS: Task[] = [
   { id: 't13', title: 'Order wedding cake and groom dessert', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: 'Need to choose between vanilla berry and red velvet.', assignedTo: 'Bride' },
   { id: 't14', title: 'Purchase wedding rings', category: 'Rings', period: '3 Months', completed: false, dueDate: '2027-04-15', notes: 'Fitting is scheduled.', assignedTo: 'Both' },
   { id: 't15', title: 'Mail formal wedding invitations to guests', category: 'Invitations', period: '3 Months', completed: false, dueDate: '2027-04-20', notes: 'RSVP deadline set to July 1st.', assignedTo: 'Bride' },
-  { id: 't16', title: 'Schedule hair and makeup trials', category: 'Hair & Makeup', period: '3 Months', completed: false, dueDate: '2027-05-01', notes: 'Trial booked with Elysian Beauty.', assignedTo: 'Bride' },
+  { id: 't16', title: 'Schedule hair and makeup trials', category: 'Hair & Makeup', period: '3 Months', completed: false, dueDate: '2027-05-01', notes: 'Trial booked with VND Beauty.', assignedTo: 'Bride' },
   { id: 't17', title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: 'Need to go to city hall together.', assignedTo: 'Both' },
   { id: 't18', title: 'Finalize seating chart and floor plan', category: 'Decor', period: '1 Month', completed: false, dueDate: '2027-06-20', notes: 'Waiting on last RSVPs.', assignedTo: 'Both' },
   { id: 't19', title: 'Submit final guest count to venue & caterer', category: 'Catering', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: 'Caterer needs final count 14 days before.', assignedTo: 'Planner' },
-  { id: 't20', title: 'Write wedding vows and practice speeches', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'Elysian AI vow assistant draft done.', assignedTo: 'Both' },
+  { id: 't20', title: 'Write wedding vows and practice speeches', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'VND AI vow assistant draft done.', assignedTo: 'Both' },
 ];
 
 export const MOCK_VENDORS: Vendor[] = [

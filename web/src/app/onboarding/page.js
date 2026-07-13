@@ -134,7 +134,7 @@ export default function OnboardingPage() {
             { id: 't9', title: 'Order the wedding cake', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: '', assignedTo: 'Bride' },
             { id: 't10', title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: '', assignedTo: 'Both' },
             { id: 't11', title: 'Have final styling walk-through with florist and coordinator', category: 'Planner', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: '', assignedTo: 'Both' },
-            { id: 't12', title: 'Write personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'Elysian AI can help generate these!', assignedTo: 'Both' },
+            { id: 't12', title: 'Write personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'VND AI can help generate these!', assignedTo: 'Both' },
             { id: 't13', title: 'Deliver rings & signed marriage license to Best Man', category: 'Rings', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Groom' },
             { id: 't14', title: 'Relax and celebrate!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Both' }
           ];
@@ -161,7 +161,7 @@ export default function OnboardingPage() {
 
   return (
     <div className={styles.onboardingPage}>
-      <Link href="/" className={styles.brand}>ELYSIAN</Link>
+      <Link href="/" className={styles.brand}>VND</Link>
 
       {/* Progress Steps */}
       <div className={styles.progressContainer}>
@@ -346,7 +346,7 @@ export default function OnboardingPage() {
               <div className={styles.stepIcon}>⚙️</div>
               <h2 className={styles.stepTitle}>Creating Your Dream Plan...</h2>
               <p className={styles.stepSubtitle}>
-                Elysian AI and OVAimagination are building your customized checklist, timeline schedule, and budget trackers.
+                VND AI and OVAimagination are building your customized checklist, timeline schedule, and budget trackers.
               </p>
               
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', marginTop: '40px' }}>

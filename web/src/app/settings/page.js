@@ -71,7 +71,7 @@ export default function SettingsPage() {
       <div className="container py-8 max-w-3xl">
         <div className="settings-header mb-8">
           <span className="overline">WORKSPACE SETTINGS</span>
-          <h1 className="h2 font-heading text-gold mb-1">Elysian Account Preferences</h1>
+          <h1 className="h2 font-heading text-gold mb-1">VND Account Preferences</h1>
           <p className="body-sm text-secondary">
             Manage your personal profile, customize event metrics, or reset application databases.
           </p>

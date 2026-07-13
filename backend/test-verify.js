@@ -77,7 +77,7 @@ const getRequest = (path, token) => {
 };
 
 const runTests = async () => {
-  console.log('--- ELYSIAN BACKEND AUTOMATED INTEGRATION TESTS ---');
+  console.log('--- VND BACKEND AUTOMATED INTEGRATION TESTS ---');
   
   try {
     // 1. Register User

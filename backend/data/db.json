@@ -1,344 +1,90 @@
 {
   "users": [
     {
-      "id": "usr_1783881407652_n1imq",
-      "name": "John Doe & Jane Smith",
-      "email": "john.doe@example.com",
-      "passwordHash": "$2a$10$AcVUjX2cm.efTrFbheE3L.1ltUagKtEoQxlRjhMU.SvfKagfChQ.O",
+      "id": "usr_1783926348505_2ablq",
+      "name": "Damon Salvatore & Elena",
+      "email": "knkreddy2200@gmail.com",
+      "passwordHash": "$2a$10$Aq1a0DY3I0d5CmYtiLzoreao6LvB0O/HRKMHIRikgUWxBN1Q5i.ei",
       "role": "couple",
-      "weddingDate": "2027-09-20",
-      "location": "Santa Barbara, CA",
+      "weddingDate": "2026-07-15",
+      "location": "Malibu, CA",
+      "budget": 75000,
+      "theme": "Elegant Navy & Gold",
+      "onboardingComplete": true,
+      "aiCredits": 7,
+      "eventPassActive": false,
+      "vendorCategory": "Wedding Planners & Coordinators",
+      "businesses": null,
+      "createdAt": "2026-07-13T07:05:48.505Z"
+    },
+    {
+      "id": "usr_1783927424357_qwt1w",
+      "name": "Damon Salvatore & Elena",
+      "email": "test_1783927424233@example.com",
+      "passwordHash": "$2a$10$M1UMcBAvGdl96k4dfntkX.sHmrDxauEAiOqAQ6uRyDaLLo9zIV6pe",
+      "role": "couple",
+      "weddingDate": "2027-07-15",
+      "location": "Malibu, CA",
       "budget": 50000,
-      "theme": "Modern Minimalist",
+      "theme": "Elegant Navy & Gold",
+      "onboardingComplete": false,
+      "aiCredits": 11,
+      "eventPassActive": false,
+      "vendorCategory": null,
+      "businesses": null,
+      "createdAt": "2026-07-13T07:23:44.357Z"
+    },
+    {
+      "id": "usr_1783927519433_xmm4l",
+      "name": "Damon Salvatore & Elena",
+      "email": "test_1783927519311@example.com",
+      "passwordHash": "$2a$10$cZn4gJqRnfwRrQ6kCvPFDuZL1h4ZqbrxCPj4pX2Dvzw8eWqEQzY0e",
+      "role": "couple",
+      "weddingDate": "2027-07-15",
+      "location": "Malibu, CA",
+      "budget": 50000,
+      "theme": "Elegant Navy & Gold",
+      "onboardingComplete": false,
+      "aiCredits": 13,
+      "eventPassActive": false,
+      "vendorCategory": null,
+      "businesses": null,
+      "createdAt": "2026-07-13T07:25:19.433Z"
+    },
+    {
+      "id": "usr_1783927879635_0u1pa",
+      "name": "Elena Gilbert & Damon Salvatore & Damon Salvatore",
+      "email": "elena.damon.1783927879535@mysticfalls.com",
+      "passwordHash": "$2a$10$ktmL3mnzSDL28DffnXWh5uQ/B286H/qfUqM2Zw1Cpy4rh8bJEe/H.",
+      "role": "couple",
+      "weddingDate": "2027-08-18",
+      "location": "Mystic Falls, VA",
+      "budget": 50000,
+      "theme": "Classic Vampire Elegance",
       "onboardingComplete": false,
       "aiCredits": 14,
       "eventPassActive": false,
       "vendorCategory": null,
       "businesses": null,
-      "createdAt": "2026-07-12T18:36:47.652Z"
-    },
-    {
-      "id": "usr_1783881741668_4zm6h",
-      "name": "Damon Salvatore & Katherine Pierce",
-      "email": "knkreddy2200@gmail.com",
-      "passwordHash": "$2a$10$lKj609cDJnZnp/LnxUBJ4uWFRvXcWZ231wa4M2loK0Kx1uzKjOq/y",
-      "role": "couple",
-      "weddingDate": "2027-07-24",
-      "location": "Malibu, CA",
-      "budget": 75000,
-      "theme": "Modern Minimalist",
-      "onboardingComplete": true,
-      "aiCredits": 3,
-      "eventPassActive": false,
-      "vendorCategory": "Wedding Planners & Coordinators",
-      "businesses": null,
-      "createdAt": "2026-07-12T18:42:21.668Z"
+      "createdAt": "2026-07-13T07:31:19.635Z"
     }
   ],
   "tasks": [
     {
-      "id": "t_init_0_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Lock in the final budget of $50,000",
-      "category": "Planner",
-      "period": "12+ Months",
-      "completed": true,
-      "dueDate": "2026-06-15",
-      "notes": "Target styling: Modern Minimalist",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_1_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Draft guest list to get tentative head count",
-      "category": "Invitations",
-      "period": "12+ Months",
-      "completed": true,
-      "dueDate": "2026-06-20",
-      "notes": "Initial count is around 150 guests.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_2_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Research and book wedding venue (ceremony & reception) in Santa Barbara, CA",
-      "category": "Venue",
-      "period": "12+ Months",
-      "completed": true,
-      "dueDate": "2026-07-10",
-      "notes": "Booked The Grand Pavilion.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_3_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Hire professional wedding planner/coordinator",
-      "category": "Planner",
-      "period": "12+ Months",
-      "completed": true,
-      "dueDate": "2026-07-20",
-      "notes": "Booked OVAimagination Events.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_4_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Select wedding party and ask them to participate",
-      "category": "Misc",
-      "period": "9 Months",
-      "completed": true,
-      "dueDate": "2026-09-01",
-      "notes": "All bridesmaids and groomsmen confirmed!",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_5_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Research and hire photographer & videographer",
-      "category": "Photography",
-      "period": "9 Months",
-      "completed": true,
-      "dueDate": "2026-09-15",
-      "notes": "Booked Golden Hour Studios.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_6_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Shop for wedding gown and initial fittings",
-      "category": "Attire",
-      "period": "9 Months",
-      "completed": true,
-      "dueDate": "2026-10-05",
-      "notes": "Found the dress at Bellissima Bridal.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_7_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Launch wedding website and add countdown",
-      "category": "Misc",
-      "period": "9 Months",
-      "completed": false,
-      "dueDate": "2026-10-20",
-      "notes": "Using Elysian countdown page builder.",
-      "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_8_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Finalize catering menu and bar options",
-      "category": "Catering",
-      "period": "6 Months",
-      "completed": false,
-      "dueDate": "2027-01-15",
-      "notes": "Tasting scheduled for next week.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_9_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Order invitations and save-the-date cards",
-      "category": "Invitations",
-      "period": "6 Months",
-      "completed": true,
-      "dueDate": "2027-01-20",
-      "notes": "Sent save-the-dates! Invitations received.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_10_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Hire florist and design centerpiece concepts",
-      "category": "Florals",
-      "period": "6 Months",
-      "completed": false,
-      "dueDate": "2027-02-05",
-      "notes": "Proposed white roses and gold eucalyptus.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_11_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Book ceremony musicians and reception DJ/Band",
-      "category": "Music",
-      "period": "6 Months",
-      "completed": true,
-      "dueDate": "2027-02-15",
-      "notes": "DJ Luminary booked.",
-      "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_12_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Order wedding cake and groom dessert",
-      "category": "Bakery",
-      "period": "3 Months",
-      "completed": false,
-      "dueDate": "2027-04-10",
-      "notes": "Need to choose between vanilla berry and red velvet.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_13_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Purchase wedding bands and arrange engraving",
-      "category": "Rings",
-      "period": "3 Months",
-      "completed": false,
-      "dueDate": "2027-04-15",
-      "notes": "Fitting is scheduled.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_14_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Mail formal wedding invitations to guests",
-      "category": "Invitations",
-      "period": "3 Months",
-      "completed": false,
-      "dueDate": "2027-04-20",
-      "notes": "RSVP deadline set to July 1st.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_15_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Schedule hair and makeup trials",
-      "category": "Hair & Makeup",
-      "period": "3 Months",
-      "completed": false,
-      "dueDate": "2027-05-01",
-      "notes": "Trial booked with Elysian Beauty.",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_16_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Apply for marriage license",
-      "category": "Misc",
-      "period": "1 Month",
-      "completed": false,
-      "dueDate": "2027-06-15",
-      "notes": "Need to go to city hall together.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_17_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Finalize seating chart and floor plan",
-      "category": "Decor",
-      "period": "1 Month",
-      "completed": false,
-      "dueDate": "2027-06-20",
-      "notes": "Waiting on last RSVPs.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_18_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Submit final guest count to venue & caterer",
-      "category": "Catering",
-      "period": "1 Month",
-      "completed": false,
-      "dueDate": "2027-06-25",
-      "notes": "Caterer needs final count 14 days before.",
-      "assignedTo": "Planner",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_19_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Write wedding vows and practice speeches",
-      "category": "Officiant",
-      "period": "1 Month",
-      "completed": false,
-      "dueDate": "2027-07-01",
-      "notes": "Elysian AI vow assistant draft done.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_20_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Remember the rings and marriage license",
-      "category": "Rings",
-      "period": "Day-Of",
-      "completed": false,
-      "dueDate": "2027-09-20",
-      "notes": "Give to the Best Man.",
-      "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_21_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Eat a hearty breakfast and stay hydrated",
-      "category": "Misc",
-      "period": "Day-Of",
-      "completed": false,
-      "dueDate": "2027-09-20",
-      "notes": "Caterer is delivering food to suites.",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_init_22_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Relax, celebrate, and enjoy the day!",
-      "category": "Misc",
-      "period": "Day-Of",
-      "completed": false,
-      "dueDate": "2027-09-20",
-      "notes": "You made it!",
-      "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "t_1783881407699_11yu6",
-      "userId": "usr_1783881407652_n1imq",
-      "title": "Design centerpieces",
-      "category": "Florals",
-      "period": "6 Months",
-      "completed": false,
-      "dueDate": "2027-03-20",
-      "notes": "Must match theme: Modern Minimalist",
-      "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:36:47.699Z"
-    },
-    {
-      "id": "t_init_0_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_0_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Lock in the final budget of $75,000",
       "category": "Planner",
       "period": "12+ Months",
       "completed": true,
       "dueDate": "2026-06-15",
-      "notes": "Target styling: Modern Minimalist",
+      "notes": "Target styling: Elegant Navy & Gold",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_1_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_1_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Draft guest list to get tentative head count",
       "category": "Invitations",
       "period": "12+ Months",
@@ -346,11 +92,11 @@
       "dueDate": "2026-06-20",
       "notes": "Initial count is around 150 guests.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_2_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_2_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
       "category": "Venue",
       "period": "12+ Months",
@@ -358,11 +104,11 @@
       "dueDate": "2026-07-10",
       "notes": "Booked The Grand Pavilion.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_3_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_3_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Hire professional wedding planner/coordinator",
       "category": "Planner",
       "period": "12+ Months",
@@ -370,11 +116,11 @@
       "dueDate": "2026-07-20",
       "notes": "Booked OVAimagination Events.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_4_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_4_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Select wedding party and ask them to participate",
       "category": "Misc",
       "period": "9 Months",
@@ -382,11 +128,11 @@
       "dueDate": "2026-09-01",
       "notes": "All bridesmaids and groomsmen confirmed!",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_5_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_5_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Research and hire photographer & videographer",
       "category": "Photography",
       "period": "9 Months",
@@ -394,11 +140,11 @@
       "dueDate": "2026-09-15",
       "notes": "Booked Golden Hour Studios.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_6_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_6_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Shop for wedding gown and initial fittings",
       "category": "Attire",
       "period": "9 Months",
@@ -406,23 +152,23 @@
       "dueDate": "2026-10-05",
       "notes": "Found the dress at Bellissima Bridal.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_7_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_7_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Launch wedding website and add countdown",
       "category": "Misc",
       "period": "9 Months",
       "completed": false,
       "dueDate": "2026-10-20",
-      "notes": "Using Elysian countdown page builder.",
+      "notes": "Using VND countdown page builder.",
       "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_8_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_8_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Finalize catering menu and bar options",
       "category": "Catering",
       "period": "6 Months",
@@ -430,11 +176,11 @@
       "dueDate": "2027-01-15",
       "notes": "Tasting scheduled for next week.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_9_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_9_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Order invitations and save-the-date cards",
       "category": "Invitations",
       "period": "6 Months",
@@ -442,11 +188,11 @@
       "dueDate": "2027-01-20",
       "notes": "Sent save-the-dates! Invitations received.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_10_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_10_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Hire florist and design centerpiece concepts",
       "category": "Florals",
       "period": "6 Months",
@@ -454,11 +200,11 @@
       "dueDate": "2027-02-05",
       "notes": "Proposed white roses and gold eucalyptus.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_11_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_11_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Book ceremony musicians and reception DJ/Band",
       "category": "Music",
       "period": "6 Months",
@@ -466,11 +212,11 @@
       "dueDate": "2027-02-15",
       "notes": "DJ Luminary booked.",
       "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_12_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_12_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Order wedding cake and groom dessert",
       "category": "Bakery",
       "period": "3 Months",
@@ -478,11 +224,11 @@
       "dueDate": "2027-04-10",
       "notes": "Need to choose between vanilla berry and red velvet.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_13_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_13_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Purchase wedding bands and arrange engraving",
       "category": "Rings",
       "period": "3 Months",
@@ -490,11 +236,11 @@
       "dueDate": "2027-04-15",
       "notes": "Fitting is scheduled.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_14_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_14_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Mail formal wedding invitations to guests",
       "category": "Invitations",
       "period": "3 Months",
@@ -502,23 +248,23 @@
       "dueDate": "2027-04-20",
       "notes": "RSVP deadline set to July 1st.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_15_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_15_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Schedule hair and makeup trials",
       "category": "Hair & Makeup",
       "period": "3 Months",
       "completed": false,
       "dueDate": "2027-05-01",
-      "notes": "Trial booked with Elysian Beauty.",
+      "notes": "Trial booked with VND Beauty.",
       "assignedTo": "Bride",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_16_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_16_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Apply for marriage license",
       "category": "Misc",
       "period": "1 Month",
@@ -526,11 +272,11 @@
       "dueDate": "2027-06-15",
       "notes": "Need to go to city hall together.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_17_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_17_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Finalize seating chart and floor plan",
       "category": "Decor",
       "period": "1 Month",
@@ -538,11 +284,11 @@
       "dueDate": "2027-06-20",
       "notes": "Waiting on last RSVPs.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_18_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_18_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Submit final guest count to venue & caterer",
       "category": "Catering",
       "period": "1 Month",
@@ -550,60 +296,888 @@
       "dueDate": "2027-06-25",
       "notes": "Caterer needs final count 14 days before.",
       "assignedTo": "Planner",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_19_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_19_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Write wedding vows and practice speeches",
       "category": "Officiant",
       "period": "1 Month",
       "completed": false,
       "dueDate": "2027-07-01",
-      "notes": "Elysian AI vow assistant draft done.",
+      "notes": "VND AI vow assistant draft done.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_20_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_20_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Remember the rings and marriage license",
       "category": "Rings",
       "period": "Day-Of",
       "completed": false,
-      "dueDate": "2027-07-24",
+      "dueDate": "2027-07-15",
       "notes": "Give to the Best Man.",
       "assignedTo": "Groom",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_21_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_21_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Eat a hearty breakfast and stay hydrated",
       "category": "Misc",
       "period": "Day-Of",
       "completed": false,
-      "dueDate": "2027-07-24",
+      "dueDate": "2027-07-15",
       "notes": "Caterer is delivering food to suites.",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "t_init_22_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "t_init_22_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "title": "Relax, celebrate, and enjoy the day!",
       "category": "Misc",
       "period": "Day-Of",
       "completed": false,
-      "dueDate": "2027-07-24",
+      "dueDate": "2027-07-15",
       "notes": "You made it!",
       "assignedTo": "Both",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
+    },
+    {
+      "id": "t_init_0_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Lock in the final budget of $50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-15",
+      "notes": "Target styling: Elegant Navy & Gold",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_1_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-20",
+      "notes": "Initial count is around 150 guests.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_2_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-10",
+      "notes": "Booked The Grand Pavilion.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_3_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-20",
+      "notes": "Booked OVAimagination Events.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_4_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-01",
+      "notes": "All bridesmaids and groomsmen confirmed!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_5_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-15",
+      "notes": "Booked Golden Hour Studios.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_6_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-10-05",
+      "notes": "Found the dress at Bellissima Bridal.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_7_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-20",
+      "notes": "Using VND countdown page builder.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_8_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-15",
+      "notes": "Tasting scheduled for next week.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_9_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-01-20",
+      "notes": "Sent save-the-dates! Invitations received.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_10_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-05",
+      "notes": "Proposed white roses and gold eucalyptus.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_11_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-02-15",
+      "notes": "DJ Luminary booked.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_12_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-10",
+      "notes": "Need to choose between vanilla berry and red velvet.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_13_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-15",
+      "notes": "Fitting is scheduled.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_14_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-20",
+      "notes": "RSVP deadline set to July 1st.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_15_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-01",
+      "notes": "Trial booked with VND Beauty.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_16_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Need to go to city hall together.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_17_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-20",
+      "notes": "Waiting on last RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_18_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-25",
+      "notes": "Caterer needs final count 14 days before.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_19_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-01",
+      "notes": "VND AI vow assistant draft done.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_20_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Give to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_21_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Caterer is delivering food to suites.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_22_1783927424370",
+      "userId": "usr_1783927424357_qwt1w",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "You made it!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:23:44.370Z"
+    },
+    {
+      "id": "t_init_0_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Lock in the final budget of $50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-15",
+      "notes": "Target styling: Elegant Navy & Gold",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_1_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-20",
+      "notes": "Initial count is around 150 guests.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_2_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-10",
+      "notes": "Booked The Grand Pavilion.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_3_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-20",
+      "notes": "Booked OVAimagination Events.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_4_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-01",
+      "notes": "All bridesmaids and groomsmen confirmed!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_5_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-15",
+      "notes": "Booked Golden Hour Studios.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_6_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-10-05",
+      "notes": "Found the dress at Bellissima Bridal.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_7_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-20",
+      "notes": "Using VND countdown page builder.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_8_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-15",
+      "notes": "Tasting scheduled for next week.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_9_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-01-20",
+      "notes": "Sent save-the-dates! Invitations received.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_10_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-05",
+      "notes": "Proposed white roses and gold eucalyptus.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_11_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-02-15",
+      "notes": "DJ Luminary booked.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_12_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-10",
+      "notes": "Need to choose between vanilla berry and red velvet.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_13_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-15",
+      "notes": "Fitting is scheduled.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_14_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-20",
+      "notes": "RSVP deadline set to July 1st.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_15_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-01",
+      "notes": "Trial booked with VND Beauty.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_16_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Need to go to city hall together.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_17_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-20",
+      "notes": "Waiting on last RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_18_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-25",
+      "notes": "Caterer needs final count 14 days before.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_19_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-01",
+      "notes": "VND AI vow assistant draft done.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_20_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Give to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_21_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Caterer is delivering food to suites.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_22_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "You made it!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "t_init_0_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Lock in the final budget of $50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-15",
+      "notes": "Target styling: Classic Vampire Elegance",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_1_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-20",
+      "notes": "Initial count is around 150 guests.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_2_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Research and book wedding venue (ceremony & reception) in Mystic Falls, VA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-10",
+      "notes": "Booked The Grand Pavilion.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_3_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-20",
+      "notes": "Booked OVAimagination Events.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_4_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-01",
+      "notes": "All bridesmaids and groomsmen confirmed!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_5_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-09-15",
+      "notes": "Booked Golden Hour Studios.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_6_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": true,
+      "dueDate": "2026-10-05",
+      "notes": "Found the dress at Bellissima Bridal.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_7_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-20",
+      "notes": "Using VND countdown page builder.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_8_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-15",
+      "notes": "Tasting scheduled for next week.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_9_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-01-20",
+      "notes": "Sent save-the-dates! Invitations received.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_10_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-05",
+      "notes": "Proposed white roses and gold eucalyptus.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_11_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": true,
+      "dueDate": "2027-02-15",
+      "notes": "DJ Luminary booked.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_12_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-10",
+      "notes": "Need to choose between vanilla berry and red velvet.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_13_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-15",
+      "notes": "Fitting is scheduled.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_14_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-20",
+      "notes": "RSVP deadline set to July 1st.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_15_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-01",
+      "notes": "Trial booked with VND Beauty.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_16_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Need to go to city hall together.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_17_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-20",
+      "notes": "Waiting on last RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_18_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-25",
+      "notes": "Caterer needs final count 14 days before.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_19_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-01",
+      "notes": "VND AI vow assistant draft done.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_20_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-08-18",
+      "notes": "Give to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_21_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-08-18",
+      "notes": "Caterer is delivering food to suites.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "t_init_22_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-08-18",
+      "notes": "You made it!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-13T07:31:19.647Z"
     }
   ],
   "vendors": [
     {
-      "id": "v_init_1_1783881407670",
+      "id": "v_init_1_1783926365658",
       "name": "OVAimagination Events",
       "category": "Planner",
       "rating": 4.9,
@@ -619,151 +1193,11 @@
       "paidAmount": 2250,
       "nextPaymentDate": "2027-06-01",
       "notes": "Premium wedding planners. Olivia is amazing.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_2_1783881407670",
-      "name": "The Grand Pavilion",
-      "category": "Venue",
-      "rating": 4.8,
-      "reviewsCount": 112,
-      "costRange": "$$$$",
-      "location": "Santa Barbara, CA",
-      "status": "Booked",
-      "contactName": "Marcus Sterling",
-      "email": "events@grandpavilion.com",
-      "phone": "(555) 014-9831",
-      "website": "https://grandpavilion.com",
-      "contractPrice": 18000,
-      "paidAmount": 9000,
-      "nextPaymentDate": "2027-05-15",
-      "notes": "Stunning outdoor ceremony space.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_3_1783881407670",
-      "name": "Golden Hour Studios",
-      "category": "Photography",
-      "rating": 4.9,
-      "reviewsCount": 64,
-      "costRange": "$$$",
-      "location": "Pasadena, CA",
-      "status": "Booked",
-      "contactName": "Chloe Bennett",
-      "email": "chloe@goldenhourstudios.com",
-      "phone": "(555) 018-7241",
-      "website": "https://goldenhourstudios.com",
-      "contractPrice": 3800,
-      "paidAmount": 1900,
-      "nextPaymentDate": "2027-07-01",
-      "notes": "Full-day coverage.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_4_1783881407670",
-      "name": "Culinaria Fine Dining",
-      "category": "Catering",
-      "rating": 4.7,
-      "reviewsCount": 89,
-      "costRange": "$$$",
-      "location": "Santa Monica, CA",
-      "status": "Shortlisted",
-      "contactName": "Chef Andre",
-      "email": "info@culinariafine.com",
-      "phone": "(555) 013-6490",
-      "website": "https://culinariafine.com",
-      "contractPrice": 9500,
-      "paidAmount": 0,
-      "nextPaymentDate": null,
-      "notes": "Custom plating options.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_5_1783881407670",
-      "name": "DJ Luminary",
-      "category": "Music",
-      "rating": 5,
-      "reviewsCount": 73,
-      "costRange": "$$",
-      "location": "Los Angeles, CA",
-      "status": "Booked",
-      "contactName": "DJ Dave",
-      "email": "dave@djluminary.com",
-      "phone": "(555) 016-5287",
-      "website": "https://djluminary.com",
-      "contractPrice": 2200,
-      "paidAmount": 1100,
-      "nextPaymentDate": "2027-07-15",
-      "notes": "DJ Dave booked.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_6_1783881407670",
-      "name": "Elysian Floral Design",
-      "category": "Florals",
-      "rating": 4.8,
-      "reviewsCount": 37,
-      "costRange": "$$$",
-      "location": "Beverly Hills, CA",
-      "status": "Shortlisted",
-      "contactName": "Elena Rostova",
-      "email": "elena@elysianflorals.com",
-      "phone": "(555) 011-8843",
-      "website": "https://elysianflorals.com",
-      "contractPrice": 5000,
-      "paidAmount": 0,
-      "nextPaymentDate": null,
-      "notes": "Elena is great.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_7_1783881407670",
-      "name": "Bellissima Bridal",
-      "category": "Attire",
-      "rating": 4.6,
-      "reviewsCount": 154,
-      "costRange": "$$$",
-      "location": "Los Angeles, CA",
-      "status": "Booked",
-      "contactName": "Sarah Jenkins",
-      "email": "fittings@bellissimabridal.com",
-      "phone": "(555) 012-9051",
-      "website": "https://bellissimabridal.com",
-      "contractPrice": 3200,
-      "paidAmount": 3200,
-      "nextPaymentDate": null,
-      "notes": "Wedding gown ordered.",
-      "userId": "usr_1783881407652_n1imq",
-      "createdAt": "2026-07-12T18:36:47.670Z"
-    },
-    {
-      "id": "v_init_1_1783881838684",
-      "name": "OVAimagination Events",
-      "category": "Planner",
-      "rating": 4.9,
-      "reviewsCount": 48,
-      "costRange": "$$$",
-      "location": "Los Angeles, CA",
-      "status": "Booked",
-      "contactName": "Olivia Vance",
-      "email": "olivia@ovaimagination.com",
-      "phone": "(555) 019-2834",
-      "website": "https://ovaimagination.com",
-      "contractPrice": 4500,
-      "paidAmount": 2250,
-      "nextPaymentDate": "2027-06-01",
-      "notes": "Premium wedding planners. Olivia is amazing.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
-    },
-    {
-      "id": "v_init_2_1783881838684",
+      "id": "v_init_2_1783926365658",
       "name": "The Grand Pavilion",
       "category": "Venue",
       "rating": 4.8,
@@ -779,11 +1213,11 @@
       "paidAmount": 9000,
       "nextPaymentDate": "2027-05-15",
       "notes": "Stunning outdoor ceremony space.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_3_1783881838684",
+      "id": "v_init_3_1783926365658",
       "name": "Golden Hour Studios",
       "category": "Photography",
       "rating": 4.9,
@@ -799,11 +1233,11 @@
       "paidAmount": 1900,
       "nextPaymentDate": "2027-07-01",
       "notes": "Full-day coverage.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_4_1783881838684",
+      "id": "v_init_4_1783926365658",
       "name": "Culinaria Fine Dining",
       "category": "Catering",
       "rating": 4.7,
@@ -819,11 +1253,11 @@
       "paidAmount": 0,
       "nextPaymentDate": null,
       "notes": "Custom plating options.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_5_1783881838684",
+      "id": "v_init_5_1783926365658",
       "name": "DJ Luminary",
       "category": "Music",
       "rating": 5,
@@ -839,12 +1273,12 @@
       "paidAmount": 1100,
       "nextPaymentDate": "2027-07-15",
       "notes": "DJ Dave booked.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_6_1783881838684",
-      "name": "Elysian Floral Design",
+      "id": "v_init_6_1783926365658",
+      "name": "VND Floral Design",
       "category": "Florals",
       "rating": 4.8,
       "reviewsCount": 37,
@@ -852,18 +1286,18 @@
       "location": "Beverly Hills, CA",
       "status": "Shortlisted",
       "contactName": "Elena Rostova",
-      "email": "elena@elysianflorals.com",
+      "email": "elena@vndflorals.com",
       "phone": "(555) 011-8843",
-      "website": "https://elysianflorals.com",
+      "website": "https://vndflorals.com",
       "contractPrice": 5000,
       "paidAmount": 0,
       "nextPaymentDate": null,
       "notes": "Elena is great.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "v_init_7_1783881838684",
+      "id": "v_init_7_1783926365658",
       "name": "Bellissima Bridal",
       "category": "Attire",
       "rating": 4.6,
@@ -879,14 +1313,434 @@
       "paidAmount": 3200,
       "nextPaymentDate": null,
       "notes": "Wedding gown ordered.",
-      "userId": "usr_1783881741668_4zm6h",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "userId": "usr_1783926348505_2ablq",
+      "createdAt": "2026-07-13T07:06:05.658Z"
+    },
+    {
+      "id": "v_init_1_1783927424371",
+      "name": "OVAimagination Events",
+      "category": "Planner",
+      "rating": 4.9,
+      "reviewsCount": 48,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Olivia Vance",
+      "email": "olivia@ovaimagination.com",
+      "phone": "(555) 019-2834",
+      "website": "https://ovaimagination.com",
+      "contractPrice": 4500,
+      "paidAmount": 2250,
+      "nextPaymentDate": "2027-06-01",
+      "notes": "Premium wedding planners. Olivia is amazing.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_2_1783927424371",
+      "name": "The Grand Pavilion",
+      "category": "Venue",
+      "rating": 4.8,
+      "reviewsCount": 112,
+      "costRange": "$$$$",
+      "location": "Malibu, CA",
+      "status": "Booked",
+      "contactName": "Marcus Sterling",
+      "email": "events@grandpavilion.com",
+      "phone": "(555) 014-9831",
+      "website": "https://grandpavilion.com",
+      "contractPrice": 18000,
+      "paidAmount": 9000,
+      "nextPaymentDate": "2027-05-15",
+      "notes": "Stunning outdoor ceremony space.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_3_1783927424371",
+      "name": "Golden Hour Studios",
+      "category": "Photography",
+      "rating": 4.9,
+      "reviewsCount": 64,
+      "costRange": "$$$",
+      "location": "Pasadena, CA",
+      "status": "Booked",
+      "contactName": "Chloe Bennett",
+      "email": "chloe@goldenhourstudios.com",
+      "phone": "(555) 018-7241",
+      "website": "https://goldenhourstudios.com",
+      "contractPrice": 3800,
+      "paidAmount": 1900,
+      "nextPaymentDate": "2027-07-01",
+      "notes": "Full-day coverage.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_4_1783927424371",
+      "name": "Culinaria Fine Dining",
+      "category": "Catering",
+      "rating": 4.7,
+      "reviewsCount": 89,
+      "costRange": "$$$",
+      "location": "Santa Monica, CA",
+      "status": "Shortlisted",
+      "contactName": "Chef Andre",
+      "email": "info@culinariafine.com",
+      "phone": "(555) 013-6490",
+      "website": "https://culinariafine.com",
+      "contractPrice": 9500,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Custom plating options.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_5_1783927424371",
+      "name": "DJ Luminary",
+      "category": "Music",
+      "rating": 5,
+      "reviewsCount": 73,
+      "costRange": "$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "DJ Dave",
+      "email": "dave@djluminary.com",
+      "phone": "(555) 016-5287",
+      "website": "https://djluminary.com",
+      "contractPrice": 2200,
+      "paidAmount": 1100,
+      "nextPaymentDate": "2027-07-15",
+      "notes": "DJ Dave booked.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_6_1783927424371",
+      "name": "VND Floral Design",
+      "category": "Florals",
+      "rating": 4.8,
+      "reviewsCount": 37,
+      "costRange": "$$$",
+      "location": "Beverly Hills, CA",
+      "status": "Shortlisted",
+      "contactName": "Elena Rostova",
+      "email": "elena@vndflorals.com",
+      "phone": "(555) 011-8843",
+      "website": "https://vndflorals.com",
+      "contractPrice": 5000,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Elena is great.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_7_1783927424371",
+      "name": "Bellissima Bridal",
+      "category": "Attire",
+      "rating": 4.6,
+      "reviewsCount": 154,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Sarah Jenkins",
+      "email": "fittings@bellissimabridal.com",
+      "phone": "(555) 012-9051",
+      "website": "https://bellissimabridal.com",
+      "contractPrice": 3200,
+      "paidAmount": 3200,
+      "nextPaymentDate": null,
+      "notes": "Wedding gown ordered.",
+      "userId": "usr_1783927424357_qwt1w",
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "v_init_1_1783927519446",
+      "name": "OVAimagination Events",
+      "category": "Planner",
+      "rating": 4.9,
+      "reviewsCount": 48,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Olivia Vance",
+      "email": "olivia@ovaimagination.com",
+      "phone": "(555) 019-2834",
+      "website": "https://ovaimagination.com",
+      "contractPrice": 4500,
+      "paidAmount": 2250,
+      "nextPaymentDate": "2027-06-01",
+      "notes": "Premium wedding planners. Olivia is amazing.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_2_1783927519446",
+      "name": "The Grand Pavilion",
+      "category": "Venue",
+      "rating": 4.8,
+      "reviewsCount": 112,
+      "costRange": "$$$$",
+      "location": "Malibu, CA",
+      "status": "Booked",
+      "contactName": "Marcus Sterling",
+      "email": "events@grandpavilion.com",
+      "phone": "(555) 014-9831",
+      "website": "https://grandpavilion.com",
+      "contractPrice": 18000,
+      "paidAmount": 9000,
+      "nextPaymentDate": "2027-05-15",
+      "notes": "Stunning outdoor ceremony space.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_3_1783927519446",
+      "name": "Golden Hour Studios",
+      "category": "Photography",
+      "rating": 4.9,
+      "reviewsCount": 64,
+      "costRange": "$$$",
+      "location": "Pasadena, CA",
+      "status": "Booked",
+      "contactName": "Chloe Bennett",
+      "email": "chloe@goldenhourstudios.com",
+      "phone": "(555) 018-7241",
+      "website": "https://goldenhourstudios.com",
+      "contractPrice": 3800,
+      "paidAmount": 1900,
+      "nextPaymentDate": "2027-07-01",
+      "notes": "Full-day coverage.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_4_1783927519446",
+      "name": "Culinaria Fine Dining",
+      "category": "Catering",
+      "rating": 4.7,
+      "reviewsCount": 89,
+      "costRange": "$$$",
+      "location": "Santa Monica, CA",
+      "status": "Shortlisted",
+      "contactName": "Chef Andre",
+      "email": "info@culinariafine.com",
+      "phone": "(555) 013-6490",
+      "website": "https://culinariafine.com",
+      "contractPrice": 9500,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Custom plating options.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_5_1783927519446",
+      "name": "DJ Luminary",
+      "category": "Music",
+      "rating": 5,
+      "reviewsCount": 73,
+      "costRange": "$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "DJ Dave",
+      "email": "dave@djluminary.com",
+      "phone": "(555) 016-5287",
+      "website": "https://djluminary.com",
+      "contractPrice": 2200,
+      "paidAmount": 1100,
+      "nextPaymentDate": "2027-07-15",
+      "notes": "DJ Dave booked.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_6_1783927519446",
+      "name": "VND Floral Design",
+      "category": "Florals",
+      "rating": 4.8,
+      "reviewsCount": 37,
+      "costRange": "$$$",
+      "location": "Beverly Hills, CA",
+      "status": "Shortlisted",
+      "contactName": "Elena Rostova",
+      "email": "elena@vndflorals.com",
+      "phone": "(555) 011-8843",
+      "website": "https://vndflorals.com",
+      "contractPrice": 5000,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Elena is great.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_7_1783927519446",
+      "name": "Bellissima Bridal",
+      "category": "Attire",
+      "rating": 4.6,
+      "reviewsCount": 154,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Sarah Jenkins",
+      "email": "fittings@bellissimabridal.com",
+      "phone": "(555) 012-9051",
+      "website": "https://bellissimabridal.com",
+      "contractPrice": 3200,
+      "paidAmount": 3200,
+      "nextPaymentDate": null,
+      "notes": "Wedding gown ordered.",
+      "userId": "usr_1783927519433_xmm4l",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "v_init_1_1783927879647",
+      "name": "OVAimagination Events",
+      "category": "Planner",
+      "rating": 4.9,
+      "reviewsCount": 48,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Olivia Vance",
+      "email": "olivia@ovaimagination.com",
+      "phone": "(555) 019-2834",
+      "website": "https://ovaimagination.com",
+      "contractPrice": 4500,
+      "paidAmount": 2250,
+      "nextPaymentDate": "2027-06-01",
+      "notes": "Premium wedding planners. Olivia is amazing.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_2_1783927879647",
+      "name": "The Grand Pavilion",
+      "category": "Venue",
+      "rating": 4.8,
+      "reviewsCount": 112,
+      "costRange": "$$$$",
+      "location": "Mystic Falls, VA",
+      "status": "Booked",
+      "contactName": "Marcus Sterling",
+      "email": "events@grandpavilion.com",
+      "phone": "(555) 014-9831",
+      "website": "https://grandpavilion.com",
+      "contractPrice": 18000,
+      "paidAmount": 9000,
+      "nextPaymentDate": "2027-05-15",
+      "notes": "Stunning outdoor ceremony space.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_3_1783927879647",
+      "name": "Golden Hour Studios",
+      "category": "Photography",
+      "rating": 4.9,
+      "reviewsCount": 64,
+      "costRange": "$$$",
+      "location": "Pasadena, CA",
+      "status": "Booked",
+      "contactName": "Chloe Bennett",
+      "email": "chloe@goldenhourstudios.com",
+      "phone": "(555) 018-7241",
+      "website": "https://goldenhourstudios.com",
+      "contractPrice": 3800,
+      "paidAmount": 1900,
+      "nextPaymentDate": "2027-07-01",
+      "notes": "Full-day coverage.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_4_1783927879647",
+      "name": "Culinaria Fine Dining",
+      "category": "Catering",
+      "rating": 4.7,
+      "reviewsCount": 89,
+      "costRange": "$$$",
+      "location": "Santa Monica, CA",
+      "status": "Shortlisted",
+      "contactName": "Chef Andre",
+      "email": "info@culinariafine.com",
+      "phone": "(555) 013-6490",
+      "website": "https://culinariafine.com",
+      "contractPrice": 9500,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Custom plating options.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_5_1783927879647",
+      "name": "DJ Luminary",
+      "category": "Music",
+      "rating": 5,
+      "reviewsCount": 73,
+      "costRange": "$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "DJ Dave",
+      "email": "dave@djluminary.com",
+      "phone": "(555) 016-5287",
+      "website": "https://djluminary.com",
+      "contractPrice": 2200,
+      "paidAmount": 1100,
+      "nextPaymentDate": "2027-07-15",
+      "notes": "DJ Dave booked.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_6_1783927879647",
+      "name": "VND Floral Design",
+      "category": "Florals",
+      "rating": 4.8,
+      "reviewsCount": 37,
+      "costRange": "$$$",
+      "location": "Beverly Hills, CA",
+      "status": "Shortlisted",
+      "contactName": "Elena Rostova",
+      "email": "elena@vndflorals.com",
+      "phone": "(555) 011-8843",
+      "website": "https://vndflorals.com",
+      "contractPrice": 5000,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "Elena is great.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "v_init_7_1783927879647",
+      "name": "Bellissima Bridal",
+      "category": "Attire",
+      "rating": 4.6,
+      "reviewsCount": 154,
+      "costRange": "$$$",
+      "location": "Los Angeles, CA",
+      "status": "Booked",
+      "contactName": "Sarah Jenkins",
+      "email": "fittings@bellissimabridal.com",
+      "phone": "(555) 012-9051",
+      "website": "https://bellissimabridal.com",
+      "contractPrice": 3200,
+      "paidAmount": 3200,
+      "nextPaymentDate": null,
+      "notes": "Wedding gown ordered.",
+      "userId": "usr_1783927879635_0u1pa",
+      "createdAt": "2026-07-13T07:31:19.647Z"
     }
   ],
   "guests": [
     {
-      "id": "g_init_0_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_0_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Eleanor Johnson",
       "group": "Bride's Family",
       "email": "eleanor.j@gmail.com",
@@ -897,11 +1751,11 @@
       "table": 1,
       "plusOnes": 0,
       "notes": "Mother of the Bride.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_1_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_1_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Robert Johnson",
       "group": "Bride's Family",
       "email": "robert.j@gmail.com",
@@ -912,11 +1766,11 @@
       "table": 1,
       "plusOnes": 0,
       "notes": "Father of the Bride.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_2_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_2_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Thomas Johnson",
       "group": "Bride's Family",
       "email": "tom.j@outlook.com",
@@ -927,11 +1781,11 @@
       "table": 3,
       "plusOnes": 1,
       "notes": "Bride's brother.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_3_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_3_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Emily Johnson",
       "group": "Bride's Family",
       "email": "emily.j@outlook.com",
@@ -942,11 +1796,11 @@
       "table": 3,
       "plusOnes": 0,
       "notes": "Thomas Johnson plus one.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_4_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_4_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Arthur Miller",
       "group": "Groom's Family",
       "email": "arthur.m@yahoo.com",
@@ -957,11 +1811,11 @@
       "table": 2,
       "plusOnes": 0,
       "notes": "Father of the Groom.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_5_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_5_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Grace Miller",
       "group": "Groom's Family",
       "email": "grace.m@yahoo.com",
@@ -972,11 +1826,11 @@
       "table": 2,
       "plusOnes": 0,
       "notes": "Mother of the Groom.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_6_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_6_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Lucy Miller",
       "group": "Groom's Family",
       "email": "lucy.m@gmail.com",
@@ -987,11 +1841,11 @@
       "table": 4,
       "plusOnes": 0,
       "notes": "Groom's sister (Bridesmaid).",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_7_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_7_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "David Smith",
       "group": "Friends",
       "email": "dsmith@corp.com",
@@ -1002,11 +1856,11 @@
       "table": 5,
       "plusOnes": 1,
       "notes": "Best Man.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_8_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_8_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Jessica Smith",
       "group": "Friends",
       "email": "jess.smith@corp.com",
@@ -1017,11 +1871,11 @@
       "table": 5,
       "plusOnes": 0,
       "notes": "David Smith plus one.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_9_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_9_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Michael Chang",
       "group": "Friends",
       "email": "mchang@tech.com",
@@ -1032,11 +1886,11 @@
       "table": 5,
       "plusOnes": 0,
       "notes": "Groomsman.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_10_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_10_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Sophia Martinez",
       "group": "Friends",
       "email": "sophia.m@design.com",
@@ -1047,11 +1901,11 @@
       "table": 0,
       "plusOnes": 0,
       "notes": "Maid of Honor.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_11_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_11_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Daniel Kim",
       "group": "Friends",
       "email": "dkim@med.org",
@@ -1062,11 +1916,11 @@
       "table": 0,
       "plusOnes": 1,
       "notes": "College friend.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_12_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_12_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Rachel Green",
       "group": "Friends",
       "email": "rachel@fashion.com",
@@ -1077,11 +1931,11 @@
       "table": 0,
       "plusOnes": 0,
       "notes": "Out of country.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_13_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_13_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Monica Geller",
       "group": "Friends",
       "email": "monica@chef.com",
@@ -1092,11 +1946,11 @@
       "table": 6,
       "plusOnes": 0,
       "notes": "Catering consultant friend.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_14_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "g_init_14_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "name": "Chandler Bing",
       "group": "Friends",
       "email": "chandler@transponster.com",
@@ -1107,11 +1961,11 @@
       "table": 6,
       "plusOnes": 0,
       "notes": "Monica's husband.",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "g_init_0_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_0_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Eleanor Johnson",
       "group": "Bride's Family",
       "email": "eleanor.j@gmail.com",
@@ -1122,11 +1976,11 @@
       "table": 1,
       "plusOnes": 0,
       "notes": "Mother of the Bride.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_1_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_1_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Robert Johnson",
       "group": "Bride's Family",
       "email": "robert.j@gmail.com",
@@ -1137,11 +1991,11 @@
       "table": 1,
       "plusOnes": 0,
       "notes": "Father of the Bride.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_2_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_2_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Thomas Johnson",
       "group": "Bride's Family",
       "email": "tom.j@outlook.com",
@@ -1152,11 +2006,11 @@
       "table": 3,
       "plusOnes": 1,
       "notes": "Bride's brother.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_3_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_3_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Emily Johnson",
       "group": "Bride's Family",
       "email": "emily.j@outlook.com",
@@ -1167,11 +2021,11 @@
       "table": 3,
       "plusOnes": 0,
       "notes": "Thomas Johnson plus one.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_4_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_4_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Arthur Miller",
       "group": "Groom's Family",
       "email": "arthur.m@yahoo.com",
@@ -1182,11 +2036,11 @@
       "table": 2,
       "plusOnes": 0,
       "notes": "Father of the Groom.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_5_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_5_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Grace Miller",
       "group": "Groom's Family",
       "email": "grace.m@yahoo.com",
@@ -1197,11 +2051,11 @@
       "table": 2,
       "plusOnes": 0,
       "notes": "Mother of the Groom.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_6_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_6_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Lucy Miller",
       "group": "Groom's Family",
       "email": "lucy.m@gmail.com",
@@ -1212,11 +2066,11 @@
       "table": 4,
       "plusOnes": 0,
       "notes": "Groom's sister (Bridesmaid).",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_7_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_7_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "David Smith",
       "group": "Friends",
       "email": "dsmith@corp.com",
@@ -1227,11 +2081,11 @@
       "table": 5,
       "plusOnes": 1,
       "notes": "Best Man.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_8_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_8_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Jessica Smith",
       "group": "Friends",
       "email": "jess.smith@corp.com",
@@ -1242,11 +2096,11 @@
       "table": 5,
       "plusOnes": 0,
       "notes": "David Smith plus one.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_9_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_9_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Michael Chang",
       "group": "Friends",
       "email": "mchang@tech.com",
@@ -1257,11 +2111,11 @@
       "table": 5,
       "plusOnes": 0,
       "notes": "Groomsman.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_10_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_10_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Sophia Martinez",
       "group": "Friends",
       "email": "sophia.m@design.com",
@@ -1272,11 +2126,11 @@
       "table": 0,
       "plusOnes": 0,
       "notes": "Maid of Honor.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_11_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_11_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Daniel Kim",
       "group": "Friends",
       "email": "dkim@med.org",
@@ -1287,11 +2141,11 @@
       "table": 0,
       "plusOnes": 1,
       "notes": "College friend.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_12_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_12_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Rachel Green",
       "group": "Friends",
       "email": "rachel@fashion.com",
@@ -1302,11 +2156,11 @@
       "table": 0,
       "plusOnes": 0,
       "notes": "Out of country.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_13_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_13_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Monica Geller",
       "group": "Friends",
       "email": "monica@chef.com",
@@ -1317,11 +2171,11 @@
       "table": 6,
       "plusOnes": 0,
       "notes": "Catering consultant friend.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "g_init_14_1783881838684",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "g_init_14_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "name": "Chandler Bing",
       "group": "Friends",
       "email": "chandler@transponster.com",
@@ -1332,133 +2186,463 @@
       "table": 6,
       "plusOnes": 0,
       "notes": "Monica's husband.",
-      "createdAt": "2026-07-12T18:43:58.684Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "g_init_0_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Eleanor Johnson",
+      "group": "Bride's Family",
+      "email": "eleanor.j@gmail.com",
+      "phone": "(555) 019-1122",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 1,
+      "plusOnes": 0,
+      "notes": "Mother of the Bride.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_1_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Robert Johnson",
+      "group": "Bride's Family",
+      "email": "robert.j@gmail.com",
+      "phone": "(555) 019-1123",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 1,
+      "plusOnes": 0,
+      "notes": "Father of the Bride.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_2_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Thomas Johnson",
+      "group": "Bride's Family",
+      "email": "tom.j@outlook.com",
+      "phone": "(555) 019-5566",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Vegetarian",
+      "table": 3,
+      "plusOnes": 1,
+      "notes": "Bride's brother.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_3_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Emily Johnson",
+      "group": "Bride's Family",
+      "email": "emily.j@outlook.com",
+      "phone": "(555) 019-5567",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 3,
+      "plusOnes": 0,
+      "notes": "Thomas Johnson plus one.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_4_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Arthur Miller",
+      "group": "Groom's Family",
+      "email": "arthur.m@yahoo.com",
+      "phone": "(555) 015-4422",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Fish",
+      "table": 2,
+      "plusOnes": 0,
+      "notes": "Father of the Groom.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_5_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Grace Miller",
+      "group": "Groom's Family",
+      "email": "grace.m@yahoo.com",
+      "phone": "(555) 015-4423",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Fish",
+      "table": 2,
+      "plusOnes": 0,
+      "notes": "Mother of the Groom.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_6_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Lucy Miller",
+      "group": "Groom's Family",
+      "email": "lucy.m@gmail.com",
+      "phone": "(555) 015-9988",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Vegetarian",
+      "table": 4,
+      "plusOnes": 0,
+      "notes": "Groom's sister (Bridesmaid).",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_7_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "David Smith",
+      "group": "Friends",
+      "email": "dsmith@corp.com",
+      "phone": "(555) 012-3344",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 5,
+      "plusOnes": 1,
+      "notes": "Best Man.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_8_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Jessica Smith",
+      "group": "Friends",
+      "email": "jess.smith@corp.com",
+      "phone": "(555) 012-3345",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 5,
+      "plusOnes": 0,
+      "notes": "David Smith plus one.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_9_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Michael Chang",
+      "group": "Friends",
+      "email": "mchang@tech.com",
+      "phone": "(555) 017-6655",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 5,
+      "plusOnes": 0,
+      "notes": "Groomsman.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_10_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Sophia Martinez",
+      "group": "Friends",
+      "email": "sophia.m@design.com",
+      "phone": "(555) 013-4411",
+      "status": "Pending",
+      "rsvpReceived": false,
+      "meal": "Pending",
+      "table": 0,
+      "plusOnes": 0,
+      "notes": "Maid of Honor.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_11_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Daniel Kim",
+      "group": "Friends",
+      "email": "dkim@med.org",
+      "phone": "(555) 014-8877",
+      "status": "Pending",
+      "rsvpReceived": false,
+      "meal": "Pending",
+      "table": 0,
+      "plusOnes": 1,
+      "notes": "College friend.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_12_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Rachel Green",
+      "group": "Friends",
+      "email": "rachel@fashion.com",
+      "phone": "(555) 016-1212",
+      "status": "Declined",
+      "rsvpReceived": true,
+      "meal": "Declined",
+      "table": 0,
+      "plusOnes": 0,
+      "notes": "Out of country.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_13_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Monica Geller",
+      "group": "Friends",
+      "email": "monica@chef.com",
+      "phone": "(555) 016-1313",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 6,
+      "plusOnes": 0,
+      "notes": "Catering consultant friend.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_14_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "name": "Chandler Bing",
+      "group": "Friends",
+      "email": "chandler@transponster.com",
+      "phone": "(555) 016-1414",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 6,
+      "plusOnes": 0,
+      "notes": "Monica's husband.",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "g_init_0_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Eleanor Johnson",
+      "group": "Bride's Family",
+      "email": "eleanor.j@gmail.com",
+      "phone": "(555) 019-1122",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 1,
+      "plusOnes": 0,
+      "notes": "Mother of the Bride.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_1_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Robert Johnson",
+      "group": "Bride's Family",
+      "email": "robert.j@gmail.com",
+      "phone": "(555) 019-1123",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 1,
+      "plusOnes": 0,
+      "notes": "Father of the Bride.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_2_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Thomas Johnson",
+      "group": "Bride's Family",
+      "email": "tom.j@outlook.com",
+      "phone": "(555) 019-5566",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Vegetarian",
+      "table": 3,
+      "plusOnes": 1,
+      "notes": "Bride's brother.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_3_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Emily Johnson",
+      "group": "Bride's Family",
+      "email": "emily.j@outlook.com",
+      "phone": "(555) 019-5567",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 3,
+      "plusOnes": 0,
+      "notes": "Thomas Johnson plus one.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_4_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Arthur Miller",
+      "group": "Groom's Family",
+      "email": "arthur.m@yahoo.com",
+      "phone": "(555) 015-4422",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Fish",
+      "table": 2,
+      "plusOnes": 0,
+      "notes": "Father of the Groom.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_5_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Grace Miller",
+      "group": "Groom's Family",
+      "email": "grace.m@yahoo.com",
+      "phone": "(555) 015-4423",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Fish",
+      "table": 2,
+      "plusOnes": 0,
+      "notes": "Mother of the Groom.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_6_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Lucy Miller",
+      "group": "Groom's Family",
+      "email": "lucy.m@gmail.com",
+      "phone": "(555) 015-9988",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Vegetarian",
+      "table": 4,
+      "plusOnes": 0,
+      "notes": "Groom's sister (Bridesmaid).",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_7_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "David Smith",
+      "group": "Friends",
+      "email": "dsmith@corp.com",
+      "phone": "(555) 012-3344",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 5,
+      "plusOnes": 1,
+      "notes": "Best Man.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_8_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Jessica Smith",
+      "group": "Friends",
+      "email": "jess.smith@corp.com",
+      "phone": "(555) 012-3345",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 5,
+      "plusOnes": 0,
+      "notes": "David Smith plus one.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_9_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Michael Chang",
+      "group": "Friends",
+      "email": "mchang@tech.com",
+      "phone": "(555) 017-6655",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 5,
+      "plusOnes": 0,
+      "notes": "Groomsman.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_10_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Sophia Martinez",
+      "group": "Friends",
+      "email": "sophia.m@design.com",
+      "phone": "(555) 013-4411",
+      "status": "Pending",
+      "rsvpReceived": false,
+      "meal": "Pending",
+      "table": 0,
+      "plusOnes": 0,
+      "notes": "Maid of Honor.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_11_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Daniel Kim",
+      "group": "Friends",
+      "email": "dkim@med.org",
+      "phone": "(555) 014-8877",
+      "status": "Pending",
+      "rsvpReceived": false,
+      "meal": "Pending",
+      "table": 0,
+      "plusOnes": 1,
+      "notes": "College friend.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_12_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Rachel Green",
+      "group": "Friends",
+      "email": "rachel@fashion.com",
+      "phone": "(555) 016-1212",
+      "status": "Declined",
+      "rsvpReceived": true,
+      "meal": "Declined",
+      "table": 0,
+      "plusOnes": 0,
+      "notes": "Out of country.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_13_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Monica Geller",
+      "group": "Friends",
+      "email": "monica@chef.com",
+      "phone": "(555) 016-1313",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Beef",
+      "table": 6,
+      "plusOnes": 0,
+      "notes": "Catering consultant friend.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "g_init_14_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "name": "Chandler Bing",
+      "group": "Friends",
+      "email": "chandler@transponster.com",
+      "phone": "(555) 016-1414",
+      "status": "Attending",
+      "rsvpReceived": true,
+      "meal": "Chicken",
+      "table": 6,
+      "plusOnes": 0,
+      "notes": "Monica's husband.",
+      "createdAt": "2026-07-13T07:31:19.647Z"
     }
   ],
   "budgets": [
     {
-      "id": "b_init_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
-      "total": 50000,
-      "categories": [
-        {
-          "name": "Venue",
-          "estimated": 18000,
-          "actual": 18000,
-          "color": "#6366f1"
-        },
-        {
-          "name": "Catering",
-          "estimated": 10000,
-          "actual": 0,
-          "color": "#f59e0b"
-        },
-        {
-          "name": "Planner",
-          "estimated": 5000,
-          "actual": 4500,
-          "color": "#e2c992"
-        },
-        {
-          "name": "Photography",
-          "estimated": 4000,
-          "actual": 3800,
-          "color": "#ec4899"
-        },
-        {
-          "name": "Florals",
-          "estimated": 5000,
-          "actual": 0,
-          "color": "#10b981"
-        },
-        {
-          "name": "Music",
-          "estimated": 2500,
-          "actual": 2200,
-          "color": "#3b82f6"
-        },
-        {
-          "name": "Attire",
-          "estimated": 4000,
-          "actual": 3200,
-          "color": "#f472b6"
-        },
-        {
-          "name": "Misc",
-          "estimated": 1500,
-          "actual": 0,
-          "color": "#94a3b8"
-        }
-      ],
-      "payments": [
-        {
-          "id": "p_init_1_1783881407670",
-          "vendorName": "The Grand Pavilion",
-          "category": "Venue",
-          "amount": 9000,
-          "date": "2026-07-15",
-          "status": "Paid",
-          "method": "Wire"
-        },
-        {
-          "id": "p_init_2_1783881407670",
-          "vendorName": "OVAimagination Events",
-          "category": "Planner",
-          "amount": 2250,
-          "date": "2026-07-25",
-          "status": "Paid",
-          "method": "Credit Card"
-        },
-        {
-          "id": "p_init_3_1783881407670",
-          "vendorName": "Golden Hour Studios",
-          "category": "Photography",
-          "amount": 1900,
-          "date": "2026-09-20",
-          "status": "Paid",
-          "method": "Check"
-        },
-        {
-          "id": "p_init_4_1783881407670",
-          "vendorName": "Bellissima Bridal",
-          "category": "Attire",
-          "amount": 3200,
-          "date": "2026-10-10",
-          "status": "Paid",
-          "method": "Credit Card"
-        },
-        {
-          "id": "p_init_5_1783881407670",
-          "vendorName": "DJ Luminary",
-          "category": "Music",
-          "amount": 1100,
-          "date": "2027-02-20",
-          "status": "Paid",
-          "method": "Venmo"
-        },
-        {
-          "id": "p_init_6_1783881407670",
-          "vendorName": "The Grand Pavilion",
-          "category": "Venue",
-          "amount": 9000,
-          "date": "2027-05-15",
-          "status": "Upcoming",
-          "method": "Wire"
-        },
-        {
-          "id": "p_init_7_1783881407670",
-          "vendorName": "OVAimagination Events",
-          "category": "Planner",
-          "amount": 2250,
-          "date": "2027-06-01",
-          "status": "Upcoming",
-          "method": "Credit Card"
-        }
-      ]
-    },
-    {
-      "id": "b_init_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "b_init_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "total": 75000,
       "categories": [
         {
@@ -1512,7 +2696,7 @@
       ],
       "payments": [
         {
-          "id": "p_init_1_1783881838685",
+          "id": "p_init_1_1783926365658",
           "vendorName": "The Grand Pavilion",
           "category": "Venue",
           "amount": 9000,
@@ -1521,7 +2705,7 @@
           "method": "Wire"
         },
         {
-          "id": "p_init_2_1783881838685",
+          "id": "p_init_2_1783926365658",
           "vendorName": "OVAimagination Events",
           "category": "Planner",
           "amount": 2250,
@@ -1530,7 +2714,7 @@
           "method": "Credit Card"
         },
         {
-          "id": "p_init_3_1783881838685",
+          "id": "p_init_3_1783926365658",
           "vendorName": "Golden Hour Studios",
           "category": "Photography",
           "amount": 1900,
@@ -1539,7 +2723,7 @@
           "method": "Check"
         },
         {
-          "id": "p_init_4_1783881838685",
+          "id": "p_init_4_1783926365658",
           "vendorName": "Bellissima Bridal",
           "category": "Attire",
           "amount": 3200,
@@ -1548,7 +2732,7 @@
           "method": "Credit Card"
         },
         {
-          "id": "p_init_5_1783881838685",
+          "id": "p_init_5_1783926365658",
           "vendorName": "DJ Luminary",
           "category": "Music",
           "amount": 1100,
@@ -1557,7 +2741,7 @@
           "method": "Venmo"
         },
         {
-          "id": "p_init_6_1783881838685",
+          "id": "p_init_6_1783926365658",
           "vendorName": "The Grand Pavilion",
           "category": "Venue",
           "amount": 9000,
@@ -1566,7 +2750,367 @@
           "method": "Wire"
         },
         {
-          "id": "p_init_7_1783881838685",
+          "id": "p_init_7_1783926365658",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2027-06-01",
+          "status": "Upcoming",
+          "method": "Credit Card"
+        }
+      ]
+    },
+    {
+      "id": "b_init_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
+      "total": 50000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 18000,
+          "actual": 18000,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 10000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 5000,
+          "actual": 4500,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 4000,
+          "actual": 3800,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 2500,
+          "actual": 2200,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 4000,
+          "actual": 3200,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 1500,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": [
+        {
+          "id": "p_init_1_1783927424371",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2026-07-15",
+          "status": "Paid",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_2_1783927424371",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2026-07-25",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_3_1783927424371",
+          "vendorName": "Golden Hour Studios",
+          "category": "Photography",
+          "amount": 1900,
+          "date": "2026-09-20",
+          "status": "Paid",
+          "method": "Check"
+        },
+        {
+          "id": "p_init_4_1783927424371",
+          "vendorName": "Bellissima Bridal",
+          "category": "Attire",
+          "amount": 3200,
+          "date": "2026-10-10",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_5_1783927424371",
+          "vendorName": "DJ Luminary",
+          "category": "Music",
+          "amount": 1100,
+          "date": "2027-02-20",
+          "status": "Paid",
+          "method": "Venmo"
+        },
+        {
+          "id": "p_init_6_1783927424371",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2027-05-15",
+          "status": "Upcoming",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_7_1783927424371",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2027-06-01",
+          "status": "Upcoming",
+          "method": "Credit Card"
+        }
+      ]
+    },
+    {
+      "id": "b_init_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "total": 50000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 18000,
+          "actual": 18000,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 10000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 5000,
+          "actual": 4500,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 4000,
+          "actual": 3800,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 2500,
+          "actual": 2200,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 4000,
+          "actual": 3200,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 1500,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": [
+        {
+          "id": "p_init_1_1783927519446",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2026-07-15",
+          "status": "Paid",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_2_1783927519446",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2026-07-25",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_3_1783927519446",
+          "vendorName": "Golden Hour Studios",
+          "category": "Photography",
+          "amount": 1900,
+          "date": "2026-09-20",
+          "status": "Paid",
+          "method": "Check"
+        },
+        {
+          "id": "p_init_4_1783927519446",
+          "vendorName": "Bellissima Bridal",
+          "category": "Attire",
+          "amount": 3200,
+          "date": "2026-10-10",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_5_1783927519446",
+          "vendorName": "DJ Luminary",
+          "category": "Music",
+          "amount": 1100,
+          "date": "2027-02-20",
+          "status": "Paid",
+          "method": "Venmo"
+        },
+        {
+          "id": "p_init_6_1783927519446",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2027-05-15",
+          "status": "Upcoming",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_7_1783927519446",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2027-06-01",
+          "status": "Upcoming",
+          "method": "Credit Card"
+        }
+      ]
+    },
+    {
+      "id": "b_init_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "total": 50000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 18000,
+          "actual": 18000,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 10000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 5000,
+          "actual": 4500,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 4000,
+          "actual": 3800,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 2500,
+          "actual": 2200,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 4000,
+          "actual": 3200,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 1500,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": [
+        {
+          "id": "p_init_1_1783927879647",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2026-07-15",
+          "status": "Paid",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_2_1783927879647",
+          "vendorName": "OVAimagination Events",
+          "category": "Planner",
+          "amount": 2250,
+          "date": "2026-07-25",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_3_1783927879647",
+          "vendorName": "Golden Hour Studios",
+          "category": "Photography",
+          "amount": 1900,
+          "date": "2026-09-20",
+          "status": "Paid",
+          "method": "Check"
+        },
+        {
+          "id": "p_init_4_1783927879647",
+          "vendorName": "Bellissima Bridal",
+          "category": "Attire",
+          "amount": 3200,
+          "date": "2026-10-10",
+          "status": "Paid",
+          "method": "Credit Card"
+        },
+        {
+          "id": "p_init_5_1783927879647",
+          "vendorName": "DJ Luminary",
+          "category": "Music",
+          "amount": 1100,
+          "date": "2027-02-20",
+          "status": "Paid",
+          "method": "Venmo"
+        },
+        {
+          "id": "p_init_6_1783927879647",
+          "vendorName": "The Grand Pavilion",
+          "category": "Venue",
+          "amount": 9000,
+          "date": "2027-05-15",
+          "status": "Upcoming",
+          "method": "Wire"
+        },
+        {
+          "id": "p_init_7_1783927879647",
           "vendorName": "OVAimagination Events",
           "category": "Planner",
           "amount": 2250,
@@ -1579,286 +3123,476 @@
   ],
   "timeline": [
     {
-      "id": "tl_init_0_1783881407670",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_0_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "08:00 AM",
       "title": "Hair and Makeup Starts",
       "location": "Bridal Suite",
       "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
       "status": "Completed",
-      "createdAt": "2026-07-12T18:36:47.670Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_1_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_1_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "10:00 AM",
       "title": "Groomsmen Getting Ready",
       "location": "Groom Suite",
       "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_2_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_2_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "12:30 PM",
       "title": "First Look & Couple Portraits",
       "location": "Grand Garden",
       "desc": "Private first look. Photographer & videographer shoot couple portraits.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_3_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_3_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "01:30 PM",
       "title": "Wedding Party & Family Photos",
       "location": "Grand Garden",
       "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_4_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_4_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "03:30 PM",
       "title": "Groom & Guests Arrival",
       "location": "Pavilion Lawn",
       "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_5_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_5_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "04:00 PM",
       "title": "Wedding Ceremony",
       "location": "Pavilion Lawn",
       "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_6_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_6_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "04:40 PM",
       "title": "Cocktail Hour",
       "location": "Ocean View Terrace",
       "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_7_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_7_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "05:45 PM",
       "title": "Grand Reception Entrance",
       "location": "Gold Ballroom",
       "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_8_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_8_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "06:00 PM",
       "title": "Dinner Service & Speeches",
       "location": "Gold Ballroom",
       "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_9_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_9_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "08:00 PM",
       "title": "Dance Floor Opens & Cake Cutting",
       "location": "Gold Ballroom",
       "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_10_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "tl_init_10_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "time": "11:00 PM",
       "title": "Grand Sparkler Send-off",
       "location": "Front Portico",
       "desc": "Guests line up with sparklers. Bride and Groom exit.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:36:47.671Z"
+      "createdAt": "2026-07-13T07:06:05.658Z"
     },
     {
-      "id": "tl_init_0_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_0_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "08:00 AM",
       "title": "Hair and Makeup Starts",
       "location": "Bridal Suite",
       "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
       "status": "Completed",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_1_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_1_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "10:00 AM",
       "title": "Groomsmen Getting Ready",
       "location": "Groom Suite",
       "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_2_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_2_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "12:30 PM",
       "title": "First Look & Couple Portraits",
       "location": "Grand Garden",
       "desc": "Private first look. Photographer & videographer shoot couple portraits.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_3_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_3_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "01:30 PM",
       "title": "Wedding Party & Family Photos",
       "location": "Grand Garden",
       "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_4_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_4_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "03:30 PM",
       "title": "Groom & Guests Arrival",
       "location": "Pavilion Lawn",
       "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_5_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_5_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "04:00 PM",
       "title": "Wedding Ceremony",
       "location": "Pavilion Lawn",
       "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_6_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_6_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "04:40 PM",
       "title": "Cocktail Hour",
       "location": "Ocean View Terrace",
       "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_7_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_7_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "05:45 PM",
       "title": "Grand Reception Entrance",
       "location": "Gold Ballroom",
       "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_8_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_8_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "06:00 PM",
       "title": "Dinner Service & Speeches",
       "location": "Gold Ballroom",
       "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_9_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_9_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "08:00 PM",
       "title": "Dance Floor Opens & Cake Cutting",
       "location": "Gold Ballroom",
       "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
     },
     {
-      "id": "tl_init_10_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
+      "id": "tl_init_10_1783927424371",
+      "userId": "usr_1783927424357_qwt1w",
       "time": "11:00 PM",
       "title": "Grand Sparkler Send-off",
       "location": "Front Portico",
       "desc": "Guests line up with sparklers. Bride and Groom exit.",
       "status": "Pending",
-      "createdAt": "2026-07-12T18:43:58.685Z"
+      "createdAt": "2026-07-13T07:23:44.371Z"
+    },
+    {
+      "id": "tl_init_0_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Completed",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_1_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_2_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_3_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_4_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_5_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_6_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_7_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_8_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_9_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_10_1783927519446",
+      "userId": "usr_1783927519433_xmm4l",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:25:19.446Z"
+    },
+    {
+      "id": "tl_init_0_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Completed",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "tl_init_1_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "tl_init_2_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.647Z"
+    },
+    {
+      "id": "tl_init_3_1783927879647",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_4_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_5_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_6_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_7_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_8_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_9_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
+    },
+    {
+      "id": "tl_init_10_1783927879648",
+      "userId": "usr_1783927879635_0u1pa",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-13T07:31:19.648Z"
     }
   ],
   "messages": [
     {
-      "id": "msg_dm_init_0_1783881407671",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "msg_dm_init_0_1783926365658",
+      "userId": "usr_1783926348505_2ablq",
       "chatId": "chat_c_v1",
       "senderId": "v1",
       "senderName": "Olivia Vance",
       "text": "Hi! I'm thrilled to be planning your wedding. Have you had a chance to look at the draft catering menu yet?",
-      "timestamp": "12:06 am",
-      "createdAt": "2026-07-12T18:36:47.674Z"
+      "timestamp": "12:36 pm",
+      "createdAt": "2026-07-13T07:06:05.667Z"
     },
     {
-      "id": "msg_dm_init_1_1783881407674",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "msg_dm_init_1_1783926365667",
+      "userId": "usr_1783926348505_2ablq",
       "chatId": "chat_c_v1",
-      "senderId": "usr_1783881407652_n1imq",
+      "senderId": "usr_1783926348505_2ablq",
       "senderName": "Couple",
       "text": "Hi Olivia! Yes, we love the plated options from Culinaria Fine Dining. We have a tasting next week.",
-      "timestamp": "12:06 am",
-      "createdAt": "2026-07-12T18:36:47.674Z"
+      "timestamp": "12:36 pm",
+      "createdAt": "2026-07-13T07:06:05.667Z"
     },
     {
-      "id": "msg_dm_init_2_1783881407674",
-      "userId": "usr_1783881407652_n1imq",
+      "id": "msg_dm_init_2_1783926365667",
+      "userId": "usr_1783926348505_2ablq",
       "chatId": "chat_c_v2",
       "senderId": "v2",
       "senderName": "Marcus Sterling",
       "text": "Good morning! The Grand Pavilion lawn has been locked in for your date. I have sent the contract details over.",
-      "timestamp": "12:06 am",
-      "createdAt": "2026-07-12T18:36:47.674Z"
-    },
-    {
-      "id": "msg_dm_init_0_1783881838685",
-      "userId": "usr_1783881741668_4zm6h",
-      "chatId": "chat_c_v1",
-      "senderId": "v1",
-      "senderName": "Olivia Vance",
-      "text": "Hi! I'm thrilled to be planning your wedding. Have you had a chance to look at the draft catering menu yet?",
-      "timestamp": "12:13 am",
-      "createdAt": "2026-07-12T18:43:58.688Z"
-    },
-    {
-      "id": "msg_dm_init_1_1783881838688",
-      "userId": "usr_1783881741668_4zm6h",
-      "chatId": "chat_c_v1",
-      "senderId": "usr_1783881741668_4zm6h",
-      "senderName": "Couple",
-      "text": "Hi Olivia! Yes, we love the plated options from Culinaria Fine Dining. We have a tasting next week.",
-      "timestamp": "12:13 am",
-      "createdAt": "2026-07-12T18:43:58.688Z"
-    },
-    {
-      "id": "msg_dm_init_2_1783881838688",
-      "userId": "usr_1783881741668_4zm6h",
-      "chatId": "chat_c_v2",
-      "senderId": "v2",
-      "senderName": "Marcus Sterling",
-      "text": "Good morning! The Grand Pavilion lawn has been locked in for your date. I have sent the contract details over.",
-      "timestamp": "12:13 am",
-      "createdAt": "2026-07-12T18:43:58.688Z"
+      "timestamp": "12:36 pm",
+      "createdAt": "2026-07-13T07:06:05.667Z"
     }
   ]
 }

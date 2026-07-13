@@ -128,22 +128,41 @@ export default function MoodBoardPage() {
   };
 
   // AI Style Report Generator
-  const generateAiReport = () => {
+  const generateAiReport = async () => {
     setAiGenerating(true);
     setAiReport('');
-    
-    setTimeout(() => {
-      const reports = {
-        gold: `Your design profile showcases a majestic Champagne Gold theme. Combining deep celestial blacks and midnight blues with soft ivory and gold swatches outlines a timeless, royal atmosphere. The curated dining setups and diamond ring captures point toward a high-society luxury banquet aesthetic, suited perfectly for a grand hotel foyer or classical manor reception.`,
-        noir: `A masterpiece in monochromatic Noir Minimalism. By sticking strictly to neutral charcoal, soft stone greys, and high-contrast whites, your mood board establishes a sharp, high-end editorial vibe. Rely on architectural venue structures, bold monochrome drapery, and low-glow candlelight to achieve this dramatic, artistic Vogue runway wedding.`,
-        emerald: `An organic, fresh Emerald Garden narrative. Joining deep forest green tones with rich foliage accents and champagne gold highlights creates a majestic natural paradise. Pinned imagery hints at coastal sunset walks and ocean-side arches, suggesting a luxury bohemian styling best expressed through open-air dining tables under twinkling string lights.`,
-        sunset: `A warm, relaxed Sunset Terracotta romance. The dusty rose, peach-blossom, and warm sand palette evokes an intimate seaside wedding. Complemented by vintage lace dresses and sand-walk photography, this profile channels beachside sunset vibes, making it feel deeply emotional, natural, and incredibly cozy.`
-      };
 
-      const key = selectedPreset || 'gold';
-      setAiReport(reports[key] || reports.gold);
-      setAiGenerating(false);
-    }, 1500);
+    // Build a context-aware prompt from current pins and swatches
+    const pinSummary = pins.map(p => `${p.title} (${p.category})`).join(', ');
+    const swatchList = swatches.join(', ');
+    const prompt = `Analyze my wedding mood board aesthetic. My current inspiration pins are: ${pinSummary}. My color palette is: ${swatchList}. My selected preset vibe is "${selectedPreset || 'gold'}". Write a professional, 3-paragraph wedding design concept proposal describing the overall aesthetic, recommended venue styling, and styling tips.`;
+
+    try {
+      const { api } = await import('@/lib/api');
+      if (api.isAuthenticated()) {
+        const response = await api.sendAiChat(prompt);
+        if (response && response.text) {
+          // Strip markdown headers for cleaner display in the report box
+          setAiReport(response.text.replace(/^###\s*/gm, '').replace(/\*\*/g, ''));
+          setAiGenerating(false);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('AI backend unavailable for moodboard report, using local fallback:', err);
+    }
+    
+    // Local fallback if backend is unreachable
+    const reports = {
+      gold: `Your design profile showcases a majestic Champagne Gold theme. Combining deep celestial blacks and midnight blues with soft ivory and gold swatches outlines a timeless, royal atmosphere. The curated dining setups and diamond ring captures point toward a high-society luxury banquet aesthetic, suited perfectly for a grand hotel foyer or classical manor reception.`,
+      noir: `A masterpiece in monochromatic Noir Minimalism. By sticking strictly to neutral charcoal, soft stone greys, and high-contrast whites, your mood board establishes a sharp, high-end editorial vibe. Rely on architectural venue structures, bold monochrome drapery, and low-glow candlelight to achieve this dramatic, artistic Vogue runway wedding.`,
+      emerald: `An organic, fresh Emerald Garden narrative. Joining deep forest green tones with rich foliage accents and champagne gold highlights creates a majestic natural paradise. Pinned imagery hints at coastal sunset walks and ocean-side arches, suggesting a luxury bohemian styling best expressed through open-air dining tables under twinkling string lights.`,
+      sunset: `A warm, relaxed Sunset Terracotta romance. The dusty rose, peach-blossom, and warm sand palette evokes an intimate seaside wedding. Complemented by vintage lace dresses and sand-walk photography, this profile channels beachside sunset vibes, making it feel deeply emotional, natural, and incredibly cozy.`
+    };
+
+    const key = selectedPreset || 'gold';
+    setAiReport(reports[key] || reports.gold);
+    setAiGenerating(false);
   };
 
   // Filter Pins

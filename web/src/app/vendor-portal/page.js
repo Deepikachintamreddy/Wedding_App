@@ -326,7 +326,7 @@ export default function VendorPortalPage() {
               <div className="featured-tier card glass-panel p-6 flex-between items-center bg-gold-tint">
                 <div className="tier-info">
                   <span className="badge badge-gold mb-2">HOT SELLER</span>
-                  <h3 className="h5 font-heading text-gold mb-1">Elysian Vetted Sponsor Program ({profileData.businessName})</h3>
+                  <h3 className="h5 font-heading text-gold mb-1">VND Vetted Sponsor Program ({profileData.businessName})</h3>
                   <p className="text-xs text-secondary mb-0">
                     Get pinned on page 1 of your category directory, get verified badges, and direct AI matcher referrals.
                   </p>
@@ -338,7 +338,7 @@ export default function VendorPortalPage() {
                   <button 
                     onClick={() => {
                       setIsFeatured(!isFeatured);
-                      alert(isFeatured ? "Featured plan deactivated." : "Thank you! Your business is now a Featured Elysian Vetted Sponsor!");
+                      alert(isFeatured ? "Featured plan deactivated." : "Thank you! Your business is now a Featured VND Vetted Sponsor!");
                     }} 
                     className="btn btn-primary btn-sm"
                   >

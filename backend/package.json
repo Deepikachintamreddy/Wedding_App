@@ -1,7 +1,7 @@
 {
-  "name": "elysian-wedding-concierge-backend",
+  "name": "vnd-wedding-concierge-backend",
   "version": "1.0.0",
-  "description": "Backend API server for Elysian Wedding Concierge",
+  "description": "Backend API server for VND Wedding Concierge",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

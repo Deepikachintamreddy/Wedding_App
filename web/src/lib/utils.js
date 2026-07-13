@@ -1,5 +1,5 @@
 /**
- * Elysian Wedding Concierge — Utility Functions
+ * VND Wedding Concierge — Utility Functions
  */
 
 /**

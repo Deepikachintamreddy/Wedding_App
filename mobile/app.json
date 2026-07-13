@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "elysian-wedding-mobile",
-    "slug": "elysian-wedding-mobile",
+    "name": "vnd-wedding-mobile",
+    "slug": "vnd-wedding-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "elysianweddingmobile",
+    "scheme": "vndweddingmobile",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "package": "com.elysian.weddingconcierge",
+      "package": "com.vnd.weddingconcierge",
       "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#0d0d1a",

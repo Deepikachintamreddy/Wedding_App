@@ -226,7 +226,7 @@ export default function AuthPage() {
         <div className={styles.leftRing + ' ' + styles.leftRing3}></div>
         
         <div className={styles.leftContent}>
-          <Link href="/" className={styles.leftBrand}>ELYSIAN</Link>
+          <Link href="/" className={styles.leftBrand}>VND</Link>
           <h2 className={styles.leftTagline}>Elevate Your Wedding Planning Experience</h2>
           <p className={styles.leftSubtext}>
             Connect with AI-guided tools, manage checklists, coordinate budgets, and collaborate with vendors in one elegant dark-navy & gold suite.
@@ -263,7 +263,7 @@ export default function AuthPage() {
             </h1>
             <p className={styles.formSubtitle}>
               {activeTab === 'signup' 
-                ? 'Join Elysian to start planning your dream wedding' 
+                ? 'Join VND to start planning your dream wedding' 
                 : 'Sign in to access your wedding workspace'}
             </p>
           </div>

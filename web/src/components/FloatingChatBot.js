@@ -2,10 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useWeddingStore } from '@/lib/store';
-import { getAiResponse } from '@/lib/aiService';
+import { getAiResponse, getSavedChatMessages, saveChatMessages } from '@/lib/aiService';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function FloatingChatBot() {
+  const pathname = usePathname();
   const store = useWeddingStore();
   const { user, loading, deductAiCredit } = store;
   
@@ -15,33 +17,18 @@ export default function FloatingChatBot() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Initialize welcome message when user changes or chat opens
+  // Load messages from localStorage and listen to updates
   useEffect(() => {
-    const userName = user ? user.name : 'there';
-    const welcomeText = user 
-      ? `### 🌸 Welcome back, **${userName}**!
-I'm your **VND Wedding Concierge**. How is your wedding planning going today? 
+    const loadMessages = () => {
+      setMessages(getSavedChatMessages(user?.name));
+    };
 
-Ask me anything about:
-- 💰 **Budget** calculations
-- 📋 **Checklist** timelines
-- 👥 **Guest** list RSVPs
-- ✍️ Writing **vows or speeches**!`
-      : `### 🧭 Welcome to the **VND Wedding Concierge**!
-I'm your digital wedding planning assistant. 
+    loadMessages();
 
-*💡 Tip: [Sign In / Register](/auth) to link your budget, custom checklist, and get personalized recommendations!*
-
-How can I help you plan your special day today?`;
-
-    setMessages([
-      {
-        id: 'welcome',
-        sender: 'ai',
-        text: welcomeText,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      }
-    ]);
+    window.addEventListener('wedding_chat_update', loadMessages);
+    return () => {
+      window.removeEventListener('wedding_chat_update', loadMessages);
+    };
   }, [user]);
 
   useEffect(() => {
@@ -62,7 +49,9 @@ How can I help you plan your special day today?`;
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    setMessages(prev => [...prev, userMsg]);
+    const updatedMessagesWithUser = [...messages, userMsg];
+    setMessages(updatedMessagesWithUser);
+    saveChatMessages(updatedMessagesWithUser);
     setInputText('');
     setIsTyping(true);
 
@@ -80,7 +69,9 @@ How can I help you plan your special day today?`;
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       
-      setMessages(prev => [...prev, aiMsg]);
+      const finalMessages = [...updatedMessagesWithUser, aiMsg];
+      setMessages(finalMessages);
+      saveChatMessages(finalMessages);
 
       // Deduct credit if successful and user is authenticated and not on Event Pass/Admin
       if (user && response.creditsUsed && user.role !== 'admin' && !user.eventPassActive) {
@@ -88,15 +79,15 @@ How can I help you plan your special day today?`;
       }
     } catch (err) {
       setIsTyping(false);
-      setMessages(prev => [
-        ...prev,
-        {
-          id: `msg_${Date.now() + 1}`,
-          sender: 'ai',
-          text: `### ⚠️ Connection Error\nSorry, I couldn't reach the planning server. Please check your connection and try again.`,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        }
-      ]);
+      const errorMsg = {
+        id: `msg_${Date.now() + 1}`,
+        sender: 'ai',
+        text: `### ⚠️ Connection Error\nSorry, I couldn't reach the planning server. Please check your connection and try again.`,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+      const finalMessages = [...updatedMessagesWithUser, errorMsg];
+      setMessages(finalMessages);
+      saveChatMessages(finalMessages);
     }
   };
 
@@ -127,7 +118,7 @@ How can I help you plan your special day today?`;
     return formatted;
   };
 
-  if (loading) return null;
+  if (loading || pathname === '/ai-chat' || pathname === '/auth' || pathname === '/onboarding') return null;
 
   return (
     <div className="floating-chat-container">

@@ -282,7 +282,7 @@ export default function TemplatesPage() {
       if (eventType === 'savethedate') return 'The Imperial Save The Date';
       return 'The Obsidian Executive';
     }
-    return 'Elysian Style';
+    return 'VND Style';
   };
 
   const getDynamicPrice = (id, mode) => {
@@ -426,7 +426,7 @@ export default function TemplatesPage() {
       setInvitationMode('full');
       setActiveTab('invite');
       setCustomText({
-        title: 'Elysian Tech Summit 2026',
+        title: 'VND Tech Summit 2026',
         date: 'Thursday, September 10, 2026',
         location: 'Metropolitan Convention Center, San Francisco, CA',
         details: 'Join SaaS founders, builders, and developers for a day of keynotes, workshops, and networking.',
@@ -434,8 +434,8 @@ export default function TemplatesPage() {
         dressCodeText: 'Business casual or executive smart. Company shirts and blazers are recommended.',
         dressColors: ['#0f172a', '#3b82f6', '#10b981', '#f8fafc'],
         registry: [
-          { name: 'Summit Agenda PDF', url: 'https://elysian.com/agenda' },
-          { name: 'Sponsorship Inquiries', url: 'https://elysian.com/sponsor' }
+          { name: 'Summit Agenda PDF', url: 'https://vnd.com/agenda' },
+          { name: 'Sponsorship Inquiries', url: 'https://vnd.com/sponsor' }
         ],
         entourage: [
           { role: 'Keynote Speaker', name: 'Dr. Evelyn Carter' },
@@ -1318,13 +1318,13 @@ export default function TemplatesPage() {
 
                     {activeTab === 'invite' && (
                       selectedTemplate.id === 't_arch' ? (
-                        <div className={styles.elysianInviteContainer}>
+                        <div className={styles.vndInviteContainer}>
                           {/* Header Arched Banner */}
-                          <div className={styles.elysianHeroSection}>
-                            <div className={styles.elysianArcTextWrapper}>
-                              <svg viewBox="0 0 220 110" className={styles.elysianArcSvg}>
+                          <div className={styles.vndHeroSection}>
+                            <div className={styles.vndArcTextWrapper}>
+                              <svg viewBox="0 0 220 110" className={styles.vndArcSvg}>
                                 <path id="curvePath" d="M 25,95 A 85,85 0 0,1 195,95" fill="none" />
-                                <text className={styles.elysianArcText}>
+                                <text className={styles.vndArcText}>
                                   <textPath href="#curvePath" startOffset="50%" textAnchor="middle">
                                     YOU'RE CORDIALLY INVITED
                                   </textPath>
@@ -1332,17 +1332,17 @@ export default function TemplatesPage() {
                               </svg>
                             </div>
                             
-                            <div className={styles.elysianArchedImageFrame}>
+                            <div className={styles.vndArchedImageFrame}>
                               <img 
                                 src={customText.couplePhoto} 
                                 alt="Couple" 
-                                className={styles.elysianCouplePhoto} 
+                                className={styles.vndCouplePhoto} 
                               />
                             </div>
                           </div>
 
                           {/* Audio Waveform Section */}
-                          <div className={styles.elysianWaveformSection}>
+                          <div className={styles.vndWaveformSection}>
                             <div className={styles.waveformIcon}>
                               <span className={`${styles.waveBar} ${styles.waveBar1}`}></span>
                               <span className={`${styles.waveBar} ${styles.waveBar2}`}></span>
@@ -1354,22 +1354,22 @@ export default function TemplatesPage() {
                               <span className={`${styles.waveBar} ${styles.waveBar8}`}></span>
                               <span className={`${styles.waveBar} ${styles.waveBar9}`}></span>
                             </div>
-                            <span className={styles.elysianWaveformSubtitle}>
+                            <span className={styles.vndWaveformSubtitle}>
                               TO SHARE IN THE CELEBRATION OF
                             </span>
-                            <h2 className={styles.elysianCoupleNames}>
+                            <h2 className={styles.vndCoupleNames}>
                               {customText.title}
                             </h2>
                           </div>
 
                           {/* Arched Date Section */}
-                          <div className={styles.elysianDateSection}>
-                            <div className={styles.elysianDateArchFrame}>
-                              <span className={styles.elysianJoinUs}>JOIN US ON</span>
-                              <span className={styles.elysianDateLarge}>11.20.2026</span>
-                              <div className={styles.elysianDetailsBlock}>
-                                <p className={styles.elysianTimeDetails}>{customText.details}</p>
-                                <p className={styles.elysianLocationDetails}>{customText.location}</p>
+                          <div className={styles.vndDateSection}>
+                            <div className={styles.vndDateArchFrame}>
+                              <span className={styles.vndJoinUs}>JOIN US ON</span>
+                              <span className={styles.vndDateLarge}>11.20.2026</span>
+                              <div className={styles.vndDetailsBlock}>
+                                <p className={styles.vndTimeDetails}>{customText.details}</p>
+                                <p className={styles.vndLocationDetails}>{customText.location}</p>
                               </div>
                             </div>
                           </div>
@@ -1406,7 +1406,7 @@ export default function TemplatesPage() {
                       ) : selectedTemplate.id === 't_noir' ? (
                         <div className={styles.noirInviteContainer}>
                           <div className={styles.noirMagazineHeader}>
-                            <span className={styles.noirBrandTitle}>ELYSIAN MAGAZINE</span>
+                            <span className={styles.noirBrandTitle}>VND MAGAZINE</span>
                             <h2 className={styles.noirCoupleHeading}>{customText.title.replace(' & ', ' \u0026 ')}</h2>
                             <div className={styles.noirSubheaderRow}>
                               <span>Wedding Special Edition</span>

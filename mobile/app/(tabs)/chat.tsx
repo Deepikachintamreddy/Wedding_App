@@ -38,7 +38,7 @@ export default function ChatScreen() {
     {
       id: 'welcome',
       sender: 'ai',
-      text: `### 🧭 Welcome to Elysian Wedding Concierge!\nI am your personal AI assistant coordinated by **OVAimagination Events**.\nAsk me questions about budget strategy, vows, music, or timeline outlines!`,
+      text: `### 🧭 Welcome to the VND Wedding Concierge!\nI am your personal AI assistant coordinated by **OVAimagination Events**.\nAsk me questions about budget strategy, vows, music, or timeline outlines!`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     }
   ]);

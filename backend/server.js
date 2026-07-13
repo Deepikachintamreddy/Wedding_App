@@ -6,7 +6,7 @@ const db = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = process.env.JWT_SECRET || 'elysian_secret_concierge_token_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'vnd_secret_concierge_token_key';
 
 // Middleware
 app.use(cors());
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.send(`
     <html>
       <head>
-        <title>Elysian API Server</title>
+        <title>VND API Server</title>
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #0d0f14; color: #f3f4f6; margin: 0; text-align: center; }
           .card { background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 500px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); backdrop-filter: blur(4px); }
@@ -35,10 +35,10 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <div class="card">
-          <h1>Elysian API Server</h1>
-          <p>This is the backend API service for the Elysian Wedding Concierge platform.</p>
+          <h1>VND API Server</h1>
+          <p>This is the backend API service for the VND Wedding Concierge platform.</p>
           <p>Please visit the main user interface website on port 3000 to plan your wedding!</p>
-          <a href="http://localhost:3000">Go to Elysian Website</a>
+          <a href="http://localhost:3000">Go to VND Website</a>
         </div>
       </body>
     </html>
@@ -697,22 +697,70 @@ To continue chatting with your AI Concierge, you can:
   const lowercaseMsg = message.toLowerCase();
   let responseText = null;
 
-  // Check for greetings and thank yous
-  const greetings = ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'yo', 'greetings'];
-  const isGreeting = greetings.some(g => {
-    const regex = new RegExp(`\\b${g}\\b`, 'i');
-    return regex.test(lowercaseMsg);
-  });
+  const partnerName = user.name.split('&')[0].trim();
 
-  const thanks = ['thank you', 'thanks', 'thank', 'appreciate', 'ty'];
-  const isThanks = thanks.some(t => {
-    const regex = new RegExp(`\\b${t}\\b`, 'i');
-    return regex.test(lowercaseMsg);
-  });
+  // 1. Check for policies / terms (Refund, Privacy, TOS, Legal, Rules)
+  const policyKeywords = ['policy', 'policies', 'terms', 'tos', 'privacy', 'refund', 'legal', 'agreement', 'disclaimer'];
+  const hasPolicyQuery = policyKeywords.some(kw => lowercaseMsg.includes(kw));
 
-  if (isGreeting) {
-    responseText = `### 🌸 Hello there!
-Hey **${user.name}**! Welcome to **Elysian Wedding Concierge** (in partnership with VND Weddings). 
+  if (hasPolicyQuery) {
+    responseText = `### 📋 Policy & Terms Information
+I apologize, but as the **VND Wedding Concierge**, I am specialized in wedding planning coordination. 
+
+For details regarding our **Privacy Policy**, **Terms of Service**, **Refund Policies**, or other legal agreements, please refer to the dedicated Policy links at the bottom of our website. 
+
+How can I help you with your wedding budget, checklist, or guest list instead?`;
+  } else {
+    // 2. Greetings
+    const greetingKeywords = ['hello', 'hi', 'hey', 'greetings', 'yo', 'good morning', 'good afternoon', 'good evening', 'howdy'];
+    const isGreeting = greetingKeywords.some(g => {
+      const regex = new RegExp(`\\b${g}\\b`, 'i');
+      return regex.test(lowercaseMsg);
+    });
+
+    const thanksKeywords = ['thank you', 'thanks', 'thank', 'appreciate', 'ty'];
+    const isThanks = thanksKeywords.some(t => {
+      const regex = new RegExp(`\\b${t}\\b`, 'i');
+      return regex.test(lowercaseMsg);
+    });
+
+    // 3. Conversation / formalities / chit-chat
+    // "how are you" (including "how are yoi", "how are u", "how are you doing", "how you doing", "how r u")
+    const isHowAreYou = 
+      lowercaseMsg.includes('how are you') || 
+      lowercaseMsg.includes('how are yoi') || 
+      lowercaseMsg.includes('how are u') || 
+      lowercaseMsg.includes('how r u') || 
+      lowercaseMsg.includes('how do you do') ||
+      lowercaseMsg.includes('hows it going') ||
+      lowercaseMsg.includes('how\'s it going') ||
+      (lowercaseMsg.includes('how') && lowercaseMsg.includes('you') && (lowercaseMsg.includes('are') || lowercaseMsg.includes('doing') || lowercaseMsg.includes('go') || lowercaseMsg.includes('feel')));
+
+    // "who are you" (including "who are yoi", "who r u", "what are you")
+    const isWhoAreYou = 
+      lowercaseMsg.includes('who are you') ||
+      lowercaseMsg.includes('who r you') ||
+      lowercaseMsg.includes('who r u') ||
+      lowercaseMsg.includes('what are you') ||
+      (lowercaseMsg.includes('who') && lowercaseMsg.includes('you'));
+
+    // "who made you" / "who created you"
+    const isWhoMadeYou = 
+      lowercaseMsg.includes('who made') || 
+      lowercaseMsg.includes('who created') || 
+      lowercaseMsg.includes('creator') || 
+      lowercaseMsg.includes('maker') || 
+      lowercaseMsg.includes('who built');
+
+    if (isHowAreYou) {
+      responseText = KEYWORD_RESPONSES['how are you'];
+    } else if (isWhoAreYou) {
+      responseText = KEYWORD_RESPONSES['who are you'];
+    } else if (isWhoMadeYou) {
+      responseText = KEYWORD_RESPONSES['who made you'];
+    } else if (isGreeting) {
+      responseText = `### 🌸 Hello there!
+Welcome to the **VND Wedding Concierge**! 
 
 I'm your dedicated AI planning assistant. I can help you:
 - 💰 Manage your **Budget breakdown** and payment schedules.
@@ -722,25 +770,26 @@ I'm your dedicated AI planning assistant. I can help you:
 - ✍️ Draft custom **vows or reception speeches**!
 
 How is your wedding planning going today? Ask me anything!`;
-  } else if (isThanks) {
-    responseText = `### ❤️ You're very welcome, **${user.name.split(' ')[0]}**!
+    } else if (isThanks) {
+      responseText = `### ❤️ You're very welcome, **${partnerName}**!
 It is my absolute pleasure to assist you. Wedding planning can be a big journey, but you're doing amazing! 
 
 What would you like to coordinate next? (e.g. Budget, Guests, Vendors, or Timelines?)`;
-  } else {
-    // Search for keywords
-    for (const [keyword, response] of Object.entries(KEYWORD_RESPONSES)) {
-      if (lowercaseMsg.includes(keyword)) {
-        responseText = response;
-        break;
+    } else {
+      // Search for keywords
+      for (const [keyword, response] of Object.entries(KEYWORD_RESPONSES)) {
+        if (lowercaseMsg.includes(keyword)) {
+          responseText = response;
+          break;
+        }
       }
     }
   }
 
   // Fallback response
   if (!responseText) {
-    responseText = `### 💍 Elysian AI Wedding Assistant
-Hi **${user.name.split(' ')[0]}**, I hear you! Regarding *"${message}"*, I recommend checking out these sections of your workspace:
+    responseText = `### 💍 VND AI Wedding Assistant
+Hi **${partnerName}**, I hear you! Regarding *"${message}"*, I recommend checking out these sections of your workspace:
 
 1. **Checklist:** Add a task to keep this action item on track.
 2. **Budget:** Check how this aligns with your category allocation.
@@ -768,7 +817,275 @@ Hi **${user.name.split(' ')[0]}**, I hear you! Regarding *"${message}"*, I recom
 });
 
 
+// --- ML / PYTHON RECOMMENDATIONS & BUDGET OPTIMIZATION ---
+
+app.post('/api/recommendations/vendors', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = req.user;
+    const budgetObj = db.getBudgetByUserId(userId);
+    
+    const categoryBudgets = {};
+    if (budgetObj && budgetObj.categories) {
+      budgetObj.categories.forEach(c => {
+        categoryBudgets[c.name] = c.estimated;
+      });
+    }
+
+    const coupleProfile = {
+      theme: user.theme || 'Elegant Navy & Gold',
+      location: user.location || 'Malibu, CA',
+      category_budgets: categoryBudgets
+    };
+
+    const userVendors = db.getVendorsByUserId(userId);
+    
+    // System discoveries vendors
+    const systemVendors = [
+      { id: 'sv_1', name: 'Golden Hour Studios', category: 'Photography', price: 4200, rating: 4.9, theme: 'Elegant Navy & Gold', description: 'Cinematic and warm sunset lighting photography in Malibu.' },
+      { id: 'sv_2', name: 'Malibu Grand Ballroom', category: 'Venue', price: 22000, rating: 4.8, theme: 'Classic & Luxury', description: 'Gorgeous seaside venue with ocean views and catering.' },
+      { id: 'sv_3', name: 'DJ Luminary', category: 'Music', price: 1800, rating: 4.7, theme: 'Modern & Fun', description: 'High energy dance floors with gold lighting setups.' },
+      { id: 'sv_4', name: 'Bellissima Bridal', category: 'Attire', price: 3500, rating: 4.9, theme: 'Traditional & Classic', description: 'Exquisite navy and white gowns and bridal dresses.' },
+      { id: 'sv_5', name: 'Culinaria Fine Dining', category: 'Catering', price: 12000, rating: 4.6, theme: 'Luxury Plated', description: 'Gourmet multi-course plated dinner service for formal weddings.' },
+      { id: 'sv_6', name: 'Oceanview Florals', category: 'Florals', price: 4800, rating: 4.5, theme: 'Romantic Greenery', description: 'Lush eucalyptus and gold leaf floral arrangements.' }
+    ];
+
+    const allVendors = [
+      ...systemVendors,
+      ...userVendors.map(v => ({
+        id: v.id,
+        name: v.name,
+        category: v.category,
+        price: Number(v.price) || 0,
+        rating: Number(v.rating) || 4.2,
+        theme: v.theme || 'General',
+        description: v.notes || ''
+      }))
+    ];
+
+    // Attempt calling Python ML service
+    try {
+      const response = await fetch('http://localhost:8000/api/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          couple_profile: coupleProfile,
+          vendors: allVendors
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        return res.json(result);
+      }
+    } catch (err) {
+      console.warn('Python ML service is offline. Running fallback recommendation engine in Node.');
+    }
+
+    // Fallback scoring in JavaScript
+    const recommendations = allVendors.map(v => {
+      const themeWords = (coupleProfile.theme || '').toLowerCase().split(/\s+/);
+      const vendorText = ((v.theme || '') + ' ' + (v.description || '')).toLowerCase();
+      let matchCount = 0;
+      themeWords.forEach(w => { if (vendorText.includes(w)) matchCount++; });
+      const themeScore = themeWords.length > 0 ? matchCount / themeWords.length : 0.5;
+
+      const locMatch = v.description.toLowerCase().includes(coupleProfile.location.toLowerCase()) ? 1.0 : 0.5;
+
+      const target = coupleProfile.category_budgets[v.category] || 5000;
+      const budgetScore = v.price <= target ? 1.0 : Math.max(0, Math.exp(-2.0 * ((v.price - target) / target)));
+
+      const finalScore = (themeScore * 0.35) + (budgetScore * 0.35) + (locMatch * 0.15) + ((v.rating / 5.0) * 0.15);
+
+      return {
+        id: v.id,
+        name: v.name,
+        category: v.category,
+        match_score: Math.round(finalScore * 1000) / 10,
+        price: v.price,
+        rating: v.rating,
+        breakdown: {
+          theme_fit: Math.round(themeScore * 100),
+          budget_fit: Math.round(budgetScore * 100),
+          location_match: locMatch === 1.0,
+          rating_score: Math.round((v.rating / 5.0) * 100)
+        }
+      };
+    });
+
+    recommendations.sort((a, b) => b.match_score - a.match_score);
+    res.json({ recommendations, fallback: true });
+
+  } catch (error) {
+    console.error('Error calculating recommendations:', error);
+    res.status(500).json({ error: 'Failed to generate recommendations' });
+  }
+});
+
+app.post('/api/budget/optimize', authenticateToken, async (req, res) => {
+  try {
+    const { total_budget, priorities, save_to_db } = req.body;
+    const userId = req.user.id;
+
+    if (!total_budget || isNaN(total_budget)) {
+      return res.status(400).json({ error: 'Valid total budget is required' });
+    }
+
+    let optimizationResult = null;
+
+    // Attempt calling Python ML service
+    try {
+      const response = await fetch('http://localhost:8000/api/optimize-budget', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          total_budget: Number(total_budget),
+          priorities: priorities || {}
+        })
+      });
+
+      if (response.ok) {
+        optimizationResult = await response.json();
+      }
+    } catch (err) {
+      console.warn('Python ML service is offline. Running fallback budget optimizer in Node.');
+    }
+
+    // Fallback budget optimizer in JavaScript
+    if (!optimizationResult) {
+      const safetyCushion = total_budget * 0.10;
+      const allocatable = total_budget - safetyCushion;
+      const baselines = {
+        'Venue & Catering': 0.48,
+        'Photography & Videography': 0.12,
+        'Planner/Coordinator': 0.10,
+        'Attire & Beauty': 0.08,
+        'Florals & Decor': 0.08,
+        'Entertainment': 0.08,
+        'Invitations & Rings': 0.06
+      };
+
+      const weights = {};
+      Object.keys(baselines).forEach(cat => {
+        const rank = (priorities && priorities[cat]) || 3;
+        weights[cat] = baselines[cat] * (1.0 + (rank - 3) * 0.15);
+      });
+
+      const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0);
+      const allocations = {};
+      Object.keys(weights).forEach(cat => {
+        const weight = weights[cat] / totalWeight;
+        allocations[cat] = {
+          target: Math.round(allocatable * weight * 100) / 100,
+          range_min: Math.round(allocatable * weight * 0.80 * 100) / 100,
+          range_max: Math.round(allocatable * weight * 1.20 * 100) / 100
+        };
+      });
+
+      optimizationResult = {
+        total_budget: Number(total_budget),
+        safety_cushion: safetyCushion,
+        allocatable_amount: allocatable,
+        allocations
+      };
+    }
+
+    // Save to DB if requested
+    if (save_to_db) {
+      db.updateBudgetTotal(userId, total_budget);
+      Object.entries(optimizationResult.allocations).forEach(([catName, details]) => {
+        db.updateBudgetCategory(userId, catName, { estimated: details.target });
+      });
+    }
+
+    res.json(optimizationResult);
+
+  } catch (error) {
+    console.error('Error optimizing budget:', error);
+    res.status(500).json({ error: 'Failed to optimize budget' });
+  }
+});
+
+
+app.post('/api/ai/generate-speech', authenticateToken, async (req, res) => {
+  try {
+    const { role, partner_name, traits, memories, tone } = req.body;
+    const user = req.user;
+
+    // Check credits if not event pass or admin
+    if (user.role !== 'admin' && !user.eventPassActive && (user.aiCredits ?? 0) <= 0) {
+      return res.status(403).json({ error: 'Out of AI credits. Please upgrade to Event Pass for unlimited generations.' });
+    }
+
+    let speechResult = null;
+
+    // Attempt calling Python ML service
+    try {
+      const response = await fetch('http://localhost:8000/api/generate-speech', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role, partner_name, traits, memories, tone })
+      });
+
+      if (response.ok) {
+        speechResult = await response.json();
+      }
+    } catch (err) {
+      console.warn('Python ML service is offline. Running fallback generator in Node.');
+    }
+
+    // Fallback generator in JS
+    if (!speechResult) {
+      const traitStr = Array.isArray(traits) ? traits.join(', ') : (traits || 'wonderful');
+      const memorySec = memories ? `I will never forget when ${memories}.` : 'From the very first moment, you brought warmth and happiness to my world.';
+      
+      let text = '';
+      if (role === 'Groom' || role === 'Bride') {
+        text = `### 💍 Personalized Wedding Vow (${tone || 'Heartfelt'})
+        
+**${partner_name || 'My Love'}**, today I vow to stand by you forever. 
+You are the most ${traitStr} person I have ever met. ${memorySec}
+
+I promise to listen to you, to build a future together, and to cherish every single moment by your side. 
+You are my partner, my teammate, and my absolute home. I love you.`;
+      } else {
+        text = `### 🎤 Wedding Toast Speech (${tone || 'Warm'})
+        
+Good evening everyone, as the ${role || 'speaker'}, I'm honored to stand here today.
+To **${partner_name || 'the couple'}**, you both look breathtaking. ${partner_name} has always been so ${traitStr}, and today is the start of a beautiful adventure.
+
+${memorySec}
+
+Let us raise our glasses to a lifetime of happiness, support, and adventures. To the couple!`;
+      }
+      speechResult = { text };
+    }
+
+    // Deduct credit if successful, user is authenticated, and not on Event Pass/Admin
+    let updatedCredits = user.aiCredits;
+    let creditsUsed = false;
+
+    if (user.role !== 'admin' && !user.eventPassActive) {
+      const updated = db.updateUser(user.id, { aiCredits: user.aiCredits - 1 });
+      updatedCredits = updated.aiCredits;
+      creditsUsed = true;
+    }
+
+    res.json({
+      success: true,
+      text: speechResult.text,
+      creditsUsed,
+      aiCredits: updatedCredits
+    });
+
+  } catch (error) {
+    console.error('Error generating speech:', error);
+    res.status(500).json({ error: 'Failed to generate wedding vow or speech' });
+  }
+});
+
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`Elysian backend server is running on port ${PORT}`);
+  console.log(`VND backend server is running on port ${PORT}`);
 });

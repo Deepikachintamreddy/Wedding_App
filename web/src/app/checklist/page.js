@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useWeddingStore } from '@/lib/store';
 import { formatDate, daysUntil, calculateProgress, getCategoryColor, getCategoryIcon } from '@/lib/utils';
 
@@ -224,7 +225,7 @@ export default function ChecklistPage() {
                     <div className="task-notes-expanded p-4 border-t bg-secondary-opaque">
                       <h4 className="overline mb-2">Planning Notes</h4>
                       <p className="body-sm text-secondary mb-2 whitespace-pre-line">
-                        {task.notes || 'No detailed guidelines. Ask your Elysian AI concierge for tips on this task!'}
+                        {task.notes || 'No detailed guidelines. Ask your VND AI concierge for tips on this task!'}
                       </p>
                       <div className="flex justify-end mt-4">
                         <Link 

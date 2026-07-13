@@ -15,17 +15,17 @@ const FEATURES = [
 
 const STEPS = [
   { num: 1, title: 'Tell Us About Your Wedding', desc: 'Set your date, budget, style preferences, and guest count. Our onboarding takes less than two minutes.' },
-  { num: 2, title: 'Get Your Personalized Plan', desc: 'Elysian instantly generates your custom checklist, budget breakdown, and dynamic planning timeline.' },
+  { num: 2, title: 'Get Your Personalized Plan', desc: 'VND instantly generates your custom checklist, budget breakdown, and dynamic planning timeline.' },
   { num: 3, title: 'Build Your Dream Team', desc: 'Browse our curated directory, compare reviews, and securely book the perfect vendors for your special day.' },
   { num: 4, title: 'Manage Your Guests', desc: 'Send beautiful digital invitations, track real-time RSVPs, and organize seating charts effortlessly.' },
   { num: 5, title: 'Plan With Confidence', desc: 'Track your progress, chat with your digital concierge anytime, and enjoy a stress-free wedding journey.' },
 ];
 
 const FAQS = [
-  { question: "What exactly is the Elysian Wedding Concierge?", answer: "Elysian is a luxury wedding planning platform powered by advanced technology. It acts as your personal wedding planner, helping you track budgets, manage guests, create timelines, and answer all your wedding-related questions instantly." },
-  { question: "Is Elysian actually free to use?", answer: "Yes! Our core features, including the personalized checklist, budget tracker, and virtual assistant, are completely free. We also offer a Premium tier with advanced features like digital invitations and a dedicated vendor directory." },
-  { question: "Can I use Elysian if I already have a human wedding planner?", answer: "Absolutely. Many couples use Elysian alongside a traditional planner to stay organized, manage their own tasks, and have 24/7 access to instant advice for the smaller details." },
-  { question: "How does the digital invitation builder work?", answer: "Our Premium tier includes access to luxury digital invitation templates. You can customize them with your wedding details, send them to your guest list via email or SMS, and track RSVPs directly within your Elysian dashboard." },
+  { question: "What exactly is the VND Wedding Concierge?", answer: "VND is a luxury wedding planning platform powered by advanced technology. It acts as your personal wedding planner, helping you track budgets, manage guests, create timelines, and answer all your wedding-related questions instantly." },
+  { question: "Is VND actually free to use?", answer: "Yes! Our core features, including the personalized checklist, budget tracker, and virtual assistant, are completely free. We also offer a Premium tier with advanced features like digital invitations and a dedicated vendor directory." },
+  { question: "Can I use VND if I already have a human wedding planner?", answer: "Absolutely. Many couples use VND alongside a traditional planner to stay organized, manage their own tasks, and have 24/7 access to instant advice for the smaller details." },
+  { question: "How does the digital invitation builder work?", answer: "Our Premium tier includes access to luxury digital invitation templates. You can customize them with your wedding details, send them to your guest list via email or SMS, and track RSVPs directly within your VND dashboard." },
 ];
 
 function FaqItem({ faq }) {
@@ -65,7 +65,7 @@ const PRICING = [
     tier: 'Forever + Concierge',
     price: '$199',
     interval: 'One-time payment',
-    features: ['Everything in Event Pass', 'Elysian planning consultation', 'Priority email support', 'Day-of coordinator tools', 'Vendor negotiation templates', 'Premium theme library', 'Lifetime plan access'],
+    features: ['Everything in Event Pass', 'VND planning consultation', 'Priority email support', 'Day-of coordinator tools', 'Vendor negotiation templates', 'Premium theme library', 'Lifetime plan access'],
     cta: 'Go Premium',
     featured: false,
   },
@@ -140,7 +140,7 @@ export default function LandingPage() {
 
         <div className={styles.heroContent}>
           <div className={styles.heroGlassCard}>
-            <div className={styles.heroEyebrow}><img src="/logo.png" alt="Elysian Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
+            <div className={styles.heroEyebrow}><img src="/logo.png" alt="VND Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
             <h1 className={styles.headline}>
               Your Dream Wedding, <span className={styles.headlineGold}>Effortlessly Planned</span>.
             </h1>
@@ -332,7 +332,7 @@ export default function LandingPage() {
         <div className={styles.faqContainer}>
           <div className={styles.faqHeader}>
             <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <p className={styles.sectionDesc}>Everything you need to know about Elysian.</p>
+            <p className={styles.sectionDesc}>Everything you need to know about VND.</p>
           </div>
           <div className={styles.faqList}>
             {FAQS.map((faq, i) => (

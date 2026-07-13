@@ -1,6 +1,6 @@
-# Elysian Wedding Concierge — Monorepo Workspace
+# VND Wedding Concierge — Monorepo Workspace
 
-This repository houses the entire Elysian Wedding Concierge platform, featuring both the **Next.js Web Portal** and the **Expo (React Native) Mobile Application**.
+This repository houses the entire VND Wedding Concierge platform, featuring both the **Next.js Web Portal** and the **Expo (React Native) Mobile Application**.
 
 ## Project Structure
 
