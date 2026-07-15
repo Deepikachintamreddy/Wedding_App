@@ -30,40 +30,9 @@ function setStorageItem(key, value) {
 
 export function initializeStore() {
   if (!isBrowser) return;
-  
-  if (!localStorage.getItem('wedding_user')) {
-    setStorageItem('wedding_user', {
-      name: 'Vanessa & Noah',
-      email: 'vanessa.noah@love.com',
-      role: 'couple',
-      weddingDate: '2027-07-15',
-      location: 'Malibu, CA',
-      budget: 50000,
-      theme: 'Rose Gold & Navy',
-      onboardingComplete: true,
-      aiCredits: 15,
-    });
-  }
-  
-  if (!localStorage.getItem('wedding_tasks')) {
-    setStorageItem('wedding_tasks', MOCK_TASKS);
-  }
-  
-  if (!localStorage.getItem('wedding_vendors')) {
-    setStorageItem('wedding_vendors', MOCK_VENDORS);
-  }
-  
-  if (!localStorage.getItem('wedding_guests')) {
-    setStorageItem('wedding_guests', MOCK_GUESTS);
-  }
-  
-  if (!localStorage.getItem('wedding_budget')) {
-    setStorageItem('wedding_budget', MOCK_BUDGET);
-  }
-  
-  if (!localStorage.getItem('wedding_timeline')) {
-    setStorageItem('wedding_timeline', MOCK_TIMELINE);
-  }
+  // Do not auto-seed any mock couple data in local storage.
+  // The application now starts as a clean slate, and user data is initialized dynamically
+  // when they sign up and complete onboarding.
 }
 
 // React Custom Hook to use the store

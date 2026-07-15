@@ -582,32 +582,41 @@ class Database {
   }
 
   initializeCoupleData(db, userId, budgetLimit, weddingDate, location, theme) {
-    
+    const getRelativeDate = (daysBefore) => {
+      try {
+        const wDate = new Date(weddingDate);
+        wDate.setDate(wDate.getDate() - daysBefore);
+        return wDate.toISOString().split('T')[0];
+      } catch {
+        return weddingDate;
+      }
+    };
+
     // 1. Initial Tasks
     const baseTasks = [
-      { title: `Lock in the final budget of $${budgetLimit.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-06-15', notes: `Target styling: ${theme}`, assignedTo: 'Both' },
-      { title: 'Draft guest list to get tentative head count', category: 'Invitations', period: '12+ Months', completed: true, dueDate: '2026-06-20', notes: 'Initial count is around 150 guests.', assignedTo: 'Both' },
-      { title: `Research and book wedding venue (ceremony & reception) in ${location}`, category: 'Venue', period: '12+ Months', completed: true, dueDate: '2026-07-10', notes: 'Booked The Grand Pavilion.', assignedTo: 'Both' },
-      { title: 'Hire professional wedding planner/coordinator', category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-07-20', notes: 'Booked OVAimagination Events.', assignedTo: 'Both' },
-      { title: 'Select wedding party and ask them to participate', category: 'Misc', period: '9 Months', completed: true, dueDate: '2026-09-01', notes: 'All bridesmaids and groomsmen confirmed!', assignedTo: 'Both' },
-      { title: 'Research and hire photographer & videographer', category: 'Photography', period: '9 Months', completed: true, dueDate: '2026-09-15', notes: 'Booked Golden Hour Studios.', assignedTo: 'Bride' },
-      { title: 'Shop for wedding gown and initial fittings', category: 'Attire', period: '9 Months', completed: true, dueDate: '2026-10-05', notes: 'Found the dress at Bellissima Bridal.', assignedTo: 'Bride' },
-      { title: 'Launch wedding website and add countdown', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-10-20', notes: 'Using VND countdown page builder.', assignedTo: 'Groom' },
-      { title: 'Finalize catering menu and bar options', category: 'Catering', period: '6 Months', completed: false, dueDate: '2027-01-15', notes: 'Tasting scheduled for next week.', assignedTo: 'Both' },
-      { title: 'Order invitations and save-the-date cards', category: 'Invitations', period: '6 Months', completed: true, dueDate: '2027-01-20', notes: 'Sent save-the-dates! Invitations received.', assignedTo: 'Bride' },
-      { title: 'Hire florist and design centerpiece concepts', category: 'Florals', period: '6 Months', completed: false, dueDate: '2027-02-05', notes: 'Proposed white roses and gold eucalyptus.', assignedTo: 'Bride' },
-      { title: 'Book ceremony musicians and reception DJ/Band', category: 'Music', period: '6 Months', completed: true, dueDate: '2027-02-15', notes: 'DJ Luminary booked.', assignedTo: 'Groom' },
-      { title: 'Order wedding cake and groom dessert', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: 'Need to choose between vanilla berry and red velvet.', assignedTo: 'Bride' },
-      { title: 'Purchase wedding bands and arrange engraving', category: 'Rings', period: '3 Months', completed: false, dueDate: '2027-04-15', notes: 'Fitting is scheduled.', assignedTo: 'Both' },
-      { title: 'Mail formal wedding invitations to guests', category: 'Invitations', period: '3 Months', completed: false, dueDate: '2027-04-20', notes: 'RSVP deadline set to July 1st.', assignedTo: 'Bride' },
-      { title: 'Schedule hair and makeup trials', category: 'Hair & Makeup', period: '3 Months', completed: false, dueDate: '2027-05-01', notes: 'Trial booked with VND Beauty.', assignedTo: 'Bride' },
-      { title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: 'Need to go to city hall together.', assignedTo: 'Both' },
-      { title: 'Finalize seating chart and floor plan', category: 'Decor', period: '1 Month', completed: false, dueDate: '2027-06-20', notes: 'Waiting on last RSVPs.', assignedTo: 'Both' },
-      { title: 'Submit final guest count to venue & caterer', category: 'Catering', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: 'Caterer needs final count 14 days before.', assignedTo: 'Planner' },
-      { title: 'Write wedding vows and practice speeches', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'VND AI vow assistant draft done.', assignedTo: 'Both' },
-      { title: 'Remember the rings and marriage license', category: 'Rings', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'Give to the Best Man.', assignedTo: 'Groom' },
-      { title: 'Eat a hearty breakfast and stay hydrated', category: 'Misc', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'Caterer is delivering food to suites.', assignedTo: 'Both' },
-      { title: 'Relax, celebrate, and enjoy the day!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'You made it!', assignedTo: 'Both' }
+      { title: `Lock in the final budget of $${budgetLimit.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: getRelativeDate(365), notes: `Target styling theme: ${theme}`, assignedTo: 'Both' },
+      { title: 'Draft guest list to get tentative head count', category: 'Invitations', period: '12+ Months', completed: false, dueDate: getRelativeDate(350), notes: 'Aim for a realistic head count to guide venue sizing and budget.', assignedTo: 'Both' },
+      { title: `Research and book wedding venue (ceremony & reception) in ${location}`, category: 'Venue', period: '12+ Months', completed: false, dueDate: getRelativeDate(330), notes: 'Explore spaces matching your theme and capacity needs.', assignedTo: 'Both' },
+      { title: 'Hire professional wedding planner/coordinator', category: 'Planner', period: '12+ Months', completed: false, dueDate: getRelativeDate(320), notes: 'A coordinator helps keep the planning timeline running smoothly.', assignedTo: 'Both' },
+      { title: 'Select wedding party and ask them to participate', category: 'Misc', period: '9 Months', completed: false, dueDate: getRelativeDate(270), notes: 'Ask bridesmaids, groomsmen, and attendants.', assignedTo: 'Both' },
+      { title: 'Research and hire photographer & videographer', category: 'Photography', period: '9 Months', completed: false, dueDate: getRelativeDate(250), notes: 'Secure photography coverage early to lock in key dates.', assignedTo: 'Bride' },
+      { title: 'Shop for wedding gown and initial fittings', category: 'Attire', period: '9 Months', completed: false, dueDate: getRelativeDate(230), notes: 'Start wedding attire shopping to allow time for tailor adjustments.', assignedTo: 'Bride' },
+      { title: 'Launch wedding website and add countdown', category: 'Misc', period: '9 Months', completed: false, dueDate: getRelativeDate(210), notes: 'Create a website to share details and RSVP links with guests.', assignedTo: 'Groom' },
+      { title: 'Finalize catering menu and bar options', category: 'Catering', period: '6 Months', completed: false, dueDate: getRelativeDate(180), notes: 'Coordinate a tasting session with caterers.', assignedTo: 'Both' },
+      { title: 'Order invitations and save-the-date cards', category: 'Invitations', period: '6 Months', completed: false, dueDate: getRelativeDate(170), notes: 'Finalize custom printing options and paper assets.', assignedTo: 'Bride' },
+      { title: 'Hire florist and design centerpiece concepts', category: 'Florals', period: '6 Months', completed: false, dueDate: getRelativeDate(150), notes: 'Select floral structures and bouquet designs.', assignedTo: 'Bride' },
+      { title: 'Book ceremony musicians and reception DJ/Band', category: 'Music', period: '6 Months', completed: false, dueDate: getRelativeDate(140), notes: 'Arrange audio equipment and playlist requirements.', assignedTo: 'Groom' },
+      { title: 'Order wedding cake and groom dessert', category: 'Bakery', period: '3 Months', completed: false, dueDate: getRelativeDate(90), notes: 'Select flavors and custom cake designs.', assignedTo: 'Bride' },
+      { title: 'Purchase wedding bands and arrange engraving', category: 'Rings', period: '3 Months', completed: false, dueDate: getRelativeDate(80), notes: 'Confirm fits and order custom inscriptions.', assignedTo: 'Both' },
+      { title: 'Mail formal wedding invitations to guests', category: 'Invitations', period: '3 Months', completed: false, dueDate: getRelativeDate(75), notes: 'Set RSVP deadline to 4-6 weeks before the wedding.', assignedTo: 'Bride' },
+      { title: 'Schedule hair and makeup trials', category: 'Hair & Makeup', period: '3 Months', completed: false, dueDate: getRelativeDate(60), notes: 'Book trials to finalize styling details.', assignedTo: 'Bride' },
+      { title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: getRelativeDate(30), notes: 'Check local government guidelines for valid window/processing times.', assignedTo: 'Both' },
+      { title: 'Finalize seating chart and floor plan', category: 'Decor', period: '1 Month', completed: false, dueDate: getRelativeDate(20), notes: 'Group guests into tables based on RSVPs.', assignedTo: 'Both' },
+      { title: 'Submit final guest count to venue & caterer', category: 'Catering', period: '1 Month', completed: false, dueDate: getRelativeDate(14), notes: 'Confirm final plate counts with caterers.', assignedTo: 'Planner' },
+      { title: 'Write wedding vows and practice speeches', category: 'Officiant', period: '1 Month', completed: false, dueDate: getRelativeDate(7), notes: 'Draft personal vows and review toasts.', assignedTo: 'Both' },
+      { title: 'Remember the rings and marriage license', category: 'Rings', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'Give rings to the Best Man.', assignedTo: 'Groom' },
+      { title: 'Eat a hearty breakfast and stay hydrated', category: 'Misc', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'Stay energized and enjoy the morning.', assignedTo: 'Both' },
+      { title: 'Relax, celebrate, and enjoy the day!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: weddingDate, notes: 'Enjoy the day!', assignedTo: 'Both' }
     ];
 
     const tasks = baseTasks.map((t, idx) => ({
@@ -618,91 +627,31 @@ class Database {
     }));
     db.tasks.push(...tasks);
 
-    // 2. Initial Vendors
-    const baseVendors = [
-      { id: 'v_init_1', name: 'OVAimagination Events', category: 'Planner', rating: 4.9, reviewsCount: 48, costRange: '$$$', location: 'Los Angeles, CA', status: 'Booked', contactName: 'Olivia Vance', email: 'olivia@ovaimagination.com', phone: '(555) 019-2834', website: 'https://ovaimagination.com', contractPrice: 4500, paidAmount: 2250, nextPaymentDate: '2027-06-01', notes: 'Premium wedding planners. Olivia is amazing.' },
-      { id: 'v_init_2', name: 'The Grand Pavilion', category: 'Venue', rating: 4.8, reviewsCount: 112, costRange: '$$$$', location: location, status: 'Booked', contactName: 'Marcus Sterling', email: 'events@grandpavilion.com', phone: '(555) 014-9831', website: 'https://grandpavilion.com', contractPrice: 18000, paidAmount: 9000, nextPaymentDate: '2027-05-15', notes: 'Stunning outdoor ceremony space.' },
-      { id: 'v_init_3', name: 'Golden Hour Studios', category: 'Photography', rating: 4.9, reviewsCount: 64, costRange: '$$$', location: 'Pasadena, CA', status: 'Booked', contactName: 'Chloe Bennett', email: 'chloe@goldenhourstudios.com', phone: '(555) 018-7241', website: 'https://goldenhourstudios.com', contractPrice: 3800, paidAmount: 1900, nextPaymentDate: '2027-07-01', notes: 'Full-day coverage.' },
-      { id: 'v_init_4', name: 'Culinaria Fine Dining', category: 'Catering', rating: 4.7, reviewsCount: 89, costRange: '$$$', location: 'Santa Monica, CA', status: 'Shortlisted', contactName: 'Chef Andre', email: 'info@culinariafine.com', phone: '(555) 013-6490', website: 'https://culinariafine.com', contractPrice: 9500, paidAmount: 0, nextPaymentDate: null, notes: 'Custom plating options.' },
-      { id: 'v_init_5', name: 'DJ Luminary', category: 'Music', rating: 5.0, reviewsCount: 73, costRange: '$$', location: 'Los Angeles, CA', status: 'Booked', contactName: 'DJ Dave', email: 'dave@djluminary.com', phone: '(555) 016-5287', website: 'https://djluminary.com', contractPrice: 2200, paidAmount: 1100, nextPaymentDate: '2027-07-15', notes: 'DJ Dave booked.' },
-      { id: 'v_init_6', name: 'VND Floral Design', category: 'Florals', rating: 4.8, reviewsCount: 37, costRange: '$$$', location: 'Beverly Hills, CA', status: 'Shortlisted', contactName: 'Elena Rostova', email: 'elena@vndflorals.com', phone: '(555) 011-8843', website: 'https://vndflorals.com', contractPrice: 5000, paidAmount: 0, nextPaymentDate: null, notes: 'Elena is great.' },
-      { id: 'v_init_7', name: 'Bellissima Bridal', category: 'Attire', rating: 4.6, reviewsCount: 154, costRange: '$$$', location: 'Los Angeles, CA', status: 'Booked', contactName: 'Sarah Jenkins', email: 'fittings@bellissimabridal.com', phone: '(555) 012-9051', website: 'https://bellissimabridal.com', contractPrice: 3200, paidAmount: 3200, nextPaymentDate: null, notes: 'Wedding gown ordered.' }
-    ];
+    // 2. Initial Vendors: Empty for newly-registered couples so they can choose their own
+    // 3. Initial Guests: Empty for newly-registered couples so they can enter their own
 
-    const vendors = baseVendors.map(v => ({
-      ...v,
-      id: `${v.id}_${Date.now()}`,
-      userId,
-      createdAt: new Date().toISOString()
-    }));
-    db.vendors.push(...vendors);
-
-    // 3. Initial Guests
-    const baseGuests = [
-      { name: 'Eleanor Johnson', group: "Bride's Family", email: 'eleanor.j@gmail.com', phone: '(555) 019-1122', status: 'Attending', rsvpReceived: true, meal: 'Beef', table: 1, plusOnes: 0, notes: 'Mother of the Bride.' },
-      { name: 'Robert Johnson', group: "Bride's Family", email: 'robert.j@gmail.com', phone: '(555) 019-1123', status: 'Attending', rsvpReceived: true, meal: 'Beef', table: 1, plusOnes: 0, notes: 'Father of the Bride.' },
-      { name: 'Thomas Johnson', group: "Bride's Family", email: 'tom.j@outlook.com', phone: '(555) 019-5566', status: 'Attending', rsvpReceived: true, meal: 'Vegetarian', table: 3, plusOnes: 1, notes: 'Bride\'s brother.' },
-      { name: 'Emily Johnson', group: "Bride's Family", email: 'emily.j@outlook.com', phone: '(555) 019-5567', status: 'Attending', rsvpReceived: true, meal: 'Chicken', table: 3, plusOnes: 0, notes: 'Thomas Johnson plus one.' },
-      { name: 'Arthur Miller', group: "Groom's Family", email: 'arthur.m@yahoo.com', phone: '(555) 015-4422', status: 'Attending', rsvpReceived: true, meal: 'Fish', table: 2, plusOnes: 0, notes: 'Father of the Groom.' },
-      { name: 'Grace Miller', group: "Groom's Family", email: 'grace.m@yahoo.com', phone: '(555) 015-4423', status: 'Attending', rsvpReceived: true, meal: 'Fish', table: 2, plusOnes: 0, notes: 'Mother of the Groom.' },
-      { name: 'Lucy Miller', group: "Groom's Family", email: 'lucy.m@gmail.com', phone: '(555) 015-9988', status: 'Attending', rsvpReceived: true, meal: 'Vegetarian', table: 4, plusOnes: 0, notes: 'Groom\'s sister (Bridesmaid).' },
-      { name: 'David Smith', group: 'Friends', email: 'dsmith@corp.com', phone: '(555) 012-3344', status: 'Attending', rsvpReceived: true, meal: 'Beef', table: 5, plusOnes: 1, notes: 'Best Man.' },
-      { name: 'Jessica Smith', group: 'Friends', email: 'jess.smith@corp.com', phone: '(555) 012-3345', status: 'Attending', rsvpReceived: true, meal: 'Chicken', table: 5, plusOnes: 0, notes: 'David Smith plus one.' },
-      { name: 'Michael Chang', group: 'Friends', email: 'mchang@tech.com', phone: '(555) 017-6655', status: 'Attending', rsvpReceived: true, meal: 'Beef', table: 5, plusOnes: 0, notes: 'Groomsman.' },
-      { name: 'Sophia Martinez', group: 'Friends', email: 'sophia.m@design.com', phone: '(555) 013-4411', status: 'Pending', rsvpReceived: false, meal: 'Pending', table: 0, plusOnes: 0, notes: 'Maid of Honor.' },
-      { name: 'Daniel Kim', group: 'Friends', email: 'dkim@med.org', phone: '(555) 014-8877', status: 'Pending', rsvpReceived: false, meal: 'Pending', table: 0, plusOnes: 1, notes: 'College friend.' },
-      { name: 'Rachel Green', group: 'Friends', email: 'rachel@fashion.com', phone: '(555) 016-1212', status: 'Declined', rsvpReceived: true, meal: 'Declined', table: 0, plusOnes: 0, notes: 'Out of country.' },
-      { name: 'Monica Geller', group: 'Friends', email: 'monica@chef.com', phone: '(555) 016-1313', status: 'Attending', rsvpReceived: true, meal: 'Beef', table: 6, plusOnes: 0, notes: 'Catering consultant friend.' },
-      { name: 'Chandler Bing', group: 'Friends', email: 'chandler@transponster.com', phone: '(555) 016-1414', status: 'Attending', rsvpReceived: true, meal: 'Chicken', table: 6, plusOnes: 0, notes: 'Monica\'s husband.' },
-    ];
-
-    const guests = baseGuests.map((g, idx) => ({
-      id: `g_init_${idx}_${Date.now()}`,
-      userId,
-      ...g,
-      createdAt: new Date().toISOString()
-    }));
-    db.guests.push(...guests);
-
-    // 4. Initial Budget
-    const bookedVendors = vendors.filter(v => v.status === 'Booked');
-    const venueSpent = bookedVendors.filter(v => v.category === 'Venue').reduce((sum, v) => sum + v.contractPrice, 0);
-    const cateringSpent = bookedVendors.filter(v => v.category === 'Catering').reduce((sum, v) => sum + v.contractPrice, 0);
-    const plannerSpent = bookedVendors.filter(v => v.category === 'Planner').reduce((sum, v) => sum + v.contractPrice, 0);
-    const photoSpent = bookedVendors.filter(v => v.category === 'Photography').reduce((sum, v) => sum + v.contractPrice, 0);
-    const floralSpent = bookedVendors.filter(v => v.category === 'Florals').reduce((sum, v) => sum + v.contractPrice, 0);
-    const musicSpent = bookedVendors.filter(v => v.category === 'Music').reduce((sum, v) => sum + v.contractPrice, 0);
-    const attireSpent = bookedVendors.filter(v => v.category === 'Attire').reduce((sum, v) => sum + v.contractPrice, 0);
-    
+    // 4. Initial Budget (Calculate categories from budgetLimit, actual spend starts at 0)
     const budgetObj = {
       id: `b_init_${Date.now()}`,
       userId,
       total: budgetLimit,
       categories: [
-        { name: 'Venue', estimated: Math.round(budgetLimit * 0.36), actual: venueSpent || Math.round(budgetLimit * 0.36), color: '#6366f1' },
-        { name: 'Catering', estimated: Math.round(budgetLimit * 0.20), actual: cateringSpent || 0, color: '#f59e0b' },
-        { name: 'Planner', estimated: Math.round(budgetLimit * 0.10), actual: plannerSpent || 0, color: '#e2c992' },
-        { name: 'Photography', estimated: Math.round(budgetLimit * 0.08), actual: photoSpent || 0, color: '#ec4899' },
-        { name: 'Florals', estimated: Math.round(budgetLimit * 0.10), actual: floralSpent || 0, color: '#10b981' },
-        { name: 'Music', estimated: Math.round(budgetLimit * 0.05), actual: musicSpent || 0, color: '#3b82f6' },
-        { name: 'Attire', estimated: Math.round(budgetLimit * 0.08), actual: attireSpent || 0, color: '#f472b6' },
+        { name: 'Venue', estimated: Math.round(budgetLimit * 0.36), actual: 0, color: '#6366f1' },
+        { name: 'Catering', estimated: Math.round(budgetLimit * 0.20), actual: 0, color: '#f59e0b' },
+        { name: 'Planner', estimated: Math.round(budgetLimit * 0.10), actual: 0, color: '#e2c992' },
+        { name: 'Photography', estimated: Math.round(budgetLimit * 0.08), actual: 0, color: '#ec4899' },
+        { name: 'Florals', estimated: Math.round(budgetLimit * 0.10), actual: 0, color: '#10b981' },
+        { name: 'Music', estimated: Math.round(budgetLimit * 0.05), actual: 0, color: '#3b82f6' },
+        { name: 'Attire', estimated: Math.round(budgetLimit * 0.08), actual: 0, color: '#f472b6' },
         { name: 'Misc', estimated: Math.round(budgetLimit * 0.03), actual: 0, color: '#94a3b8' },
       ],
-      payments: [
-        { id: `p_init_1_${Date.now()}`, vendorName: 'The Grand Pavilion', category: 'Venue', amount: 9000, date: '2026-07-15', status: 'Paid', method: 'Wire' },
-        { id: `p_init_2_${Date.now()}`, vendorName: 'OVAimagination Events', category: 'Planner', amount: 2250, date: '2026-07-25', status: 'Paid', method: 'Credit Card' },
-        { id: `p_init_3_${Date.now()}`, vendorName: 'Golden Hour Studios', category: 'Photography', amount: 1900, date: '2026-09-20', status: 'Paid', method: 'Check' },
-        { id: `p_init_4_${Date.now()}`, vendorName: 'Bellissima Bridal', category: 'Attire', amount: 3200, date: '2026-10-10', status: 'Paid', method: 'Credit Card' },
-        { id: `p_init_5_${Date.now()}`, vendorName: 'DJ Luminary', category: 'Music', amount: 1100, date: '2027-02-20', status: 'Paid', method: 'Venmo' },
-        { id: `p_init_6_${Date.now()}`, vendorName: 'The Grand Pavilion', category: 'Venue', amount: 9000, date: '2027-05-15', status: 'Upcoming', method: 'Wire' },
-        { id: `p_init_7_${Date.now()}`, vendorName: 'OVAimagination Events', category: 'Planner', amount: 2250, date: '2027-06-01', status: 'Upcoming', method: 'Credit Card' },
-      ]
+      payments: []
     };
     db.budgets.push(budgetObj);
 
     // 5. Initial Timeline
     const baseTimeline = [
-      { time: '08:00 AM', title: 'Hair and Makeup Starts', location: 'Bridal Suite', desc: 'Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.', status: 'Completed' },
+      { time: '08:00 AM', title: 'Hair and Makeup Starts', location: 'Bridal Suite', desc: 'Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.', status: 'Pending' },
       { time: '10:00 AM', title: 'Groomsmen Getting Ready', location: 'Groom Suite', desc: 'Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).', status: 'Pending' },
       { time: '12:30 PM', title: 'First Look & Couple Portraits', location: 'Grand Garden', desc: 'Private first look. Photographer & videographer shoot couple portraits.', status: 'Pending' },
       { time: '01:30 PM', title: 'Wedding Party & Family Photos', location: 'Grand Garden', desc: 'Shoot immediate family, bridesmaids, and groomsmen.', status: 'Pending' },
@@ -726,16 +675,14 @@ class Database {
 
   initializeDirectMessages(db, userId) {
     const baseDms = [
-      { chatId: 'chat_c_v1', senderId: 'v1', senderName: 'Olivia Vance', text: "Hi! I'm thrilled to be planning your wedding. Have you had a chance to look at the draft catering menu yet?" },
-      { chatId: 'chat_c_v1', senderId: userId, senderName: 'Couple', text: 'Hi Olivia! Yes, we love the plated options from Culinaria Fine Dining. We have a tasting next week.' },
-      { chatId: 'chat_c_v2', senderId: 'v2', senderName: 'Marcus Sterling', text: 'Good morning! The Grand Pavilion lawn has been locked in for your date. I have sent the contract details over.' },
+      { chatId: 'chat_c_v1', senderId: 'v1', senderName: 'Olivia Vance', text: "Welcome to your planning workspace! I'm Olivia, your dedicated planning coordinator from OVAimagination Events. Feel free to message me here to coordinate your wedding styling and venue bookings!" }
     ];
     
     db.messages.push(...baseDms.map((m, idx) => ({
       id: `msg_dm_init_${idx}_${Date.now()}`,
-      userId, // couples link
+      userId,
       chatId: m.chatId,
-      senderId: m.senderId === 'v1' ? 'v1' : (m.senderId === 'v2' ? 'v2' : userId),
+      senderId: m.senderId,
       senderName: m.senderName,
       text: m.text,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
