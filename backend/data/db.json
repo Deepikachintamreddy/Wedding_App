@@ -11,7 +11,7 @@
       "budget": 75000,
       "theme": "Elegant Navy & Gold",
       "onboardingComplete": true,
-      "aiCredits": 9,
+      "aiCredits": 0,
       "eventPassActive": false,
       "vendorCategory": "Wedding Planners & Coordinators",
       "businesses": null,
@@ -296,7 +296,28 @@
       "createdAt": "2026-07-15T19:45:53.800Z"
     }
   ],
-  "vendors": [],
+  "vendors": [
+    {
+      "id": "v_1784176248254_4i122",
+      "userId": "usr_1784144723901_8dlmz",
+      "name": "Golden Hour Studios",
+      "category": "Photography",
+      "rating": 4.9,
+      "reviewsCount": 12,
+      "costRange": "$$",
+      "location": "Malibu, CA",
+      "status": "Shortlisted",
+      "contactName": "",
+      "email": "",
+      "phone": "",
+      "website": "",
+      "contractPrice": 4200,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "AI Matched Recommendation (Match Score: 92.2%). Theme similarity: 100%.",
+      "createdAt": "2026-07-16T04:30:48.254Z"
+    }
+  ],
   "guests": [],
   "budgets": [
     {

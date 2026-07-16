@@ -69,11 +69,22 @@ export const api = {
   },
 
   async getProfile() {
-    const res = await fetch(`${API_BASE}/auth/me`, {
-      headers: getHeaders(),
-    });
-    if (!res.ok) throw new Error('Failed to fetch profile');
-    return res.json();
+    try {
+      const res = await fetch(`${API_BASE}/auth/me`, {
+        headers: getHeaders(),
+      });
+      if (res.status === 401 || res.status === 403 || res.status === 404) {
+        this.logout();
+        throw new Error('Session expired');
+      }
+      if (!res.ok) throw new Error('Failed to fetch profile');
+      return await res.json();
+    } catch (err) {
+      if (err.message === 'Session expired') {
+        throw err;
+      }
+      throw new Error('Failed to fetch profile');
+    }
   },
 
   async updateProfile(data) {

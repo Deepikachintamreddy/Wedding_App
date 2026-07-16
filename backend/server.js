@@ -1036,6 +1036,9 @@ app.post('/api/ai/generate-speech', authenticateToken, async (req, res) => {
 
     // Fallback generator in JS
     if (!speechResult) {
+      speechResult = { text: generateTemplateSpeech(role, partner_name, traits, memories, tone) };
+    }
+    if (false) {
       const traitStr = Array.isArray(traits) ? traits.join(', ') : (traits || 'wonderful');
       const memorySec = memories ? `I will never forget when ${memories}.` : 'From the very first moment, you brought warmth and happiness to my world.';
       
@@ -1089,3 +1092,283 @@ Let us raise our glasses to a lifetime of happiness, support, and adventures. To
 app.listen(PORT, () => {
   console.log(`VND backend server is running on port ${PORT}`);
 });
+
+// Helper for randomized speech/vow templates
+function generateTemplateSpeech(role, partner_name, traits, memories, tone) {
+  const traitStr = Array.isArray(traits) ? traits.join(', ') : (traits || 'wonderful');
+  const memorySec = memories ? `I will never forget when ${memories}.` : 'From the very first moment, you brought warmth and happiness to my world.';
+  const activeTone = tone || 'Heartfelt';
+
+  let text = '';
+  if (role === 'Groom' || role === 'Bride') {
+    const templates = VOW_TEMPLATES[activeTone] || VOW_TEMPLATES['Heartfelt'];
+    const randIdx = Math.floor(Math.random() * templates.length);
+    text = templates[randIdx](partner_name || 'My Love', traitStr, memorySec);
+  } else {
+    const templates = SPEECH_TEMPLATES[activeTone] || SPEECH_TEMPLATES['Heartfelt'];
+    const randIdx = Math.floor(Math.random() * templates.length);
+    text = templates[randIdx](role || 'speaker', partner_name || 'the couple', traitStr, memorySec);
+  }
+  return text;
+}
+
+// Template mappings for randomized speech/vow generation
+const VOW_TEMPLATES = {
+  Romantic: [
+    (partner, traits, memory) => `### 🌹 Personalized Wedding Vows (Romantic & Deep)
+    
+**${partner}**, from the moment our paths crossed, my world became infinitely brighter and more beautiful. 
+You are my anchor, my guide, and the most ${traits} person I have ever known. 
+
+${memory}
+
+Today, I vow to love you without reservation, to support your dreams as if they were my own, and to cherish you through every season of life. You are my forever, my home, and my greatest adventure. I love you.`,
+
+    (partner, traits, memory) => `### 🌹 Personalized Wedding Vows (Romantic & Deep)
+    
+**${partner}**, standing here today, I realize how incredibly lucky I am to walk this path beside you. 
+You bring a grace, strength, and ${traits} spirit into my life that completes me in ways I never thought possible.
+
+${memory}
+
+I promise to choose you every single day, to hold your hand through the quiet moments and the storms, and to build a life centered on trust, passion, and deep devotion. You are my heart's true home.`,
+
+    (partner, traits, memory) => `### 🌹 Personalized Wedding Vows (Romantic & Deep)
+    
+**${partner}**, today I give you my hand, my heart, and my solemn promise. 
+I fell in love with your ${traits} soul, and with every passing day, that love only grows deeper.
+
+${memory}
+
+I vow to listen to you with open ears and an open heart, to celebrate your triumphs, and to comfort you in times of doubt. You are my partner, my love, and my sanctuary. For all the days of my life, I am yours.`
+  ],
+  Funny: [
+    (partner, traits, memory) => `### 🤪 Personalized Wedding Vows (Funny & Sweet)
+    
+**${partner}**, I love you more than coffee, sleep, and even my favorite sports team. 
+You are incredibly ${traits}, which is lucky because someone has to balance out my chaotic energy!
+
+${memory}
+
+I promise to always tell you when you have food in your teeth, to listen to your long stories even when I've lost the plot, and to never hog the blankets (except on very cold nights). I promise to be your partner-in-crime forever.`,
+
+    (partner, traits, memory) => `### 🤪 Personalized Wedding Vows (Funny & Sweet)
+    
+**${partner}**, they say marriage is about compromise, but I promise to always let you think you won the argument. 
+Your ${traits} personality is what hooked me, and I vow to never let life get too serious.
+
+${memory}
+
+I promise to love you even when you're hangry, to kill the spiders, and to never scroll ahead on our favorite Netflix show without you. You are my favorite person to annoy, and I love you with all my heart.`,
+
+    (partner, traits, memory) => `### 🤪 Personalized Wedding Vows (Funny & Sweet)
+    
+**${partner}**, today I take you to be my legally bound roommate and lifelong accomplice. 
+I vow to celebrate your ${traits} nature, and to pretend to know what I'm doing in this adult life as long as you're by my side.
+
+${memory}
+
+I promise to laugh at your jokes (even the bad ones), to always order the appetizer we both want, and to love you unconditionally through thick, thin, and dirty laundry. Let's do this!`
+  ],
+  'Tear-Jerker': [
+    (partner, traits, memory) => `### 😢 Personalized Wedding Vows (Emotional Tear-Jerker)
+    
+**${partner}**, when I look into your eyes, I see my past, my present, and the entire future I want to build. 
+You are so ${traits}, and you have taught me what it truly means to love and be loved.
+
+${memory}
+
+I vow to stand by you in sickness and in health, to hold you close when the nights are dark, and to be the peace you return to. I never knew I could feel a love this deep, and my promise to you is that it will never fade. You are my entire world.`,
+
+    (partner, traits, memory) => `### 😢 Personalized Wedding Vows (Emotional Tear-Jerker)
+    
+**${partner}**, you came into my life like a quiet dawn, bringing light to places I didn't know were dark. 
+Your ${traits} heart is my favorite thing about you, and today, I promise to protect it with my life.
+
+${memory}
+
+I vow to hold your hand through the hard seasons, to dry your tears, and to be your strength when yours falters. I promise that you will never walk alone, because my heart is bound to yours forever.`,
+
+    (partner, traits, memory) => `### 😢 Personalized Wedding Vows (Emotional Tear-Jerker)
+    
+**${partner}**, standing before our family and friends, I want to tell you that you are my greatest blessing. 
+Your ${traits} soul has healed me and made me whole. 
+
+${memory}
+
+Today, I promise to walk with you through every joy and sorrow. I vow to cherish you, to honor you, and to love you more with every beat of my heart. Until my very last breath, I promise to be yours.`
+  ],
+  Heartfelt: [
+    (partner, traits, memory) => `### ❤️ Personalized Wedding Vows (Heartfelt & Sincere)
+    
+**${partner}**, today I choose you to be my spouse, my teammate, and my best friend. 
+You are the most ${traits} person I have ever known, and I am a better person just by being by your side.
+
+${memory}
+
+I promise to listen to you, to speak to you with honesty and kindness, and to build a life filled with laughter and peace. I promise to support your dreams and walk beside you as we write the rest of our story together.`,
+
+    (partner, traits, memory) => `### ❤️ Personalized Wedding Vows (Heartfelt & Sincere)
+    
+**${partner}**, today I promise to stand by you, not in front of you or behind you, but right next to you. 
+I cherish your ${traits} spirit and the kindness you show to everyone around you.
+
+${memory}
+
+I promise to create a warm and peaceful home with you, to keep communicating, and to nurture our love so it continues to grow. You are my partner, my confidant, and my joy.`,
+
+    (partner, traits, memory) => `### ❤️ Personalized Wedding Vows (Heartfelt & Sincere)
+    
+**${partner}**, today I vow to merge my life with yours. 
+Your ${traits} presence makes every day feel lighter, and I promise to bring that same joy to you.
+
+${memory}
+
+I promise to walk with you hand-in-hand through life's highs and lows, to support your passions, and to always remind you of how much you are loved. You are my heart, and I am so grateful to call you my spouse.`
+  ],
+  Traditional: [
+    (partner, traits, memory) => `### 🏛️ Personalized Wedding Vows (Classic & Traditional)
+    
+**${partner}**, in the presence of God, our families, and our friends, I take you to be my wedded spouse. 
+You are so ${traits}, and I pledge my life and devotion to you today.
+
+${memory}
+
+I vow to have and to hold from this day forward, for better, for worse, for richer, for poorer, in sickness and in health, to love and to cherish, until death do us part. This is my solemn vow.`,
+
+    (partner, traits, memory) => `### 🏛️ Personalized Wedding Vows (Classic & Traditional)
+    
+**${partner}**, I pledge to you my heart and my loyalty as we begin our married life together. 
+Your ${traits} soul is a beautiful gift, and I promise to honor and protect our bond.
+
+${memory}
+
+I vow to stand by your side in joy and in sorrow, to walk with you in truth and in grace, and to keep myself only unto you, so long as we both shall live. This is my sacred promise.`,
+
+    (partner, traits, memory) => `### 🏛️ Personalized Wedding Vows (Classic & Traditional)
+    
+**${partner}**, today I take you to be my partner in marriage. 
+I cherish your ${traits} character and the values we share.
+
+${memory}
+
+According to ordinance, I vow to support you, to comfort you, and to keep you in sickness and in health. I promise to be faithful to you, to share my life openly with you, and to love you unconditionally from this day forward.`
+  ]
+};
+
+const SPEECH_TEMPLATES = {
+  Romantic: [
+    (role, partner, traits, memory) => `### 🎤 Wedding Toast Speech (Romantic & Deep)
+    
+Good evening everyone. As the ${role}, I am deeply honored to stand here tonight and celebrate the union of this incredible couple.
+To **${partner}** and their partner, you both look absolutely radiant. We have all watched your love story unfold, and it is nothing short of inspiring.
+
+**${partner}** has always been so ${traits}, and seeing the way you look at each other, it's clear you have found your true match.
+
+${memory}
+
+Let us raise our glasses to a lifetime of deep love, understanding, and shared dreams. To the couple!`,
+
+    (role, partner, traits, memory) => `### 🎤 Wedding Toast Speech (Romantic & Deep)
+    
+Hello everyone, thank you for being here. Standing here as the ${role}, my heart is full watching these two begin their life together.
+They say true love is finding the person who makes your soul feel alive, and that is exactly what **${partner}** and their partner have found.
+
+Knowing **${partner}**, they are the most ${traits} person, and today they have found someone who elevates and cherishes every bit of that spirit.
+
+${memory}
+
+Please join me in wishing them a lifetime of romance, beautiful quiet moments, and endless happiness. Cheers to the newlyweds!`
+  ],
+  Funny: [
+    (role, partner, traits, memory) => `### 🤪 Wedding Toast Speech (Funny & Sweet)
+    
+Good evening! I'm the ${role}, and I have to say, it is wonderful to see so many friends and family here today (mostly because it means I get free food and drinks).
+First of all, **${partner}** looks amazing today. Their partner also looks pretty good! 
+
+We all know **${partner}** is ${traits}, which is probably why their partner decided to marry them—or maybe they just lost a bet.
+
+${memory}
+
+In all seriousness, you two are perfect for each other. Let's raise a glass to love, laughter, and a partner who will tolerate your weird habits forever. To the couple!`,
+
+    (role, partner, traits, memory) => `### 🤪 Wedding Toast Speech (Funny & Sweet)
+    
+Hi everyone, I'm the ${role}. I was told to keep my speech brief, so here is a quick tip for the newlyweds: always remember the three golden words of marriage: "You are right."
+
+We all know **${partner}** is extremely ${traits}, and today they have found a partner who is brave enough to take them on full-time!
+
+${memory}
+
+Let's toast to a lifetime of love, laughter, and never having to explain why you bought another pair of shoes or video game. Cheers!`
+  ],
+  'Tear-Jerker': [
+    (role, partner, traits, memory) => `### 😢 Wedding Toast Speech (Emotional Tear-Jerker)
+    
+Good evening, everyone. As the ${role}, I've had the privilege of watching **${partner}** grow over the years, but I have never seen them shine as brightly as they do tonight.
+There are moments in life where you realize everything has changed, and seeing you two stand together under the arch today was one of them.
+
+**${partner}** is a truly ${traits} soul, and they deserve nothing but the absolute best. Today, they found it.
+
+${memory}
+
+I wish you both a lifetime of soft landings, unwavering comfort, and a love that grows stronger with every passing tear and smile. To the couple!`,
+
+    (role, partner, traits, memory) => `### 😢 Wedding Toast Speech (Emotional Tear-Jerker)
+    
+Hello everyone. Standing here tonight as the ${role}, I am struggling to find the words to describe the beauty of this day.
+We all know that life can be unpredictable, but when you find your person, the world suddenly makes sense.
+
+**${partner}** has always been so ${traits}, and seeing the love, care, and protectiveness their partner shares with them brings tears to my eyes.
+
+${memory}
+
+May your home always be a place of healing, laughter, and infinite love. Let's toast to the most beautiful couple. Cheers!`
+  ],
+  Heartfelt: [
+    (role, partner, traits, memory) => `### ❤️ Wedding Toast Speech (Heartfelt & Sincere)
+    
+Good evening, everyone. I am the ${role}, and I want to express my deepest gratitude to everyone who made this day possible.
+To **${partner}** and their spouse, today marks the beginning of a beautiful partnership. 
+
+**${partner}** has always stood out for being so ${traits}, and seeing the respect and care you share with your partner is truly heartwarming.
+
+${memory}
+
+I wish you both a lifetime of mutual support, constant growth, and a friendship that keeps you close forever. Let us toast to the happy couple!`,
+
+    (role, partner, traits, memory) => `### ❤️ Wedding Toast Speech (Heartfelt & Sincere)
+    
+Hello family and friends. As the ${role}, I'm so happy to celebrate this beautiful milestone with you all.
+Marriage is not just about finding someone you can live with; it's about finding the person you cannot live without.
+
+**${partner}** is a ${traits} individual, and seeing how happy and grounded they are with their spouse is a joy to behold.
+
+${memory}
+
+Let's raise our glasses to a marriage built on trust, respect, and deep, sincere friendship. Cheers to you both!`
+  ],
+  Traditional: [
+    (role, partner, traits, memory) => `### 🏛️ Wedding Toast Speech (Classic & Traditional)
+    
+Ladies and gentlemen, good evening. As the ${role}, I would like to welcome you all to this joyous celebration of marriage.
+Today, we witness the formal union of two families and the beginning of a sacred bond between **${partner}** and their spouse.
+
+**${partner}** has shown themselves to be ${traits} in character, and we are proud to support them as they enter this new chapter.
+
+${memory}
+
+May you always find joy, prosperity, and strength in each other. Let us toast to a long, blessed, and happy marriage. To the bride and groom!`,
+
+    (role, partner, traits, memory) => `### 🏛️ Wedding Toast Speech (Classic & Traditional)
+    
+Good evening, honored guests. Standing here as the ${role}, I want to offer my congratulations to the newlyweds on this beautiful day.
+Marriage is a time-honored tradition that binds two lives in a promise of loyalty and devotion.
+
+We celebrate **${partner}**'s ${traits} qualities and the promise of their bright future together.
+
+${memory}
+
+Let us raise our glasses to the health, happiness, and long life of the couple. To the bride and groom!`
+  ]
+};
