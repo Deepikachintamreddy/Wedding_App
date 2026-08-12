@@ -132,7 +132,7 @@ export default function Navbar() {
         <div className={styles.navInner}>
           {/* Brand */}
           <Link href="/" className={styles.brand}>
-            <Monogram size={64} className={styles.brandIcon} style={{ marginRight: '4px' }} /> Elysian
+            <Monogram size={90} className={styles.brandIcon} style={{ marginRight: '4px' }} /> VND
           </Link>
 
           {/* Desktop nav links */}

@@ -72,7 +72,7 @@ export default function AdminPage() {
         {/* Header */}
         <div className="admin-header mb-8">
           <span className="badge badge-gold mb-2">SYSTEM CONSOLE</span>
-          <h1 className="h2 font-heading text-gold mb-1">Elysian Admin Panel</h1>
+          <h1 className="h2 font-heading text-gold mb-1">VND Admin Panel</h1>
           <p className="body-sm text-secondary">
             Oversee registrations, manage coordinator upgrades, and approve vendor listings.
           </p>
@@ -143,7 +143,7 @@ export default function AdminPage() {
 
           {/* Section 2: Planner/Coordinator Requests */}
           <div className="flex-col gap-4">
-            <h2 className="h4 font-heading text-gold mb-2">Elysian Planner Matching Requests ({requests.length})</h2>
+            <h2 className="h4 font-heading text-gold mb-2">VND Planner Matching Requests ({requests.length})</h2>
             <div className="planner-requests-list flex-col gap-4">
               {requests.length > 0 ? (
                 requests.map(req => (

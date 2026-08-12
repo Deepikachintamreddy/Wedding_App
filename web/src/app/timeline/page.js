@@ -135,7 +135,7 @@ export default function TimelinePage() {
         {/* Printable View Header */}
         <div className="print-header only-print mb-8">
           <div className="text-center">
-            <span className="overline text-gold" style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>ELYSIAN WEDDING SCHEDULER</span>
+            <span className="overline text-gold" style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>VND WEDDING SCHEDULER</span>
             <h1 className="h1 font-heading text-primary mt-2">{user.name}'s Wedding Day Timeline</h1>
             <p className="body-sm text-secondary">Date: {user.weddingDate} | Location: {user.location} | Design Theme: {user.theme}</p>
             <div style={{ width: '80px', height: '1.5px', background: '#c9a96e', margin: '16px auto' }}></div>

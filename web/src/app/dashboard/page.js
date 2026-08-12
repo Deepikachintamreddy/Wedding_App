@@ -325,7 +325,7 @@ export default function DashboardPage() {
           <div className="upgrade-banner card glass-panel p-8 mt-8 flex-between items-center bg-gold-tint">
             <div className="upgrade-info max-w-2xl">
               <span className="badge badge-gold mb-2">LIMITED TIME</span>
-              <h2 className="h3 font-heading text-gold mb-2">Activate the Elysian Event Pass</h2>
+              <h2 className="h3 font-heading text-gold mb-2">Activate the VND Event Pass</h2>
               <p className="body-sm text-secondary mb-0">
                 Planning doesn't fit into monthly boxes. Get **Unlimited AI Chats**, premium PDF & Excel exports, and collaborative vendor tools for a one-time fee of **$99**. Zero monthly bills.
               </p>

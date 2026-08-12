@@ -261,7 +261,7 @@ export default function VendorsPage() {
               <div className="contact-details p-4 bg-secondary rounded-lg mb-4 flex-col gap-2 border border-divider">
                 <h4 className="overline mb-2">Vetted Contact Details</h4>
                 <p className="body-sm text-secondary mb-0"><strong>Contact Person:</strong> {selectedVendor.contactName || 'Olivia Vance'}</p>
-                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'events@elysian.com'}</p>
+                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'events@VND.com'}</p>
                 <p className="body-sm text-secondary mb-0"><strong>Phone:</strong> {selectedVendor.phone || '(555) 019-2834'}</p>
                 {selectedVendor.website && (
                   <p className="body-sm text-secondary mb-0">

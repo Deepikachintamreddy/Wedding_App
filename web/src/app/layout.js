@@ -3,7 +3,7 @@ import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import './globals.css';
 
 export const metadata = {
-  title: 'Elysian | Wedding Concierge',
+  title: 'VND | Wedding Concierge',
   description:
     'Your premium luxury wedding planning assistant. Plan your perfect day with intelligent task management, vendor discovery, budget tracking, guest lists, and a personal virtual concierge — all in one elegant experience.',
   keywords: [
@@ -16,19 +16,19 @@ export const metadata = {
     'guest list',
     'wedding checklist',
   ],
-  authors: [{ name: 'Elysian' }],
-  creator: 'Elysian',
+  authors: [{ name: 'VND' }],
+  creator: 'VND',
   openGraph: {
-    title: 'AI Wedding Concierge | Elysian',
+    title: 'AI Wedding Concierge | VND',
     description:
       'Plan your dream wedding with an AI-powered luxury concierge. Intelligent planning, curated vendors, and effortless coordination.',
-    siteName: 'Elysian Wedding Concierge',
+    siteName: 'VND Wedding Concierge',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Wedding Concierge | Elysian',
+    title: 'AI Wedding Concierge | VND',
     description:
       'Plan your dream wedding with an AI-powered luxury concierge.',
   },
