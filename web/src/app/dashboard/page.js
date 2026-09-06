@@ -315,17 +315,7 @@ export default function DashboardPage() {
             <Link href="/vendors" className="action-card card glass-panel p-4 flex-center text-center">
               <span className="action-icon">💒</span>
               <span className="action-label text-gold font-bold">Browse Vendors</span>
-              <span className="action-desc text-xs text-secondary">AI-matched vetted partners</span>
-            </Link>
-            <Link href="/vows-speech" className="action-card card glass-panel p-4 flex-center text-center">
-              <span className="action-icon">✍️</span>
-              <span className="action-label text-gold font-bold">Write Vows & Speeches</span>
-              <span className="action-desc text-xs text-secondary">AI-drafted personalized text</span>
-            </Link>
-            <Link href="/moodboard" className="action-card card glass-panel p-4 flex-center text-center">
-              <span className="action-icon">🎨</span>
-              <span className="action-label text-gold font-bold">Mood Board Studio</span>
-              <span className="action-desc text-xs text-secondary">Design your wedding aesthetic</span>
+              <span className="action-desc text-xs text-secondary">Vetted partners list</span>
             </Link>
           </div>
         </div>
@@ -463,7 +453,7 @@ export default function DashboardPage() {
         }
         .actions-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 20px;
         }
         @media (max-width: 900px) {

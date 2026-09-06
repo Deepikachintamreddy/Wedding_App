@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
-import { getAiResponse, getSavedChatMessages, saveChatMessages } from '@/lib/aiService';
+import { getAiResponse } from '@/lib/aiService';
 
 const SUGGESTIONS = [
   { label: '💰 Budget strategy', text: 'How should I split my wedding budget?' },
@@ -19,7 +19,19 @@ export default function AiChatPage() {
   const store = useWeddingStore();
   const { user, loading, deductAiCredit, addTask } = store;
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      id: 'welcome',
+      sender: 'ai',
+      text: `### 🧭 Welcome to the VND Wedding Concierge!
+I am your personal AI assistant, trained in luxury wedding coordination by **OVAimagination Events**.
+
+You can ask me questions about your planning process, budget strategy, or vendor bookings. I can also help you write vows or speeches!
+
+**Try clicking one of the suggested prompts below to get started!**`,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    }
+  ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [saveModalOpen, setSaveModalOpen] = useState(false);
@@ -31,25 +43,6 @@ export default function AiChatPage() {
       router.push('/auth');
     }
   }, [user, loading, router]);
-
-  // Load and subscribe to chat messages
-  useEffect(() => {
-    if (user) {
-      setMessages(getSavedChatMessages(user.name));
-    }
-  }, [user]);
-
-  useEffect(() => {
-    const handleChatUpdate = () => {
-      if (user) {
-        setMessages(getSavedChatMessages(user.name));
-      }
-    };
-    window.addEventListener('wedding_chat_update', handleChatUpdate);
-    return () => {
-      window.removeEventListener('wedding_chat_update', handleChatUpdate);
-    };
-  }, [user]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -78,46 +71,30 @@ export default function AiChatPage() {
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    const updatedMessagesWithUser = [...messages, userMsg];
-    setMessages(updatedMessagesWithUser);
-    saveChatMessages(updatedMessagesWithUser);
+    setMessages(prev => [...prev, userMsg]);
     setInputText('');
     setIsTyping(true);
 
     const creditsRemaining = user.aiCredits ?? 15;
     
     // Call AI Response
-    try {
-      const response = await getAiResponse(textToSend, creditsRemaining);
-      setIsTyping(false);
+    const response = await getAiResponse(textToSend, creditsRemaining);
 
-      // Add AI Response
-      const aiMsg = {
-        id: `msg_${Date.now() + 1}`,
-        sender: 'ai',
-        text: response.text,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      };
-      
-      const finalMessages = [...updatedMessagesWithUser, aiMsg];
-      setMessages(finalMessages);
-      saveChatMessages(finalMessages);
+    setIsTyping(false);
 
-      // Deduct credit if successful and user is not on Event Pass/Admin
-      if (response.creditsUsed && user.role !== 'admin' && !user.eventPassActive) {
-        deductAiCredit();
-      }
-    } catch (err) {
-      setIsTyping(false);
-      const errorMsg = {
-        id: `msg_${Date.now() + 1}`,
-        sender: 'ai',
-        text: `### ⚠️ Connection Error\nSorry, I couldn't reach the planning server. Please check your connection and try again.`,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      };
-      const finalMessages = [...updatedMessagesWithUser, errorMsg];
-      setMessages(finalMessages);
-      saveChatMessages(finalMessages);
+    // Add AI Response
+    const aiMsg = {
+      id: `msg_${Date.now() + 1}`,
+      sender: 'ai',
+      text: response.text,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    };
+    
+    setMessages(prev => [...prev, aiMsg]);
+
+    // Deduct credit if successful and user is not on Event Pass/Admin
+    if (response.creditsUsed && user.role !== 'admin' && !user.eventPassActive) {
+      deductAiCredit();
     }
   };
 

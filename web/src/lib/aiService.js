@@ -3,8 +3,6 @@
  * Provides expert-level wedding planning advice based on keyword matching
  */
 
-import { api } from './api';
-
 const KEYWORD_RESPONSES = {
   budget: `### 💰 Budget Strategy & Best Practices
 A wedding budget is all about prioritization. Here is a standard breakdown recommended by **OVAimagination Events**:
@@ -91,25 +89,28 @@ To keep the application affordable, the Free plan starts with **15 AI Credits** 
 
 Your current credit balance is displayed in the navigation bar!`,
 
-  vow: `### ✍️ AI Vows & Speeches Generator
-Writing vows can be daunting! To make this easy, we have built a dedicated **[Vows & Speeches Generator](/vows-speech)** page in your workspace. 
+  vow: `### ✍️ Drafting Your Wedding Vows
+Writing vows can be daunting! Here is a simple structure to get you started:
 
-On this page, you can:
-1. **Choose your exact perspective** (Groom, Bride, Best Man, Maid of Honor, etc.).
-2. **Select partner personality traits** (e.g. Caring, Adventurous, Hilarious).
-3. **Share special memories** (like caught-in-the-rain stories or second-date highlights).
-4. **Choose your emotional tone** (Romantic, Funny, Tear-Jerker, Heartfelt, Traditional).
+1. **The Hook:** Share a brief memory or mention what you thought when you first met.
+2. **The Promises:** 3-5 specific promises (some serious, one lighthearted, e.g., *"I promise to let you have the last slice of pizza"*).
+3. **The Core Vow:** Promise to support them through sickness and health, joy and sorrow.
+4. **The Look Ahead:** Express excitement for growing old together.
 
-*👉 Head over to **[Vows & Speeches](/vows-speech)** now to draft your custom vows with one click!*`,
+**Would you like me to write a custom draft?** Tell me:
+- *3 words that describe your partner.*
+- *Your favorite memory together.*
+- *Whether you want a romantic, funny, or traditional tone.*`,
 
-  speech: `### 🎤 Crafting the Perfect Toast or Speech
-Whether you are the Best Man, Maid of Honor, or Groom, a great wedding speech follows a strict formula:
-1. **The Welcome:** Introduce yourself and state your relation to the couple.
-2. **The Compliment:** Address how stunning the couple looks today.
-3. **The Story:** Share one short, funny, or sweet story.
+  speech: `### 🎤 Crafting the Perfect Speech
+Whether you are the Best Man, Maid of Honor, or Groom, a great wedding speech follows this formula:
+
+1. **The Welcome:** Introduce yourself and state your relation to the couple (keep it under 45 seconds).
+2. **The Compliment:** Compliment how beautiful/handsome the couple looks today.
+3. **The Story:** Tell one short, funny, or sweet story that illustrates the groom's/bride's character. Avoid inside jokes that make others feel left out.
 4. **The Toast:** Ask everyone to raise their glass and wish them a lifetime of love.
 
-To get a complete, custom-written toast draft incorporating your specific stories and tone, use our interactive **[Vows & Speeches](/vows-speech)** page!`,
+Keep it under **4 minutes**! If you want, I can write a custom speech draft for you. Just tell me your role and a few details about the bride and groom.`,
 
   invitation: `### 💌 Wedding Invitation Etiquette & Timeline
 Invitations set the tone for your wedding day! Here is the timeline:
@@ -248,15 +249,6 @@ You can ask me questions about your planning process, budget strategy, or vendor
 };
 
 export async function getAiResponse(message, userCredits = 15) {
-  if (api.isAuthenticated()) {
-    try {
-      const response = await api.sendAiChat(message);
-      return response; // returns { success, text, creditsUsed, aiCredits }
-    } catch (err) {
-      console.error('AI chat API error, using local fallback:', err);
-    }
-  }
-
   // Simulate network latency
   await new Promise(resolve => setTimeout(resolve, 800));
 
@@ -276,123 +268,28 @@ To continue chatting with your AI Concierge, you can:
     };
   }
 
-  const cleanMsg = message.toLowerCase().trim();
+  const lowercaseMsg = message.toLowerCase();
   let responseText = null;
 
-  let partnerName = 'there';
-  if (typeof window !== 'undefined') {
-    try {
-      const stored = localStorage.getItem('wedding_user');
-      if (stored) {
-        const u = JSON.parse(stored);
-        if (u && u.name) {
-          partnerName = u.name.split('&')[0].trim();
-        }
-      }
-    } catch (e) {
-      // ignore
+  // Search for keywords
+  for (const [keyword, response] of Object.entries(KEYWORD_RESPONSES)) {
+    if (lowercaseMsg.includes(keyword)) {
+      responseText = response;
+      break;
     }
   }
 
-  // 1. Check for policies / terms (Refund, Privacy, TOS, Legal, Rules)
-  const policyKeywords = ['policy', 'policies', 'terms', 'tos', 'privacy', 'refund', 'legal', 'agreement', 'disclaimer'];
-  const hasPolicyQuery = policyKeywords.some(kw => cleanMsg.includes(kw));
-
-  if (hasPolicyQuery) {
-    responseText = `### 📋 Policy & Terms Information
-I apologize, but as the **VND Wedding Concierge**, I am specialized in wedding planning coordination. 
-
-For details regarding our **Privacy Policy**, **Terms of Service**, **Refund Policies**, or other legal agreements, please refer to the dedicated Policy links at the bottom of our website. 
-
-How can I help you with your wedding budget, checklist, or guest list instead?`;
-  } else {
-    // 2. Greetings
-    const greetingKeywords = ['hello', 'hi', 'hey', 'greetings', 'yo', 'good morning', 'good afternoon', 'good evening', 'howdy'];
-    const isGreeting = greetingKeywords.some(g => {
-      const regex = new RegExp(`\\b${g}\\b`, 'i');
-      return regex.test(cleanMsg);
-    });
-
-    const thanksKeywords = ['thank you', 'thanks', 'thank', 'appreciate', 'ty'];
-    const isThanks = thanksKeywords.some(t => {
-      const regex = new RegExp(`\\b${t}\\b`, 'i');
-      return regex.test(cleanMsg);
-    });
-
-    // 3. Conversation / formalities / chit-chat
-    const isHowAreYou = 
-      cleanMsg.includes('how are you') || 
-      cleanMsg.includes('how are yoi') || 
-      cleanMsg.includes('how are u') || 
-      cleanMsg.includes('how r u') || 
-      cleanMsg.includes('how do you do') ||
-      cleanMsg.includes('hows it going') ||
-      cleanMsg.includes('how\'s it going') ||
-      (cleanMsg.includes('how') && cleanMsg.includes('you') && (cleanMsg.includes('are') || cleanMsg.includes('doing') || cleanMsg.includes('go') || cleanMsg.includes('feel')));
-
-    const isWhoAreYou = 
-      cleanMsg.includes('who are you') ||
-      cleanMsg.includes('who r you') ||
-      cleanMsg.includes('who r u') ||
-      cleanMsg.includes('what are you') ||
-      (cleanMsg.includes('who') && cleanMsg.includes('you'));
-
-    const isWhoMadeYou = 
-      cleanMsg.includes('who made') || 
-      cleanMsg.includes('who created') || 
-      cleanMsg.includes('creator') || 
-      cleanMsg.includes('maker') || 
-      cleanMsg.includes('who built');
-
-    if (isHowAreYou) {
-      responseText = `### 😊 Doing Great!
-I am doing wonderful, thank you for asking! I'm currently helping couples coordinate their timelines, budgets, and vendors.
-
-How are your wedding preparations coming along today?`;
-    } else if (isWhoAreYou) {
-      responseText = `### 🤖 VND AI Concierge
-I am your digital wedding concierge, here to make planning your big day stress-free. I can help calculate budgets, draft vows, format seating tables, and outline day-of timelines.`;
-    } else if (isWhoMadeYou) {
-      responseText = `### 🛠️ My Creators
-I was created by **VND Weddings** to serve as your virtual wedding planner and coordinator. I am built with high-end coordination templates and guidelines!`;
-    } else if (isGreeting) {
-      responseText = `### 🌸 Hello there!
-Welcome to the **VND Wedding Concierge**! 
-
-I'm your dedicated AI planning assistant. I can help you:
-- 💰 Manage your **Budget breakdown** and payment schedules.
-- 📋 Keep track of your monthly planning **Checklist**.
-- 👥 Organize your **Guests list**, table seating, and meals.
-- 🤝 Coordinate and contract your **Vendors**.
-- ✍️ Draft custom **vows or reception speeches**!
-
-How is your wedding planning going today? Ask me anything!`;
-    } else if (isThanks) {
-      responseText = `### ❤️ You're very welcome, **${partnerName}**!
-It is my absolute pleasure to assist you. Wedding planning can be a big journey, but you're doing amazing! 
-
-What would you like to coordinate next? (e.g. Budget, Guests, Vendors, or Timelines?)`;
-    } else {
-      // Search for keywords
-      for (const [keyword, response] of Object.entries(KEYWORD_RESPONSES)) {
-        if (cleanMsg.includes(keyword)) {
-          responseText = response;
-          break;
-        }
-      }
-    }
-  }
-
-  // Fallback response
+  // Fallback generic response if no keywords found
   if (!responseText) {
     responseText = `### 💍 VND AI Wedding Assistant
-Hi **${partnerName}**, I hear you! Regarding *"${message}"*, I recommend checking out these sections of your workspace:
+Thank you for your message! You asked about: *"${message}"*.
 
-1. **Checklist:** Add a task to keep this action item on track.
-2. **Budget:** Check how this aligns with your category allocation.
-3. **Vendors:** Shortlist and compare coordinators or suppliers who specialize in this.
+As your AI planner, I recommend:
+1. **Adding tasks** to your **Checklist** to track this specific item.
+2. **Checking the Budget** to see if this affects your spending.
+3. **Shortlisting vendors** who can help execute this.
 
-*💡 Quick Tip: Ask me specifically about "budget", "venue", "guest list", "music", "timeline", "vows", or "pricing" for structured templates and guides!*`;
+*Tip: Try asking specifically about "budget", "venue", "guest list", "music", "timeline", "dress", or "vows" for detailed guides!*`;
   }
 
   return {
@@ -400,45 +297,4 @@ Hi **${partnerName}**, I hear you! Regarding *"${message}"*, I recommend checkin
     text: responseText,
     creditsUsed: true,
   };
-}
-
-export function getSavedChatMessages(userName) {
-  if (typeof window === 'undefined') return [];
-  try {
-    const stored = localStorage.getItem('wedding_chat_messages');
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed.length === 1 && parsed[0].id === 'welcome') {
-        const welcomeText = userName 
-          ? `### 🌸 Welcome back, **${userName}**!\nI'm your **VND Wedding Concierge**. How is your wedding planning going today? \n\nAsk me anything about:\n- 💰 **Budget** calculations\n- 📋 **Checklist** timelines\n- 👥 **Guest** list RSVPs\n- ✍️ Writing **vows or speeches**!`
-          : `### 🧭 Welcome to the **VND Wedding Concierge**!\nI'm your digital wedding planning assistant. \n\n*💡 Tip: [Sign In / Register](/auth) to link your budget, custom checklist, and get personalized recommendations!*\n\nHow can I help you plan your special day today?`;
-        parsed[0].text = welcomeText;
-      }
-      return parsed;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  
-  const welcomeText = userName 
-    ? `### 🌸 Welcome back, **${userName}**!\nI'm your **VND Wedding Concierge**. How is your wedding planning going today? \n\nAsk me anything about:\n- 💰 **Budget** calculations\n- 📋 **Checklist** timelines\n- 👥 **Guest** list RSVPs\n- ✍️ Writing **vows or speeches**!`
-    : `### 🧭 Welcome to the **VND Wedding Concierge**!\nI'm your digital wedding planning assistant. \n\n*💡 Tip: [Sign In / Register](/auth) to link your budget, custom checklist, and get personalized recommendations!*\n\nHow can I help you plan your special day today?`;
-  return [
-    {
-      id: 'welcome',
-      sender: 'ai',
-      text: welcomeText,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    }
-  ];
-}
-
-export function saveChatMessages(messages) {
-  if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem('wedding_chat_messages', JSON.stringify(messages));
-    window.dispatchEvent(new Event('wedding_chat_update'));
-  } catch (e) {
-    console.error(e);
-  }
 }

@@ -64,51 +64,17 @@ export default function TimelinePage() {
     }
   };
 
-  const handleAiSuggest = async () => {
+  const handleAiSuggest = () => {
     setIsSuggesting(true);
-    
-    try {
-      const { api } = await import('@/lib/api');
-      if (api.isAuthenticated()) {
-        // Ask AI to generate a wedding day schedule
-        const response = await api.sendAiChat(
-          `Generate a detailed wedding day timeline for a ceremony at ${user.location || 'our venue'} on ${user.weddingDate || 'our wedding date'} with theme ${user.theme || 'elegant'}. List events from morning prep to send-off with times, locations, and descriptions.`
-        );
-        
-        if (response && response.text) {
-          // Parse the AI response into timeline events (simple extraction)
-          // For now, populate with the comprehensive MOCK_TIMELINE which represents
-          // what a real production AI would return after processing
-          MOCK_TIMELINE.forEach(event => {
-            addTimelineEvent({
-              time: event.time,
-              title: event.title,
-              location: event.location,
-              desc: event.desc,
-              assignee: event.assignee || 'Both',
-            });
-          });
-          setIsSuggesting(false);
-          alert('AI has generated your personalized wedding day timeline based on your venue and theme!');
-          return;
-        }
+    setTimeout(() => {
+      // Re-populate timeline with default mock timeline
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('wedding_timeline', JSON.stringify(MOCK_TIMELINE));
+        window.dispatchEvent(new Event('wedding_store_update'));
       }
-    } catch (err) {
-      console.warn('AI backend unavailable for timeline, using template:', err);
-    }
-
-    // Fallback: populate from mock template
-    MOCK_TIMELINE.forEach(event => {
-      addTimelineEvent({
-        time: event.time,
-        title: event.title,
-        location: event.location,
-        desc: event.desc,
-        assignee: event.assignee || 'Both',
-      });
-    });
-    setIsSuggesting(false);
-    alert('AI has successfully generated your timeline based on standard OVAimagination schedules!');
+      setIsSuggesting(false);
+      alert('AI has successfully generated your timeline based on standard OVAimagination schedules!');
+    }, 1500);
   };
 
   const handlePrint = () => {

@@ -6,8 +6,8 @@ export default function Monogram({ className, size = 48, style }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/logo.png"
-      alt="VND Logo"
+      src="/gn-wedding-logo.png"
+      alt="GN Wedding Monogram"
       width={size}
       height={size}
       className={className}

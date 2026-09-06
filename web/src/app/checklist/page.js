@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useWeddingStore } from '@/lib/store';
 import { formatDate, daysUntil, calculateProgress, getCategoryColor, getCategoryIcon } from '@/lib/utils';
 

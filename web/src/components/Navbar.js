@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { api } from '@/lib/api';
-import { useWeddingStore } from '@/lib/store';
 import styles from './Navbar.module.css';
 import Monogram from './Monogram';
 
@@ -18,7 +16,6 @@ const NAV_LINKS = {
     { label: 'Guests', href: '/guests' },
     { label: 'Vendors', href: '/vendors' },
     { label: 'Timeline', href: '/timeline' },
-    { label: 'Vows & Speeches', href: '/vows-speech' },
   ],
   vendor: [
     { label: 'Dashboard', href: '/vendor-portal' },
@@ -41,33 +38,42 @@ const NAV_LINKS = {
 };
 
 export default function Navbar() {
-  const store = useWeddingStore();
-  const { user } = store;
+  const [user, setUser] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-  const [cachedUser, setCachedUser] = useState(null);
   const dropdownRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
 
-  // Keep authenticated state in sync with api/token changes
+  // Load user from localStorage
   useEffect(() => {
-    setAuthenticated(api.isAuthenticated());
-    if (typeof window !== 'undefined') {
+    try {
       const stored = localStorage.getItem('wedding_user');
       if (stored) {
-        try {
-          setCachedUser(JSON.parse(stored));
-        } catch (e) {
-          console.error(e);
-        }
-      } else {
-        setCachedUser(null);
+        setUser(JSON.parse(stored));
       }
+    } catch {
+      // ignore
     }
-  }, [user]);
+
+    const handleStorage = () => {
+      try {
+        const stored = localStorage.getItem('wedding_user');
+        setUser(stored ? JSON.parse(stored) : null);
+      } catch {
+        setUser(null);
+      }
+    };
+
+    window.addEventListener('storage', handleStorage);
+    // Also listen for custom events from auth page
+    window.addEventListener('user-login', handleStorage);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('user-login', handleStorage);
+    };
+  }, []);
 
   // Scroll detection
   useEffect(() => {
@@ -98,10 +104,9 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const activeUser = user || cachedUser;
-  const role = authenticated ? (activeUser?.role || 'couple') : 'guest';
+  const role = user?.role || 'guest';
   const links = NAV_LINKS[role] || NAV_LINKS.guest;
-  const aiCredits = activeUser?.aiCredits ?? 15;
+  const aiCredits = user?.aiCredits ?? 15;
 
   const getInitials = (name) => {
     if (!name) return '?';
@@ -109,10 +114,10 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    api.logout();
+    localStorage.removeItem('wedding_user');
+    localStorage.removeItem('wedding_profile');
+    setUser(null);
     setDropdownOpen(false);
-    setAuthenticated(false);
-    window.dispatchEvent(new Event('wedding_store_update'));
     router.push('/');
   };
 
@@ -127,7 +132,7 @@ export default function Navbar() {
         <div className={styles.navInner}>
           {/* Brand */}
           <Link href="/" className={styles.brand}>
-            <Monogram size={64} className={styles.brandIcon} style={{ marginRight: '4px' }} /> VND
+            <Monogram size={90} className={styles.brandIcon} style={{ marginRight: '4px' }} /> VND
           </Link>
 
           {/* Desktop nav links */}
@@ -146,7 +151,7 @@ export default function Navbar() {
 
           {/* Right section */}
           <div className={styles.navRight}>
-            {authenticated && activeUser ? (
+            {user ? (
               <>
                 {/* AI Credits */}
                 <div className={styles.aiCredits}>
@@ -161,8 +166,8 @@ export default function Navbar() {
                     className={styles.userButton}
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
-                    <div className={styles.avatar}>{getInitials(activeUser.name)}</div>
-                    <span className={styles.userName}>{activeUser.name}</span>
+                    <div className={styles.avatar}>{getInitials(user.name)}</div>
+                    <span className={styles.userName}>{user.name}</span>
                     <span className={`${styles.dropdownArrow} ${dropdownOpen ? styles.dropdownArrowOpen : ''}`}>
                       ▼
                     </span>
@@ -229,7 +234,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {authenticated && user ? (
+          {user ? (
             <div className={styles.mobileUserSection}>
               <div className={styles.mobileCredits}>
                 <span>✨</span>

@@ -16,6 +16,74 @@
       "vendorCategory": "Wedding Planners & Coordinators",
       "businesses": null,
       "createdAt": "2026-07-15T19:45:23.901Z"
+    },
+    {
+      "id": "usr_1784195627633_u94y0",
+      "name": "John & Jane",
+      "email": "couple@example.com",
+      "passwordHash": "$2a$10$O1XBrLxaDMU9WCv9hdA6QeVtIsx/7lb2hezgApNtCpdy.XEukW8OK",
+      "role": "couple",
+      "weddingDate": "2027-06-15",
+      "location": "Malibu, CA",
+      "budget": 50000,
+      "theme": "Elegant Navy & Gold",
+      "onboardingComplete": true,
+      "aiCredits": 15,
+      "eventPassActive": false,
+      "vendorCategory": "Wedding Planners & Coordinators",
+      "businesses": null,
+      "createdAt": "2026-07-16T09:53:47.635Z"
+    },
+    {
+      "id": "usr_1784196111751_ndwql",
+      "name": "John & Smith",
+      "email": "coupl@example.com",
+      "passwordHash": "$2a$10$t5.XlxPnWi66lUycaY.84.flNAnS10dbF0RrhuS2qgwXNIF3vVdia",
+      "role": "couple",
+      "weddingDate": "2027-07-15",
+      "location": "Malibu, CA",
+      "budget": 95000,
+      "theme": "Vintage Glamour",
+      "onboardingComplete": true,
+      "aiCredits": 15,
+      "eventPassActive": false,
+      "vendorCategory": "Wedding Planners & Coordinators",
+      "businesses": null,
+      "createdAt": "2026-07-16T10:01:51.751Z"
+    },
+    {
+      "id": "usr_1784198272497_o3qwx",
+      "name": "Alex & Jordan",
+      "email": "alex.jordan@gmail.com",
+      "passwordHash": "$2a$10$q.8le/dCDP2FVwg81xgAiOkNVqh98SlliumubeFsEYVnXvNjeSImq",
+      "role": "couple",
+      "weddingDate": "2027-07-15",
+      "location": "Malibu, CA",
+      "budget": 150000,
+      "theme": "Coastal Romance",
+      "onboardingComplete": true,
+      "aiCredits": 15,
+      "eventPassActive": false,
+      "vendorCategory": null,
+      "businesses": null,
+      "createdAt": "2026-07-16T10:37:52.497Z"
+    },
+    {
+      "id": "usr_1784225273499_kvv6o",
+      "name": "John Doe & Jane Smith",
+      "email": "john.doe@example.com",
+      "passwordHash": "$2a$10$ExP07hf2TxaSDXJMWYHHt.C7IyASpNO4aea4DwyQdTniXGOwm0Uky",
+      "role": "couple",
+      "weddingDate": "2027-09-20",
+      "location": "Santa Barbara, CA",
+      "budget": 50000,
+      "theme": "Modern Minimalist",
+      "onboardingComplete": false,
+      "aiCredits": 14,
+      "eventPassActive": false,
+      "vendorCategory": null,
+      "businesses": null,
+      "createdAt": "2026-07-16T18:07:53.499Z"
     }
   ],
   "tasks": [
@@ -294,6 +362,1122 @@
       "notes": "Enjoy the day!",
       "assignedTo": "Both",
       "createdAt": "2026-07-15T19:45:53.800Z"
+    },
+    {
+      "id": "t_init_0_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Lock in the final budget of $50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-06-15",
+      "notes": "Target styling theme: Elegant Navy & Gold",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_1_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-06-30",
+      "notes": "Aim for a realistic head count to guide venue sizing and budget.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_2_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-07-20",
+      "notes": "Explore spaces matching your theme and capacity needs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_3_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-07-30",
+      "notes": "A coordinator helps keep the planning timeline running smoothly.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_4_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-09-18",
+      "notes": "Ask bridesmaids, groomsmen, and attendants.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_5_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-08",
+      "notes": "Secure photography coverage early to lock in key dates.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_6_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-28",
+      "notes": "Start wedding attire shopping to allow time for tailor adjustments.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_7_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-11-17",
+      "notes": "Create a website to share details and RSVP links with guests.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_8_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2026-12-17",
+      "notes": "Coordinate a tasting session with caterers.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_9_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2026-12-27",
+      "notes": "Finalize custom printing options and paper assets.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_10_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-16",
+      "notes": "Select floral structures and bouquet designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_11_1784195691714",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-26",
+      "notes": "Arrange audio equipment and playlist requirements.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T09:54:51.714Z"
+    },
+    {
+      "id": "t_init_12_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-03-17",
+      "notes": "Select flavors and custom cake designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_13_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-03-27",
+      "notes": "Confirm fits and order custom inscriptions.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_14_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-01",
+      "notes": "Set RSVP deadline to 4-6 weeks before the wedding.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_15_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-16",
+      "notes": "Book trials to finalize styling details.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_16_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-05-16",
+      "notes": "Check local government guidelines for valid window/processing times.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_17_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-05-26",
+      "notes": "Group guests into tables based on RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_18_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-01",
+      "notes": "Confirm final plate counts with caterers.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_19_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-08",
+      "notes": "Draft personal vows and review toasts.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_20_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Give rings to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_21_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Stay energized and enjoy the morning.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_22_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Enjoy the day!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "t_init_0_1784196206219",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Lock in the final budget of $95,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-15",
+      "notes": "Target styling theme: Vintage Glamour",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.219Z"
+    },
+    {
+      "id": "t_init_1_1784196206219",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-07-30",
+      "notes": "Aim for a realistic head count to guide venue sizing and budget.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.219Z"
+    },
+    {
+      "id": "t_init_2_1784196206219",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-08-19",
+      "notes": "Explore spaces matching your theme and capacity needs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.219Z"
+    },
+    {
+      "id": "t_init_3_1784196206219",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-08-29",
+      "notes": "A coordinator helps keep the planning timeline running smoothly.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.219Z"
+    },
+    {
+      "id": "t_init_4_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-18",
+      "notes": "Ask bridesmaids, groomsmen, and attendants.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_5_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-11-07",
+      "notes": "Secure photography coverage early to lock in key dates.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_6_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-11-27",
+      "notes": "Start wedding attire shopping to allow time for tailor adjustments.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_7_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-12-17",
+      "notes": "Create a website to share details and RSVP links with guests.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_8_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-16",
+      "notes": "Coordinate a tasting session with caterers.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_9_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-26",
+      "notes": "Finalize custom printing options and paper assets.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_10_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-15",
+      "notes": "Select floral structures and bouquet designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_11_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-25",
+      "notes": "Arrange audio equipment and playlist requirements.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_12_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-16",
+      "notes": "Select flavors and custom cake designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_13_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-26",
+      "notes": "Confirm fits and order custom inscriptions.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_14_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-01",
+      "notes": "Set RSVP deadline to 4-6 weeks before the wedding.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_15_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-16",
+      "notes": "Book trials to finalize styling details.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_16_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Check local government guidelines for valid window/processing times.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_17_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-25",
+      "notes": "Group guests into tables based on RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_18_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-01",
+      "notes": "Confirm final plate counts with caterers.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_19_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-08",
+      "notes": "Draft personal vows and review toasts.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_20_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Give rings to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_21_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Stay energized and enjoy the morning.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_22_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Enjoy the day!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T10:03:26.220Z"
+    },
+    {
+      "id": "t_init_0_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Lock in the final budget of $1,50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-07-15",
+      "notes": "Target styling theme: Coastal Romance",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_1_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-07-30",
+      "notes": "Aim for a realistic head count to guide venue sizing and budget.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_2_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Research and book wedding venue (ceremony & reception) in Malibu, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-08-19",
+      "notes": "Explore spaces matching your theme and capacity needs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_3_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-08-29",
+      "notes": "A coordinator helps keep the planning timeline running smoothly.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_4_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-10-18",
+      "notes": "Ask bridesmaids, groomsmen, and attendants.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_5_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-11-07",
+      "notes": "Secure photography coverage early to lock in key dates.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_6_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-11-27",
+      "notes": "Start wedding attire shopping to allow time for tailor adjustments.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_7_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-12-17",
+      "notes": "Create a website to share details and RSVP links with guests.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_8_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-16",
+      "notes": "Coordinate a tasting session with caterers.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_9_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-01-26",
+      "notes": "Finalize custom printing options and paper assets.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_10_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-15",
+      "notes": "Select floral structures and bouquet designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_11_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-02-25",
+      "notes": "Arrange audio equipment and playlist requirements.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_12_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-16",
+      "notes": "Select flavors and custom cake designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_13_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-04-26",
+      "notes": "Confirm fits and order custom inscriptions.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_14_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-01",
+      "notes": "Set RSVP deadline to 4-6 weeks before the wedding.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_15_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-05-16",
+      "notes": "Book trials to finalize styling details.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_16_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-15",
+      "notes": "Check local government guidelines for valid window/processing times.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_17_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-06-25",
+      "notes": "Group guests into tables based on RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_18_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-01",
+      "notes": "Confirm final plate counts with caterers.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_19_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-07-08",
+      "notes": "Draft personal vows and review toasts.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_20_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Give rings to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_21_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Stay energized and enjoy the morning.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_22_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-07-15",
+      "notes": "Enjoy the day!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "t_init_0_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Lock in the final budget of $50,000",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": true,
+      "dueDate": "2026-09-20",
+      "notes": "Target styling theme: Modern Minimalist",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_1_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Draft guest list to get tentative head count",
+      "category": "Invitations",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-10-05",
+      "notes": "Aim for a realistic head count to guide venue sizing and budget.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_2_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Research and book wedding venue (ceremony & reception) in Santa Barbara, CA",
+      "category": "Venue",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-10-25",
+      "notes": "Explore spaces matching your theme and capacity needs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_3_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Hire professional wedding planner/coordinator",
+      "category": "Planner",
+      "period": "12+ Months",
+      "completed": false,
+      "dueDate": "2026-11-04",
+      "notes": "A coordinator helps keep the planning timeline running smoothly.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_4_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Select wedding party and ask them to participate",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2026-12-24",
+      "notes": "Ask bridesmaids, groomsmen, and attendants.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_5_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Research and hire photographer & videographer",
+      "category": "Photography",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2027-01-13",
+      "notes": "Secure photography coverage early to lock in key dates.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_6_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Shop for wedding gown and initial fittings",
+      "category": "Attire",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2027-02-02",
+      "notes": "Start wedding attire shopping to allow time for tailor adjustments.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_7_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Launch wedding website and add countdown",
+      "category": "Misc",
+      "period": "9 Months",
+      "completed": false,
+      "dueDate": "2027-02-22",
+      "notes": "Create a website to share details and RSVP links with guests.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_8_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Finalize catering menu and bar options",
+      "category": "Catering",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-03-24",
+      "notes": "Coordinate a tasting session with caterers.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_9_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Order invitations and save-the-date cards",
+      "category": "Invitations",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-04-03",
+      "notes": "Finalize custom printing options and paper assets.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_10_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Hire florist and design centerpiece concepts",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-04-23",
+      "notes": "Select floral structures and bouquet designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_11_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Book ceremony musicians and reception DJ/Band",
+      "category": "Music",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-05-03",
+      "notes": "Arrange audio equipment and playlist requirements.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_12_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Order wedding cake and groom dessert",
+      "category": "Bakery",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-06-22",
+      "notes": "Select flavors and custom cake designs.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_13_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Purchase wedding bands and arrange engraving",
+      "category": "Rings",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-07-02",
+      "notes": "Confirm fits and order custom inscriptions.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_14_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Mail formal wedding invitations to guests",
+      "category": "Invitations",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-07-07",
+      "notes": "Set RSVP deadline to 4-6 weeks before the wedding.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_15_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Schedule hair and makeup trials",
+      "category": "Hair & Makeup",
+      "period": "3 Months",
+      "completed": false,
+      "dueDate": "2027-07-22",
+      "notes": "Book trials to finalize styling details.",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_16_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Apply for marriage license",
+      "category": "Misc",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-08-21",
+      "notes": "Check local government guidelines for valid window/processing times.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_17_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Finalize seating chart and floor plan",
+      "category": "Decor",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-08-31",
+      "notes": "Group guests into tables based on RSVPs.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_18_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Submit final guest count to venue & caterer",
+      "category": "Catering",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-09-06",
+      "notes": "Confirm final plate counts with caterers.",
+      "assignedTo": "Planner",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_19_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Write wedding vows and practice speeches",
+      "category": "Officiant",
+      "period": "1 Month",
+      "completed": false,
+      "dueDate": "2027-09-13",
+      "notes": "Draft personal vows and review toasts.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_20_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Remember the rings and marriage license",
+      "category": "Rings",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-09-20",
+      "notes": "Give rings to the Best Man.",
+      "assignedTo": "Groom",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_21_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Eat a hearty breakfast and stay hydrated",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-09-20",
+      "notes": "Stay energized and enjoy the morning.",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_init_22_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Relax, celebrate, and enjoy the day!",
+      "category": "Misc",
+      "period": "Day-Of",
+      "completed": false,
+      "dueDate": "2027-09-20",
+      "notes": "Enjoy the day!",
+      "assignedTo": "Both",
+      "createdAt": "2026-07-16T18:07:53.596Z"
+    },
+    {
+      "id": "t_1784225273689_mxapa",
+      "userId": "usr_1784225273499_kvv6o",
+      "title": "Design centerpieces",
+      "category": "Florals",
+      "period": "6 Months",
+      "completed": false,
+      "dueDate": "2027-03-20",
+      "notes": "Must match theme: Modern Minimalist",
+      "assignedTo": "Bride",
+      "createdAt": "2026-07-16T18:07:53.690Z"
     }
   ],
   "vendors": [
@@ -316,6 +1500,26 @@
       "nextPaymentDate": null,
       "notes": "AI Matched Recommendation (Match Score: 92.2%). Theme similarity: 100%.",
       "createdAt": "2026-07-16T04:30:48.254Z"
+    },
+    {
+      "id": "v_1784196438384_lzx2j",
+      "userId": "usr_1784196111751_ndwql",
+      "name": "Golden Hour Studios",
+      "category": "Photography",
+      "rating": 4.9,
+      "reviewsCount": 12,
+      "costRange": "$$",
+      "location": "Malibu, CA",
+      "status": "Shortlisted",
+      "contactName": "",
+      "email": "",
+      "phone": "",
+      "website": "",
+      "contractPrice": 4200,
+      "paidAmount": 0,
+      "nextPaymentDate": null,
+      "notes": "AI Matched Recommendation (Match Score: 57.2%). Theme similarity: 0%.",
+      "createdAt": "2026-07-16T10:07:18.384Z"
     }
   ],
   "guests": [],
@@ -370,6 +1574,272 @@
         {
           "name": "Misc",
           "estimated": 2250,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "b_init_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "total": 50000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 18000,
+          "actual": 0,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 10000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 4000,
+          "actual": 0,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 2500,
+          "actual": 0,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 4000,
+          "actual": 0,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 1500,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Venue & Catering",
+          "estimated": 21600,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Photography & Videography",
+          "estimated": 5400,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Planner/Coordinator",
+          "estimated": 4500,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Attire & Beauty",
+          "estimated": 3600,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Florals & Decor",
+          "estimated": 3600,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Entertainment",
+          "estimated": 3600,
+          "actual": 0,
+          "color": "#94a3b8"
+        },
+        {
+          "name": "Invitations & Rings",
+          "estimated": 2700,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "b_init_1784196206220",
+      "userId": "usr_1784196111751_ndwql",
+      "total": 95000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 34200,
+          "actual": 0,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 19000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 9500,
+          "actual": 0,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 7600,
+          "actual": 0,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 9500,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 4750,
+          "actual": 0,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 7600,
+          "actual": 0,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 2850,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "b_init_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "total": 150000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 54000,
+          "actual": 0,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 30000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 15000,
+          "actual": 0,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 12000,
+          "actual": 0,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 15000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 7500,
+          "actual": 0,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 12000,
+          "actual": 0,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 4500,
+          "actual": 0,
+          "color": "#94a3b8"
+        }
+      ],
+      "payments": []
+    },
+    {
+      "id": "b_init_1784225273596",
+      "userId": "usr_1784225273499_kvv6o",
+      "total": 50000,
+      "categories": [
+        {
+          "name": "Venue",
+          "estimated": 18000,
+          "actual": 0,
+          "color": "#6366f1"
+        },
+        {
+          "name": "Catering",
+          "estimated": 10000,
+          "actual": 0,
+          "color": "#f59e0b"
+        },
+        {
+          "name": "Planner",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#e2c992"
+        },
+        {
+          "name": "Photography",
+          "estimated": 4000,
+          "actual": 0,
+          "color": "#ec4899"
+        },
+        {
+          "name": "Florals",
+          "estimated": 5000,
+          "actual": 0,
+          "color": "#10b981"
+        },
+        {
+          "name": "Music",
+          "estimated": 2500,
+          "actual": 0,
+          "color": "#3b82f6"
+        },
+        {
+          "name": "Attire",
+          "estimated": 4000,
+          "actual": 0,
+          "color": "#f472b6"
+        },
+        {
+          "name": "Misc",
+          "estimated": 1500,
           "actual": 0,
           "color": "#94a3b8"
         }
@@ -487,6 +1957,446 @@
       "desc": "Guests line up with sparklers. Bride and Groom exit.",
       "status": "Pending",
       "createdAt": "2026-07-15T19:45:53.801Z"
+    },
+    {
+      "id": "tl_init_0_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_1_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_2_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_3_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_4_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_5_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_6_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_7_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_8_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_9_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_10_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T09:54:51.715Z"
+    },
+    {
+      "id": "tl_init_0_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_1_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_2_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_3_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_4_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_5_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_6_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_7_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_8_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_9_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_10_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T10:03:26.221Z"
+    },
+    {
+      "id": "tl_init_0_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_1_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_2_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_3_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_4_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_5_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_6_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_7_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_8_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_9_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_10_1784209889602",
+      "userId": "usr_1784198272497_o3qwx",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T13:51:29.602Z"
+    },
+    {
+      "id": "tl_init_0_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "08:00 AM",
+      "title": "Hair and Makeup Starts",
+      "location": "Bridal Suite",
+      "desc": "Bridesmaids and mother of the bride first. Bride starts at 09:30 AM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_1_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "10:00 AM",
+      "title": "Groomsmen Getting Ready",
+      "location": "Groom Suite",
+      "desc": "Groom and groomsmen dress. Photographer captures details (rings, suit, shoes).",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_2_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "12:30 PM",
+      "title": "First Look & Couple Portraits",
+      "location": "Grand Garden",
+      "desc": "Private first look. Photographer & videographer shoot couple portraits.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_3_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "01:30 PM",
+      "title": "Wedding Party & Family Photos",
+      "location": "Grand Garden",
+      "desc": "Shoot immediate family, bridesmaids, and groomsmen.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_4_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "03:30 PM",
+      "title": "Groom & Guests Arrival",
+      "location": "Pavilion Lawn",
+      "desc": "Ushers stand in position. Pre-ceremony music starts playing.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_5_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "04:00 PM",
+      "title": "Wedding Ceremony",
+      "location": "Pavilion Lawn",
+      "desc": "Processional starts. Vows exchange, rings exchange. Recessional at 04:35 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_6_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "04:40 PM",
+      "title": "Cocktail Hour",
+      "location": "Ocean View Terrace",
+      "desc": "Guests enjoy appetizers and signature cocktails. Couple takes sunset pictures.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_7_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "05:45 PM",
+      "title": "Grand Reception Entrance",
+      "location": "Gold Ballroom",
+      "desc": "Guests seated. Entrance of wedding party and bride/groom. First dance.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_8_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "06:00 PM",
+      "title": "Dinner Service & Speeches",
+      "location": "Gold Ballroom",
+      "desc": "Plated dinner served. Best Man, Maid of Honor, and parents give toasts.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_9_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "08:00 PM",
+      "title": "Dance Floor Opens & Cake Cutting",
+      "location": "Gold Ballroom",
+      "desc": "DJ Dave sets off. Cake cut at 08:30 PM. Late night snacks served at 10:00 PM.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
+    },
+    {
+      "id": "tl_init_10_1784225273597",
+      "userId": "usr_1784225273499_kvv6o",
+      "time": "11:00 PM",
+      "title": "Grand Sparkler Send-off",
+      "location": "Front Portico",
+      "desc": "Guests line up with sparklers. Bride and Groom exit.",
+      "status": "Pending",
+      "createdAt": "2026-07-16T18:07:53.597Z"
     }
   ],
   "messages": [
@@ -499,6 +2409,36 @@
       "text": "Welcome to your planning workspace! I'm Olivia, your dedicated planning coordinator from OVAimagination Events. Feel free to message me here to coordinate your wedding styling and venue bookings!",
       "timestamp": "01:15 am",
       "createdAt": "2026-07-15T19:45:53.828Z"
+    },
+    {
+      "id": "msg_dm_init_0_1784195691715",
+      "userId": "usr_1784195627633_u94y0",
+      "chatId": "chat_c_v1",
+      "senderId": "v1",
+      "senderName": "Olivia Vance",
+      "text": "Welcome to your planning workspace! I'm Olivia, your dedicated planning coordinator from OVAimagination Events. Feel free to message me here to coordinate your wedding styling and venue bookings!",
+      "timestamp": "03:24 pm",
+      "createdAt": "2026-07-16T09:54:51.766Z"
+    },
+    {
+      "id": "msg_dm_init_0_1784196206221",
+      "userId": "usr_1784196111751_ndwql",
+      "chatId": "chat_c_v1",
+      "senderId": "v1",
+      "senderName": "Olivia Vance",
+      "text": "Welcome to your planning workspace! I'm Olivia, your dedicated planning coordinator from OVAimagination Events. Feel free to message me here to coordinate your wedding styling and venue bookings!",
+      "timestamp": "03:33 pm",
+      "createdAt": "2026-07-16T10:03:26.259Z"
+    },
+    {
+      "id": "msg_dm_init_0_1784209889603",
+      "userId": "usr_1784198272497_o3qwx",
+      "chatId": "chat_c_v1",
+      "senderId": "v1",
+      "senderName": "Olivia Vance",
+      "text": "Welcome to your planning workspace! I'm Olivia, your dedicated planning coordinator from OVAimagination Events. Feel free to message me here to coordinate your wedding styling and venue bookings!",
+      "timestamp": "07:21 pm",
+      "createdAt": "2026-07-16T13:51:29.629Z"
     }
   ]
 }

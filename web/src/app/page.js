@@ -140,7 +140,7 @@ export default function LandingPage() {
 
         <div className={styles.heroContent}>
           <div className={styles.heroGlassCard}>
-            <div className={styles.heroEyebrow}><img src="/logo.png" alt="VND Logo" width={36} height={36} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
+            <div className={styles.heroEyebrow}><img src="/gn-wedding-logo.png" alt="GN Wedding Logo" width={56} height={56} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
             <h1 className={styles.headline}>
               Your Dream Wedding, <span className={styles.headlineGold}>Effortlessly Planned</span>.
             </h1>
@@ -347,7 +347,7 @@ export default function LandingPage() {
         <div className={styles.footerInner}>
           <div className={styles.footerTop}>
             <div>
-              <div className={styles.footerBrand}><img src="/logo.png" alt="VND Logo" width={48} height={48} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> VND</div>
+              <div className={styles.footerBrand}><img src="/gn-wedding-logo.png" alt="GN Wedding Logo" width={64} height={64} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> VND</div>
               <p className={styles.footerDesc}>
                 VND Wedding Concierge — luxury wedding planning tools for every couple, at every budget.
               </p>

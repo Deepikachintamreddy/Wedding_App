@@ -1,6 +1,5 @@
 import Navbar from '@/components/Navbar';
 import BackgroundSlideshow from '@/components/BackgroundSlideshow';
-import FloatingChatBot from '@/components/FloatingChatBot';
 import './globals.css';
 
 export const metadata = {
@@ -52,7 +51,6 @@ export default function RootLayout({ children }) {
         <BackgroundSlideshow />
         <Navbar />
         {children}
-        <FloatingChatBot />
       </body>
     </html>
   );

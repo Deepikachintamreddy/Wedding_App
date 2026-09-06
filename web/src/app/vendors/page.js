@@ -16,10 +16,6 @@ export default function VendorsPage() {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [selectedVendor, setSelectedVendor] = useState(null);
   
-  const [aiRecs, setAiRecs] = useState([]);
-  const [loadingRecs, setLoadingRecs] = useState(false);
-  const [showAiRecommendations, setShowAiRecommendations] = useState(false);
-
   const [newVendor, setNewVendor] = useState({
     name: '',
     category: 'Venue',
@@ -40,34 +36,6 @@ export default function VendorsPage() {
       router.push('/auth');
     }
   }, [user, loading, router]);
-
-  useEffect(() => {
-    if (user) {
-      setLoadingRecs(true);
-      import('@/lib/api').then(({ api }) => {
-        api.getRecommendations()
-          .then(data => {
-            setAiRecs(data.recommendations || []);
-          })
-          .catch(err => console.error('Failed to load AI recommendations:', err))
-          .finally(() => setLoadingRecs(false));
-      });
-    }
-  }, [user, vendors]);
-
-  const handleShortlistRecommendation = (rec) => {
-    addVendor({
-      name: rec.name,
-      category: rec.category,
-      rating: rec.rating,
-      reviewsCount: 12,
-      costRange: rec.price > 10000 ? '$$$$' : (rec.price > 5000 ? '$$$' : '$$'),
-      location: user.location || 'Malibu, CA',
-      contractPrice: rec.price,
-      notes: `AI Matched Recommendation (Match Score: ${rec.match_score}%). Theme similarity: ${rec.breakdown.theme_fit}%.`,
-      status: 'Shortlisted'
-    });
-  };
 
   if (loading || !user) {
     return (
@@ -202,161 +170,75 @@ export default function VendorsPage() {
           ))}
         </div>
 
-        {/* Board Toggle Tabs */}
-        <div className="flex gap-4 mb-6">
-          <button
-            onClick={() => setShowAiRecommendations(false)}
-            className={`btn ${!showAiRecommendations ? 'btn-primary' : 'btn-outline'}`}
-            style={{ borderRadius: '8px', padding: '10px 18px', fontWeight: 'bold' }}
-          >
-            📋 My Vendor Board ({filteredVendors.length})
-          </button>
-          <button
-            onClick={() => setShowAiRecommendations(true)}
-            className={`btn ${showAiRecommendations ? 'btn-primary' : 'btn-outline'}`}
-            style={{ borderRadius: '8px', padding: '10px 18px', fontWeight: 'bold', borderColor: showAiRecommendations ? '#c9a96e' : 'rgba(201, 169, 110, 0.3)' }}
-          >
-            ✨ AI Vetted Matches ({aiRecs.length})
-          </button>
-        </div>
-
         {/* Vendors Grid */}
         <div className="vendors-grid">
-          {showAiRecommendations ? (
-            loadingRecs ? (
-              <div className="card glass-panel p-8 text-center" style={{ gridColumn: '1 / -1' }}>
-                <div style={{ width: '45px', height: '45px', margin: '0 auto 16px auto', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-                <p className="body-sm text-gold">Computing vector similarity & budget models in Python...</p>
-              </div>
-            ) : aiRecs.length > 0 ? (
-              aiRecs.filter(rec => activeCategory === 'all' || rec.category === activeCategory).map(rec => (
-                <div 
-                  key={rec.id} 
-                  className="card glass-panel flex-col vendor-card justify-between"
-                  style={{ border: '1px solid rgba(201, 169, 110, 0.25)', boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)' }}
-                >
-                  <div className="p-5">
-                    <div className="flex-between items-center mb-3">
-                      <span className="badge badge-gold badge-sm">{rec.category}</span>
-                      <span className="badge badge-success badge-sm" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '4px 8px', borderRadius: '6px', fontWeight: 'bold' }}>
-                        ✨ {rec.match_score}% Match
-                      </span>
-                    </div>
-                    
-                    <h3 className="h5 font-heading text-gold mb-2">{rec.name}</h3>
-                    
-                    <p className="text-xs text-muted mb-2">📍 {user.location || 'Malibu, CA'}</p>
-                    
-                    <div className="flex-start items-center gap-2 mb-3">
-                      <span className="rating-star">⭐ {rec.rating.toFixed(1)}</span>
-                      <span className="text-xs text-muted">•</span>
-                      <span className="text-xs text-gold font-bold">${rec.price.toLocaleString()}</span>
-                    </div>
-
-                    <div className="bg-secondary p-3 rounded-lg border border-divider mb-1" style={{ fontSize: '0.75rem', background: 'rgba(26, 26, 46, 0.6)', borderColor: 'rgba(201, 169, 110, 0.1)' }}>
-                      <p className="text-gold font-bold overline mb-2" style={{ letterSpacing: '0.5px' }}>AI Match Breakdown</p>
-                      <div className="flex-between text-secondary mb-1">
-                        <span>🎨 Theme Compatibility:</span>
-                        <span className="text-primary">{rec.breakdown.theme_fit}%</span>
-                      </div>
-                      <div className="flex-between text-secondary mb-1">
-                        <span>💰 Budget Fit:</span>
-                        <span className="text-primary">{rec.breakdown.budget_fit}%</span>
-                      </div>
-                      <div className="flex-between text-secondary">
-                        <span>📍 Local Proximity:</span>
-                        <span className="text-primary">{rec.breakdown.location_match ? '✓ Malibu area' : '50% compatibility'}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="card-footer p-4 border-t flex-between items-center bg-secondary" style={{ borderTopColor: 'rgba(201, 169, 110, 0.08)' }}>
-                    <span className="text-xs text-muted">Vetted Partner</span>
+          {filteredVendors.length > 0 ? (
+            filteredVendors.map(vendor => (
+              <div 
+                key={vendor.id} 
+                className="card glass-panel flex-col vendor-card justify-between"
+              >
+                <div className="p-5">
+                  <div className="flex-between items-center mb-3">
+                    <span className="badge badge-gold badge-sm">{vendor.category}</span>
                     <button 
-                      onClick={() => handleShortlistRecommendation(rec)}
-                      className="btn btn-primary btn-sm text-gold"
-                      style={{ fontSize: '0.75rem', padding: '6px 12px' }}
+                      onClick={() => handleStatusChange(vendor.id, vendor.status === 'Shortlisted' ? 'Contacted' : 'Shortlisted')}
+                      className="heart-btn text-gold"
+                      title={vendor.status === 'Shortlisted' ? 'Remove from shortlist' : 'Shortlist vendor'}
                     >
-                      ＋ Shortlist
+                      {vendor.status === 'Shortlisted' ? '❤️' : '♡'}
                     </button>
                   </div>
+                  
+                  <h3 
+                    onClick={() => {
+                      setSelectedVendor(vendor);
+                      setDetailModalOpen(true);
+                    }}
+                    className="h5 font-heading text-gold hover:underline cursor-pointer mb-2"
+                  >
+                    {vendor.name}
+                  </h3>
+                  
+                  <p className="text-xs text-muted mb-2">📍 {vendor.location}</p>
+                  
+                  <div className="flex-start items-center gap-2 mb-3">
+                    <span className="rating-star">⭐ {vendor.rating.toFixed(1)}</span>
+                    <span className="text-xs text-muted">({vendor.reviewsCount} reviews)</span>
+                    <span className="text-xs text-muted">•</span>
+                    <span className="text-xs text-gold font-bold">{vendor.costRange}</span>
+                  </div>
+
+                  <p className="text-xs text-secondary italic mb-0 line-clamp-3">
+                    {vendor.notes || 'Premium partner recommended by our events team.'}
+                  </p>
                 </div>
-              ))
-            ) : (
-              <div className="card glass-panel p-8 text-center" style={{ gridColumn: '1 / -1' }}>
-                <span style={{ fontSize: '2.5rem' }}>💒</span>
-                <p className="body-sm text-secondary mt-2">No recommended vendors found matching criteria.</p>
+
+                <div className="card-footer p-4 border-t flex-between items-center bg-secondary">
+                  <span className={`badge ${
+                    vendor.status === 'Booked' ? 'badge-success' : 
+                    vendor.status === 'Shortlisted' ? 'badge-gold' : 'badge-secondary'
+                  }`}>
+                    {vendor.status}
+                  </span>
+                  
+                  <button 
+                    onClick={() => {
+                      setSelectedVendor(vendor);
+                      setDetailModalOpen(true);
+                    }}
+                    className="btn btn-outline btn-sm"
+                  >
+                    Manage
+                  </button>
+                </div>
               </div>
-            )
+            ))
           ) : (
-            filteredVendors.length > 0 ? (
-              filteredVendors.map(vendor => (
-                <div 
-                  key={vendor.id} 
-                  className="card glass-panel flex-col vendor-card justify-between"
-                >
-                  <div className="p-5">
-                    <div className="flex-between items-center mb-3">
-                      <span className="badge badge-gold badge-sm">{vendor.category}</span>
-                      <button 
-                        onClick={() => handleStatusChange(vendor.id, vendor.status === 'Shortlisted' ? 'Contacted' : 'Shortlisted')}
-                        className="heart-btn text-gold"
-                        title={vendor.status === 'Shortlisted' ? 'Remove from shortlist' : 'Shortlist vendor'}
-                      >
-                        {vendor.status === 'Shortlisted' ? '❤️' : '♡'}
-                      </button>
-                    </div>
-                    
-                    <h3 
-                      onClick={() => {
-                        setSelectedVendor(vendor);
-                        setDetailModalOpen(true);
-                      }}
-                      className="h5 font-heading text-gold hover:underline cursor-pointer mb-2"
-                    >
-                      {vendor.name}
-                    </h3>
-                    
-                    <p className="text-xs text-muted mb-2">📍 {vendor.location}</p>
-                    
-                    <div className="flex-start items-center gap-2 mb-3">
-                      <span className="rating-star">⭐ {vendor.rating.toFixed(1)}</span>
-                      <span className="text-xs text-muted">({vendor.reviewsCount} reviews)</span>
-                      <span className="text-xs text-muted">•</span>
-                      <span className="text-xs text-gold font-bold">{vendor.costRange}</span>
-                    </div>
-
-                    <p className="text-xs text-secondary italic mb-0 line-clamp-3">
-                      {vendor.notes || 'Premium partner recommended by our events team.'}
-                    </p>
-                  </div>
-
-                  <div className="card-footer p-4 border-t flex-between items-center bg-secondary">
-                    <span className={`badge ${
-                      vendor.status === 'Booked' ? 'badge-success' : 
-                      vendor.status === 'Shortlisted' ? 'badge-gold' : 'badge-secondary'
-                    }`}>
-                      {vendor.status}
-                    </span>
-                    
-                    <button 
-                      onClick={() => {
-                        setSelectedVendor(vendor);
-                        setDetailModalOpen(true);
-                      }}
-                      className="btn btn-outline btn-sm"
-                    >
-                      Manage
-                    </button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="card glass-panel p-8 text-center" style={{ gridColumn: '1 / -1' }}>
-                <span style={{ fontSize: '2.5rem' }}>💒</span>
-                <p className="body-sm text-secondary mt-2">No vendors found matching selection filters.</p>
-              </div>
-            )
+            <div className="card glass-panel p-8 text-center" style={{ gridColumn: '1 / -1' }}>
+              <span style={{ fontSize: '2.5rem' }}>💒</span>
+              <p className="body-sm text-secondary mt-2">No vendors found matching selection filters.</p>
+            </div>
           )}
         </div>
       </div>
@@ -379,7 +261,7 @@ export default function VendorsPage() {
               <div className="contact-details p-4 bg-secondary rounded-lg mb-4 flex-col gap-2 border border-divider">
                 <h4 className="overline mb-2">Vetted Contact Details</h4>
                 <p className="body-sm text-secondary mb-0"><strong>Contact Person:</strong> {selectedVendor.contactName || 'Olivia Vance'}</p>
-                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'events@vnd.com'}</p>
+                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'events@VND.com'}</p>
                 <p className="body-sm text-secondary mb-0"><strong>Phone:</strong> {selectedVendor.phone || '(555) 019-2834'}</p>
                 {selectedVendor.website && (
                   <p className="body-sm text-secondary mb-0">

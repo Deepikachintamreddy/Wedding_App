@@ -434,8 +434,8 @@ export default function TemplatesPage() {
         dressCodeText: 'Business casual or executive smart. Company shirts and blazers are recommended.',
         dressColors: ['#0f172a', '#3b82f6', '#10b981', '#f8fafc'],
         registry: [
-          { name: 'Summit Agenda PDF', url: 'https://vnd.com/agenda' },
-          { name: 'Sponsorship Inquiries', url: 'https://vnd.com/sponsor' }
+          { name: 'Summit Agenda PDF', url: 'https://VND.com/agenda' },
+          { name: 'Sponsorship Inquiries', url: 'https://VND.com/sponsor' }
         ],
         entourage: [
           { role: 'Keynote Speaker', name: 'Dr. Evelyn Carter' },
@@ -1318,13 +1318,13 @@ export default function TemplatesPage() {
 
                     {activeTab === 'invite' && (
                       selectedTemplate.id === 't_arch' ? (
-                        <div className={styles.vndInviteContainer}>
+                        <div className={styles.VNDInviteContainer}>
                           {/* Header Arched Banner */}
-                          <div className={styles.vndHeroSection}>
-                            <div className={styles.vndArcTextWrapper}>
-                              <svg viewBox="0 0 220 110" className={styles.vndArcSvg}>
+                          <div className={styles.VNDHeroSection}>
+                            <div className={styles.VNDArcTextWrapper}>
+                              <svg viewBox="0 0 220 110" className={styles.VNDArcSvg}>
                                 <path id="curvePath" d="M 25,95 A 85,85 0 0,1 195,95" fill="none" />
-                                <text className={styles.vndArcText}>
+                                <text className={styles.VNDArcText}>
                                   <textPath href="#curvePath" startOffset="50%" textAnchor="middle">
                                     YOU'RE CORDIALLY INVITED
                                   </textPath>
@@ -1332,17 +1332,17 @@ export default function TemplatesPage() {
                               </svg>
                             </div>
                             
-                            <div className={styles.vndArchedImageFrame}>
+                            <div className={styles.VNDArchedImageFrame}>
                               <img 
                                 src={customText.couplePhoto} 
                                 alt="Couple" 
-                                className={styles.vndCouplePhoto} 
+                                className={styles.VNDCouplePhoto} 
                               />
                             </div>
                           </div>
 
                           {/* Audio Waveform Section */}
-                          <div className={styles.vndWaveformSection}>
+                          <div className={styles.VNDWaveformSection}>
                             <div className={styles.waveformIcon}>
                               <span className={`${styles.waveBar} ${styles.waveBar1}`}></span>
                               <span className={`${styles.waveBar} ${styles.waveBar2}`}></span>
@@ -1354,22 +1354,22 @@ export default function TemplatesPage() {
                               <span className={`${styles.waveBar} ${styles.waveBar8}`}></span>
                               <span className={`${styles.waveBar} ${styles.waveBar9}`}></span>
                             </div>
-                            <span className={styles.vndWaveformSubtitle}>
+                            <span className={styles.VNDWaveformSubtitle}>
                               TO SHARE IN THE CELEBRATION OF
                             </span>
-                            <h2 className={styles.vndCoupleNames}>
+                            <h2 className={styles.VNDCoupleNames}>
                               {customText.title}
                             </h2>
                           </div>
 
                           {/* Arched Date Section */}
-                          <div className={styles.vndDateSection}>
-                            <div className={styles.vndDateArchFrame}>
-                              <span className={styles.vndJoinUs}>JOIN US ON</span>
-                              <span className={styles.vndDateLarge}>11.20.2026</span>
-                              <div className={styles.vndDetailsBlock}>
-                                <p className={styles.vndTimeDetails}>{customText.details}</p>
-                                <p className={styles.vndLocationDetails}>{customText.location}</p>
+                          <div className={styles.VNDDateSection}>
+                            <div className={styles.VNDDateArchFrame}>
+                              <span className={styles.VNDJoinUs}>JOIN US ON</span>
+                              <span className={styles.VNDDateLarge}>11.20.2026</span>
+                              <div className={styles.VNDDetailsBlock}>
+                                <p className={styles.VNDTimeDetails}>{customText.details}</p>
+                                <p className={styles.VNDLocationDetails}>{customText.location}</p>
                               </div>
                             </div>
                           </div>

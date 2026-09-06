@@ -23,47 +23,6 @@ export default function BudgetPage() {
     method: 'Credit Card',
   });
 
-  const [optimizerOpen, setOptimizerOpen] = useState(false);
-  const [priorities, setPriorities] = useState({
-    'Venue & Catering': 3,
-    'Photography & Videography': 3,
-    'Planner/Coordinator': 3,
-    'Attire & Beauty': 3,
-    'Florals & Decor': 3,
-    'Entertainment': 3,
-    'Invitations & Rings': 3
-  });
-  const [optimizedResult, setOptimizedResult] = useState(null);
-  const [optimizing, setOptimizing] = useState(false);
-
-  const handleRunOptimization = async (e) => {
-    e.preventDefault();
-    setOptimizing(true);
-    try {
-      const { api } = await import('@/lib/api');
-      const res = await api.optimizeBudget(Number(newBudgetTotal), priorities, false);
-      setOptimizedResult(res);
-    } catch (err) {
-      console.error('Optimization failed:', err);
-      alert('Failed to calculate optimizations.');
-    } finally {
-      setOptimizing(false);
-    }
-  };
-
-  const handleApplyOptimization = async () => {
-    if (!optimizedResult) return;
-    try {
-      const { api } = await import('@/lib/api');
-      await api.optimizeBudget(Number(newBudgetTotal), priorities, true);
-      alert('Budget optimized allocations successfully applied!');
-      window.location.reload();
-    } catch (err) {
-      console.error('Failed to apply optimization:', err);
-      alert('Failed to apply allocations.');
-    }
-  };
-
   useEffect(() => {
     if (!loading && !user) {
       router.push('/auth');
@@ -158,13 +117,6 @@ export default function BudgetPage() {
               className="btn btn-secondary"
             >
               ⚙️ Adjust Limit
-            </button>
-            <button 
-              onClick={() => setOptimizerOpen(true)}
-              className="btn btn-secondary text-gold"
-              style={{ borderColor: 'rgba(201, 169, 110, 0.4)' }}
-            >
-              ✨ AI Optimizer
             </button>
             <button 
               onClick={() => {
@@ -451,103 +403,6 @@ export default function BudgetPage() {
               <div className="modal-footer">
                 <button type="button" onClick={() => setModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
                 <button type="submit" className="btn btn-primary btn-sm">Log Transaction</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* AI Budget Optimizer Modal */}
-      {optimizerOpen && (
-        <div className="modal-overlay" style={{ zIndex: 1000 }}>
-          <div className="modal-content" style={{ maxWidth: '600px', width: '90%' }}>
-            <div className="modal-header">
-              <h3 className="text-gold font-heading">✨ AI Budget Allocation Optimizer</h3>
-              <button onClick={() => { setOptimizerOpen(false); setOptimizedResult(null); }} className="modal-close">×</button>
-            </div>
-            <form onSubmit={handleRunOptimization}>
-              <div className="modal-body">
-                <p className="body-sm text-secondary mb-4">
-                  Set priority levels for different categories. Our Python ML optimization microservice will dynamically recalculate your budget targets, maintaining a 10% safety cushion.
-                </p>
-
-                <div className="flex-col gap-3 mb-6" style={{ maxHeight: '280px', overflowY: 'auto', paddingRight: '8px' }}>
-                  {Object.keys(priorities).map(category => (
-                    <div key={category} className="flex-between items-center p-3 rounded-lg border border-divider" style={{ background: 'rgba(26, 26, 46, 0.4)', gap: '10px' }}>
-                      <span className="body-sm text-primary font-bold">{category}</span>
-                      <div className="flex gap-2">
-                        {[1, 2, 3, 4, 5].map(rank => (
-                          <button
-                            key={rank}
-                            type="button"
-                            onClick={() => setPriorities(prev => ({ ...prev, [category]: rank }))}
-                            className="btn btn-sm"
-                            style={{
-                              padding: '4px 10px',
-                              background: priorities[category] === rank ? '#c9a96e' : 'rgba(255, 255, 255, 0.05)',
-                              color: priorities[category] === rank ? '#0d0d1a' : '#f5f0e8',
-                              border: 'none',
-                              borderRadius: '4px',
-                              fontWeight: 'bold',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            {rank}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="form-group mb-4">
-                  <label className="form-label">Total Optimization Ceiling ($)</label>
-                  <input
-                    type="number"
-                    required
-                    value={newBudgetTotal}
-                    onChange={(e) => setNewBudgetTotal(e.target.value)}
-                    className="form-input"
-                  />
-                </div>
-
-                {optimizedResult && (
-                  <div className="bg-secondary p-4 rounded-lg border border-divider mb-4" style={{ background: 'rgba(16, 185, 129, 0.05)', borderColor: 'rgba(16, 185, 129, 0.2)' }}>
-                    <h4 className="text-success font-heading mb-3" style={{ fontSize: '1rem' }}>✓ Optimization Calculated Successfully!</h4>
-                    <div className="flex-between text-secondary mb-2" style={{ fontSize: '0.85rem' }}>
-                      <span>Safety Cushion Reserved (10%):</span>
-                      <span className="font-bold text-success">${optimizedResult.safety_cushion.toLocaleString()}</span>
-                    </div>
-                    <div className="flex-between text-secondary mb-4" style={{ fontSize: '0.85rem' }}>
-                      <span>Net Allocatable Amount:</span>
-                      <span className="font-bold text-primary">${optimizedResult.allocatable_amount.toLocaleString()}</span>
-                    </div>
-
-                    <div className="flex-col gap-2" style={{ maxHeight: '180px', overflowY: 'auto' }}>
-                      {Object.entries(optimizedResult.allocations).map(([catName, details]) => (
-                        <div key={catName} className="flex-between py-1 border-b" style={{ fontSize: '0.8rem', borderBottomColor: 'rgba(255, 255, 255, 0.05)' }}>
-                          <span className="text-secondary">{catName} Target:</span>
-                          <span className="text-primary font-bold">
-                            ${details.target.toLocaleString()} 
-                            <span className="text-muted font-normal ml-2" style={{ fontSize: '0.7rem' }}>
-                              (${details.range_min.toLocaleString()} - ${details.range_max.toLocaleString()})
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="modal-footer">
-                <button type="button" onClick={() => { setOptimizerOpen(false); setOptimizedResult(null); }} className="btn btn-secondary btn-sm">Cancel</button>
-                {optimizedResult ? (
-                  <button type="button" onClick={handleApplyOptimization} className="btn btn-primary btn-sm text-gold">Apply Allocations</button>
-                ) : (
-                  <button type="submit" disabled={optimizing} className="btn btn-primary btn-sm">
-                    {optimizing ? 'Calculating Math Models...' : 'Calculate Allocations'}
-                  </button>
-                )}
               </div>
             </form>
           </div>

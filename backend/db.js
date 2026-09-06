@@ -120,6 +120,23 @@ class Database {
       ...safeFields
     };
 
+    // Keep budget in db.budgets in sync if it changed
+    if (safeFields.budget !== undefined) {
+      const budgetIndex = db.budgets.findIndex(b => b.userId === id);
+      if (budgetIndex !== -1) {
+        const newTotal = Number(safeFields.budget);
+        const oldTotal = db.budgets[budgetIndex].total;
+        db.budgets[budgetIndex].total = newTotal;
+        // Scale category estimates proportionally
+        if (oldTotal > 0 && newTotal !== oldTotal) {
+          db.budgets[budgetIndex].categories = db.budgets[budgetIndex].categories.map(c => ({
+            ...c,
+            estimated: Math.round(newTotal * (c.estimated / oldTotal))
+          }));
+        }
+      }
+    }
+
     if (isNowCompletingOnboarding && oldUser.role === 'couple') {
       // Clean up initially generated mock data and recreate matching custom onboarding specs
       db.tasks = db.tasks.filter(t => t.userId !== id);
@@ -365,11 +382,34 @@ class Database {
         payments: []
       };
       db.budgets.push(newBudget);
+      
+      // Sync with user's profile budget
+      const userIndex = db.users.findIndex(u => u.id === userId);
+      if (userIndex !== -1) {
+        db.users[userIndex].budget = Number(total);
+      }
+      
       this.write(db);
       return newBudget;
     }
 
-    db.budgets[index].total = Number(total);
+    // Scale category estimates proportionally when total is updated
+    const oldTotal = db.budgets[index].total;
+    const newTotal = Number(total);
+    db.budgets[index].total = newTotal;
+    if (oldTotal > 0 && newTotal !== oldTotal) {
+      db.budgets[index].categories = db.budgets[index].categories.map(c => ({
+        ...c,
+        estimated: Math.round(newTotal * (c.estimated / oldTotal))
+      }));
+    }
+
+    // Sync with user's profile budget
+    const userIndex = db.users.findIndex(u => u.id === userId);
+    if (userIndex !== -1) {
+      db.users[userIndex].budget = newTotal;
+    }
+
     this.write(db);
     return db.budgets[index];
   }

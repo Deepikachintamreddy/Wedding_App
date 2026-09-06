@@ -570,8 +570,8 @@
   letter-spacing: 0.5px;
 }
 
-/* --- VND ARCH EDITORIAL DESIGN --- */
-.vndInviteContainer {
+/* --- ELYSIAN ARCH EDITORIAL DESIGN --- */
+.elysianInviteContainer {
   background: #faf8f5;
   color: #111111;
   width: 100%;
@@ -585,7 +585,7 @@
   box-sizing: border-box;
 }
 
-.vndHeroSection {
+.elysianHeroSection {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -594,19 +594,19 @@
   margin-top: 15px;
 }
 
-.vndArcTextWrapper {
+.elysianArcTextWrapper {
   width: 100%;
   max-width: 220px;
   margin-bottom: -15px;
   z-index: 2;
 }
 
-.vndArcSvg {
+.elysianArcSvg {
   width: 100%;
   height: auto;
 }
 
-.vndArcText {
+.elysianArcText {
   font-size: 11px;
   letter-spacing: 3.5px;
   font-weight: 700;
@@ -614,7 +614,7 @@
   text-transform: uppercase;
 }
 
-.vndArchedImageFrame {
+.elysianArchedImageFrame {
   width: 170px;
   height: 240px;
   border-radius: 120px 120px 0 0;
@@ -623,13 +623,13 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.vndCouplePhoto {
+.elysianCouplePhoto {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.vndWaveformSection {
+.elysianWaveformSection {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -664,7 +664,7 @@
 .waveBar8 { height: 12px; }
 .waveBar9 { height: 8px; }
 
-.vndWaveformSubtitle {
+.elysianWaveformSubtitle {
   font-size: 0.65rem;
   letter-spacing: 2px;
   font-weight: 600;
@@ -672,7 +672,7 @@
   text-transform: uppercase;
 }
 
-.vndCoupleNames {
+.elysianCoupleNames {
   font-size: 1.8rem;
   font-weight: 400;
   color: #111;
@@ -680,14 +680,14 @@
   letter-spacing: -0.5px;
 }
 
-.vndDateSection {
+.elysianDateSection {
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 10px 0;
 }
 
-.vndDateArchFrame {
+.elysianDateArchFrame {
   width: 100%;
   max-width: 200px;
   border: 1px solid rgba(26, 30, 28, 0.15);
@@ -701,14 +701,14 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-.vndJoinUs {
+.elysianJoinUs {
   font-size: 0.65rem;
   letter-spacing: 2px;
   font-weight: 600;
   color: #666;
 }
 
-.vndDateLarge {
+.elysianDateLarge {
   font-size: 1.8rem;
   font-weight: 700;
   color: #111;
@@ -716,28 +716,28 @@
   line-height: 1;
 }
 
-.vndDetailsBlock {
+.elysianDetailsBlock {
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-top: 4px;
 }
 
-.vndTimeDetails {
+.elysianTimeDetails {
   font-size: 0.75rem;
   color: #333;
   line-height: 1.4;
   margin: 0;
 }
 
-.vndLocationDetails {
+.elysianLocationDetails {
   font-size: 0.7rem;
   color: #666;
   line-height: 1.4;
   margin: 0;
 }
 
-.vndTimelineSection {
+.elysianTimelineSection {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -746,7 +746,7 @@
   margin-top: 10px;
 }
 
-.vndTimelineHeading {
+.elysianTimelineHeading {
   font-size: 1.1rem;
   letter-spacing: 3px;
   font-weight: 600;
@@ -755,7 +755,7 @@
   text-transform: uppercase;
 }
 
-.vndTimelineContainer {
+.elysianTimelineContainer {
   position: relative;
   width: 100%;
   padding-left: 20px;
@@ -765,7 +765,7 @@
   box-sizing: border-box;
 }
 
-.vndTimelineLine {
+.elysianTimelineLine {
   position: absolute;
   top: 4px;
   bottom: 4px;
@@ -774,13 +774,13 @@
   background: rgba(26, 30, 28, 0.15);
 }
 
-.vndTimelineItem {
+.elysianTimelineItem {
   position: relative;
   width: 100%;
   text-align: left;
 }
 
-.vndTimelineDot {
+.elysianTimelineDot {
   position: absolute;
   left: -19px;
   top: 4px;
@@ -792,37 +792,37 @@
   z-index: 2;
 }
 
-.vndTimelineContent {
+.elysianTimelineContent {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.vndTimelineTime {
+.elysianTimelineTime {
   font-size: 0.75rem;
   font-weight: 700;
   color: #666;
 }
 
-.vndTimelineTitle {
+.elysianTimelineTitle {
   font-size: 0.85rem;
   font-weight: 600;
   color: #111;
 }
 
-.vndTimelineDesc {
+.elysianTimelineDesc {
   font-size: 0.75rem;
   color: #555;
   line-height: 1.4;
   margin: 2px 0 0 0;
 }
 
-.vndRsvpContainer {
+.elysianRsvpContainer {
   width: 100%;
   margin-top: 10px;
 }
 
-.vndRsvpBtn {
+.elysianRsvpBtn {
   width: 100%;
   padding: 12px;
   background-color: #111111;
@@ -836,7 +836,7 @@
   transition: background-color 0.2s ease;
 }
 
-.vndRsvpBtn:hover {
+.elysianRsvpBtn:hover {
   background-color: #333333;
 }
 
