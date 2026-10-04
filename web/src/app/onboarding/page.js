@@ -3,23 +3,24 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Monogram from '@/components/Monogram';
 import styles from './page.module.css';
 
 const STEPS = [
-  { num: 1, label: 'Profile' },
-  { num: 2, label: 'Date & Location' },
-  { num: 3, label: 'Budget' },
-  { num: 4, label: 'Theme Style' },
-  { num: 5, label: 'Generating Plan' },
+  { num: 1, label: 'Couple Profile' },
+  { num: 2, label: 'Date & City' },
+  { num: 3, label: 'Target Budget' },
+  { num: 4, label: 'Aesthetic & Style' },
+  { num: 5, label: 'Creating Workspace' },
 ];
 
 const STYLE_OPTIONS = [
-  { emoji: '✨', name: 'Elegant Navy & Gold', desc: 'Regal, premium, and sophisticated design.' },
-  { emoji: '🌿', name: 'Modern Minimalist', desc: 'Clean lines, monochromatic, and sleek.' },
-  { emoji: '🪵', name: 'Rustic Chic', desc: 'Warm wood tones, wild florals, and organic.' },
-  { emoji: '🌊', name: 'Coastal Romance', desc: 'Soft pastel tones, sandy hues, and relaxed.' },
-  { emoji: '🕯️', name: 'Vintage Glamour', desc: 'Art deco, candlelit, and historic feel.' },
-  { emoji: '🎨', name: 'Creative DIY', desc: 'Colorful, hand-crafted, and personal details.' },
+  { emoji: '✨', name: 'Elegant Navy & Champagne Gold', desc: 'Regal, timeless, and sophisticated luxury design.' },
+  { emoji: '🌿', name: 'Modern Minimalist', desc: 'Clean lines, monochromatic textures, and contemporary spaces.' },
+  { emoji: '🪵', name: 'Rustic Chic', desc: 'Warm wood tones, wild organic florals, and candlelight.' },
+  { emoji: '🌊', name: 'Coastal Romance', desc: 'Soft ocean hues, breezy linens, and relaxed elegance.' },
+  { emoji: '🕯️', name: 'Vintage Glamour', desc: 'Art deco, crystal chandeliers, and historic charm.' },
+  { emoji: '🎨', name: 'Bespoke Contemporary', desc: 'Bold palette, curated art pieces, and architectural florals.' },
 ];
 
 export default function OnboardingPage() {
@@ -30,26 +31,36 @@ export default function OnboardingPage() {
     weddingDate: '2027-07-15',
     location: 'Malibu, CA',
     budget: 50000,
-    theme: 'Elegant Navy & Gold',
+    theme: 'Elegant Navy & Champagne Gold',
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const router = useRouter();
 
-  // Load initial user details
+  // Load initial user or profile details if available
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('wedding_user');
-      if (stored) {
-        const user = JSON.parse(stored);
-        const nameParts = user.name ? user.name.split('&') : ['', ''];
+      const storedUser = localStorage.getItem('elysian_user') || localStorage.getItem('wedding_user');
+      const storedProfile = localStorage.getItem('elysian_event_profile') || localStorage.getItem('wedding_event_profile');
+      
+      let profile = {};
+      if (storedProfile) {
+        profile = JSON.parse(storedProfile);
+      }
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        const nameParts = (profile.partnerA && profile.partnerB) 
+          ? [profile.partnerA, profile.partnerB] 
+          : (user.name ? user.name.split('&') : ['', '']);
+        
         setFormData((prev) => ({
           ...prev,
-          partnerA: nameParts[0]?.trim() || user.name || '',
-          partnerB: nameParts[1]?.trim() || '',
-          weddingDate: user.weddingDate || '2027-07-15',
-          location: user.location || 'Malibu, CA',
-          budget: user.budget || 50000,
-          theme: user.theme || 'Elegant Navy & Gold',
+          partnerA: profile.partnerA || nameParts[0]?.trim() || user.name || '',
+          partnerB: profile.partnerB || nameParts[1]?.trim() || '',
+          weddingDate: profile.weddingDate || user.weddingDate || '2027-07-15',
+          location: profile.location || user.location || 'Malibu, CA',
+          budget: profile.budget || user.budget || 50000,
+          theme: profile.theme || user.theme || 'Elegant Navy & Champagne Gold',
         }));
       }
     } catch {
@@ -66,65 +77,118 @@ export default function OnboardingPage() {
       setCurrentStep(5);
       setIsGenerating(true);
       
-      // Simulate generating checklist and budget breakdown
       setTimeout(() => {
         setIsGenerating(false);
+        const coupleName = `${formData.partnerA.trim()} & ${formData.partnerB.trim()}`;
+        const totalBudget = Number(formData.budget);
+
         const user = {
-          name: `${formData.partnerA} & ${formData.partnerB}`,
+          name: coupleName,
+          email: 'couple@example.com',
           role: 'couple',
           weddingDate: formData.weddingDate,
           location: formData.location,
-          budget: Number(formData.budget),
+          budget: totalBudget,
           theme: formData.theme,
           onboardingComplete: true,
-          aiCredits: 15,
+          aiCredits: 20,
+          isDemo: false
+        };
+
+        const eventProfile = {
+          coupleNames: coupleName,
+          partnerA: formData.partnerA.trim(),
+          partnerB: formData.partnerB.trim(),
+          weddingDate: formData.weddingDate,
+          location: formData.location,
+          venueName: 'Pending Venue Selection',
+          guestCount: 120,
+          budget: totalBudget,
+          theme: formData.theme,
+          primaryColor: '#0A192F',
+          secondaryColor: '#D4AF37',
+          countdownTarget: formData.weddingDate,
+          plannerPartner: 'OVAimagination Events',
+          collaborators: [
+            { name: formData.partnerB.trim(), role: 'Partner', email: 'partner@example.com', status: 'Accepted' },
+            { name: 'OVAimagination Concierge Team', role: 'Planner', email: 'concierge@ovaimagination.com', status: 'Accepted' }
+          ]
         };
         
-        localStorage.setItem('wedding_user', JSON.stringify(user));
+        localStorage.setItem('elysian_user', JSON.stringify(user));
+        localStorage.setItem('elysian_event_profile', JSON.stringify(eventProfile));
         
         // Generate custom budget breakdown
-        const totalBudget = Number(formData.budget);
         const customBudget = {
           total: totalBudget,
           categories: [
-            { name: 'Venue', estimated: Math.round(totalBudget * 0.36), actual: Math.round(totalBudget * 0.36), color: '#6366f1' },
-            { name: 'Catering', estimated: Math.round(totalBudget * 0.20), actual: Math.round(totalBudget * 0.20), color: '#f59e0b' },
-            { name: 'Planner', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.09), color: '#e2c992' },
-            { name: 'Photography', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.08), color: '#ec4899' },
-            { name: 'Florals', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.10), color: '#10b981' },
-            { name: 'Music', estimated: Math.round(totalBudget * 0.05), actual: Math.round(totalBudget * 0.04), color: '#3b82f6' },
-            { name: 'Attire', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.06), color: '#f472b6' },
-            { name: 'Misc', estimated: Math.round(totalBudget * 0.03), actual: Math.round(totalBudget * 0.02), color: '#94a3b8' },
+            { name: 'Venue', planned: Math.round(totalBudget * 0.35), contracted: 0, paid: 0, color: '#0A192F' },
+            { name: 'Catering & Bar', planned: Math.round(totalBudget * 0.22), contracted: 0, paid: 0, color: '#D4AF37' },
+            { name: 'Planner & Concierge', planned: Math.round(totalBudget * 0.10), contracted: 0, paid: 0, color: '#4A5568' },
+            { name: 'Photography & Film', planned: Math.round(totalBudget * 0.10), contracted: 0, paid: 0, color: '#805AD5' },
+            { name: 'Florals & Decor', planned: Math.round(totalBudget * 0.10), contracted: 0, paid: 0, color: '#319795' },
+            { name: 'Music & Entertainment', planned: Math.round(totalBudget * 0.05), contracted: 0, paid: 0, color: '#DD6B20' },
+            { name: 'Attire & Beauty', planned: Math.round(totalBudget * 0.05), contracted: 0, paid: 0, color: '#D53F8C' },
+            { name: 'Stationery & Misc', planned: Math.round(totalBudget * 0.03), contracted: 0, paid: 0, color: '#718096' },
           ],
-          payments: [
-            { id: 'p_init_1', vendorName: 'Venue Down Payment', category: 'Venue', amount: Math.round(totalBudget * 0.18), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Check' },
-            { id: 'p_init_2', vendorName: 'Planner Booking Deposit', category: 'Planner', amount: Math.round(totalBudget * 0.04), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Credit Card' },
-          ]
+          payments: []
         };
-        localStorage.setItem('wedding_budget', JSON.stringify(customBudget));
+        localStorage.setItem('elysian_budget', JSON.stringify(customBudget));
 
         // Generate custom checklist tasks
         const baseTasks = [
-          { id: 't1', title: `Lock in the final budget of $${formData.budget.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-06-15', notes: `Target styling: ${formData.theme}`, assignedTo: 'Both' },
-          { id: 't2', title: 'Compile drafts for guest count', category: 'Invitations', period: '12+ Months', completed: false, dueDate: '2026-06-25', notes: 'Initial target: 150 guests', assignedTo: 'Both' },
-          { id: 't3', title: `Research and book a venue in ${formData.location}`, category: 'Venue', period: '12+ Months', completed: false, dueDate: '2026-07-15', notes: '', assignedTo: 'Both' },
-          { id: 't4', title: 'Schedule wedding consultation with OVAimagination Events', category: 'Planner', period: '12+ Months', completed: false, dueDate: '2026-07-25', notes: '', assignedTo: 'Both' },
-          { id: 't5', title: 'Announce wedding to immediate families & wedding party', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-09-01', notes: '', assignedTo: 'Both' },
-          { id: 't6', title: 'Book Photographer & Videographer for couple shoots', category: 'Photography', period: '9 Months', completed: false, dueDate: '2026-09-15', notes: '', assignedTo: 'Bride' },
-          { id: 't7', title: `Design styling mockups matching ${formData.theme}`, category: 'Decor', period: '6 Months', completed: false, dueDate: '2027-01-10', notes: '', assignedTo: 'Bride' },
-          { id: 't8', title: 'Design and print wedding invitations', category: 'Invitations', period: '6 Months', completed: false, dueDate: '2027-01-20', notes: '', assignedTo: 'Both' },
-          { id: 't9', title: 'Order the wedding cake', category: 'Bakery', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: '', assignedTo: 'Bride' },
-          { id: 't10', title: 'Apply for marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: '', assignedTo: 'Both' },
-          { id: 't11', title: 'Have final styling walk-through with florist and coordinator', category: 'Planner', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: '', assignedTo: 'Both' },
-          { id: 't12', title: 'Write personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'VND AI can help generate these!', assignedTo: 'Both' },
-          { id: 't13', title: 'Deliver rings & signed marriage license to Best Man', category: 'Rings', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Groom' },
-          { id: 't14', title: 'Relax and celebrate!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Both' }
+          { id: 't1', title: `Lock in the final budget target of $${totalBudget.toLocaleString()}`, category: 'Planner', period: '12+ Months', completed: true, dueDate: '2026-06-15', notes: `Target styling: ${formData.theme}`, assignedTo: 'Both' },
+          { id: 't2', title: 'Compile preliminary guest list (approx 120 guests)', category: 'Invitations', period: '12+ Months', completed: false, dueDate: '2026-06-25', notes: 'Initial target from onboarding', assignedTo: 'Both' },
+          { id: 't3', title: `Research and tour wedding venues in ${formData.location}`, category: 'Venue', period: '12+ Months', completed: false, dueDate: '2026-07-15', notes: '', assignedTo: 'Both' },
+          { id: 't4', title: 'Schedule wedding styling consultation with OVAimagination Events', category: 'Planner', period: '12+ Months', completed: false, dueDate: '2026-07-25', notes: '', assignedTo: 'Both' },
+          { id: 't5', title: 'Announce wedding dates to wedding party & immediate family', category: 'Misc', period: '9 Months', completed: false, dueDate: '2026-09-01', notes: '', assignedTo: 'Both' },
+          { id: 't6', title: 'Book Photographer & Videographer for couple portraits', category: 'Photography', period: '9 Months', completed: false, dueDate: '2026-09-15', notes: '', assignedTo: 'Partner A' },
+          { id: 't7', title: `Curate moodboard and styling matching ${formData.theme}`, category: 'Decor', period: '6 Months', completed: false, dueDate: '2027-01-10', notes: '', assignedTo: 'Partner A' },
+          { id: 't8', title: 'Send out digital invitations and launch RSVP portal', category: 'Invitations', period: '6 Months', completed: false, dueDate: '2027-01-20', notes: '', assignedTo: 'Both' },
+          { id: 't9', title: 'Schedule cake tasting & catering menu walkthrough', category: 'Catering', period: '3 Months', completed: false, dueDate: '2027-04-10', notes: '', assignedTo: 'Both' },
+          { id: 't10', title: 'Apply for official marriage license', category: 'Misc', period: '1 Month', completed: false, dueDate: '2027-06-15', notes: '', assignedTo: 'Both' },
+          { id: 't11', title: 'Conduct final run-through with coordinator and florist', category: 'Planner', period: '1 Month', completed: false, dueDate: '2027-06-25', notes: '', assignedTo: 'Both' },
+          { id: 't12', title: 'Write heartfelt personal wedding vows', category: 'Officiant', period: '1 Month', completed: false, dueDate: '2027-07-01', notes: 'Elysian AI Concierge can help draft romantic lines', assignedTo: 'Both' },
+          { id: 't13', title: 'Hand over wedding rings and vendor contacts to Best Man / Maid of Honor', category: 'Rings', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Partner B' },
+          { id: 't14', title: 'Celebrate your bespoke Elysian Wedding!', category: 'Misc', period: 'Day-Of', completed: false, dueDate: formData.weddingDate, notes: '', assignedTo: 'Both' }
         ];
-        localStorage.setItem('wedding_tasks', JSON.stringify(baseTasks));
+        localStorage.setItem('elysian_tasks', JSON.stringify(baseTasks));
+
+        // Initial Weekly Planning Missions
+        const initialMissions = [
+          {
+            id: 'm1',
+            title: 'Finalize Your Top 3 Venue Priorities',
+            desc: `Compare available ceremony and reception spaces in ${formData.location}.`,
+            reward: 5,
+            dueDate: 'In 3 days',
+            completed: false,
+            snoozed: false
+          },
+          {
+            id: 'm2',
+            title: 'Invite Your Partner or Wedding Planner',
+            desc: 'Collaborate together in real-time on budget, timeline, and RSVPs.',
+            reward: 5,
+            dueDate: 'This week',
+            completed: false,
+            snoozed: false
+          },
+          {
+            id: 'm3',
+            title: 'Review Initial Budget Allocations',
+            desc: 'Adjust target percentages across Venue, Catering, and Entertainment.',
+            reward: 5,
+            dueDate: 'This week',
+            completed: false,
+            snoozed: false
+          }
+        ];
+        localStorage.setItem('elysian_missions', JSON.stringify(initialMissions));
         
-        window.dispatchEvent(new Event('wedding_store_update'));
+        window.dispatchEvent(new Event('elysian_store_update'));
         router.push('/dashboard');
-      }, 2500);
+      }, 2000);
     } else {
       setCurrentStep((prev) => prev + 1);
     }
@@ -142,7 +206,10 @@ export default function OnboardingPage() {
 
   return (
     <div className={styles.onboardingPage}>
-      <Link href="/" className={styles.brand}>VND</Link>
+      <Link href="/" className={styles.brand} aria-label="Elysian Concierge Home">
+        <Monogram size={38} variant="gold" />
+        <span style={{ marginLeft: '10px', fontWeight: 600, letterSpacing: '0.05em' }}>ELYSIAN CONCIERGE</span>
+      </Link>
 
       {/* Progress Steps */}
       <div className={styles.progressContainer}>
@@ -186,27 +253,27 @@ export default function OnboardingPage() {
               <div className={styles.stepIcon}>💍</div>
               <h2 className={styles.stepTitle}>Let's start with your names</h2>
               <p className={styles.stepSubtitle}>
-                Tell us about you and your partner. We will customize your planning workspace.
+                Tell us about you and your partner. We will tailor your luxury planning workspace and invitations.
               </p>
               
               <div className={styles.partnersRow}>
                 <div className={`${styles.inputGroup} ${styles.partnerField}`}>
-                  <label className={styles.label}>Your Name</label>
+                  <label className={styles.label}>Partner 1 Full Name</label>
                   <input 
                     type="text" 
-                    placeholder="Sarah Jenkins"
+                    placeholder="e.g. Sarah Jenkins"
                     value={formData.partnerA}
                     onChange={(e) => handleInputChange('partnerA', e.target.value)}
                     className={styles.input}
                     required
                   />
                 </div>
-                <div className={styles.heartDeco}>❤️</div>
+                <div className={styles.heartDeco} aria-hidden="true">&</div>
                 <div className={`${styles.inputGroup} ${styles.partnerField}`}>
-                  <label className={styles.label}>Your Partner's Name</label>
+                  <label className={styles.label}>Partner 2 Full Name</label>
                   <input 
                     type="text" 
-                    placeholder="David Smith"
+                    placeholder="e.g. David Smith"
                     value={formData.partnerB}
                     onChange={(e) => handleInputChange('partnerB', e.target.value)}
                     className={styles.input}
@@ -222,7 +289,7 @@ export default function OnboardingPage() {
               <div className={styles.stepIcon}>📅</div>
               <h2 className={styles.stepTitle}>Date and Location</h2>
               <p className={styles.stepSubtitle}>
-                When and where is the big day? (Don't worry, you can change this later).
+                When and where will you celebrate? You can fine-tune these details at any time.
               </p>
 
               <div className={styles.inputGroup}>
@@ -237,10 +304,10 @@ export default function OnboardingPage() {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Wedding Location</label>
+                <label className={styles.label}>Celebration City / Destination</label>
                 <input 
                   type="text" 
-                  placeholder="Malibu, CA"
+                  placeholder="e.g. Malibu, CA or Lake Como, Italy"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
                   className={styles.input}
@@ -255,7 +322,7 @@ export default function OnboardingPage() {
               <div className={styles.stepIcon}>💰</div>
               <h2 className={styles.stepTitle}>Set Your Wedding Budget</h2>
               <p className={styles.stepSubtitle}>
-                We will distribute this budget automatically across typical wedding categories.
+                We will distribute this target budget across typical luxury wedding categories.
               </p>
 
               <div className={styles.sliderGroup}>
@@ -265,20 +332,21 @@ export default function OnboardingPage() {
                 <input 
                   type="range" 
                   min="5000" 
-                  max="200000" 
+                  max="250000" 
                   step="5000"
                   value={formData.budget}
                   onChange={(e) => handleInputChange('budget', Number(e.target.value))}
                   className={styles.slider}
+                  aria-label="Target Budget Slider"
                 />
                 <div className={styles.sliderLabels}>
                   <span>$5,000</span>
                   <span>$100,000</span>
-                  <span>$200,000+</span>
+                  <span>$250,000+</span>
                 </div>
               </div>
 
-              <div className={styles.budgetDivider}>or select a standard budget</div>
+              <div className={styles.budgetDivider}>or select a standard budget tier</div>
 
               <div className={styles.budgetGrid}>
                 {[25000, 50000, 75000, 100000, 150000].map((preset) => (
@@ -293,7 +361,7 @@ export default function OnboardingPage() {
                 ))}
               </div>
               <p className={styles.budgetNote}>
-                Note: Planners at OVAimagination recommend $30k - $70k for a luxury beach or ballroom boutique wedding in Malibu.
+                Note: Planners at OVAimagination Events recommend $40k – $80k for a bespoke boutique wedding experience.
               </p>
             </div>
           )}
@@ -303,7 +371,7 @@ export default function OnboardingPage() {
               <div className={styles.stepIcon}>✨</div>
               <h2 className={styles.stepTitle}>Select Your Wedding Aesthetic</h2>
               <p className={styles.stepSubtitle}>
-                This sets your design system accent color and tailored theme styling guidelines.
+                This sets your moodboard palette, invitation templates, and concierge style recommendations.
               </p>
 
               <div className={styles.styleGrid}>
@@ -312,6 +380,9 @@ export default function OnboardingPage() {
                     key={opt.name}
                     className={`${styles.styleCard} ${formData.theme === opt.name ? styles.styleCardActive : ''}`}
                     onClick={() => handleInputChange('theme', opt.name)}
+                    tabIndex={0}
+                    role="button"
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleInputChange('theme', opt.name); }}
                   >
                     <span className={styles.styleEmoji}>{opt.emoji}</span>
                     <h3 className={styles.styleName}>{opt.name}</h3>
@@ -325,28 +396,17 @@ export default function OnboardingPage() {
           {currentStep === 5 && (
             <div style={{ textAlign: 'center', padding: '20px 0' }}>
               <div className={styles.stepIcon}>⚙️</div>
-              <h2 className={styles.stepTitle}>Creating Your Dream Plan...</h2>
+              <h2 className={styles.stepTitle}>Crafting Your Elysian Workspace...</h2>
               <p className={styles.stepSubtitle}>
-                VND AI and OVAimagination are building your customized checklist, timeline schedule, and budget trackers.
+                Elysian AI Concierge and OVAimagination are building your customized checklist, timeline milestones, and budget trackers.
               </p>
               
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', marginTop: '40px' }}>
-                <div style={{ width: '50px', height: '50px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-                <span style={{ fontSize: '0.9rem', color: '#a0937d', animation: 'pulse 1.5s infinite', marginTop: '10px' }}>
-                  Distributing budget across 8 categories...
+                <div style={{ width: '50px', height: '50px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                <span style={{ fontSize: '0.9rem', color: '#D4AF37', marginTop: '10px' }}>
+                  Distributing budget across 8 key wedding categories...
                 </span>
               </div>
-              
-              <style jsx global>{`
-                @keyframes spin {
-                  0% { transform: rotate(0deg); }
-                  100% { transform: rotate(360deg); }
-                }
-                @keyframes pulse {
-                  0%, 100% { opacity: 0.6; }
-                  50% { opacity: 1; }
-                }
-              `}</style>
             </div>
           )}
 
@@ -371,7 +431,7 @@ export default function OnboardingPage() {
                 onClick={handleNext}
                 disabled={currentStep === 1 && (!formData.partnerA || !formData.partnerB)}
               >
-                {currentStep === 4 ? 'Generate Workspace' : 'Continue'}
+                {currentStep === 4 ? 'Launch Workspace' : 'Continue'}
               </button>
             </div>
           )}

@@ -3,28 +3,29 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
+import Monogram from '@/components/Monogram';
 
 const INITIAL_PENDING_VENDORS = [
-  { id: 'pv1', name: 'Velvet & Lace Florals', contact: 'Julianne Cox', category: 'Florals', location: 'Seattle, WA', email: 'hello@velvetlace.com' },
-  { id: 'pv2', name: 'Coastal Catering Co.', contact: 'David Fisher', category: 'Catering', location: 'San Diego, CA', email: 'info@coastalcatering.com' },
-  { id: 'pv3', name: 'Epic Beats Entertainment', contact: 'DJ Spark', category: 'Music', location: 'Los Angeles, CA', email: 'bookings@epicbeats.com' },
+  { id: 'pv1', name: 'Velvet & Lace Couture Florals', contact: 'Julianne Cox', category: 'Florals', location: 'Malibu, CA', email: 'hello@velvetlace.example.com' },
+  { id: 'pv2', name: 'Coastal Michelin Catering', contact: 'David Fisher', category: 'Catering', location: 'Santa Barbara, CA', email: 'info@coastalcatering.example.com' },
+  { id: 'pv3', name: 'Symphony Strings Ensemble', contact: 'Maestro Evans', category: 'Music', location: 'Los Angeles, CA', email: 'bookings@symphonystrings.example.com' },
 ];
 
 const INITIAL_COUPLES = [
-  { id: 'c1', name: 'Vanessa & Noah', budget: '$50,000', location: 'Malibu, CA', plan: 'Event Pass', joinDate: '2026-05-20' },
-  { id: 'c2', name: 'Emma & John', budget: '$35,000', location: 'Pasadena, CA', plan: 'Monthly', joinDate: '2026-05-22' },
-  { id: 'c3', name: 'Sophia & Liam', budget: '$75,000', location: 'Santa Monica, CA', plan: 'Free Tier', joinDate: '2026-05-25' },
+  { id: 'c1', name: 'Eleanor Vance & Liam Thorne', budget: '$65,000', location: 'Malibu, CA', plan: 'Event Pass', joinDate: '2026-05-20' },
+  { id: 'c2', name: 'Sophia Chen & Julian Rossi', budget: '$45,000', location: 'Lake Como, IT', plan: 'Concierge Plus', joinDate: '2026-05-22' },
+  { id: 'c3', name: 'Aria Winters & Marcus Sterling', budget: '$85,000', location: 'Beverly Hills, CA', plan: 'Free Explorer', joinDate: '2026-05-25' },
 ];
 
 const INITIAL_REQUESTS = [
-  { id: 'req1', coupleName: 'Vanessa & Noah', requestType: 'Coordination Assistance', message: 'Looking for a day-of coordinator recommendation from OVAimagination Events.', date: '2026-05-26' },
-  { id: 'req2', coupleName: 'Emma & John', requestType: 'Venue Matching', message: 'Need help finding an ocean view venue that allows external catering.', date: '2026-05-26' },
+  { id: 'req1', coupleName: 'Eleanor Vance & Liam Thorne', requestType: 'Concierge Coordination', message: 'Looking for a dedicated day-of lead planner from OVAimagination Events.', date: '2026-05-26' },
+  { id: 'req2', coupleName: 'Sophia Chen & Julian Rossi', requestType: 'Bespoke Venue Sourcing', message: 'Seeking cliffside estates with private helicopter landing permissions.', date: '2026-05-26' },
 ];
 
 export default function AdminPage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, loading } = store;
+  const { user, auditLog, loading } = store;
 
   const [pendingVendors, setPendingVendors] = useState(INITIAL_PENDING_VENDORS);
   const [couples, setCouples] = useState(INITIAL_COUPLES);
@@ -38,11 +39,11 @@ export default function AdminPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
@@ -50,18 +51,18 @@ export default function AdminPage() {
 
   const handleApproveVendor = (id, name) => {
     setPendingVendors(prev => prev.filter(v => v.id !== id));
-    alert(`Vendor "${name}" approved successfully! They have been added to the public directory.`);
+    alert(`Vendor "${name}" approved successfully! They are now verified in the Elysian Concierge directory.`);
   };
 
   const handleRejectVendor = (id, name) => {
-    if (confirm(`Are you sure you want to reject vendor "${name}" application?`)) {
+    if (confirm(`Are you sure you want to reject vendor application for "${name}"?`)) {
       setPendingVendors(prev => prev.filter(v => v.id !== id));
     }
   };
 
   const handleResolveRequest = (id) => {
     setRequests(prev => prev.filter(r => r.id !== id));
-    alert('Request marked as resolved and planner contacted.');
+    alert('Concierge matching request resolved. Assigned to OVAimagination Events senior team.');
   };
 
   return (
@@ -71,38 +72,41 @@ export default function AdminPage() {
       <div className="container py-8 max-w-6xl">
         {/* Header */}
         <div className="admin-header mb-8">
-          <span className="badge badge-gold mb-2">SYSTEM CONSOLE</span>
-          <h1 className="h2 font-heading text-gold mb-1">VND Admin Panel</h1>
+          <div className="flex-start items-center gap-3 mb-2">
+            <Monogram size={32} variant="gold" />
+            <span className="badge badge-gold">INTERNAL CONSOLE &bull; INVITATION-ONLY</span>
+          </div>
+          <h1 className="h2 font-heading text-gold mb-1">Elysian Concierge Administrator Suite</h1>
           <p className="body-sm text-secondary">
-            Oversee registrations, manage coordinator upgrades, and approve vendor listings.
+            System auditing, vendor vetting queue, concierge matching requests, and customer workspace overview.
           </p>
         </div>
 
         {/* Stats Grid */}
         <div className="stats-grid mb-8">
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Total Active Couples</span>
-            <span className="stat-number text-gold font-heading">{couples.length + 42}</span>
+            <span className="overline text-muted mb-1">Active Planning Workspaces</span>
+            <span className="stat-number text-gold font-heading">{couples.length + 58}</span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Subscribed / Event Pass</span>
-            <span className="stat-number text-success font-heading">24 <span className="text-xs text-secondary font-body">users</span></span>
+            <span className="overline text-muted mb-1">Event Pass Holders</span>
+            <span className="stat-number text-success font-heading">41 <span className="text-xs text-secondary font-body">couples</span></span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Active Vetted Vendors</span>
-            <span className="stat-number text-gold font-heading">154</span>
+            <span className="overline text-muted mb-1">Verified Vendor Network</span>
+            <span className="stat-number text-gold font-heading">184</span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Estimated MRR</span>
-            <span className="stat-number text-gold font-heading">$2,480</span>
+            <span className="overline text-muted mb-1">Planning Partner</span>
+            <span className="stat-number text-gold font-heading" style={{ fontSize: '1.2rem' }}>OVAimagination</span>
           </div>
         </div>
 
         {/* Dynamic Queue Sections */}
-        <div className="admin-queues-grid">
+        <div className="admin-queues-grid mb-8">
           {/* Section 1: Vendor Approvals */}
           <div className="flex-col gap-4">
-            <h2 className="h4 font-heading text-gold mb-2">Pending Vendor Directory Approvals ({pendingVendors.length})</h2>
+            <h2 className="h4 font-heading text-gold mb-2">Vendor Verification Queue ({pendingVendors.length})</h2>
             <div className="pending-vendors-list flex-col gap-4">
               {pendingVendors.length > 0 ? (
                 pendingVendors.map(vendor => (
@@ -121,7 +125,7 @@ export default function AdminPage() {
                         onClick={() => handleApproveVendor(vendor.id, vendor.name)}
                         className="btn btn-primary btn-sm"
                       >
-                        ✓ Approve
+                        ✓ Verify
                       </button>
                       <button 
                         onClick={() => handleRejectVendor(vendor.id, vendor.name)}
@@ -135,15 +139,15 @@ export default function AdminPage() {
               ) : (
                 <div className="card glass-panel p-8 text-center">
                   <span style={{ fontSize: '2rem' }}>🎉</span>
-                  <p className="body-sm text-secondary mt-2">Vendor queue is empty. Good job!</p>
+                  <p className="body-sm text-secondary mt-2">All vendor verification applications cleared!</p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Section 2: Planner/Coordinator Requests */}
+          {/* Section 2: Concierge Matching Requests */}
           <div className="flex-col gap-4">
-            <h2 className="h4 font-heading text-gold mb-2">VND Planner Matching Requests ({requests.length})</h2>
+            <h2 className="h4 font-heading text-gold mb-2">Concierge Match Requests ({requests.length})</h2>
             <div className="planner-requests-list flex-col gap-4">
               {requests.length > 0 ? (
                 requests.map(req => (
@@ -163,32 +167,64 @@ export default function AdminPage() {
                       onClick={() => handleResolveRequest(req.id)}
                       className="btn btn-outline btn-sm flex-shrink-0"
                     >
-                      Mark Resolved
+                      Mark Assigned
                     </button>
                   </div>
                 ))
               ) : (
                 <div className="card glass-panel p-8 text-center">
                   <span style={{ fontSize: '2rem' }}>💌</span>
-                  <p className="body-sm text-secondary mt-2">No pending planner match requests right now.</p>
+                  <p className="body-sm text-secondary mt-2">No pending concierge requests.</p>
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Section 3: Registered Couples List */}
-        <div className="couples-management-section mt-8">
-          <h2 className="h4 font-heading text-gold mb-4">Active Couples Database</h2>
+        {/* Section 3: System Audit Log Viewer (Step 4 Security) */}
+        <div className="audit-log-section mb-8">
+          <div className="flex-between items-center mb-4">
+            <h2 className="h4 font-heading text-gold mb-0">System Audit & Access Log</h2>
+            <span className="badge badge-secondary text-xs">Immutable Ledger</span>
+          </div>
           <div className="card glass-panel overflow-x-auto">
             <table className="admin-table w-full">
               <thead>
                 <tr className="border-b">
-                  <th>Couple Name</th>
-                  <th>Join Date</th>
+                  <th>Timestamp</th>
+                  <th>Action Event</th>
+                  <th>Actor / User</th>
+                  <th>Module</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(auditLog || []).slice(0, 10).map((log) => (
+                  <tr key={log.id} className="border-b">
+                    <td className="text-xs text-muted font-mono">{log.timestamp}</td>
+                    <td className="font-bold text-primary text-xs">{log.action}</td>
+                    <td className="text-xs text-secondary">{log.actor}</td>
+                    <td><span className="badge badge-secondary text-xs">{log.module}</span></td>
+                    <td><span className="badge badge-success text-xs">{log.status}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Section 4: Registered Couples Database */}
+        <div className="couples-management-section">
+          <h2 className="h4 font-heading text-gold mb-4">Couples Workspace Directory</h2>
+          <div className="card glass-panel overflow-x-auto">
+            <table className="admin-table w-full">
+              <thead>
+                <tr className="border-b">
+                  <th>Couple Names</th>
+                  <th>Onboarding Date</th>
                   <th>Location</th>
-                  <th>Declared Budget</th>
-                  <th>Plan Tier</th>
+                  <th>Target Budget</th>
+                  <th>Licensing Tier</th>
                 </tr>
               </thead>
               <tbody>
@@ -199,7 +235,7 @@ export default function AdminPage() {
                     <td className="text-secondary">{c.location}</td>
                     <td className="text-gold font-bold">{c.budget}</td>
                     <td>
-                      <span className={`badge ${c.plan === 'Event Pass' ? 'badge-success' : c.plan === 'Monthly' ? 'badge-gold' : 'badge-secondary'}`}>
+                      <span className={`badge ${c.plan === 'Event Pass' || c.plan === 'Concierge Plus' ? 'badge-success' : 'badge-secondary'}`}>
                         {c.plan}
                       </span>
                     </td>
@@ -240,7 +276,7 @@ export default function AdminPage() {
           }
         }
         .stat-number {
-          font-size: 2rem;
+          font-size: 1.8rem;
           display: block;
         }
         .admin-queues-grid {
@@ -254,31 +290,31 @@ export default function AdminPage() {
           }
         }
         .bg-secondary {
-          background: rgba(26, 26, 46, 0.6);
+          background: rgba(10, 25, 47, 0.6);
         }
         .border-b {
-          border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+          border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         .admin-table {
           border-collapse: collapse;
           text-align: left;
         }
         .admin-table th {
-          padding: 16px;
-          font-size: 0.85rem;
-          color: #a0937d;
+          padding: 14px 16px;
+          font-size: 0.8rem;
+          color: #D4AF37;
           font-weight: 600;
           text-transform: uppercase;
         }
         .admin-table td {
-          padding: 16px;
-          font-size: 0.9rem;
+          padding: 14px 16px;
+          font-size: 0.85rem;
         }
+        .mb-0 { margin-bottom: 0; }
         .mb-1 { margin-bottom: 4px; }
         .mb-2 { margin-bottom: 8px; }
         .mb-4 { margin-bottom: 16px; }
         .mb-8 { margin-bottom: 32px; }
-        .mt-2 { margin-top: 8px; }
         .py-8 { padding-top: 32px; padding-bottom: 32px; }
         .p-5 { padding: 20px; }
         .p-3 { padding: 12px; }
@@ -286,6 +322,7 @@ export default function AdminPage() {
         .flex-between { display: flex; align-items: center; justify-content: space-between; }
         .flex-start { display: flex; align-items: center; justify-content: flex-start; }
         .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
         .gap-4 { gap: 16px; }
         .font-bold { font-weight: 700; }
         .w-full { width: 100%; }

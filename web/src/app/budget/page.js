@@ -3,17 +3,26 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
-import { formatCurrency, calculateBudgetHealth, getCategoryColor, getCategoryIcon } from '@/lib/utils';
+import { 
+  formatCurrency, 
+  calculateBudgetSummary, 
+  calculateBudgetHealth, 
+  getCategoryColor, 
+  getCategoryIcon 
+} from '@/lib/utils';
 
 export default function BudgetPage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, budget, loading, updateBudgetTotal, addBudgetPayment, updateBudgetPayment, deleteBudgetPayment } = store;
+  const { user, eventProfile, budget, loading, updateBudgetTotal, addBudgetPayment, updateBudgetPayment, deleteBudgetPayment, updateBudgetCategory } = store;
 
   const [editBudgetOpen, setEditBudgetOpen] = useState(false);
   const [newBudgetTotal, setNewBudgetTotal] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+  const [editingCategory, setEditingCategory] = useState(null);
+  const [categoryForm, setCategoryForm] = useState({ name: '', planned: 0, contracted: 0 });
+
   const [paymentForm, setPaymentForm] = useState({
     vendorName: '',
     category: 'Venue',
@@ -27,35 +36,27 @@ export default function BudgetPage() {
     if (!loading && !user) {
       router.push('/auth');
     } else if (user) {
-      setNewBudgetTotal(budget.total || 50000);
+      setNewBudgetTotal(budget?.total || 50000);
     }
-  }, [user, loading, router, budget.total]);
+  }, [user, loading, router, budget?.total]);
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
   }
 
-  const budgetTotal = budget.total || 0;
-  const categories = budget.categories || [];
-  const payments = budget.payments || [];
-
-  // Spent includes all actual amounts in categories
-  const totalSpent = categories.reduce((sum, c) => sum + (c.actual || 0), 0);
-  const totalEstimated = categories.reduce((sum, c) => sum + (c.estimated || 0), 0);
-  const remainingBuffer = Math.max(0, budgetTotal - totalSpent);
-  const health = calculateBudgetHealth(totalSpent, budgetTotal);
-
-  // Payments calculations
-  const totalPaid = payments.filter(p => p.status === 'Paid').reduce((sum, p) => sum + (p.amount || 0), 0);
-  const totalUpcoming = payments.filter(p => p.status === 'Upcoming').reduce((sum, p) => sum + (p.amount || 0), 0);
+  // Step 10: Corrected Budget Model Breakdown
+  const summary = calculateBudgetSummary(budget);
+  const health = calculateBudgetHealth(summary.contracted, summary.total);
+  const categories = budget?.categories || [];
+  const payments = budget?.payments || [];
 
   const handleEditBudgetSubmit = (e) => {
     e.preventDefault();
@@ -78,7 +79,7 @@ export default function BudgetPage() {
 
     setPaymentForm({
       vendorName: '',
-      category: selectedCategory || 'Venue',
+      category: 'Venue',
       amount: '',
       date: '',
       status: 'Upcoming',
@@ -93,22 +94,47 @@ export default function BudgetPage() {
   };
 
   const handleDeletePayment = (paymentId) => {
-    if (confirm('Are you sure you want to delete this payment entry?')) {
+    if (confirm('Are you sure you want to delete this payment record?')) {
       deleteBudgetPayment(paymentId);
     }
+  };
+
+  const handleEditCategoryOpen = (cat) => {
+    setEditingCategory(cat);
+    setCategoryForm({
+      name: cat.name,
+      planned: cat.planned || cat.estimated || 0,
+      contracted: cat.contracted || cat.actual || 0,
+    });
+    setCategoryModalOpen(true);
+  };
+
+  const handleCategorySubmit = (e) => {
+    e.preventDefault();
+    if (editingCategory) {
+      updateBudgetCategory(editingCategory.name, {
+        planned: Number(categoryForm.planned),
+        contracted: Number(categoryForm.contracted),
+      });
+    }
+    setCategoryModalOpen(false);
   };
 
   return (
     <main className="budget-layout">
       <div className="navbar-spacer"></div>
 
-      <div className="container py-8 max-w-5xl">
+      <div className="container py-8 max-w-6xl">
         {/* Header */}
         <div className="flex-between mb-6 flex-wrap gap-4">
           <div>
-            <h1 className="h2 font-heading text-gold mb-1">Budget Tracker</h1>
+            <div className="flex-start items-center gap-2 mb-1">
+              <span className="badge badge-gold">Step 10 Model Reconciled</span>
+              <span className="badge badge-secondary">{eventProfile?.coupleNames || user.name}</span>
+            </div>
+            <h1 className="h2 font-heading text-gold mb-1">Elysian Budget Suite</h1>
             <p className="body-sm text-secondary">
-              Track styling estimates and payment logs. Vetted targets by **OVAimagination Events**.
+              Strict accounting separation: Target Allocations, Signed Contracts, and Paid Invoices.
             </p>
           </div>
           <div className="flex gap-3">
@@ -116,13 +142,10 @@ export default function BudgetPage() {
               onClick={() => setEditBudgetOpen(true)}
               className="btn btn-secondary"
             >
-              ⚙️ Adjust Limit
+              ⚙️ Adjust Target Limit
             </button>
             <button 
-              onClick={() => {
-                setSelectedCategory(null);
-                setModalOpen(true);
-              }}
+              onClick={() => setModalOpen(true)}
               className="btn btn-primary"
             >
               ＋ Log Payment
@@ -130,89 +153,121 @@ export default function BudgetPage() {
           </div>
         </div>
 
-        {/* Top Summary Cards */}
-        <div className="budget-summary-grid mb-8">
-          {/* Card 1: Total Budget Limit */}
-          <div className="card glass-panel p-6 flex-col text-center justify-center">
-            <span className="overline text-muted mb-2">Total Budget Limit</span>
-            <span className="stat-number text-gold font-heading">{formatCurrency(budgetTotal)}</span>
+        {/* 5-Metric Corrected Budget Summary Grid (Step 10) */}
+        <div className="budget-metrics-grid mb-8">
+          {/* Metric 1: Total Target Budget */}
+          <div className="card glass-panel p-5 text-center">
+            <span className="overline text-muted mb-1">1. Target Budget</span>
+            <span className="stat-number text-gold font-heading">{formatCurrency(summary.total)}</span>
+            <span className="caption text-secondary mt-1">Total planned ceiling</span>
           </div>
 
-          {/* Card 2: Total Spent / Allocated */}
-          <div className="card glass-panel p-6 flex-col text-center justify-center relative">
-            <span className="overline text-muted mb-2">Allocated & Spent</span>
-            <span className="stat-number text-warning font-heading">{formatCurrency(totalSpent)}</span>
-            <span className={`badge absolute-badge ${
+          {/* Metric 2: Total Contracted */}
+          <div className="card glass-panel p-5 text-center">
+            <span className="overline text-muted mb-1">2. Signed Contracts</span>
+            <span className="stat-number text-warning font-heading">{formatCurrency(summary.contracted)}</span>
+            <span className="caption text-secondary mt-1">Committed to vendors</span>
+          </div>
+
+          {/* Metric 3: Paid To Date */}
+          <div className="card glass-panel p-5 text-center">
+            <span className="overline text-muted mb-1">3. Paid to Date</span>
+            <span className="stat-number text-success font-heading">{formatCurrency(summary.paid)}</span>
+            <span className="caption text-secondary mt-1">Cash out of account</span>
+          </div>
+
+          {/* Metric 4: Outstanding Balance */}
+          <div className="card glass-panel p-5 text-center">
+            <span className="overline text-muted mb-1">4. Outstanding Due</span>
+            <span className="stat-number text-rose-gold font-heading">{formatCurrency(summary.outstanding)}</span>
+            <span className="caption text-secondary mt-1">Contracted minus paid</span>
+          </div>
+
+          {/* Metric 5: Unallocated Buffer */}
+          <div className="card glass-panel p-5 text-center">
+            <span className="overline text-muted mb-1">5. Unallocated Buffer</span>
+            <span className={`stat-number font-heading ${summary.unallocated < 0 ? 'text-danger' : 'text-primary'}`}>
+              {formatCurrency(summary.unallocated)}
+            </span>
+            <span className="caption text-secondary mt-1">Available to commit</span>
+          </div>
+        </div>
+
+        {/* Budget Health Overview Banner */}
+        <div className="card glass-panel p-6 mb-8 border-gold">
+          <div className="flex-between items-center mb-3">
+            <div>
+              <span className="overline">Budget Commitment Health</span>
+              <h3 className="h4 font-heading text-gold">
+                {summary.contracted > summary.total ? '⚠️ Over Target Limit' : '✓ Spending Within Target Parameters'}
+              </h3>
+            </div>
+            <span className={`badge ${
               health === 'safe' ? 'badge-success' : health === 'watch' ? 'badge-warning' : 'badge-danger'
             }`}>
-              {health.toUpperCase()}
+              Health: {health.toUpperCase()}
             </span>
           </div>
-
-          {/* Card 3: Remaining Buffer */}
-          <div className="card glass-panel p-6 flex-col text-center justify-center">
-            <span className="overline text-muted mb-2">Remaining Buffer</span>
-            <span className="stat-number text-success font-heading">{formatCurrency(remainingBuffer)}</span>
+          <div className="progress-bar-bg w-full mb-3">
+            <div 
+              className={`progress-bar-fill ${
+                health === 'safe' ? 'bg-success' : health === 'watch' ? 'bg-warning' : 'bg-danger'
+              }`} 
+              style={{ width: `${Math.min(100, (summary.contracted / (summary.total || 1)) * 100)}%` }}
+            ></div>
+          </div>
+          <div className="flex-between text-xs text-muted">
+            <span>{formatCurrency(summary.contracted)} contracted ({Math.round((summary.contracted / (summary.total || 1)) * 100)}% of ceiling)</span>
+            <span>{formatCurrency(summary.unallocated)} remaining uncommitted</span>
           </div>
         </div>
 
-        {/* Cash Flow Progress Cards */}
-        <div className="grid grid-2 mb-8 gap-6">
-          <div className="card glass-panel p-5">
-            <h3 className="h6 font-body font-bold text-primary mb-3">Invoice Cash Flow</h3>
-            <div className="flex-between py-2 border-b">
-              <span className="body-sm text-secondary">Total Paid Off</span>
-              <span className="body-sm text-success font-bold">{formatCurrency(totalPaid)}</span>
-            </div>
-            <div className="flex-between py-2">
-              <span className="body-sm text-secondary">Total Outstanding</span>
-              <span className="body-sm text-warning font-bold">{formatCurrency(totalUpcoming)}</span>
-            </div>
-          </div>
-
-          <div className="card glass-panel p-5 flex-col justify-center">
-            <h3 className="h6 font-body font-bold text-primary mb-2">Budget Allocation Health</h3>
-            <div className="progress-bar-bg w-full mb-3">
-              <div 
-                className={`progress-bar-fill ${
-                  health === 'safe' ? 'bg-success' : health === 'watch' ? 'bg-warning' : 'bg-danger'
-                }`} 
-                style={{ width: `${Math.min(100, (totalSpent / (budgetTotal || 1)) * 100)}%` }}
-              ></div>
-            </div>
-            <p className="text-xs text-muted mb-0">
-              Your actual vendor contracts consume **{Math.round((totalSpent / (budgetTotal || 1)) * 100)}%** of your total ceiling.
-            </p>
-          </div>
-        </div>
-
-        {/* Main Content Layout */}
+        {/* Main Content: Category Allocations vs Payment Logs */}
         <div className="budget-content-grid">
-          {/* Categories Grid */}
+          {/* Category Allocations with Over-Budget Alerts */}
           <div className="categories-box">
-            <h2 className="h4 font-heading text-gold mb-4">Category Estimates</h2>
+            <div className="flex-between items-center mb-4">
+              <h2 className="h4 font-heading text-gold mb-0">Category Breakdown</h2>
+              <span className="text-xs text-muted">Click to edit target</span>
+            </div>
+
             <div className="categories-grid flex-col gap-4">
               {categories.map(cat => {
-                const catSpentPct = Math.round((cat.actual / (cat.estimated || 1)) * 100);
-                const isOver = cat.actual > cat.estimated;
+                const planned = cat.planned || cat.estimated || 0;
+                const contracted = cat.contracted || cat.actual || 0;
+                const paid = cat.paid || 0;
+                const isOverBudget = contracted > planned;
+                const percentage = planned > 0 ? Math.round((contracted / planned) * 100) : 0;
                 
                 return (
-                  <div key={cat.name} className="card glass-panel p-4 flex-col">
-                    <div className="flex-between mb-3 items-center">
+                  <div 
+                    key={cat.name} 
+                    className={`card glass-panel p-4 flex-col cat-card ${isOverBudget ? 'card-overbudget' : ''}`}
+                    onClick={() => handleEditCategoryOpen(cat)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter') handleEditCategoryOpen(cat); }}
+                  >
+                    <div className="flex-between mb-2 items-center">
                       <div className="flex-start items-center gap-3">
                         <span className="cat-icon-decor" style={{ color: getCategoryColor(cat.name) }}>
                           {getCategoryIcon(cat.name)}
                         </span>
                         <div>
-                          <h3 className="body-sm font-bold text-primary mb-0">{cat.name}</h3>
-                          <span className="text-xs text-muted">Est: {formatCurrency(cat.estimated)}</span>
+                          <div className="flex-start items-center gap-2">
+                            <h3 className="body-sm font-bold text-primary mb-0">{cat.name}</h3>
+                            {isOverBudget && <span className="badge badge-danger text-xs">Over Target</span>}
+                          </div>
+                          <span className="text-xs text-muted">
+                            Target Plan: {formatCurrency(planned)} &bull; Paid: {formatCurrency(paid)}
+                          </span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className={`body-sm font-bold block ${isOver ? 'text-danger' : 'text-primary'}`}>
-                          {formatCurrency(cat.actual)}
+                        <span className={`body-sm font-bold block ${isOverBudget ? 'text-danger' : 'text-gold'}`}>
+                          {formatCurrency(contracted)}
                         </span>
-                        <span className="text-xs text-muted">{catSpentPct}% of est</span>
+                        <span className="text-xs text-muted">{percentage}% contracted</span>
                       </div>
                     </div>
 
@@ -220,8 +275,8 @@ export default function BudgetPage() {
                       <div 
                         className="progress-bar-fill" 
                         style={{ 
-                          width: `${Math.min(100, catSpentPct)}%`,
-                          backgroundColor: getCategoryColor(cat.name) 
+                          width: `${Math.min(100, percentage)}%`,
+                          backgroundColor: isOverBudget ? '#EF4444' : getCategoryColor(cat.name) 
                         }}
                       ></div>
                     </div>
@@ -231,9 +286,13 @@ export default function BudgetPage() {
             </div>
           </div>
 
-          {/* Payments Logs */}
+          {/* Payment Logs List */}
           <div className="payments-box">
-            <h2 className="h4 font-heading text-gold mb-4">Payment Logs</h2>
+            <div className="flex-between items-center mb-4">
+              <h2 className="h4 font-heading text-gold mb-0">Payment Ledger</h2>
+              <span className="text-xs text-muted">{payments.length} transactions</span>
+            </div>
+
             <div className="payments-list flex-col gap-3">
               {payments.length > 0 ? (
                 payments.map(pay => (
@@ -243,6 +302,7 @@ export default function BudgetPage() {
                         onClick={() => handleStatusToggle(pay.id, pay.status)}
                         className={`status-circle-btn flex-center ${pay.status === 'Paid' ? 'paid-icon' : 'unpaid-icon'}`}
                         title={pay.status === 'Paid' ? 'Mark unpaid' : 'Mark paid'}
+                        aria-label={`Toggle payment status for ${pay.vendorName}`}
                       >
                         {pay.status === 'Paid' ? '✓' : '⏰'}
                       </button>
@@ -265,6 +325,8 @@ export default function BudgetPage() {
                       <button 
                         onClick={() => handleDeletePayment(pay.id)}
                         className="btn btn-ghost btn-sm text-danger"
+                        title="Delete payment record"
+                        aria-label={`Delete payment for ${pay.vendorName}`}
                       >
                         🗑️
                       </button>
@@ -275,6 +337,12 @@ export default function BudgetPage() {
                 <div className="card glass-panel p-8 text-center">
                   <span style={{ fontSize: '2rem' }}>💸</span>
                   <p className="body-sm text-secondary mt-2">No payments logged yet.</p>
+                  <button 
+                    onClick={() => setModalOpen(true)}
+                    className="btn btn-outline btn-sm mt-3"
+                  >
+                    Log First Payment
+                  </button>
                 </div>
               )}
             </div>
@@ -284,16 +352,16 @@ export default function BudgetPage() {
 
       {/* Adjust Total Budget Modal */}
       {editBudgetOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={() => setEditBudgetOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 className="text-gold font-heading">Adjust Budget Ceiling</h3>
-              <button onClick={() => setEditBudgetOpen(false)} className="modal-close">×</button>
+              <h3 className="text-gold font-heading">Adjust Target Budget Limit</h3>
+              <button onClick={() => setEditBudgetOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <form onSubmit={handleEditBudgetSubmit}>
               <div className="modal-body">
                 <div className="form-group">
-                  <label className="form-label">Total Budget Ceiling ($)</label>
+                  <label className="form-label">Total Target Ceiling ($)</label>
                   <input 
                     type="number" 
                     required
@@ -305,13 +373,56 @@ export default function BudgetPage() {
                     className="form-input"
                   />
                   <p className="form-hint">
-                    This updates your total ceiling. The category estimations will retain their percentage allocations.
+                    Updates your overarching wedding budget ceiling.
                   </p>
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" onClick={() => setEditBudgetOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
-                <button type="submit" className="btn btn-primary btn-sm">Update Ceiling</button>
+                <button type="submit" className="btn btn-primary btn-sm">Save Limit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Category Modal */}
+      {categoryModalOpen && (
+        <div className="modal-overlay" onClick={() => setCategoryModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="text-gold font-heading">Edit Category: {categoryForm.name}</h3>
+              <button onClick={() => setCategoryModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
+            </div>
+            <form onSubmit={handleCategorySubmit}>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label className="form-label">Target Planned Allocation ($)</label>
+                  <input 
+                    type="number" 
+                    required
+                    value={categoryForm.planned}
+                    onChange={(e) => setCategoryForm(prev => ({ ...prev, planned: e.target.value }))}
+                    className="form-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Signed Contracted Total ($)</label>
+                  <input 
+                    type="number" 
+                    required
+                    value={categoryForm.contracted}
+                    onChange={(e) => setCategoryForm(prev => ({ ...prev, contracted: e.target.value }))}
+                    className="form-input"
+                  />
+                  <p className="form-hint">
+                    Reflects total committed vendor contracts for this category.
+                  </p>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" onClick={() => setCategoryModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
+                <button type="submit" className="btn btn-primary btn-sm">Save Category</button>
               </div>
             </form>
           </div>
@@ -320,11 +431,11 @@ export default function BudgetPage() {
 
       {/* Log Payment Modal */}
       {modalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h3 className="text-gold font-heading">Log Wedding Payment</h3>
-              <button onClick={() => setModalOpen(false)} className="modal-close">×</button>
+              <button onClick={() => setModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <form onSubmit={handlePaymentSubmit}>
               <div className="modal-body">
@@ -333,7 +444,7 @@ export default function BudgetPage() {
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. Marcus Sterling"
+                    placeholder="e.g. Marcus Sterling Photography"
                     value={paymentForm.vendorName}
                     onChange={(e) => setPaymentForm(prev => ({ ...prev, vendorName: e.target.value }))}
                     className="form-input"
@@ -347,17 +458,17 @@ export default function BudgetPage() {
                       onChange={(e) => setPaymentForm(prev => ({ ...prev, category: e.target.value }))}
                       className="form-select"
                     >
-                      {['Venue', 'Catering', 'Planner', 'Photography', 'Videography', 'Florals', 'Music', 'Attire', 'Hair & Makeup', 'Invitations', 'Bakery', 'Rings', 'Decor', 'Misc'].map(cat => (
+                      {['Venue', 'Catering & Bar', 'Planner & Concierge', 'Photography & Film', 'Florals & Decor', 'Music & Entertainment', 'Attire & Beauty', 'Stationery & Misc'].map(cat => (
                         <option key={cat} value={cat}>{cat}</option>
                       ))}
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Amount Paid ($)</label>
+                    <label className="form-label">Amount ($)</label>
                     <input 
                       type="number" 
                       required
-                      placeholder="2000"
+                      placeholder="2500"
                       value={paymentForm.amount}
                       onChange={(e) => setPaymentForm(prev => ({ ...prev, amount: e.target.value }))}
                       className="form-input"
@@ -366,7 +477,7 @@ export default function BudgetPage() {
                 </div>
                 <div className="grid grid-2 gap-4">
                   <div className="form-group">
-                    <label className="form-label">Date of Payment</label>
+                    <label className="form-label">Payment Date</label>
                     <input 
                       type="date" 
                       required
@@ -395,14 +506,14 @@ export default function BudgetPage() {
                     onChange={(e) => setPaymentForm(prev => ({ ...prev, status: e.target.value }))}
                     className="form-select"
                   >
-                    <option value="Upcoming">⏰ Upcoming (Scheduled)</option>
+                    <option value="Upcoming">⏰ Upcoming (Scheduled Installment)</option>
                     <option value="Paid">✓ Paid Off</option>
                   </select>
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" onClick={() => setModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
-                <button type="submit" className="btn btn-primary btn-sm">Log Transaction</button>
+                <button type="submit" className="btn btn-primary btn-sm">Save Transaction</button>
               </div>
             </form>
           </div>
@@ -418,27 +529,34 @@ export default function BudgetPage() {
         .navbar-spacer {
           height: 80px;
         }
-        .max-w-5xl {
-          max-width: 64rem;
+        .max-w-6xl {
+          max-width: 72rem;
           margin: 0 auto;
         }
-        .budget-summary-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+        .border-gold {
+          border: 1px solid rgba(212, 175, 55, 0.3) !important;
         }
-        @media (max-width: 768px) {
-          .budget-summary-grid {
+        .budget-metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 1024px) {
+          .budget-metrics-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        @media (max-width: 640px) {
+          .budget-metrics-grid {
             grid-template-columns: 1fr;
           }
         }
         .stat-number {
-          font-size: 2.2rem;
+          font-size: 1.8rem;
           display: block;
         }
-        .absolute-badge {
-          top: 12px;
-          right: 12px;
+        .text-rose-gold {
+          color: #F6AD55 !important;
         }
         .grid-2 {
           display: grid;
@@ -457,26 +575,34 @@ export default function BudgetPage() {
         }
         .progress-bar-fill {
           height: 100%;
-          background: linear-gradient(90deg, #c9a96e 0%, #b8944f 100%);
+          background: linear-gradient(90deg, #D4AF37 0%, #F59E0B 100%);
           border-radius: 4px;
           transition: width 0.4s ease;
         }
-        .progress-bar-fill.bg-success { background: #4ade80; }
-        .progress-bar-fill.bg-warning { background: #f59e0b; }
-        .progress-bar-fill.bg-danger { background: #ef4444; }
+        .progress-bar-fill.bg-success { background: #10B981; }
+        .progress-bar-fill.bg-warning { background: #F59E0B; }
+        .progress-bar-fill.bg-danger { background: #EF4444; }
         
-        .border-b {
-          border-bottom: 1px solid rgba(201, 169, 110, 0.08);
-        }
         .budget-content-grid {
           display: grid;
-          grid-template-columns: 4fr 5fr;
+          grid-template-columns: 5fr 4fr;
           gap: 32px;
         }
         @media (max-width: 900px) {
           .budget-content-grid {
             grid-template-columns: 1fr;
           }
+        }
+        .cat-card {
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .cat-card:hover {
+          border-color: #D4AF37;
+          transform: translateY(-2px);
+        }
+        .card-overbudget {
+          border-left: 3px solid #EF4444 !important;
         }
         .cat-icon-decor {
           font-size: 1.5rem;
@@ -485,19 +611,19 @@ export default function BudgetPage() {
           width: 28px;
           height: 28px;
           border-radius: 50%;
-          border: 1px solid rgba(201, 169, 110, 0.2);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           cursor: pointer;
           transition: all 0.3s ease;
         }
         .paid-icon {
-          background: rgba(74, 222, 128, 0.15);
-          color: #4ade80;
-          border-color: #4ade80;
+          background: rgba(16, 185, 129, 0.15);
+          color: #10B981;
+          border-color: #10B981;
         }
         .unpaid-icon {
           background: rgba(245, 158, 11, 0.1);
-          color: #f59e0b;
-          border-color: #f59e0b;
+          color: #F59E0B;
+          border-color: #F59E0B;
         }
         .status-circle-btn:hover {
           filter: brightness(1.2);
@@ -512,22 +638,23 @@ export default function BudgetPage() {
         .mb-8 { margin-bottom: 32px; }
         .mt-1 { margin-top: 4px; }
         .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
         .py-8 { padding-top: 32px; padding-bottom: 32px; }
-        .py-2 { padding-top: 8px; padding-bottom: 8px; }
         .p-4 { padding: 16px; }
         .p-5 { padding: 20px; }
         .p-6 { padding: 24px; }
+        .p-8 { padding: 32px; }
         .flex-col { display: flex; flex-direction: column; }
         .flex-between { display: flex; align-items: center; justify-content: space-between; }
         .flex-start { display: flex; align-items: center; justify-content: flex-start; }
         .flex-center { display: flex; align-items: center; justify-content: center; }
         .flex-wrap { flex-wrap: wrap; }
+        .gap-2 { gap: 8px; }
         .gap-3 { gap: 12px; }
         .gap-4 { gap: 16px; }
-        .gap-6 { gap: 24px; }
         .font-bold { font-weight: 700; }
         .w-full { width: 100%; }
-        .relative { position: relative; }
+        .block { display: block; }
       `}</style>
     </main>
   );

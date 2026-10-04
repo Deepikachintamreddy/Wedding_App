@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
+import { formatCurrency } from '@/lib/utils';
 
 export default function VendorsPage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, vendors, loading, addVendor, updateVendor, deleteVendor } = store;
+  const { user, eventProfile, vendors, loading, addVendor, updateVendor, deleteVendor } = store;
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
@@ -15,13 +16,14 @@ export default function VendorsPage() {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [selectedVendor, setSelectedVendor] = useState(null);
+  const [inquirySuccess, setInquirySuccess] = useState(false);
   
   const [newVendor, setNewVendor] = useState({
     name: '',
     category: 'Venue',
     rating: 5.0,
     reviewsCount: 1,
-    costRange: '$$$',
+    costRange: '$$$$',
     location: '',
     contactName: '',
     email: '',
@@ -39,11 +41,11 @@ export default function VendorsPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
@@ -52,7 +54,7 @@ export default function VendorsPage() {
   // Filter vendors
   const filteredVendors = vendors.filter(vendor => {
     const matchesSearch = vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          vendor.location.toLowerCase().includes(searchQuery.toLowerCase());
+                          (vendor.location && vendor.location.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCategory = activeCategory === 'all' || vendor.category === activeCategory;
     const matchesStatus = activeStatusFilter === 'all' || vendor.status === activeStatusFilter;
     return matchesSearch && matchesCategory && matchesStatus;
@@ -81,7 +83,7 @@ export default function VendorsPage() {
       category: 'Venue',
       rating: 5.0,
       reviewsCount: 1,
-      costRange: '$$$',
+      costRange: '$$$$',
       location: '',
       contactName: '',
       email: '',
@@ -93,11 +95,19 @@ export default function VendorsPage() {
     setAddModalOpen(false);
   };
 
-  const handleRemoveVendor = (id) => {
-    if (confirm('Are you sure you want to remove this vendor?')) {
+  const handleRemoveVendor = (id, name) => {
+    if (confirm(`Are you sure you want to remove "${name}" from your vendor directory?`)) {
       deleteVendor(id);
       setDetailModalOpen(false);
     }
+  };
+
+  const handleSendInquiry = () => {
+    setInquirySuccess(true);
+    setTimeout(() => {
+      setInquirySuccess(false);
+      alert(`Inquiry sent to ${selectedVendor.name}! Our concierge coordinator at OVAimagination will follow up with package availability.`);
+    }, 1000);
   };
 
   return (
@@ -108,9 +118,13 @@ export default function VendorsPage() {
         {/* Header */}
         <div className="flex-between mb-6 flex-wrap gap-4">
           <div>
-            <h1 className="h2 font-heading text-gold mb-1">Vetted Vendors</h1>
+            <div className="flex-start items-center gap-2 mb-1">
+              <span className="badge badge-gold">Curated Partners</span>
+              <span className="badge badge-secondary">OVAimagination Events Verified</span>
+            </div>
+            <h1 className="h2 font-heading text-gold mb-1">Elysian Vendor Directory</h1>
             <p className="body-sm text-secondary">
-              Discover and select trusted specialists. Vetted recommendations by **OVAimagination Events**.
+              Discover and contract premier venues, floral artists, couture ateliers, and cinematographers.
             </p>
           </div>
           <button 
@@ -125,10 +139,11 @@ export default function VendorsPage() {
         <div className="card glass-panel p-4 mb-6 flex-between gap-4 flex-wrap">
           <input 
             type="text"
-            placeholder="🔍 Search vendors by name or location..."
+            placeholder="🔍 Search verified vendors by name or location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input flex-1"
+            aria-label="Search vendors"
           />
           <div className="flex gap-3">
             <select 
@@ -136,9 +151,10 @@ export default function VendorsPage() {
               onChange={(e) => setActiveStatusFilter(e.target.value)}
               className="form-select flex-shrink-0"
               style={{ width: '180px' }}
+              aria-label="Filter vendors by status"
             >
               <option value="all">🗳️ All Statuses</option>
-              <option value="Booked">✓ Booked</option>
+              <option value="Booked">✓ Booked / Signed</option>
               <option value="Shortlisted">❤️ Shortlisted</option>
               <option value="Contacted">💬 Contacted</option>
             </select>
@@ -161,7 +177,7 @@ export default function VendorsPage() {
             <button
               key={tab.id}
               onClick={() => setActiveCategory(tab.id)}
-              className={`tab px-4 py-2 text-sm font-bold rounded-md transition cursor-pointer ${
+              className={`tab px-4 py-2 text-xs sm:text-sm font-bold rounded-md transition cursor-pointer ${
                 activeCategory === tab.id ? 'bg-gold text-dark' : 'text-muted hover:text-primary'
               }`}
             >
@@ -176,7 +192,7 @@ export default function VendorsPage() {
             filteredVendors.map(vendor => (
               <div 
                 key={vendor.id} 
-                className="card glass-panel flex-col vendor-card justify-between"
+                className="card glass-panel flex-col vendor-card justify-between border-gold-hover"
               >
                 <div className="p-5">
                   <div className="flex-between items-center mb-3">
@@ -185,6 +201,7 @@ export default function VendorsPage() {
                       onClick={() => handleStatusChange(vendor.id, vendor.status === 'Shortlisted' ? 'Contacted' : 'Shortlisted')}
                       className="heart-btn text-gold"
                       title={vendor.status === 'Shortlisted' ? 'Remove from shortlist' : 'Shortlist vendor'}
+                      aria-label={`Shortlist ${vendor.name}`}
                     >
                       {vendor.status === 'Shortlisted' ? '❤️' : '♡'}
                     </button>
@@ -203,14 +220,22 @@ export default function VendorsPage() {
                   <p className="text-xs text-muted mb-2">📍 {vendor.location}</p>
                   
                   <div className="flex-start items-center gap-2 mb-3">
-                    <span className="rating-star">⭐ {vendor.rating.toFixed(1)}</span>
-                    <span className="text-xs text-muted">({vendor.reviewsCount} reviews)</span>
+                    <span className="rating-star">⭐ {vendor.rating ? vendor.rating.toFixed(1) : '5.0'}</span>
+                    <span className="text-xs text-muted">({vendor.reviewsCount || 12} reviews)</span>
                     <span className="text-xs text-muted">•</span>
-                    <span className="text-xs text-gold font-bold">{vendor.costRange}</span>
+                    <span className="text-xs text-gold font-bold">{vendor.costRange || '$$$$'}</span>
                   </div>
 
+                  {vendor.contractPrice > 0 && (
+                    <div className="mb-2">
+                      <span className="text-xs text-success font-bold">
+                        Contract Amount: {formatCurrency(vendor.contractPrice)}
+                      </span>
+                    </div>
+                  )}
+
                   <p className="text-xs text-secondary italic mb-0 line-clamp-3">
-                    {vendor.notes || 'Premium partner recommended by our events team.'}
+                    {vendor.notes || 'Verified partner curated by the OVAimagination Events concierge team.'}
                   </p>
                 </div>
 
@@ -228,8 +253,9 @@ export default function VendorsPage() {
                       setDetailModalOpen(true);
                     }}
                     className="btn btn-outline btn-sm"
+                    aria-label={`Manage vendor ${vendor.name}`}
                   >
-                    Manage
+                    Manage & Inquire
                   </button>
                 </div>
               </div>
@@ -237,7 +263,7 @@ export default function VendorsPage() {
           ) : (
             <div className="card glass-panel p-8 text-center" style={{ gridColumn: '1 / -1' }}>
               <span style={{ fontSize: '2.5rem' }}>💒</span>
-              <p className="body-sm text-secondary mt-2">No vendors found matching selection filters.</p>
+              <p className="body-sm text-secondary mt-2">No vendors found matching your filter selection.</p>
             </div>
           )}
         </div>
@@ -245,23 +271,23 @@ export default function VendorsPage() {
 
       {/* Vendor Details Modal */}
       {selectedVendor && detailModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={() => setDetailModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 className="text-gold font-heading">{selectedVendor.name} Details</h3>
-              <button onClick={() => setDetailModalOpen(false)} className="modal-close">×</button>
+              <h3 className="text-gold font-heading">{selectedVendor.name}</h3>
+              <button onClick={() => setDetailModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <div className="modal-body">
               <div className="flex-start items-center gap-2 mb-4">
                 <span className="badge badge-gold">{selectedVendor.category}</span>
-                <span className="rating-star">⭐ {selectedVendor.rating.toFixed(1)} ({selectedVendor.reviewsCount} reviews)</span>
-                <span className="badge badge-secondary">{selectedVendor.costRange}</span>
+                <span className="rating-star">⭐ {selectedVendor.rating ? selectedVendor.rating.toFixed(1) : '5.0'}</span>
+                <span className="badge badge-secondary">{selectedVendor.costRange || '$$$$'}</span>
               </div>
 
               <div className="contact-details p-4 bg-secondary rounded-lg mb-4 flex-col gap-2 border border-divider">
-                <h4 className="overline mb-2">Vetted Contact Details</h4>
-                <p className="body-sm text-secondary mb-0"><strong>Contact Person:</strong> {selectedVendor.contactName || 'Olivia Vance'}</p>
-                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'events@VND.com'}</p>
+                <h4 className="overline mb-2">Direct Contact Information</h4>
+                <p className="body-sm text-secondary mb-0"><strong>Contact Person:</strong> {selectedVendor.contactName || 'Lead Concierge'}</p>
+                <p className="body-sm text-secondary mb-0"><strong>Email:</strong> {selectedVendor.email || 'concierge@ovaimagination.com'}</p>
                 <p className="body-sm text-secondary mb-0"><strong>Phone:</strong> {selectedVendor.phone || '(555) 019-2834'}</p>
                 {selectedVendor.website && (
                   <p className="body-sm text-secondary mb-0">
@@ -286,35 +312,43 @@ export default function VendorsPage() {
                 </select>
               </div>
 
-              {selectedVendor.status === 'Booked' && (
-                <div className="form-group mb-4">
-                  <label className="form-label">Contract Amount ($)</label>
-                  <input 
-                    type="number" 
-                    value={selectedVendor.contractPrice || 0}
-                    onChange={(e) => updateVendor(selectedVendor.id, { contractPrice: Number(e.target.value) })}
-                    className="form-input"
-                    placeholder="Enter final pricing"
-                  />
-                  <p className="form-hint">
-                    Updating this pricing logs transaction entries and adjusts actual spent values in your **Budget**.
-                  </p>
-                </div>
-              )}
+              <div className="form-group mb-4">
+                <label className="form-label">Contract Amount ($)</label>
+                <input 
+                  type="number" 
+                  value={selectedVendor.contractPrice || 0}
+                  onChange={(e) => updateVendor(selectedVendor.id, { contractPrice: Number(e.target.value) })}
+                  className="form-input"
+                  placeholder="e.g. 8500"
+                />
+                <p className="form-hint">
+                  When marked as <strong>Booked</strong>, this contract value automatically syncs into your <strong>Budget</strong> contracted total.
+                </p>
+              </div>
 
               <div className="form-group">
-                <label className="form-label">Attached Styling Notes</label>
+                <label className="form-label">Concierge & Styling Notes</label>
                 <textarea 
                   value={selectedVendor.notes || ''}
                   onChange={(e) => updateVendor(selectedVendor.id, { notes: e.target.value })}
                   className="form-textarea"
+                  placeholder="Included items, deposit schedule, dietary notes..."
                 />
+              </div>
+
+              <div className="mt-4 pt-3 border-t">
+                <button 
+                  onClick={handleSendInquiry}
+                  className="btn btn-secondary w-full"
+                >
+                  📨 Send Direct Inquiry via Concierge
+                </button>
               </div>
             </div>
             <div className="modal-footer">
               <button 
                 type="button" 
-                onClick={() => handleRemoveVendor(selectedVendor.id)} 
+                onClick={() => handleRemoveVendor(selectedVendor.id, selectedVendor.name)} 
                 className="btn btn-danger btn-sm mr-auto"
               >
                 Delete Vendor
@@ -327,11 +361,11 @@ export default function VendorsPage() {
 
       {/* Add Custom Vendor Modal */}
       {addModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={() => setAddModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h3 className="text-gold font-heading">Add Custom Vendor</h3>
-              <button onClick={() => setAddModalOpen(false)} className="modal-close">×</button>
+              <button onClick={() => setAddModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <form onSubmit={handleAddSubmit}>
               <div className="modal-body">
@@ -340,7 +374,7 @@ export default function VendorsPage() {
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. Luminary Photography"
+                    placeholder="e.g. Luminary Cinema & Stills"
                     value={newVendor.name}
                     onChange={(e) => setNewVendor(prev => ({ ...prev, name: e.target.value }))}
                     className="form-input"
@@ -369,7 +403,7 @@ export default function VendorsPage() {
                       <option value="$">$ Budget-friendly</option>
                       <option value="$$">$$ Moderate</option>
                       <option value="$$$">$$$ Premium</option>
-                      <option value="$$$$">$$$$ Luxury</option>
+                      <option value="$$$$">$$$$ Luxury Bespoke</option>
                     </select>
                   </div>
                 </div>
@@ -378,7 +412,7 @@ export default function VendorsPage() {
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. Beverly Hills, CA"
+                    placeholder="e.g. Malibu, CA"
                     value={newVendor.location}
                     onChange={(e) => setNewVendor(prev => ({ ...prev, location: e.target.value }))}
                     className="form-input"
@@ -389,7 +423,7 @@ export default function VendorsPage() {
                     <label className="form-label">Primary Contact Person</label>
                     <input 
                       type="text" 
-                      placeholder="e.g. Sarah Connor"
+                      placeholder="e.g. Sarah Vance"
                       value={newVendor.contactName}
                       onChange={(e) => setNewVendor(prev => ({ ...prev, contactName: e.target.value }))}
                       className="form-input"
@@ -421,7 +455,7 @@ export default function VendorsPage() {
                     <label className="form-label">Website URL</label>
                     <input 
                       type="text" 
-                      placeholder="https://vendor.com"
+                      placeholder="https://example.com"
                       value={newVendor.website}
                       onChange={(e) => setNewVendor(prev => ({ ...prev, website: e.target.value }))}
                       className="form-input"
@@ -429,7 +463,7 @@ export default function VendorsPage() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Estimated Contract Price ($) (optional)</label>
+                  <label className="form-label">Contract / Quoted Price ($) (optional)</label>
                   <input 
                     type="number" 
                     placeholder="5000"
@@ -439,9 +473,9 @@ export default function VendorsPage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Private Styling Notes</label>
+                  <label className="form-label">Private Styling & Package Notes</label>
                   <textarea 
-                    placeholder="Pricing structures, wedding day details, package details..."
+                    placeholder="Pricing details, deliverables, equipment included..."
                     value={newVendor.notes}
                     onChange={(e) => setNewVendor(prev => ({ ...prev, notes: e.target.value }))}
                     className="form-textarea"
@@ -450,7 +484,7 @@ export default function VendorsPage() {
               </div>
               <div className="modal-footer">
                 <button type="button" onClick={() => setAddModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
-                <button type="submit" className="btn btn-primary btn-sm">Log Vendor</button>
+                <button type="submit" className="btn btn-primary btn-sm">Save Vendor</button>
               </div>
             </form>
           </div>
@@ -471,8 +505,8 @@ export default function VendorsPage() {
           margin: 0 auto;
         }
         .search-input {
-          background: rgba(26, 26, 46, 0.8);
-          border: 1px solid rgba(201, 169, 110, 0.2);
+          background: rgba(10, 25, 47, 0.8);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           border-radius: 12px;
           color: #f5f0e8;
           padding: 12px 16px;
@@ -480,7 +514,7 @@ export default function VendorsPage() {
           min-width: 280px;
         }
         .search-input:focus {
-          border-color: #c9a96e;
+          border-color: #D4AF37;
         }
         .vendors-grid {
           display: grid;
@@ -500,10 +534,10 @@ export default function VendorsPage() {
         .vendor-card {
           transition: all 0.3s ease;
         }
-        .vendor-card:hover {
+        .border-gold-hover:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(201, 169, 110, 0.12);
-          border-color: rgba(201, 169, 110, 0.3);
+          box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+          border-color: rgba(212, 175, 55, 0.4);
         }
         .heart-btn {
           background: none;
@@ -517,25 +551,20 @@ export default function VendorsPage() {
         }
         .rating-star {
           font-size: 0.85rem;
-          color: #f59e0b;
+          color: #F59E0B;
         }
         .border-t {
-          border-top: 1px solid rgba(201, 169, 110, 0.08);
+          border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
         .bg-secondary {
-          background: rgba(26, 26, 46, 0.5);
+          background: rgba(10, 25, 47, 0.6);
         }
         .border-divider {
-          border-color: rgba(201, 169, 110, 0.1);
+          border-color: rgba(212, 175, 55, 0.15);
         }
-        .inline-select {
-          background: rgba(13, 13, 26, 0.5);
-          border: 1px solid rgba(201, 169, 110, 0.15);
-          color: #f5f0e8;
-          padding: 6px 12px;
-          border-radius: 8px;
-          font-size: 0.85rem;
-          outline: none;
+        .tab.bg-gold {
+          background: #D4AF37;
+          color: #050D1A;
         }
         .grid-2 {
           display: grid;
@@ -554,6 +583,8 @@ export default function VendorsPage() {
         .mb-6 { margin-bottom: 24px; }
         .mb-8 { margin-bottom: 32px; }
         .mt-2 { margin-top: 8px; }
+        .mt-4 { margin-top: 16px; }
+        .pt-3 { padding-top: 12px; }
         .py-8 { padding-top: 32px; padding-bottom: 32px; }
         .p-4 { padding: 16px; }
         .p-5 { padding: 20px; }

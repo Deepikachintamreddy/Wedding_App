@@ -2,23 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useWeddingStore } from '@/lib/store';
 import { capitalize } from '@/lib/utils';
 
 export default function GuestListPage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, guests, loading, addGuest, updateGuest, deleteGuest } = store;
+  const { user, eventProfile, guests, loading, addGuest, updateGuest, deleteGuest } = store;
 
   const [searchQuery, setSearchQuery] = useState('');
   const [groupFilter, setGroupFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [modalOpen, setModalOpen] = useState(false);
+  const [csvModalOpen, setCsvModalOpen] = useState(false);
+  const [csvRawText, setCsvRawText] = useState('');
+  const [copiedId, setCopiedId] = useState(null);
+
   const [newGuest, setNewGuest] = useState({
     name: '',
     email: '',
     phone: '',
-    group: "Bride's Family",
+    group: "Partner A's Family",
     status: 'Pending',
     meal: 'Pending',
     table: 0,
@@ -34,11 +39,11 @@ export default function GuestListPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
@@ -55,14 +60,14 @@ export default function GuestListPage() {
   // Filter logic
   const filteredGuests = guests.filter(guest => {
     const matchesSearch = guest.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          guest.email.toLowerCase().includes(searchQuery.toLowerCase());
+                          (guest.email && guest.email.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesGroup = groupFilter === 'all' || guest.group === groupFilter;
     const matchesStatus = statusFilter === 'all' || guest.status === statusFilter;
     return matchesSearch && matchesGroup && matchesStatus;
   });
 
   const handleStatusChange = (id, newStatus) => {
-    const meal = newStatus === 'Declined' ? 'Declined' : (newStatus === 'Pending' ? 'Pending' : 'Beef');
+    const meal = newStatus === 'Declined' ? 'Declined' : (newStatus === 'Pending' ? 'Pending' : 'Prime Filet Mignon');
     updateGuest(id, { 
       status: newStatus, 
       rsvpReceived: newStatus !== 'Pending',
@@ -87,7 +92,7 @@ export default function GuestListPage() {
       name: '',
       email: '',
       phone: '',
-      group: "Bride's Family",
+      group: "Partner A's Family",
       status: 'Pending',
       meal: 'Pending',
       table: 0,
@@ -97,21 +102,64 @@ export default function GuestListPage() {
     setModalOpen(false);
   };
 
-  const handleDeleteGuest = (id) => {
-    if (confirm('Are you sure you want to remove this guest?')) {
+  const handleBatchCsvSubmit = (e) => {
+    e.preventDefault();
+    if (!csvRawText.trim()) return;
+
+    const lines = csvRawText.trim().split('\n');
+    let importedCount = 0;
+
+    lines.forEach((line) => {
+      const parts = line.split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+      if (parts.length >= 1 && parts[0] && parts[0].toLowerCase() !== 'name') {
+        const name = parts[0];
+        const group = parts[1] || 'Friends';
+        const email = parts[2] || '';
+        const plusOnes = parseInt(parts[3], 10) || 0;
+
+        addGuest({
+          name,
+          group,
+          email,
+          phone: '',
+          status: 'Pending',
+          meal: 'Pending',
+          table: 0,
+          plusOnes,
+          notes: 'Imported via CSV batch',
+        });
+        importedCount++;
+      }
+    });
+
+    setCsvRawText('');
+    setCsvModalOpen(false);
+    alert(`Successfully imported ${importedCount} guests into your Elysian workspace!`);
+  };
+
+  const handleDeleteGuest = (id, name) => {
+    if (confirm(`Are you sure you want to remove ${name} from your guest list?`)) {
       deleteGuest(id);
     }
+  };
+
+  const handleCopyRsvpLink = (guestId) => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const rsvpUrl = `${origin}/rsvp/${guestId}`;
+    navigator.clipboard.writeText(rsvpUrl);
+    setCopiedId(guestId);
+    setTimeout(() => setCopiedId(null), 2500);
   };
 
   const handleExport = () => {
     let csvContent = 'data:text/csv;charset=utf-8,Name,Group,Email,Phone,RSVP Status,Meal Preference,Table Number,Plus Ones,Notes\n';
     guests.forEach(g => {
-      csvContent += `"${g.name}","${g.group}","${g.email}","${g.phone}","${g.status}","${g.meal}",${g.table},${g.plusOnes || 0},"${g.notes || ''}"\n`;
+      csvContent += `"${g.name}","${g.group}","${g.email || ''}","${g.phone || ''}","${g.status}","${g.meal}",${g.table || 0},${g.plusOnes || 0},"${g.notes || ''}"\n`;
     });
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'wedding_guest_list.csv');
+    link.setAttribute('download', 'elysian_wedding_guest_list.csv');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -125,12 +173,22 @@ export default function GuestListPage() {
         {/* Header */}
         <div className="flex-between mb-6 flex-wrap gap-4">
           <div>
+            <div className="flex-start items-center gap-2 mb-1">
+              <span className="badge badge-gold">Elysian RSVP Suite</span>
+              <span className="badge badge-secondary">{eventProfile?.coupleNames || user.name}</span>
+            </div>
             <h1 className="h2 font-heading text-gold mb-1">Guest List & RSVPs</h1>
             <p className="body-sm text-secondary">
-              Manage invitations, table seating, and dinner menus. Setup managed by **OVAimagination Events**.
+              Real-time attendance tracking, dietary requirements, and digital RSVP link generation.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
+            <button 
+              onClick={() => setCsvModalOpen(true)}
+              className="btn btn-secondary animate-hover"
+            >
+              📥 Import CSV
+            </button>
             <button 
               onClick={handleExport}
               className="btn btn-secondary animate-hover"
@@ -153,12 +211,12 @@ export default function GuestListPage() {
             <span className="stat-number text-gold font-heading">{totalCount} <span className="text-xs font-body text-secondary">guests</span></span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Confirmed attending</span>
+            <span className="overline text-muted mb-1">Confirmed Attending</span>
             <span className="stat-number text-success font-heading">{attendingCount} <span className="text-xs font-body text-secondary">+{totalPlusOnes} plus-ones</span></span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Total Seats Booked</span>
-            <span className="stat-number text-gold font-heading">{totalSeats} <span className="text-xs font-body text-secondary">chairs</span></span>
+            <span className="overline text-muted mb-1">Total Plated Seats</span>
+            <span className="stat-number text-gold font-heading">{totalSeats} <span className="text-xs font-body text-secondary">seats</span></span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
             <span className="overline text-muted mb-1">Pending Responses</span>
@@ -174,6 +232,7 @@ export default function GuestListPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input flex-1"
+            aria-label="Search guests"
           />
           <div className="flex gap-3 flex-wrap">
             <select 
@@ -181,23 +240,26 @@ export default function GuestListPage() {
               onChange={(e) => setGroupFilter(e.target.value)}
               className="form-select flex-shrink-0"
               style={{ width: '180px' }}
+              aria-label="Filter by guest group"
             >
               <option value="all">📁 All Groups</option>
-              <option value="Bride's Family">Bride's Family</option>
-              <option value="Groom's Family">Groom's Family</option>
-              <option value="Friends">Friends</option>
-              <option value="Coworkers">Coworkers</option>
+              <option value="Partner A's Family">Partner A's Family</option>
+              <option value="Partner B's Family">Partner B's Family</option>
+              <option value="Wedding Party">Wedding Party</option>
+              <option value="Mutual Friends">Mutual Friends</option>
+              <option value="Colleagues">Colleagues</option>
             </select>
             <select 
               value={statusFilter} 
               onChange={(e) => setStatusFilter(e.target.value)}
               className="form-select flex-shrink-0"
               style={{ width: '180px' }}
+              aria-label="Filter by RSVP status"
             >
               <option value="all">🗳️ All RSVPs</option>
-              <option value="Attending">Attending</option>
-              <option value="Pending">Pending</option>
-              <option value="Declined">Declined</option>
+              <option value="Attending">✓ Attending</option>
+              <option value="Pending">⏰ Pending</option>
+              <option value="Declined">× Declined</option>
             </select>
           </div>
         </div>
@@ -210,10 +272,11 @@ export default function GuestListPage() {
                 <th>Guest Name</th>
                 <th>Group</th>
                 <th>RSVP Status</th>
-                <th>Meal Choice</th>
+                <th>Meal Selection</th>
                 <th>Table</th>
                 <th>Plus-ones</th>
-                <th>Action</th>
+                <th>Direct RSVP Link</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -222,7 +285,7 @@ export default function GuestListPage() {
                   <tr key={guest.id} className="table-row-item border-b">
                     <td className="font-bold text-primary">
                       {guest.name}
-                      <span className="text-xs text-muted block font-normal">{guest.email || 'No email'}</span>
+                      <span className="text-xs text-muted block font-normal">{guest.email || 'No email provided'}</span>
                     </td>
                     <td>
                       <span className="badge badge-secondary">{guest.group}</span>
@@ -235,6 +298,7 @@ export default function GuestListPage() {
                           guest.status === 'Attending' ? 'select-success' : 
                           guest.status === 'Pending' ? 'select-warning' : 'select-danger'
                         }`}
+                        aria-label={`RSVP Status for ${guest.name}`}
                       >
                         <option value="Attending">✓ Attending</option>
                         <option value="Pending">⏰ Pending</option>
@@ -247,13 +311,13 @@ export default function GuestListPage() {
                           value={guest.meal} 
                           onChange={(e) => handleMealChange(guest.id, e.target.value)}
                           className="inline-select"
+                          aria-label={`Meal choice for ${guest.name}`}
                         >
-                          <option value="Beef">🥩 Beef</option>
-                          <option value="Chicken">🐔 Chicken</option>
-                          <option value="Fish">🐟 Fish</option>
-                          <option value="Vegetarian">🥗 Vegetarian</option>
-                          <option value="Child">👶 Child</option>
-                          <option value="Pending">Pending Choice</option>
+                          <option value="Prime Filet Mignon">🥩 Prime Filet Mignon</option>
+                          <option value="Herb-Crusted Sea Bass">🐟 Herb-Crusted Sea Bass</option>
+                          <option value="Truffle Wild Mushroom Risotto">🥗 Truffle Risotto (V)</option>
+                          <option value="Child Plate">👶 Child Portion</option>
+                          <option value="Pending">Pending Selection</option>
                         </select>
                       ) : (
                         <span className="text-xs text-muted italic">—</span>
@@ -265,9 +329,10 @@ export default function GuestListPage() {
                           type="number" 
                           min="0"
                           max="50"
-                          value={guest.table} 
+                          value={guest.table || 0} 
                           onChange={(e) => handleTableChange(guest.id, e.target.value)}
                           className="table-number-input"
+                          aria-label={`Table assignment for ${guest.name}`}
                         />
                       ) : (
                         <span className="text-xs text-muted italic">—</span>
@@ -279,6 +344,7 @@ export default function GuestListPage() {
                           <button 
                             onClick={() => updateGuest(guest.id, { plusOnes: Math.max(0, (guest.plusOnes || 0) - 1) })}
                             className="plus-minus-btn"
+                            aria-label={`Decrease plus ones for ${guest.name}`}
                           >
                             -
                           </button>
@@ -286,6 +352,7 @@ export default function GuestListPage() {
                           <button 
                             onClick={() => updateGuest(guest.id, { plusOnes: (guest.plusOnes || 0) + 1 })}
                             className="plus-minus-btn"
+                            aria-label={`Increase plus ones for ${guest.name}`}
                           >
                             +
                           </button>
@@ -296,8 +363,20 @@ export default function GuestListPage() {
                     </td>
                     <td>
                       <button 
-                        onClick={() => handleDeleteGuest(guest.id)}
+                        onClick={() => handleCopyRsvpLink(guest.id)}
+                        className={`btn btn-sm ${copiedId === guest.id ? 'btn-success' : 'btn-outline'}`}
+                        aria-label={`Copy personal RSVP link for ${guest.name}`}
+                        title="Copy direct guest link"
+                      >
+                        {copiedId === guest.id ? '✓ Copied' : '🔗 Copy Link'}
+                      </button>
+                    </td>
+                    <td>
+                      <button 
+                        onClick={() => handleDeleteGuest(guest.id, guest.name)}
                         className="btn btn-ghost btn-sm text-danger"
+                        aria-label={`Delete ${guest.name}`}
+                        title={`Delete ${guest.name}`}
                       >
                         🗑️
                       </button>
@@ -306,7 +385,7 @@ export default function GuestListPage() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="text-center py-8">
+                  <td colSpan="8" className="text-center py-8">
                     <span style={{ fontSize: '2rem' }}>👥</span>
                     <p className="body-sm text-secondary mt-2">No guests found matching search filters.</p>
                   </td>
@@ -317,13 +396,13 @@ export default function GuestListPage() {
         </div>
       </div>
 
-      {/* Add Guest Modal */}
+      {/* Add Single Guest Modal */}
       {modalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 className="text-gold font-heading">Add Guest Entry</h3>
-              <button onClick={() => setModalOpen(false)} className="modal-close">×</button>
+              <h3 className="text-gold font-heading">Add Guest to Suite</h3>
+              <button onClick={() => setModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <form onSubmit={handleGuestSubmit}>
               <div className="modal-body">
@@ -332,7 +411,7 @@ export default function GuestListPage() {
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. John Doe"
+                    placeholder="e.g. Lord Eleanor Johnson"
                     value={newGuest.name}
                     onChange={(e) => setNewGuest(prev => ({ ...prev, name: e.target.value }))}
                     className="form-input"
@@ -343,7 +422,7 @@ export default function GuestListPage() {
                     <label className="form-label">Email Address</label>
                     <input 
                       type="email" 
-                      placeholder="e.g. john@doe.com"
+                      placeholder="e.g. eleanor@example.com"
                       value={newGuest.email}
                       onChange={(e) => setNewGuest(prev => ({ ...prev, email: e.target.value }))}
                       className="form-input"
@@ -368,21 +447,22 @@ export default function GuestListPage() {
                       onChange={(e) => setNewGuest(prev => ({ ...prev, group: e.target.value }))}
                       className="form-select"
                     >
-                      <option value="Bride's Family">Bride's Family</option>
-                      <option value="Groom's Family">Groom's Family</option>
-                      <option value="Friends">Friends</option>
-                      <option value="Coworkers">Coworkers</option>
+                      <option value="Partner A's Family">Partner A's Family</option>
+                      <option value="Partner B's Family">Partner B's Family</option>
+                      <option value="Wedding Party">Wedding Party</option>
+                      <option value="Mutual Friends">Mutual Friends</option>
+                      <option value="Colleagues">Colleagues</option>
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="form-label">RSVP Status</label>
+                    <label className="form-label">Initial RSVP Status</label>
                     <select 
                       value={newGuest.status}
                       onChange={(e) => setNewGuest(prev => ({ ...prev, status: e.target.value }))}
                       className="form-select"
                     >
                       <option value="Pending">⏰ Pending Response</option>
-                      <option value="Attending">✓ Attending</option>
+                      <option value="Attending">✓ Confirmed Attending</option>
                       <option value="Declined">× Declined</option>
                     </select>
                   </div>
@@ -412,9 +492,9 @@ export default function GuestListPage() {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Notes & Diet Restrictions</label>
+                  <label className="form-label">Dietary & Accessibility Notes</label>
                   <textarea 
-                    placeholder="Vegan diet, wheelchair accessibility, etc..."
+                    placeholder="Gluten-free, vegan, ramp access required, etc..."
                     value={newGuest.notes}
                     onChange={(e) => setNewGuest(prev => ({ ...prev, notes: e.target.value }))}
                     className="form-textarea"
@@ -423,7 +503,40 @@ export default function GuestListPage() {
               </div>
               <div className="modal-footer">
                 <button type="button" onClick={() => setModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
-                <button type="submit" className="btn btn-primary btn-sm">Insert Guest</button>
+                <button type="submit" className="btn btn-primary btn-sm">Save Guest</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* CSV Batch Import Modal */}
+      {csvModalOpen && (
+        <div className="modal-overlay" onClick={() => setCsvModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="text-gold font-heading">Batch CSV Import</h3>
+              <button onClick={() => setCsvModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
+            </div>
+            <form onSubmit={handleBatchCsvSubmit}>
+              <div className="modal-body">
+                <p className="body-sm text-secondary mb-3">
+                  Paste comma-separated rows in the following format: <br/>
+                  <code style={{ color: '#D4AF37' }}>Name, Group, Email, PlusOnes</code>
+                </p>
+                <textarea 
+                  required
+                  rows={8}
+                  placeholder={`Eleanor Vance, Partner A's Family, eleanor@example.com, 1\nLiam Thorne, Mutual Friends, liam@example.com, 0\nSophia Chen, Wedding Party, sophia@example.com, 1`}
+                  value={csvRawText}
+                  onChange={(e) => setCsvRawText(e.target.value)}
+                  className="form-textarea w-full"
+                  style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+                />
+              </div>
+              <div className="modal-footer">
+                <button type="button" onClick={() => setCsvModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
+                <button type="submit" className="btn btn-primary btn-sm">Import All Rows</button>
               </div>
             </form>
           </div>
@@ -463,8 +576,8 @@ export default function GuestListPage() {
           display: block;
         }
         .search-input {
-          background: rgba(26, 26, 46, 0.8);
-          border: 1px solid rgba(201, 169, 110, 0.2);
+          background: rgba(10, 25, 47, 0.8);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           border-radius: 12px;
           color: #f5f0e8;
           padding: 12px 16px;
@@ -472,7 +585,7 @@ export default function GuestListPage() {
           min-width: 280px;
         }
         .search-input:focus {
-          border-color: #c9a96e;
+          border-color: #D4AF37;
         }
         .guest-table {
           border-collapse: collapse;
@@ -481,7 +594,7 @@ export default function GuestListPage() {
         .guest-table th {
           padding: 16px;
           font-size: 0.85rem;
-          color: #a0937d;
+          color: #D4AF37;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -498,11 +611,11 @@ export default function GuestListPage() {
           background: rgba(255, 255, 255, 0.02);
         }
         .border-b {
-          border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+          border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         .inline-select {
-          background: rgba(13, 13, 26, 0.5);
-          border: 1px solid rgba(201, 169, 110, 0.15);
+          background: rgba(10, 25, 47, 0.6);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           color: #f5f0e8;
           padding: 6px 12px;
           border-radius: 8px;
@@ -511,23 +624,23 @@ export default function GuestListPage() {
           cursor: pointer;
         }
         .select-success {
-          border-color: #4ade80;
-          color: #4ade80;
-          background: rgba(74, 222, 128, 0.05);
+          border-color: #10B981;
+          color: #10B981;
+          background: rgba(16, 185, 129, 0.1);
         }
         .select-warning {
-          border-color: #f59e0b;
-          color: #f59e0b;
-          background: rgba(245, 158, 11, 0.05);
+          border-color: #F59E0B;
+          color: #F59E0B;
+          background: rgba(245, 158, 11, 0.1);
         }
         .select-danger {
-          border-color: #ef4444;
-          color: #ef4444;
-          background: rgba(239, 68, 68, 0.05);
+          border-color: #EF4444;
+          color: #EF4444;
+          background: rgba(239, 68, 68, 0.1);
         }
         .table-number-input {
-          background: rgba(13, 13, 26, 0.5);
-          border: 1px solid rgba(201, 169, 110, 0.15);
+          background: rgba(10, 25, 47, 0.6);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           color: #f5f0e8;
           width: 60px;
           padding: 6px 8px;
@@ -539,7 +652,7 @@ export default function GuestListPage() {
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          border: 1px solid rgba(201, 169, 110, 0.2);
+          border: 1px solid rgba(212, 175, 55, 0.3);
           background: rgba(255, 255, 255, 0.05);
           cursor: pointer;
           color: #f5f0e8;
@@ -550,8 +663,8 @@ export default function GuestListPage() {
           transition: all 0.3s ease;
         }
         .plus-minus-btn:hover {
-          background: rgba(201, 169, 110, 0.15);
-          border-color: #c9a96e;
+          background: rgba(212, 175, 55, 0.2);
+          border-color: #D4AF37;
         }
         .grid-2 {
           display: grid;
@@ -567,6 +680,10 @@ export default function GuestListPage() {
         .p-4 { padding: 16px; }
         .mt-2 { margin-top: 8px; }
         .mt-1 { margin-top: 4px; }
+        .mb-1 { margin-bottom: 4px; }
+        .mb-3 { margin-bottom: 12px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-8 { margin-bottom: 32px; }
         .flex-col { display: flex; flex-direction: column; }
         .flex-between { display: flex; align-items: center; justify-content: space-between; }
         .flex-start { display: flex; align-items: center; justify-content: flex-start; }

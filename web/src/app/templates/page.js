@@ -250,7 +250,13 @@ export default function TemplatesPage() {
   }, [customText.date]);
 
   const handleSelectTemplate = (template) => {
-    alert(`Great choice! Template "${template.name}" has been chosen. You will proceed to payment for ${template.priceLabel} upon publishing.`);
+    if (template.price === 0) {
+      alert(`The "${template.name}" template is active! You can share your live RSVP link with guests at /rsvp/public.`);
+    } else if (user?.eventPassActive) {
+      alert(`The "${template.name}" template is active with your Elysian Event Pass!`);
+    } else {
+      alert(`Template "${template.name}" selected. Activate the Event Pass ($99) to publish with custom domain and full concierge support.`);
+    }
   };
 
   const getDynamicTemplateName = (id, eventType) => {
@@ -282,7 +288,7 @@ export default function TemplatesPage() {
       if (eventType === 'savethedate') return 'The Imperial Save The Date';
       return 'The Obsidian Executive';
     }
-    return 'VND Style';
+    return 'Elysian Style';
   };
 
   const getDynamicPrice = (id, mode) => {
@@ -608,7 +614,7 @@ export default function TemplatesPage() {
                     onClick={() => handleSelectTemplate(tpl)}
                     className={styles.btnPrimary}
                   >
-                    Buy & Customize
+                    {tpl.price === 0 ? 'Use This Template' : (user?.eventPassActive ? 'Use With Event Pass' : 'Select Template')}
                   </button>
                 </div>
               </div>
@@ -1686,6 +1692,19 @@ export default function TemplatesPage() {
                             onSubmit={(e) => {
                               e.preventDefault();
                               setRsvpSuccess(true);
+                              if (rsvpForm.name) {
+                                store.addGuest({
+                                  name: rsvpForm.name,
+                                  group: 'Digital RSVPs',
+                                  email: '',
+                                  phone: '',
+                                  status: rsvpForm.attending === 'yes' ? 'Attending' : 'Declined',
+                                  meal: rsvpForm.meal || 'Prime Filet Mignon',
+                                  table: 0,
+                                  plusOnes: Math.max(0, parseInt(rsvpForm.count || '1', 10) - 1),
+                                  notes: rsvpForm.songRequest ? `Song request: ${rsvpForm.songRequest}` : 'Submitted via Elysian Digital RSVP Suite'
+                                });
+                              }
                               setRsvpFeed(prev => [...prev, {
                                 name: rsvpForm.name || 'Anonymous Guest',
                                 attending: rsvpForm.attending,

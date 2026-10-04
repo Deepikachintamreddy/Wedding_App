@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
+import Monogram from '@/components/Monogram';
 
 const INITIAL_INQUIRIES = [
-  { id: 'inq1', coupleNames: 'Vanessa & Noah', date: '2026-05-25', message: 'Hello! We love your photography style. Do you have availability for July 15th, 2027 in Malibu, CA? We have a budget of $3,800 allocated.', status: 'Unread' },
-  { id: 'inq2', coupleNames: 'Emma & John', date: '2026-05-24', message: 'Hi, can you send over your detailed pricing sheet and a sample full wedding gallery?', status: 'Replied' },
+  { id: 'inq1', coupleNames: 'Eleanor Vance & Liam Thorne', date: '2026-05-25', message: 'Hello! We love your editorial style. Are you available for July 15th, 2027 in Malibu, CA? We have a contracted budget allocation of $5,500.', status: 'Unread' },
+  { id: 'inq2', coupleNames: 'Sophia Chen & Julian Rossi', date: '2026-05-24', message: 'Hi! Could you share your complete destination wedding brochure and dual-camera coverage options?', status: 'Replied' },
 ];
 
 export default function VendorPortalPage() {
@@ -15,25 +16,25 @@ export default function VendorPortalPage() {
   const { user, loading } = store;
 
   const [inquiries, setInquiries] = useState(INITIAL_INQUIRIES);
-  const [activeTab, setActiveTab] = useState('inquiries'); // inquiries, profile, billing
+  const [activeTab, setActiveTab] = useState('inquiries');
   const [activeBusinessIndex, setActiveBusinessIndex] = useState(0);
 
   const [profileData, setProfileData] = useState({
-    businessName: 'Golden Hour Studios',
-    contactPerson: 'Chloe Bennett',
-    email: 'chloe@goldenhourstudios.com',
+    businessName: 'Luminary Photography & Cinema',
+    contactPerson: 'Marcus Sterling',
+    email: 'marcus@luminary.example.com',
     phone: '(555) 018-7241',
-    location: 'Pasadena, CA',
-    website: 'https://goldenhourstudios.com',
-    priceRange: '$$$',
-    basePrice: 3800,
-    services: 'Wedding photography, engagement sessions, custom albums, dual photographers.',
-    bio: 'Golden Hour Studios specializes in natural light wedding photojournalism. We capture raw, authentic emotions and beautiful golden light portraits that tell your unique love story for generations.',
+    location: 'Malibu, CA',
+    website: 'https://luminarycinema.example.com',
+    priceRange: '$$$$',
+    basePrice: 5500,
+    services: 'Fine art wedding photography, drone cinematography, archival linen albums.',
+    bio: 'Luminary Photography & Cinema captures authentic, timeless moments using natural light and editorial film compositions. Verified partner of OVAimagination Events.',
   });
   
   const [isFeatured, setIsFeatured] = useState(false);
 
-  // Sync profile details when switching businesses or when user loads
+  // Sync profile details
   useEffect(() => {
     if (!loading && (!user || user.role !== 'vendor')) {
       router.push('/auth');
@@ -61,11 +62,11 @@ export default function VendorPortalPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
@@ -90,14 +91,14 @@ export default function VendorPortalPage() {
       });
     }
 
-    alert('Directory details updated and saved successfully! These updates will be displayed on couples directories.');
+    alert('Partner listing updated and synchronized across all Elysian couple directories!');
   };
 
-  const handleInquiryReply = (id, coupleName) => {
-    const replyText = prompt(`Type your message reply to ${coupleName}:`);
+  const handleInquiryReply = (id, coupleNames) => {
+    const replyText = prompt(`Compose message reply to ${coupleNames}:`);
     if (replyText) {
       setInquiries(prev => prev.map(inq => inq.id === id ? { ...inq, status: 'Replied' } : inq));
-      alert(`Message successfully sent to ${coupleName}! We will notify you when they respond.`);
+      alert(`Message successfully delivered to ${coupleNames}! A notification was sent to their Elysian Concierge inbox.`);
     }
   };
 
@@ -115,16 +116,19 @@ export default function VendorPortalPage() {
 
       <div className="container py-8 max-w-6xl">
         {/* Header */}
-        <div className="vendor-header mb-8 flex-between items-end">
+        <div className="vendor-header mb-8 flex-between items-end flex-wrap gap-4">
           <div>
-            <span className="badge badge-gold mb-2">PARTNER SUITE</span>
-            <h1 className="h2 font-heading text-gold mb-1">{profileData.businessName} Portal</h1>
+            <div className="flex-start items-center gap-2 mb-2">
+              <Monogram size={30} variant="gold" />
+              <span className="badge badge-gold">VERIFIED PARTNER PORTAL</span>
+            </div>
+            <h1 className="h2 font-heading text-gold mb-1">{profileData.businessName}</h1>
             <p className="body-sm text-secondary">
-              Manage incoming couple inquiries, analyze profile conversions, and update services directory.
+              Review couple inquiries, update pricing packages, and manage Elysian Concierge directory presence.
             </p>
           </div>
 
-          {/* Business Selector (visible if vendor has multiple businesses) */}
+          {/* Business Selector (if multi-business vendor) */}
           {hasMultipleBiz && (
             <div className="business-selector-box flex-col gap-1">
               <label className="text-xs text-muted" style={{ fontWeight: 600 }}>Active Business Profile:</label>
@@ -132,6 +136,7 @@ export default function VendorPortalPage() {
                 value={activeBusinessIndex}
                 onChange={(e) => setActiveBusinessIndex(Number(e.target.value))}
                 className="biz-dropdown"
+                aria-label="Switch active business profile"
               >
                 {user.businesses.map((biz, idx) => (
                   <option key={idx} value={idx}>
@@ -146,26 +151,26 @@ export default function VendorPortalPage() {
         {/* Analytics Grid */}
         <div className="stats-grid mb-8">
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Monthly Profile Views</span>
+            <span className="overline text-muted mb-1">Monthly Profile Impressions</span>
             <span className="stat-number text-gold font-heading">
-              {activeBusinessIndex === 0 ? '342' : activeBusinessIndex === 1 ? '194' : '88'} <span className="text-xs text-secondary font-body">views</span>
+              {activeBusinessIndex === 0 ? '482' : '210'} <span className="text-xs text-secondary font-body">views</span>
             </span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Total Bookings</span>
+            <span className="overline text-muted mb-1">Direct Contract Bookings</span>
             <span className="stat-number text-success font-heading">
-              {activeBusinessIndex === 0 ? '12' : activeBusinessIndex === 1 ? '4' : '2'} <span className="text-xs text-secondary font-body">booked</span>
+              {activeBusinessIndex === 0 ? '16' : '6'} <span className="text-xs text-secondary font-body">booked</span>
             </span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Conversion Rate</span>
+            <span className="overline text-muted mb-1">Directory Conversion</span>
             <span className="stat-number text-gold font-heading">
-              {activeBusinessIndex === 0 ? '8.4%' : activeBusinessIndex === 1 ? '5.2%' : '4.0%'} <span className="text-xs text-secondary font-body">high</span>
+              9.2% <span className="text-xs text-secondary font-body">high</span>
             </span>
           </div>
           <div className="card glass-panel p-5 text-center flex-col justify-center">
-            <span className="overline text-muted mb-1">Inquiry Reply Time</span>
-            <span className="stat-number text-gold font-heading">&lt; 3h <span className="text-xs text-secondary font-body">fast</span></span>
+            <span className="overline text-muted mb-1">Average Response Speed</span>
+            <span className="stat-number text-gold font-heading">&lt; 2h <span className="text-xs text-secondary font-body">fast</span></span>
           </div>
         </div>
 
@@ -174,7 +179,7 @@ export default function VendorPortalPage() {
           {[
             { id: 'inquiries', label: `📥 Inquiries (${inquiries.filter(i => i.status === 'Unread').length})` },
             { id: 'profile', label: '💼 Directory Profile' },
-            { id: 'billing', label: '💰 Featured Listings' }
+            { id: 'billing', label: '⭐ Featured Sponsor Listing' }
           ].map(tab => (
             <button
               key={tab.id}
@@ -209,12 +214,12 @@ export default function VendorPortalPage() {
                     </p>
                   </div>
                   
-                  <div className="flex-col gap-2 flex-shrink-0" style={{ width: '120px' }}>
+                  <div className="flex-col gap-2 flex-shrink-0" style={{ width: '130px' }}>
                     <button 
                       onClick={() => handleInquiryReply(inq.id, inq.coupleNames)}
                       className="btn btn-primary btn-sm w-full text-center"
                     >
-                      Reply
+                      Reply to Couple
                     </button>
                     <button 
                       onClick={() => handleDismissInquiry(inq.id)}
@@ -235,8 +240,8 @@ export default function VendorPortalPage() {
         )}
 
         {activeTab === 'profile' && (
-          <div className="card glass-panel p-6">
-            <h2 className="h4 font-heading text-gold mb-6">Directory Information for {profileData.businessName}</h2>
+          <div className="card glass-panel p-6 border-gold">
+            <h2 className="h4 font-heading text-gold mb-6">Directory Profile: {profileData.businessName}</h2>
             <form onSubmit={handleProfileSave} className="flex-col gap-4">
               <div className="grid grid-2 gap-4">
                 <div className="form-group">
@@ -249,7 +254,7 @@ export default function VendorPortalPage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Contact Full Name</label>
+                  <label className="form-label">Primary Contact Person</label>
                   <input 
                     type="text" 
                     value={profileData.contactPerson}
@@ -260,7 +265,7 @@ export default function VendorPortalPage() {
               </div>
               <div className="grid grid-2 gap-4">
                 <div className="form-group">
-                  <label className="form-label">Studio Location</label>
+                  <label className="form-label">Studio Location / Region</label>
                   <input 
                     type="text" 
                     value={profileData.location}
@@ -269,7 +274,7 @@ export default function VendorPortalPage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Website URL</label>
+                  <label className="form-label">Official Website URL</label>
                   <input 
                     type="text" 
                     value={profileData.website}
@@ -290,7 +295,7 @@ export default function VendorPortalPage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Starting Price ($)</label>
+                  <label className="form-label">Starting Package Price ($)</label>
                   <input 
                     type="number" 
                     value={profileData.basePrice}
@@ -300,7 +305,7 @@ export default function VendorPortalPage() {
                 </div>
               </div>
               <div className="form-group">
-                <label className="form-label">Business Bio Description & Notes</label>
+                <label className="form-label">Business Bio & Service Description</label>
                 <textarea 
                   value={profileData.bio}
                   onChange={(e) => setProfileData(prev => ({ ...prev, bio: e.target.value }))}
@@ -309,40 +314,40 @@ export default function VendorPortalPage() {
                 />
               </div>
               <div className="flex justify-end mt-4">
-                <button type="submit" className="btn btn-primary">Save Changes</button>
+                <button type="submit" className="btn btn-primary">Save Profile Changes</button>
               </div>
             </form>
           </div>
         )}
 
         {activeTab === 'billing' && (
-          <div className="card glass-panel p-6 flex-col">
-            <h2 className="h4 font-heading text-gold mb-4">Promote Your Studio Listing</h2>
+          <div className="card glass-panel p-6 flex-col border-gold">
+            <h2 className="h4 font-heading text-gold mb-2">Elysian Vetted Partner Sponsorship</h2>
             <p className="body-sm text-secondary mb-6">
-              Upgrade your directory visibility. Sponsored cards get featured first in couples searches, leading to **5x higher inquiry rates**.
+              Boost your directory ranking. Featured partners appear prominently in couple search results and AI Concierge recommendations.
             </p>
 
             <div className="featured-pricing-grid flex-col gap-6">
-              <div className="featured-tier card glass-panel p-6 flex-between items-center bg-gold-tint">
+              <div className="featured-tier card glass-panel p-6 flex-between items-center bg-gold-tint border-gold">
                 <div className="tier-info">
-                  <span className="badge badge-gold mb-2">HOT SELLER</span>
-                  <h3 className="h5 font-heading text-gold mb-1">VND Vetted Sponsor Program ({profileData.businessName})</h3>
+                  <span className="badge badge-gold mb-2">EXCLUSIVE PLACEMENT</span>
+                  <h3 className="h5 font-heading text-gold mb-1">Elysian Verified Sponsor ({profileData.businessName})</h3>
                   <p className="text-xs text-secondary mb-0">
-                    Get pinned on page 1 of your category directory, get verified badges, and direct AI matcher referrals.
+                    Guaranteed top-row positioning, gold badge indicator, and direct referrals from OVAimagination Events planners.
                   </p>
                 </div>
                 <div className="flex-col items-center flex-shrink-0" style={{ gap: '10px' }}>
                   <span className="price-label text-gold font-heading" style={{ fontSize: '1.8rem' }}>
-                    {isFeatured ? '$49 / mo' : '$49 / mo'}
+                    $49 / mo
                   </span>
                   <button 
                     onClick={() => {
                       setIsFeatured(!isFeatured);
-                      alert(isFeatured ? "Featured plan deactivated." : "Thank you! Your business is now a Featured VND Vetted Sponsor!");
+                      alert(isFeatured ? "Featured sponsor plan paused." : "Thank you! Your business is now an active Elysian Verified Sponsor!");
                     }} 
                     className="btn btn-primary btn-sm"
                   >
-                    {isFeatured ? '✓ Active Sponsor' : 'Activate Plan'}
+                    {isFeatured ? '✓ Active Sponsor' : 'Activate Sponsorship'}
                   </button>
                 </div>
               </div>
@@ -364,6 +369,9 @@ export default function VendorPortalPage() {
           max-width: 76rem;
           margin: 0 auto;
         }
+        .border-gold {
+          border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        }
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -380,18 +388,18 @@ export default function VendorPortalPage() {
           }
         }
         .stat-number {
-          font-size: 2rem;
+          font-size: 1.8rem;
           display: block;
         }
         .bg-secondary {
-          background: rgba(26, 26, 46, 0.6);
+          background: rgba(10, 25, 47, 0.6);
         }
         .border-divider {
-          border-color: rgba(201, 169, 110, 0.1);
+          border-color: rgba(212, 175, 55, 0.15);
         }
         .tab.bg-gold {
-          background: #c9a96e;
-          color: #0d0d1a;
+          background: #D4AF37;
+          color: #050D1A;
         }
         .grid-2 {
           display: grid;
@@ -403,13 +411,13 @@ export default function VendorPortalPage() {
           }
         }
         .bg-gold-tint {
-          background: radial-gradient(circle at 10% 10%, rgba(201, 169, 110, 0.12) 0%, transparent 60%);
+          background: radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 60%);
         }
         .biz-dropdown {
           padding: 8px 14px;
-          background: #0d0d1a;
+          background: #0A192F;
           color: #f5f0e8;
-          border: 1px solid rgba(201, 169, 110, 0.25);
+          border: 1px solid rgba(212, 175, 55, 0.3);
           border-radius: 8px;
           outline: none;
           font-family: inherit;
@@ -417,12 +425,11 @@ export default function VendorPortalPage() {
           cursor: pointer;
         }
         .biz-dropdown:focus {
-          border-color: #c9a96e;
+          border-color: #D4AF37;
         }
         .mb-0 { margin-bottom: 0; }
         .mb-1 { margin-bottom: 4px; }
         .mb-2 { margin-bottom: 8px; }
-        .mb-4 { margin-bottom: 16px; }
         .mb-6 { margin-bottom: 24px; }
         .mb-8 { margin-bottom: 32px; }
         .mt-4 { margin-top: 16px; }

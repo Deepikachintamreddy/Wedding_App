@@ -6,37 +6,37 @@ import { useWeddingStore } from '@/lib/store';
 import styles from './page.module.css';
 
 const INITIAL_PINS = [
-  { id: 'pin_1', image: '/wedding_couple_bg.png', title: 'Elegant Couple Session', category: 'Attire', likes: 12, description: 'Classic silhouette style with neutral champagne tones.' },
-  { id: 'pin_2', image: '/wedding_venue_bg.png', title: 'Malibu Sunset Arch', category: 'Venue', likes: 8, description: 'Soft, airy drapery under an arched wooden arbor by the ocean.' },
-  { id: 'pin_3', image: '/wedding_table_bg.png', title: 'Gilded Dining Reception', category: 'Decor', likes: 15, description: 'Black slate tablecloths with champagne gold plates and warm candlelight.' },
-  { id: 'pin_4', image: '/wedding_rings_bg.png', title: 'Vintage Diamond Bands', category: 'Details', likes: 6, description: 'Art-deco gold rings nested on black velvet cushions.' },
-  { id: 'pin_5', image: '/couple2.png', title: 'Modern Editorial Portraits', category: 'Photography', likes: 18, description: 'Vogue-style closeups focusing on shadows and high contrast textures.' },
-  { id: 'pin_6', image: '/couple3.png', title: 'Romantic Coastal Walk', category: 'Aesthetic', likes: 9, description: 'Warm sand beneath a flowing ivory bridal gown.' }
+  { id: 'pin_1', image: '/wedding_couple_bg.png', title: 'Editorial Couple Portrait', category: 'Attire', likes: 14, description: 'Classic bespoke black-tie silhouette with champagne gold accents.' },
+  { id: 'pin_2', image: '/wedding_venue_bg.png', title: 'Malibu Ocean Terrace Arch', category: 'Venue', likes: 11, description: 'Bespoke floral arbor framing the Pacific sunset.' },
+  { id: 'pin_3', image: '/wedding_table_bg.png', title: 'Gilded Dining Tablescape', category: 'Decor', likes: 19, description: 'Navy linens with brushed gold chargers, crystal glassware, and ivory florals.' },
+  { id: 'pin_4', image: '/wedding_rings_bg.png', title: 'Heirloom Diamond Bands', category: 'Details', likes: 8, description: 'Art-deco emerald-cut solitaires on plush velvet cushions.' },
+  { id: 'pin_5', image: '/couple2.png', title: 'High-Fashion Magazine Stills', category: 'Photography', likes: 22, description: 'Editorial black-and-white portraiture curated by OVAimagination Events.' },
+  { id: 'pin_6', image: '/couple3.png', title: 'Sunset Coastal Walk', category: 'Aesthetic', likes: 12, description: 'Warm shoreline glow illuminating custom couture ivory bridal silk.' }
 ];
 
 const PRESETS = [
   {
-    id: 'gold',
-    name: 'Champagne Gold',
-    swatches: ['#020208', '#0d0d1a', '#c9a96e', '#a88b4a', '#f3e5ab'],
+    id: 'navy_gold',
+    name: 'Elysian Navy & Gold',
+    swatches: ['#0A192F', '#1E293B', '#D4AF37', '#F5E6C8', '#FFFFFF'],
     emoji: '👑'
   },
   {
     id: 'noir',
-    name: 'Noir Minimalist',
-    swatches: ['#050505', '#1a1a1a', '#e5e5e5', '#a3a3a3', '#ffffff'],
+    name: 'Noir Minimalism',
+    swatches: ['#050505', '#1A1A1A', '#E5E5E5', '#A3A3A3', '#FFFFFF'],
     emoji: '⚫'
   },
   {
     id: 'emerald',
-    name: 'Emerald Garden',
-    swatches: ['#011c0f', '#31724f', '#d4af37', '#e8f5e9', '#0d0d1a'],
+    name: 'Royal Emerald Garden',
+    swatches: ['#011C0F', '#31724F', '#D4AF37', '#E8F5E9', '#0A192F'],
     emoji: '🌿'
   },
   {
     id: 'sunset',
     name: 'Sunset Terracotta',
-    swatches: ['#2c1a32', '#d98880', '#f5cba7', '#f9ebd2', '#c9a96e'],
+    swatches: ['#2C1A32', '#D98880', '#F5CBA7', '#F9EBD2', '#D4AF37'],
     emoji: '🌅'
   }
 ];
@@ -44,14 +44,14 @@ const PRESETS = [
 export default function MoodBoardPage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, loading } = store;
+  const { user, eventProfile, loading } = store;
 
   // Active States
   const [pins, setPins] = useState(INITIAL_PINS);
-  const [swatches, setSwatches] = useState(['#020208', '#0d0d1a', '#c9a96e', '#a88b4a', '#f3e5ab']);
-  const [selectedPreset, setSelectedPreset] = useState('gold');
+  const [swatches, setSwatches] = useState(['#0A192F', '#1E293B', '#D4AF37', '#F5E6C8', '#FFFFFF']);
+  const [selectedPreset, setSelectedPreset] = useState('navy_gold');
   const [activeFilter, setActiveFilter] = useState('All');
-  const [customColor, setCustomColor] = useState('#ffffff');
+  const [customColor, setCustomColor] = useState('#D4AF37');
 
   // Form state
   const [form, setForm] = useState({ title: '', image: '', category: 'Decor', description: '' });
@@ -68,8 +68,8 @@ export default function MoodBoardPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx global>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         `}</style>
@@ -86,11 +86,11 @@ export default function MoodBoardPage() {
   // Swatch custom addition / deletion
   const addCustomSwatch = () => {
     if (swatches.length >= 7) {
-      alert('A maximum of 7 custom theme colors is allowed.');
+      alert('A maximum of 7 custom palette swatches is supported.');
       return;
     }
     if (!customColor.startsWith('#') || customColor.length !== 7) {
-      alert('Please enter a valid hex code (e.g. #ffffff).');
+      alert('Please enter a valid hex code (e.g. #D4AF37).');
       return;
     }
     setSwatches(prev => [...prev, customColor]);
@@ -112,7 +112,7 @@ export default function MoodBoardPage() {
   const handleAddPin = (e) => {
     e.preventDefault();
     if (!form.title || !form.image) {
-      alert('Please provide a title and image path.');
+      alert('Please provide a title and image source.');
       return;
     }
     const newPin = {
@@ -121,7 +121,7 @@ export default function MoodBoardPage() {
       title: form.title,
       category: form.category,
       likes: 0,
-      description: form.description || 'Custom added mood board inspiration element.'
+      description: form.description || 'Curated mood board aesthetic element.'
     };
     setPins(prev => [newPin, ...prev]);
     setForm({ title: '', image: '', category: 'Decor', description: '' });
@@ -134,16 +134,16 @@ export default function MoodBoardPage() {
     
     setTimeout(() => {
       const reports = {
-        gold: `Your design profile showcases a majestic Champagne Gold theme. Combining deep celestial blacks and midnight blues with soft ivory and gold swatches outlines a timeless, royal atmosphere. The curated dining setups and diamond ring captures point toward a high-society luxury banquet aesthetic, suited perfectly for a grand hotel foyer or classical manor reception.`,
-        noir: `A masterpiece in monochromatic Noir Minimalism. By sticking strictly to neutral charcoal, soft stone greys, and high-contrast whites, your mood board establishes a sharp, high-end editorial vibe. Rely on architectural venue structures, bold monochrome drapery, and low-glow candlelight to achieve this dramatic, artistic Vogue runway wedding.`,
-        emerald: `An organic, fresh Emerald Garden narrative. Joining deep forest green tones with rich foliage accents and champagne gold highlights creates a majestic natural paradise. Pinned imagery hints at coastal sunset walks and ocean-side arches, suggesting a luxury bohemian styling best expressed through open-air dining tables under twinkling string lights.`,
-        sunset: `A warm, relaxed Sunset Terracotta romance. The dusty rose, peach-blossom, and warm sand palette evokes an intimate seaside wedding. Complemented by vintage lace dresses and sand-walk photography, this profile channels beachside sunset vibes, making it feel deeply emotional, natural, and incredibly cozy.`
+        navy_gold: `Your design blueprint reflects the iconic Elysian Navy & Champagne Gold palette. Deep midnight tones paired with brushed metallics evoke a royal, high-society gala atmosphere. Recommended floral treatments include cascading ivory orchids and white garden roses surrounded by soft amber candelabras.`,
+        noir: `A masterclass in modern Noir Minimalism. High-contrast monochromatic black, charcoal, and crisp linen create a bold editorial runway aesthetic. Recommended venue elements include architectural black steel arches, mirror-polished tables, and dramatic low-profile spotlighting.`,
+        emerald: `An organic Royal Emerald Garden narrative. Rich forest greens combined with gold cutlery and warm organic wood evoke botanical luxury. Ideal for estate terraces, greenhouse ballrooms, and alfresco vineyard banquets under festoon lighting.`,
+        sunset: `A warm Sunset Terracotta aesthetic. Soft terracotta, blush silk, and champagne hues bring warmth and romance. Ideal for coastal ceremonies and sunset beach receptions.`
       };
 
-      const key = selectedPreset || 'gold';
-      setAiReport(reports[key] || reports.gold);
+      const key = selectedPreset || 'navy_gold';
+      setAiReport(reports[key] || reports.navy_gold);
       setAiGenerating(false);
-    }, 1500);
+    }, 1200);
   };
 
   // Filter Pins
@@ -157,10 +157,10 @@ export default function MoodBoardPage() {
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
-          <span className={styles.badge}>Pinterest Style Board</span>
-          <h1 className={styles.title}>Wedding Mood Board</h1>
+          <span className={styles.badge}>VISUAL AESTHETIC SUITE</span>
+          <h1 className={styles.title}>Elysian Mood Board & Palette</h1>
           <p className={styles.subtitle}>
-            Collect inspiration pins, curate your custom theme swatches, and let the AI Copilot define your ultimate wedding aesthetic.
+            Curate inspiration pins, customize your signature color swatches, and generate AI style blueprints with **OVAimagination Events**.
           </p>
         </div>
 
@@ -190,12 +190,12 @@ export default function MoodBoardPage() {
                     textAlign: 'center', 
                     padding: '60px 20px', 
                     background: 'rgba(255,255,255,0.02)', 
-                    border: '1px dashed rgba(201,169,110,0.15)',
+                    border: '1px dashed rgba(212,175,55,0.2)',
                     borderRadius: '16px',
-                    color: '#a0937d' 
+                    color: '#D4AF37' 
                   }}
                 >
-                  No pins found in category "{activeFilter}". Click "Add Custom Inspiration Pin" on the right or change the filter.
+                  No pins found in category "{activeFilter}". Add custom pins on the right or select another filter.
                 </div>
               ) : (
                 filteredPins.map(pin => (
@@ -215,6 +215,7 @@ export default function MoodBoardPage() {
                           onClick={() => handleLike(pin.id)} 
                           className={styles.likeBtn}
                           title="Like Pin"
+                          aria-label={`Like ${pin.title}`}
                         >
                           ❤️ <span>{pin.likes}</span>
                         </button>
@@ -223,6 +224,7 @@ export default function MoodBoardPage() {
                           onClick={() => handleDeletePin(pin.id)} 
                           className={styles.deleteBtn}
                           title="Delete Pin"
+                          aria-label={`Delete ${pin.title}`}
                         >
                           🗑️
                         </button>
@@ -240,7 +242,7 @@ export default function MoodBoardPage() {
             {/* Panel 1: Style Presets */}
             <div className={styles.panel}>
               <h3 className={styles.panelTitle}>
-                <span>⚜️</span> Curated Vibe Presets
+                <span>⚜️</span> Curated Elysian Presets
               </h3>
               <div className={styles.presetsGrid}>
                 {PRESETS.map(preset => (
@@ -283,6 +285,7 @@ export default function MoodBoardPage() {
                       type="button" 
                       onClick={() => removeSwatch(idx)}
                       className={styles.swatchRemove}
+                      aria-label={`Remove color swatch ${color}`}
                     >
                       ×
                     </button>
@@ -294,21 +297,23 @@ export default function MoodBoardPage() {
                   type="text" 
                   value={customColor} 
                   onChange={(e) => setCustomColor(e.target.value)}
-                  placeholder="#ffffff"
+                  placeholder="#D4AF37"
                   className={styles.colorInput}
+                  aria-label="Hex color code"
                 />
                 <input 
                   type="color" 
                   value={customColor} 
                   onChange={(e) => setCustomColor(e.target.value)}
                   style={{ width: '40px', height: '36px', border: 'none', background: 'transparent', cursor: 'pointer' }}
+                  aria-label="Color picker"
                 />
                 <button 
                   type="button" 
                   onClick={addCustomSwatch}
                   className={styles.addSwatchBtn}
                 >
-                  Add
+                  Add Swatch
                 </button>
               </div>
             </div>
@@ -323,7 +328,7 @@ export default function MoodBoardPage() {
                   <label className={styles.label}>Pin Title</label>
                   <input 
                     type="text" 
-                    placeholder="E.g. Table centerpiece"
+                    placeholder="E.g. Crystal chandelier reception"
                     value={form.title}
                     onChange={(e) => setForm(prev => ({ ...prev, title: e.target.value }))}
                     className={styles.input}
@@ -339,13 +344,13 @@ export default function MoodBoardPage() {
                     required
                   >
                     <option value="">Select Preloaded Image...</option>
-                    <option value="/wedding_couple_bg.png">Elegant Couple Session</option>
-                    <option value="/wedding_venue_bg.png">Malibu Sunset Arch</option>
-                    <option value="/wedding_table_bg.png">Gilded Dining Reception</option>
-                    <option value="/wedding_rings_bg.png">Vintage Diamond Rings</option>
-                    <option value="/couple1.png">Modern Beach couple</option>
+                    <option value="/wedding_couple_bg.png">Editorial Couple Session</option>
+                    <option value="/wedding_venue_bg.png">Malibu Sunset Ocean Arch</option>
+                    <option value="/wedding_table_bg.png">Gilded Dining Tablescape</option>
+                    <option value="/wedding_rings_bg.png">Diamond Rings on Velvet</option>
+                    <option value="/couple1.png">Modern Beach Couple</option>
                     <option value="/couple2.png">Magazine Closeups</option>
-                    <option value="/couple3.png">Romantic Coastal walk</option>
+                    <option value="/couple3.png">Romantic Coastal Walk</option>
                   </select>
                 </div>
                 <div className={styles.formGroup}>
@@ -364,16 +369,16 @@ export default function MoodBoardPage() {
                   </select>
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Notes</label>
+                  <label className={styles.label}>Styling Notes</label>
                   <textarea 
-                    placeholder="Write styling thoughts..."
+                    placeholder="Write custom aesthetic notes..."
                     value={form.description}
                     onChange={(e) => setForm(prev => ({ ...prev, description: e.target.value }))}
                     className={styles.textarea}
                   />
                 </div>
                 <button type="submit" className={styles.submitBtn}>
-                  Pin to Board
+                  Pin to Elysian Board
                 </button>
               </form>
             </div>
@@ -385,7 +390,7 @@ export default function MoodBoardPage() {
               </h3>
               <div className={styles.aiCopilotBody}>
                 <p className={styles.aiCopilotDesc}>
-                  Analyze your current inspiration pins and custom swatches to draft a professional design concept proposal.
+                  Analyze your curated inspiration pins and signature swatches to generate an expert design concept report.
                 </p>
                 <button 
                   type="button" 
@@ -395,10 +400,10 @@ export default function MoodBoardPage() {
                 >
                   {aiGenerating ? (
                     <>
-                      <span className={styles.aiGeneratingSpinner}>✨</span> Generating...
+                      <span className={styles.aiGeneratingSpinner}>✨</span> Curating Blueprint...
                     </>
                   ) : (
-                    '✨ Generate Design Report'
+                    '✨ Generate Style Blueprint'
                   )}
                 </button>
 

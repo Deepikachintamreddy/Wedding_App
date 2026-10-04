@@ -3,38 +3,43 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
+import Monogram from '@/components/Monogram';
 
 const FEATURES = [
-  { icon: '🤖', title: 'Smart Wedding Planner', desc: 'Ask anything about your wedding and get personalized, expert-level answers in seconds.' },
-  { icon: '✅', title: 'Smart Checklist', desc: 'Auto-generated timeline tailored to your wedding date — never miss a milestone.' },
-  { icon: '💰', title: 'Budget Tracker', desc: 'Category breakdowns, payment tracking, and real-time overspend alerts to stay on target.' },
-  { icon: '👥', title: 'Guest Manager', desc: 'RSVP tracking, meal preferences, seating groups, and plus-one management made easy.' },
-  { icon: '💒', title: 'Vendor Directory', desc: 'Find, compare, and book trusted local vendors with real reviews and pricing.' },
-  { icon: '✉️', title: 'Custom Websites & Invites', desc: 'Browse curated luxury website templates, customize details, and generate RSVP links for your guest list.' },
+  { icon: '✨', title: 'AI Wedding Concierge', desc: 'Context-grounded planning assistant trained in luxury coordination by OVAimagination Events.' },
+  { icon: '✅', title: 'Milestone Roadmap', desc: 'Auto-calculated checklist tailored to your wedding countdown — never miss a critical vendor deadline.' },
+  { icon: '💰', title: 'Reconciled Budget Tracker', desc: 'Separate planned allocations, contracted totals, deposits paid, and remaining unallocated cushions in real-time.' },
+  { icon: '👥', title: 'Guest List & Live RSVPs', desc: 'Instant digital RSVP tracking, dietary preferences, table seating charts, and plus-one limits made effortless.' },
+  { icon: '💒', title: 'Vetted Vendor Directory', desc: 'Browse, compare proposals, and book certified specialists with verified contracts and pricing transparency.' },
+  { icon: '✉️', title: 'Digital Invitation Builder', desc: 'Curated luxury wedding website templates with audio atmospheres, dress code guides, and direct guest syncing.' },
 ];
 
 const STEPS = [
-  { num: 1, title: 'Tell Us About Your Wedding', desc: 'Set your date, budget, style preferences, and guest count. Our onboarding takes less than two minutes.' },
-  { num: 2, title: 'Get Your Personalized Plan', desc: 'VND instantly generates your custom checklist, budget breakdown, and dynamic planning timeline.' },
-  { num: 3, title: 'Build Your Dream Team', desc: 'Browse our curated directory, compare reviews, and securely book the perfect vendors for your special day.' },
-  { num: 4, title: 'Manage Your Guests', desc: 'Send beautiful digital invitations, track real-time RSVPs, and organize seating charts effortlessly.' },
-  { num: 5, title: 'Plan With Confidence', desc: 'Track your progress, chat with your digital concierge anytime, and enjoy a stress-free wedding journey.' },
+  { num: 1, title: 'Set Your Wedding Vision', desc: 'Specify your wedding date, budget ceiling, location, and aesthetic styling in under two minutes.' },
+  { num: 2, title: 'Receive Your Tailored Master Plan', desc: 'Elysian instantly generates your customized checklist, budget allocation framework, and countdown milestones.' },
+  { num: 3, title: 'Assemble Your Creative Team', desc: 'Explore curated vendor partners vetted by OVAimagination Events and log contracts directly into your financial ledger.' },
+  { num: 4, title: 'Coordinate Guests & Invitations', desc: 'Publish a bespoke digital invitation website, capture live RSVPs, and organize reception table seating effortlessly.' },
+  { num: 5, title: 'Experience Seamless Day-Of Coordination', desc: 'Collaborate with your partner, planner, and vendors while the AI Concierge keeps every detail on schedule.' },
 ];
 
 const FAQS = [
-  { question: "What exactly is the VND Wedding Concierge?", answer: "VND is a luxury wedding planning platform powered by advanced technology. It acts as your personal wedding planner, helping you track budgets, manage guests, create timelines, and answer all your wedding-related questions instantly." },
-  { question: "Is VND actually free to use?", answer: "Yes! Our core features, including the personalized checklist, budget tracker, and virtual assistant, are completely free. We also offer a Premium tier with advanced features like digital invitations and a dedicated vendor directory." },
-  { question: "Can I use VND if I already have a human wedding planner?", answer: "Absolutely. Many couples use VND alongside a traditional planner to stay organized, manage their own tasks, and have 24/7 access to instant advice for the smaller details." },
-  { question: "How does the digital invitation builder work?", answer: "Our Premium tier includes access to luxury digital invitation templates. You can customize them with your wedding details, send them to your guest list via email or SMS, and track RSVPs directly within your VND dashboard." },
+  { question: "What is Elysian Concierge?", answer: "Elysian Concierge is a luxury digital wedding planning suite developed in partnership with professional coordinators at OVAimagination Events. It combines intelligent milestone tracking, reconciled budget management, digital invitation publishing, and verified AI planning guidance in one private workspace." },
+  { question: "How does the pricing model work?", answer: "We offer a Free Tier with 15 monthly AI concierge credits and standard planning tools. Couples can also upgrade to our popular Event Pass ($99 one-time payment) for unlimited AI conversations, digital invitation publishing, and seating chart management until their wedding day — with zero recurring monthly bills." },
+  { question: "Can I use Elysian Concierge alongside a human wedding planner?", answer: "Yes! Many couples invite their OVAimagination coordinator or independent planner as a collaborator directly into their Elysian workspace to share task progress, approve floor plans, and review vendor payment milestones." },
+  { question: "How does digital RSVP collection work?", answer: "When you customize and publish an Elysian digital invitation template, a unique RSVP portal is automatically generated. When guests submit their attendance and meal choices, the responses instantly populate your Guest Manager in real time." },
 ];
 
 function FaqItem({ faq }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className={`${styles.faqItem} ${isOpen ? styles.open : ''}`}>
-      <button className={styles.faqQuestion} onClick={() => setIsOpen(!isOpen)}>
+      <button 
+        className={styles.faqQuestion} 
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+      >
         {faq.question}
-        <span className={styles.faqIcon}>+</span>
+        <span className={styles.faqIcon}>{isOpen ? '−' : '+'}</span>
       </button>
       <div className={styles.faqAnswer}>
         {faq.answer}
@@ -45,36 +50,39 @@ function FaqItem({ faq }) {
 
 const PRICING = [
   {
-    tier: 'Free',
+    tier: 'Free Tier',
     price: '$0',
-    interval: 'Free forever',
-    features: ['15 concierge credits per month', 'Up to 20 checklist tasks', 'Basic budget overview', 'Vendor browsing', 'Standard wedding website template', 'Community support'],
-    cta: 'Start Free',
+    interval: 'Complimentary forever',
+    features: ['15 AI concierge credits / month', 'Master checklist & roadmap', 'Basic budget ceiling tracker', 'Vetted vendor directory browsing', 'Standard invitation website template', 'Standard support desk'],
+    cta: 'Start Planning Free',
     featured: false,
+    href: '/auth',
   },
   {
     tier: 'Event Pass',
     price: '$99',
-    interval: 'One-time payment',
-    features: ['Unlimited concierge conversations', 'Unlimited checklist tasks', 'Full budget tracker with categories', 'Complete guest list manager', 'Timeline builder', 'Smart vendor matching', 'Premium custom wedding websites & digital invites', 'Export & share plans'],
-    cta: 'Get Event Pass',
+    interval: 'One-time payment • No subscriptions',
+    features: ['Unlimited AI Concierge conversations', 'Unlimited custom tasks & assignees', 'Complete reconciled budget & contract tracker', 'Full guest manager with digital RSVP syncing', 'Day-of hourly schedule builder & PDF export', 'All luxury wedding website templates & audio players', 'Multi-collaborator partner access', 'Post-event data access & exports'],
+    cta: 'Get Event Pass ($99)',
     featured: true,
-    badge: 'Best Value',
+    badge: 'Most Popular',
+    href: '/auth',
   },
   {
-    tier: 'Forever + Concierge',
+    tier: 'Concierge Plus',
     price: '$199',
-    interval: 'One-time payment',
-    features: ['Everything in Event Pass', 'VND planning consultation', 'Priority email support', 'Day-of coordinator tools', 'Vendor negotiation templates', 'Premium theme library', 'Lifetime plan access'],
-    cta: 'Go Premium',
+    interval: 'One-time payment • Premium planning',
+    features: ['Everything in Event Pass', '1-on-1 virtual consultation with OVAimagination Events', 'Priority concierge email & phone support', 'Custom vendor contract negotiation checklist', 'Emergency rain backup and rehearsal templates', 'Unlimited high-res photo gallery storage', 'Lifetime plan & archive access'],
+    cta: 'Select Concierge Plus',
     featured: false,
+    href: '/auth',
   },
 ];
 
 const TESTIMONIALS = [
-  { quote: 'This app literally saved our sanity. We planned our entire 150-guest wedding in 4 months without a planner. The curated suggestions were spot-on!', name: 'Sarah & James K.', date: 'Married Oct 2025', image: '/couple1.png' },
-  { quote: 'The budget tracker alone is worth it. We came in $2K under budget and never felt stressed about money. Cannot recommend enough.', name: 'Maria & David L.', date: 'Married June 2025', image: '/couple2.png' },
-  { quote: 'I used the vow writer as a starting point and my partner was in tears. The checklist kept us on track even when life got crazy.', name: 'Alex & Jordan P.', date: 'Married Dec 2025', image: '/couple3.png' },
+  { quote: 'Elysian Concierge and OVAimagination saved our sanity. We planned our 150-guest Malibu wedding with total confidence and stayed right on budget.', name: 'Vanessa & Noah S.', date: 'Married July 2026 • Malibu, CA', image: '/couple1.png' },
+  { quote: 'The reconciled budget tracker is unmatched. We knew exactly what was contracted versus paid down to the dollar. Truly a luxury experience.', name: 'Sophia & Liam K.', date: 'Married June 2026 • Pasadena, CA', image: '/couple2.png' },
+  { quote: 'The AI vow drafting tool gave me the exact poetic structure I needed. Our guests were raving about our digital invitation website!', name: 'Sarah & David M.', date: 'Married Sept 2026 • Santa Monica, CA', image: '/couple3.png' },
 ];
 
 export default function LandingPage() {
@@ -140,24 +148,26 @@ export default function LandingPage() {
 
         <div className={styles.heroContent}>
           <div className={styles.heroGlassCard}>
-            <div className={styles.heroEyebrow}><img src="/gn-wedding-logo.png" alt="GN Wedding Logo" width={56} height={56} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> PLAN YOUR WEDDING</div>
+            <div className={styles.heroEyebrow}>
+              <Monogram size={32} style={{ marginRight: '8px' }} /> 
+              ELYSIAN WEDDINGS & CONCIERGE
+            </div>
             <h1 className={styles.headline}>
-              Your Dream Wedding, <span className={styles.headlineGold}>Effortlessly Planned</span>.
+              Your Dream Wedding, <span className={styles.headlineGold}>Flawlessly Orchestrated</span>.
             </h1>
-            <p className={styles.subheadline}>Experience premium digital coordination for your special day.</p>
+            <p className={styles.subheadline}>
+              A luxury digital planning suite created in partnership with <strong>OVAimagination Events</strong>.
+            </p>
             <p className={styles.heroDescription}>
-              Everything you need to orchestrate a beautifully curated wedding — without the traditional planner price tag.
+              Reconciled budgets, milestone roadmaps, live RSVP websites, and verified AI guidance — designed for extraordinary wedding celebrations.
             </p>
             <div className={styles.heroCtas}>
               <Link href="/auth" className={styles.ctaPrimary}>
                 Begin Your Journey <span>→</span>
               </Link>
-              <button
-                className={styles.ctaOutline}
-                onClick={() => scrollToSection('features')}
-              >
-                Explore Details ↓
-              </button>
+              <Link href="/demo" className={styles.ctaOutline}>
+                Try Interactive Demo
+              </Link>
             </div>
           </div>
         </div>
@@ -167,10 +177,10 @@ export default function LandingPage() {
       <section className={styles.features} id="features">
         <div className={styles.featuresInner}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionEyebrow}>Features</div>
-            <h2 className={styles.sectionTitle}>Everything You Need, One App</h2>
+            <div className={styles.sectionEyebrow}>Elysian Platform</div>
+            <h2 className={styles.sectionTitle}>Curated Precision for Every Milestone</h2>
             <p className={styles.sectionSubtitle}>
-              Six powerful tools designed to take the stress out of wedding planning and bring back the joy.
+              Six unified coordination modules designed to eliminate planning stress and elevate your celebration.
             </p>
           </div>
 
@@ -196,10 +206,10 @@ export default function LandingPage() {
       {/* ====== HOW IT WORKS ====== */}
       <section className={styles.howItWorks} id="how-it-works">
         <div className={styles.sectionHeader}>
-          <div className={styles.sectionEyebrow}>How It Works</div>
-          <h2 className={styles.sectionTitle}>Five Steps to Your Dream Wedding</h2>
+          <div className={styles.sectionEyebrow}>Coordination Journey</div>
+          <h2 className={styles.sectionTitle}>Five Steps from Engagement to &ldquo;I Do&rdquo;</h2>
           <p className={styles.sectionSubtitle}>
-            No overwhelm. No spreadsheets. Just a clear path from &ldquo;we&rsquo;re engaged!&rdquo; to &ldquo;I do.&rdquo;
+            Clarity without chaos. Grounded in professional coordination procedures.
           </p>
         </div>
 
@@ -212,7 +222,7 @@ export default function LandingPage() {
               data-idx={i}
               data-type="step"
               className={`${styles.step} ${visibleSteps.has(String(i)) ? styles.visible : ''}`}
-              style={{ transitionDelay: `${i * 200}ms` }}
+              style={{ transitionDelay: `${i * 180}ms` }}
             >
               <div className={styles.stepNumber}>{s.num}</div>
               <div className={styles.stepContent}>
@@ -228,8 +238,11 @@ export default function LandingPage() {
       <section className={styles.pricing} id="pricing">
         <div className={styles.pricingInner}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionEyebrow}>Pricing</div>
-            <h2 className={styles.sectionTitle}>Simple, Transparent Pricing</h2>
+            <div className={styles.sectionEyebrow}>Transparent Pricing</div>
+            <h2 className={styles.sectionTitle}>Single-Event Pricing, Zero Recurring Subscriptions</h2>
+            <p className={styles.sectionSubtitle}>
+              Wedding planning has a clear date. Pay once and keep full access until your celebration concludes.
+            </p>
           </div>
 
           <div className={styles.pricingGrid}>
@@ -248,7 +261,7 @@ export default function LandingPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/auth"
+                  href={plan.href}
                   className={`${styles.pricingCta} ${plan.featured ? styles.pricingCtaPrimary : styles.pricingCtaOutline}`}
                 >
                   {plan.cta}
@@ -263,8 +276,8 @@ export default function LandingPage() {
       <section className={styles.testimonials} id="testimonials">
         <div className={styles.testimonialsInner}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionEyebrow}>Testimonials</div>
-            <h2 className={styles.sectionTitle}>Trusted by Couples Planning Their Perfect Day</h2>
+            <div className={styles.sectionEyebrow}>Client Stories</div>
+            <h2 className={styles.sectionTitle}>Trusted by Couples Celebrating in Style</h2>
           </div>
 
           <div className={styles.slideshowContainer}>
@@ -322,8 +335,6 @@ export default function LandingPage() {
               />
             ))}
           </div>
-
-
         </div>
       </section>
 
@@ -332,7 +343,7 @@ export default function LandingPage() {
         <div className={styles.faqContainer}>
           <div className={styles.faqHeader}>
             <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <p className={styles.sectionDesc}>Everything you need to know about VND.</p>
+            <p className={styles.sectionDesc}>Everything you need to know about Elysian Concierge.</p>
           </div>
           <div className={styles.faqList}>
             {FAQS.map((faq, i) => (
@@ -347,54 +358,64 @@ export default function LandingPage() {
         <div className={styles.footerInner}>
           <div className={styles.footerTop}>
             <div>
-              <div className={styles.footerBrand}><img src="/gn-wedding-logo.png" alt="GN Wedding Logo" width={64} height={64} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', objectFit: 'contain' }} /> VND</div>
+              <div className={styles.footerBrand}>
+                <Monogram size={44} style={{ marginRight: '8px' }} />
+                <span>Elysian Concierge</span>
+              </div>
               <p className={styles.footerDesc}>
-                VND Wedding Concierge — luxury wedding planning tools for every couple, at every budget.
+                Luxury wedding planning suite and verified AI concierge. Partnered with OVAimagination Events for extraordinary wedding celebrations.
               </p>
               <div className={styles.footerSocials}>
-                <a href="#" className={styles.socialIcon} aria-label="Instagram">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
-                <a href="#" className={styles.socialIcon} aria-label="Facebook">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
-                <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 </a>
               </div>
             </div>
             <div>
-              <div className={styles.footerColTitle}>Product</div>
+              <div className={styles.footerColTitle}>Planning Suite</div>
               <ul className={styles.footerLinks}>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#pricing">Pricing & Event Pass</a></li>
+                <li><a href="#how-it-works">Coordination Journey</a></li>
+                <li><Link href="/demo">Try Interactive Demo</Link></li>
+                <li><Link href="/templates">Invitation Templates</Link></li>
               </ul>
             </div>
             <div>
-              <div className={styles.footerColTitle}>Company</div>
+              <div className={styles.footerColTitle}>Support & Company</div>
               <ul className={styles.footerLinks}>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><Link href="/contact">Concierge Support</Link></li>
+                <li><Link href="/ai-disclaimer">AI Technology & Safety</Link></li>
+                <li><Link href="/vendor-terms">Vendor Partner Standards</Link></li>
+                <li><Link href="/data-deletion">Data Sovereignty & Export</Link></li>
               </ul>
             </div>
             <div>
-              <div className={styles.footerColTitle}>Legal</div>
+              <div className={styles.footerColTitle}>Legal Policies</div>
               <ul className={styles.footerLinks}>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
+                <li><Link href="/privacy">Privacy Policy</Link></li>
+                <li><Link href="/terms">Terms of Service</Link></li>
+                <li><Link href="/cookie-policy">Cookie Policy</Link></li>
+                <li><Link href="/refund-policy">Refund & Cancellation</Link></li>
               </ul>
             </div>
           </div>
           <div className={styles.footerBottom}>
-
+            <p className={styles.copyright}>
+              &copy; {new Date().getFullYear()} Elysian Concierge. In partnership with OVAimagination Events. All rights reserved.
+            </p>
             <div className={styles.footerBottomLinks}>
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Sitemap</a>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/cookie-policy">Cookies</Link>
+              <Link href="/refund-policy">Refunds</Link>
+              <Link href="/contact">Contact</Link>
             </div>
           </div>
         </div>

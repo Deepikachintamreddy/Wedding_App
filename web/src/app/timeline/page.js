@@ -4,15 +4,17 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWeddingStore } from '@/lib/store';
 import { MOCK_TIMELINE } from '@/lib/mockData';
+import Monogram from '@/components/Monogram';
 
 export default function TimelinePage() {
   const router = useRouter();
   const store = useWeddingStore();
-  const { user, timeline, loading, addTimelineEvent, updateTimelineEvent, deleteTimelineEvent, resetStore } = store;
+  const { user, eventProfile, timeline, loading, addTimelineEvent, updateTimelineEvent, deleteTimelineEvent } = store;
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [isSuggesting, setIsSuggesting] = useState(false);
-  const [newEvent, setNewEvent] = useState({
+  const [eventForm, setEventForm] = useState({
     time: '',
     title: '',
     location: '',
@@ -28,28 +30,50 @@ export default function TimelinePage() {
 
   if (loading || !user) {
     return (
-      <div className="flex-center" style={{ minHeight: '100vh', background: '#0d0d1a' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(201, 169, 110, 0.15)', borderTopColor: '#c9a96e', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+      <div className="flex-center" style={{ minHeight: '100vh', background: 'var(--color-navy-dark, #050d1a)' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(212, 175, 55, 0.2)', borderTopColor: '#D4AF37', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <style jsx>{`
           @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d0d1a; }
+          .flex-center { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         `}</style>
       </div>
     );
   }
 
-  const handleEventSubmit = (e) => {
-    e.preventDefault();
-    if (!newEvent.time || !newEvent.title || !newEvent.location) return;
-
-    addTimelineEvent(newEvent);
-    setNewEvent({
-      time: '',
+  const handleOpenAdd = () => {
+    setEditingEvent(null);
+    setEventForm({
+      time: '02:00 PM',
       title: '',
-      location: '',
+      location: eventProfile?.venueName || 'Main Salon',
       desc: '',
       assignee: 'Both',
     });
+    setModalOpen(true);
+  };
+
+  const handleOpenEdit = (event) => {
+    setEditingEvent(event);
+    setEventForm({
+      time: event.time,
+      title: event.title,
+      location: event.location,
+      desc: event.desc || '',
+      assignee: event.assignee || 'Both',
+    });
+    setModalOpen(true);
+  };
+
+  const handleEventSubmit = (e) => {
+    e.preventDefault();
+    if (!eventForm.time || !eventForm.title || !eventForm.location) return;
+
+    if (editingEvent) {
+      updateTimelineEvent(editingEvent.id, eventForm);
+    } else {
+      addTimelineEvent(eventForm);
+    }
+
     setModalOpen(false);
   };
 
@@ -58,8 +82,8 @@ export default function TimelinePage() {
     updateTimelineEvent(eventId, { status: nextStatus });
   };
 
-  const handleDeleteEvent = (eventId) => {
-    if (confirm('Are you sure you want to delete this event from the timeline?')) {
+  const handleDeleteEvent = (eventId, title) => {
+    if (confirm(`Are you sure you want to remove "${title}" from the master timeline?`)) {
       deleteTimelineEvent(eventId);
     }
   };
@@ -67,27 +91,24 @@ export default function TimelinePage() {
   const handleAiSuggest = () => {
     setIsSuggesting(true);
     setTimeout(() => {
-      // Re-populate timeline with default mock timeline
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('wedding_timeline', JSON.stringify(MOCK_TIMELINE));
-        window.dispatchEvent(new Event('wedding_store_update'));
-      }
+      localStorage.setItem('elysian_timeline', JSON.stringify(MOCK_TIMELINE));
+      window.dispatchEvent(new Event('elysian_store_update'));
       setIsSuggesting(false);
-      alert('AI has successfully generated your timeline based on standard OVAimagination schedules!');
-    }, 1500);
+      alert('Master timeline populated with standard luxury wedding schedule curated by OVAimagination Events!');
+    }, 1200);
   };
 
   const handlePrint = () => {
     window.print();
   };
 
-  // Sort timeline events chronologically (assuming HH:MM AM/PM format)
+  // Sort timeline events chronologically
   const parseTimeToMinutes = (timeString) => {
     if (!timeString) return 0;
     const match = timeString.match(/(\d+):(\d+)\s*(AM|PM)/i);
     if (!match) return 0;
-    let hours = parseInt(match[1]);
-    const minutes = parseInt(match[2]);
+    let hours = parseInt(match[1], 10);
+    const minutes = parseInt(match[2], 10);
     const ampm = match[3].toUpperCase();
     if (ampm === 'PM' && hours < 12) hours += 12;
     if (ampm === 'AM' && hours === 12) hours = 0;
@@ -104,30 +125,34 @@ export default function TimelinePage() {
         {/* Header */}
         <div className="flex-between mb-6 flex-wrap gap-4 no-print">
           <div>
-            <h1 className="h2 font-heading text-gold mb-1">Day-of Timeline</h1>
+            <div className="flex-start items-center gap-2 mb-1">
+              <span className="badge badge-gold">Master Run-Sheet</span>
+              <span className="badge badge-secondary">{eventProfile?.coupleNames || user.name}</span>
+            </div>
+            <h1 className="h2 font-heading text-gold mb-1">Day-of Master Timeline</h1>
             <p className="body-sm text-secondary">
-              Chronological schedule of events. Coordinated by **OVAimagination Events**.
+              Minute-by-minute schedule for vendors, coordinators, and wedding party. Coordinated with **OVAimagination Events**.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <button 
               onClick={handleAiSuggest}
               disabled={isSuggesting}
               className="btn btn-secondary"
             >
-              {isSuggesting ? 'Generating...' : '🤖 AI Suggest Schedule'}
+              {isSuggesting ? 'Crafting Schedule...' : '🤖 Curate Luxury Schedule'}
             </button>
             <button 
               onClick={handlePrint}
               className="btn btn-secondary"
             >
-              🖨️ Print / PDF
+              🖨️ Export Run-Sheet PDF
             </button>
             <button 
-              onClick={() => setModalOpen(true)}
+              onClick={handleOpenAdd}
               className="btn btn-primary"
             >
-              ＋ Add Event
+              ＋ Add Schedule Item
             </button>
           </div>
         </div>
@@ -135,10 +160,12 @@ export default function TimelinePage() {
         {/* Printable View Header */}
         <div className="print-header only-print mb-8">
           <div className="text-center">
-            <span className="overline text-gold" style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>VND WEDDING SCHEDULER</span>
-            <h1 className="h1 font-heading text-primary mt-2">{user.name}'s Wedding Day Timeline</h1>
-            <p className="body-sm text-secondary">Date: {user.weddingDate} | Location: {user.location} | Design Theme: {user.theme}</p>
-            <div style={{ width: '80px', height: '1.5px', background: '#c9a96e', margin: '16px auto' }}></div>
+            <h2 className="text-gold" style={{ fontSize: '1.5rem', letterSpacing: '2px', fontWeight: 700 }}>ELYSIAN WEDDINGS &bull; MASTER TIMELINE</h2>
+            <h1 className="h1 font-heading text-primary mt-2">{eventProfile?.coupleNames || user.name}'s Wedding Day Schedule</h1>
+            <p className="body-sm text-secondary">
+              Date: {eventProfile?.weddingDate || user.weddingDate} &bull; Location: {eventProfile?.location || user.location} &bull; Planning Partner: OVAimagination Events
+            </p>
+            <div style={{ width: '80px', height: '1.5px', background: '#D4AF37', margin: '16px auto' }}></div>
           </div>
         </div>
 
@@ -146,7 +173,6 @@ export default function TimelinePage() {
         <div className="timeline-trail flex-col">
           {sortedTimeline.length > 0 ? (
             sortedTimeline.map((event, index) => {
-              const isFirst = index === 0;
               const isLast = index === sortedTimeline.length - 1;
               
               return (
@@ -159,6 +185,7 @@ export default function TimelinePage() {
                         event.status === 'Completed' ? 'dot-completed' : 'dot-pending'
                       }`}
                       title={event.status === 'Completed' ? 'Mark pending' : 'Mark completed'}
+                      aria-label={`Toggle status for ${event.title}`}
                     >
                       {event.status === 'Completed' ? '✓' : ''}
                     </div>
@@ -166,31 +193,40 @@ export default function TimelinePage() {
                   </div>
 
                   {/* Event Details Card */}
-                  <div className="card glass-panel flex-1 p-5 mb-6 flex-between items-start gap-4">
+                  <div className="card glass-panel flex-1 p-5 mb-6 flex-between items-start gap-4 border-gold-hover">
                     <div className="flex-col flex-1">
                       <div className="flex-start items-center gap-3 mb-2 flex-wrap">
                         <span className="event-time font-heading text-gold text-lg font-bold">{event.time}</span>
                         <span className="badge badge-secondary">{event.location}</span>
-                        <span className="badge badge-gold badge-sm">Who: {event.assignee || 'Both'}</span>
+                        <span className="badge badge-gold badge-sm">Lead: {event.assignee || 'Both'}</span>
                       </div>
                       
                       <h3 className="h5 text-primary font-body font-bold mb-2">{event.title}</h3>
                       
                       <p className="body-sm text-secondary mb-0">
-                        {event.desc || 'No details provided.'}
+                        {event.desc || 'No specific notes recorded.'}
                       </p>
                     </div>
 
                     <div className="flex-start gap-2 no-print">
                       <button 
-                        onClick={() => handleStatusToggle(event.id, event.status)}
-                        className={`btn btn-sm ${event.status === 'Completed' ? 'btn-ghost text-success' : 'btn-outline btn-sm'}`}
+                        onClick={() => handleOpenEdit(event)}
+                        className="btn btn-ghost btn-sm text-secondary"
+                        aria-label={`Edit ${event.title}`}
                       >
-                        {event.status === 'Completed' ? 'Completed' : 'Complete'}
+                        ✏️ Edit
                       </button>
                       <button 
-                        onClick={() => handleDeleteEvent(event.id)}
+                        onClick={() => handleStatusToggle(event.id, event.status)}
+                        className={`btn btn-sm ${event.status === 'Completed' ? 'btn-ghost text-success' : 'btn-outline'}`}
+                        aria-label={`Toggle completion for ${event.title}`}
+                      >
+                        {event.status === 'Completed' ? '✓ Done' : 'Complete'}
+                      </button>
+                      <button 
+                        onClick={() => handleDeleteEvent(event.id, event.title)}
                         className="btn btn-ghost btn-sm text-danger"
+                        aria-label={`Delete ${event.title}`}
                       >
                         🗑️
                       </button>
@@ -202,19 +238,19 @@ export default function TimelinePage() {
           ) : (
             <div className="card glass-panel p-8 text-center no-print">
               <span style={{ fontSize: '2.5rem' }}>⏱️</span>
-              <p className="body-sm text-secondary mt-2">No schedule events populated yet. Try clicking "AI Suggest Schedule" to import our template!</p>
+              <p className="body-sm text-secondary mt-2">No timeline events scheduled yet. Click "Curate Luxury Schedule" to import the verified template!</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Add Event Modal */}
+      {/* Add / Edit Event Modal */}
       {modalOpen && (
-        <div className="modal-overlay no-print">
-          <div className="modal-content">
+        <div className="modal-overlay no-print" onClick={() => setModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 className="text-gold font-heading">Add Schedule Event</h3>
-              <button onClick={() => setModalOpen(false)} className="modal-close">×</button>
+              <h3 className="text-gold font-heading">{editingEvent ? 'Edit Schedule Item' : 'Add Schedule Item'}</h3>
+              <button onClick={() => setModalOpen(false)} className="modal-close" aria-label="Close modal">×</button>
             </div>
             <form onSubmit={handleEventSubmit}>
               <div className="modal-body">
@@ -224,20 +260,20 @@ export default function TimelinePage() {
                     <input 
                       type="text" 
                       required
-                      placeholder="e.g. 04:00 PM"
-                      value={newEvent.time}
-                      onChange={(e) => setNewEvent(prev => ({ ...prev, time: e.target.value }))}
+                      placeholder="e.g. 04:30 PM"
+                      value={eventForm.time}
+                      onChange={(e) => setEventForm(prev => ({ ...prev, time: e.target.value }))}
                       className="form-input"
                     />
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Assignee (e.g. Groom/Officiant)</label>
+                    <label className="form-label">Assignee / Lead</label>
                     <input 
                       type="text" 
                       required
-                      placeholder="e.g. Groom"
-                      value={newEvent.assignee}
-                      onChange={(e) => setNewEvent(prev => ({ ...prev, assignee: e.target.value }))}
+                      placeholder="e.g. Officiant & Couple"
+                      value={eventForm.assignee}
+                      onChange={(e) => setEventForm(prev => ({ ...prev, assignee: e.target.value }))}
                       className="form-input"
                     />
                   </div>
@@ -247,36 +283,36 @@ export default function TimelinePage() {
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. Wedding Ceremony Starts"
-                    value={newEvent.title}
-                    onChange={(e) => setNewEvent(prev => ({ ...prev, title: e.target.value }))}
+                    placeholder="e.g. Grand Entrance & Champagne Toast"
+                    value={eventForm.title}
+                    onChange={(e) => setEventForm(prev => ({ ...prev, title: e.target.value }))}
                     className="form-input"
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Location</label>
+                  <label className="form-label">Location / Space</label>
                   <input 
                     type="text" 
                     required
-                    placeholder="e.g. Pavilion Lawn"
-                    value={newEvent.location}
-                    onChange={(e) => setNewEvent(prev => ({ ...prev, location: e.target.value }))}
+                    placeholder="e.g. Grand Ballroom Terrace"
+                    value={eventForm.location}
+                    onChange={(e) => setEventForm(prev => ({ ...prev, location: e.target.value }))}
                     className="form-input"
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Description & Timeline Notes</label>
+                  <label className="form-label">Description & Logistics Notes</label>
                   <textarea 
-                    placeholder="e.g. Ushers in position. Recessional music prepared..."
-                    value={newEvent.desc}
-                    onChange={(e) => setNewEvent(prev => ({ ...prev, desc: e.target.value }))}
+                    placeholder="e.g. Sound engineer cues fanfare music. Caterer pours vintage champagne."
+                    value={eventForm.desc}
+                    onChange={(e) => setEventForm(prev => ({ ...prev, desc: e.target.value }))}
                     className="form-textarea"
                   />
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" onClick={() => setModalOpen(false)} className="btn btn-secondary btn-sm">Cancel</button>
-                <button type="submit" className="btn btn-primary btn-sm">Create Event</button>
+                <button type="submit" className="btn btn-primary btn-sm">{editingEvent ? 'Save Changes' : 'Create Schedule Item'}</button>
               </div>
             </form>
           </div>
@@ -313,34 +349,34 @@ export default function TimelinePage() {
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          border: 2px solid #c9a96e;
-          background: #0d0d1a;
+          border: 2px solid #D4AF37;
+          background: #0A192F;
           z-index: 10;
           transition: all 0.3s ease;
         }
         .dot-completed {
-          background: #4ade80;
-          border-color: #4ade80;
-          color: #0d0d1a;
+          background: #10B981;
+          border-color: #10B981;
+          color: #0A192F;
           font-weight: 700;
         }
         .dot-pending {
-          background: #0d0d1a;
-          border-color: #c9a96e;
+          background: #0A192F;
+          border-color: #D4AF37;
         }
         .trail-vertical-line {
           width: 2px;
           position: absolute;
           top: 24px;
           bottom: -24px;
-          background: rgba(201, 169, 110, 0.15);
+          background: rgba(212, 175, 55, 0.2);
           z-index: 1;
         }
         .event-time {
           font-size: 1.1rem;
         }
-        .border-t {
-          border-top: 1px solid rgba(201, 169, 110, 0.08);
+        .border-gold-hover:hover {
+          border-color: #D4AF37;
         }
         .grid-2 {
           display: grid;
@@ -414,6 +450,7 @@ export default function TimelinePage() {
         .flex-start { display: flex; align-items: center; justify-content: flex-start; }
         .flex-center { display: flex; align-items: center; justify-content: center; }
         .flex-wrap { flex-wrap: wrap; }
+        .gap-2 { gap: 8px; }
         .gap-3 { gap: 12px; }
         .gap-4 { gap: 16px; }
         .gap-6 { gap: 24px; }

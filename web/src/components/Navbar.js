@@ -17,16 +17,21 @@ const NAV_LINKS = {
     { label: 'Vendors', href: '/vendors' },
     { label: 'Timeline', href: '/timeline' },
   ],
+  planner: [
+    { label: 'Dashboard', href: '/dashboard' },
+    { label: 'Timeline', href: '/timeline' },
+    { label: 'Checklist', href: '/checklist' },
+    { label: 'Vendors', href: '/vendors' },
+    { label: 'Budget', href: '/budget' },
+  ],
   vendor: [
-    { label: 'Dashboard', href: '/vendor-portal' },
-    { label: 'Profile', href: '/vendor-portal/profile' },
-    { label: 'Inquiries', href: '/vendor-portal/inquiries' },
+    { label: 'Portal', href: '/vendor-portal' },
+    { label: 'Directory', href: '/vendors' },
   ],
   admin: [
-    { label: 'Dashboard', href: '/admin' },
-    { label: 'Users', href: '/admin/users' },
-    { label: 'Vendors', href: '/admin/vendors' },
-    { label: 'Revenue', href: '/admin/revenue' },
+    { label: 'Admin Console', href: '/admin' },
+    { label: 'Dashboard', href: '/dashboard' },
+    { label: 'Vendors', href: '/vendors' },
   ],
   guest: [
     { label: 'Features', href: '/#features' },
@@ -34,6 +39,7 @@ const NAV_LINKS = {
     { label: 'Pricing', href: '/#pricing' },
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'FAQ', href: '/#faq' },
+    { label: 'Interactive Demo', href: '/demo' },
   ],
 };
 
@@ -48,30 +54,28 @@ export default function Navbar() {
 
   // Load user from localStorage
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('wedding_user');
-      if (stored) {
-        setUser(JSON.parse(stored));
-      }
-    } catch {
-      // ignore
-    }
-
-    const handleStorage = () => {
+    const loadUser = () => {
       try {
-        const stored = localStorage.getItem('wedding_user');
-        setUser(stored ? JSON.parse(stored) : null);
+        const stored = localStorage.getItem('elysian_user') || localStorage.getItem('wedding_user');
+        if (stored) {
+          setUser(JSON.parse(stored));
+        } else {
+          setUser(null);
+        }
       } catch {
         setUser(null);
       }
     };
 
-    window.addEventListener('storage', handleStorage);
-    // Also listen for custom events from auth page
-    window.addEventListener('user-login', handleStorage);
+    loadUser();
+
+    window.addEventListener('storage', loadUser);
+    window.addEventListener('elysian_store_update', loadUser);
+    window.addEventListener('user-login', loadUser);
     return () => {
-      window.removeEventListener('storage', handleStorage);
-      window.removeEventListener('user-login', handleStorage);
+      window.removeEventListener('storage', loadUser);
+      window.removeEventListener('elysian_store_update', loadUser);
+      window.removeEventListener('user-login', loadUser);
     };
   }, []);
 
@@ -106,33 +110,75 @@ export default function Navbar() {
 
   const role = user?.role || 'guest';
   const links = NAV_LINKS[role] || NAV_LINKS.guest;
-  const aiCredits = user?.aiCredits ?? 15;
+  const aiCredits = user?.eventPassActive || user?.role === 'admin' ? 'Unlimited' : (user?.aiCredits ?? 15);
 
   const getInitials = (name) => {
-    if (!name) return '?';
-    return name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2);
+    if (!name) return 'EC';
+    return name.split(/[\s&]+/).filter(Boolean).map((n) => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('elysian_user');
+    localStorage.removeItem('elysian_event_profile');
     localStorage.removeItem('wedding_user');
     localStorage.removeItem('wedding_profile');
     setUser(null);
     setDropdownOpen(false);
+    window.dispatchEvent(new Event('elysian_store_update'));
     router.push('/');
   };
 
-  // Don't show navbar on auth or onboarding pages
-  if (pathname === '/auth' || pathname === '/onboarding') {
+  // Don't show navbar on auth, onboarding, or public rsvp routes
+  if (pathname === '/auth' || pathname === '/onboarding' || pathname.startsWith('/rsvp/')) {
     return null;
   }
 
   return (
     <>
-      <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ''}`}>
+      {/* Demo Mode Notice Banner if user is currently experiencing isolated Demo */}
+      {user?.isDemo && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '32px',
+            background: 'linear-gradient(90deg, #aa7c11 0%, #d4af37 50%, #aa7c11 100%)',
+            color: '#0a192f',
+            fontWeight: 700,
+            fontSize: '0.8rem',
+            letterSpacing: '0.5px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1001,
+            gap: '12px'
+          }}
+        >
+          <span>✨ DEMO WORKSPACE: Sample Event (Vanessa & Noah)</span>
+          <Link 
+            href="/auth"
+            style={{
+              background: '#0a192f',
+              color: '#f5f0e8',
+              padding: '2px 8px',
+              borderRadius: '4px',
+              fontSize: '0.75rem',
+              textDecoration: 'none'
+            }}
+          >
+            Create Your Account →
+          </Link>
+        </div>
+      )}
+
+      <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ''}`} style={user?.isDemo ? { top: '32px' } : {}}>
         <div className={styles.navInner}>
           {/* Brand */}
-          <Link href="/" className={styles.brand}>
-            <Monogram size={90} className={styles.brandIcon} style={{ marginRight: '4px' }} /> VND
+          <Link href="/" className={styles.brand} aria-label="Elysian Concierge Home">
+            <Monogram size={38} className={styles.brandIcon} style={{ marginRight: '6px' }} />
+            <span style={{ letterSpacing: '0.5px' }}>Elysian <span style={{ fontWeight: 400, color: '#f5f0e8', fontSize: '1.1rem' }}>Concierge</span></span>
           </Link>
 
           {/* Desktop nav links */}
@@ -154,17 +200,19 @@ export default function Navbar() {
             {user ? (
               <>
                 {/* AI Credits */}
-                <div className={styles.aiCredits}>
+                <Link href="/ai-chat" className={styles.aiCredits} title="AI Concierge Credits Balance">
                   <span className={styles.creditsIcon}>✨</span>
                   <span className={styles.creditsCount}>{aiCredits}</span>
-                  <span>credits</span>
-                </div>
+                  <span>{user.eventPassActive ? '' : 'credits'}</span>
+                </Link>
 
                 {/* User dropdown */}
                 <div className={styles.userMenu} ref={dropdownRef}>
                   <button
                     className={styles.userButton}
                     onClick={() => setDropdownOpen(!dropdownOpen)}
+                    aria-label={`User Menu for ${user.name}`}
+                    aria-expanded={dropdownOpen}
                   >
                     <div className={styles.avatar}>{getInitials(user.name)}</div>
                     <span className={styles.userName}>{user.name}</span>
@@ -176,17 +224,20 @@ export default function Navbar() {
                   {dropdownOpen && (
                     <div className={styles.dropdown}>
                       <Link href="/settings" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                        ⚙️ Settings
+                        ⚙️ Workspace Settings
                       </Link>
                       <Link href="/ai-chat" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                        🤖 AI Chat
+                        🤖 AI Concierge
+                      </Link>
+                      <Link href="/contact" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
+                        💌 Concierge Support
                       </Link>
                       <div className={styles.dropdownDivider} />
                       <button
                         className={`${styles.dropdownItem} ${styles.dropdownLogout}`}
                         onClick={handleLogout}
                       >
-                        🚪 Log Out
+                        🚪 Sign Out
                       </button>
                     </div>
                   )}
@@ -194,8 +245,9 @@ export default function Navbar() {
               </>
             ) : (
               <div className={styles.authButtons}>
-                <Link href="/auth" className={styles.loginBtn}>Log In</Link>
-                <Link href="/auth" className={styles.getStartedBtn}>Get Started</Link>
+                <Link href="/demo" className={styles.loginBtn}>Try Demo</Link>
+                <Link href="/auth" className={styles.loginBtn}>Sign In</Link>
+                <Link href="/auth" className={styles.getStartedBtn}>Begin Planning</Link>
               </div>
             )}
           </div>
@@ -204,7 +256,8 @@ export default function Navbar() {
           <button
             className={`${styles.hamburger} ${mobileOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}
           >
             <span className={styles.hamburgerLine} />
             <span className={styles.hamburgerLine} />
@@ -238,28 +291,32 @@ export default function Navbar() {
             <div className={styles.mobileUserSection}>
               <div className={styles.mobileCredits}>
                 <span>✨</span>
-                <span style={{ color: '#c9a96e', fontWeight: 600 }}>{aiCredits}</span>
+                <span style={{ color: '#d4af37', fontWeight: 600 }}>{aiCredits}</span>
                 <span>AI credits remaining</span>
               </div>
               <Link href="/settings" className={styles.mobileNavLink}>
-                ⚙️ Settings
+                ⚙️ Workspace Settings
               </Link>
               <Link href="/ai-chat" className={styles.mobileNavLink}>
-                🤖 AI Chat
+                🤖 AI Concierge
+              </Link>
+              <Link href="/contact" className={styles.mobileNavLink}>
+                💌 Concierge Support
               </Link>
               <button
                 className={styles.mobileNavLink}
-                style={{ color: '#e74c3c', background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer', width: '100%', font: 'inherit' }}
+                style={{ color: '#ef4444', background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer', width: '100%', font: 'inherit' }}
                 onClick={handleLogout}
               >
-                🚪 Log Out
+                🚪 Sign Out
               </button>
             </div>
           ) : (
             <div className={styles.mobileAuthBtns}>
-              <Link href="/auth" className={styles.mobileNavLink}>Log In</Link>
+              <Link href="/demo" className={styles.mobileNavLink}>Try Interactive Demo</Link>
+              <Link href="/auth" className={styles.mobileNavLink}>Sign In</Link>
               <Link href="/auth" className={styles.getStartedBtn} style={{ textAlign: 'center', display: 'block' }}>
-                Get Started
+                Begin Planning
               </Link>
             </div>
           )}
