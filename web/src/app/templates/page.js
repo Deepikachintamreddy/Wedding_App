@@ -288,7 +288,7 @@ export default function TemplatesPage() {
       if (eventType === 'savethedate') return 'The Imperial Save The Date';
       return 'The Obsidian Executive';
     }
-    return 'Elysian Style';
+    return 'VND Style';
   };
 
   const getDynamicPrice = (id, mode) => {

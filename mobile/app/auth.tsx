@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Alert,
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWeddingStore } from '@/lib/store';
+import { api } from '@/lib/api';
 
 const VENDOR_CATEGORIES = [
   { id: 'Wedding Planners & Coordinators', name: '📋 Planners & Coordinators' },
@@ -118,43 +119,44 @@ export default function AuthScreen() {
 
     setIsLoading(true);
 
-    // Simulate API delay
-    setTimeout(async () => {
-      setIsLoading(false);
-
-      const businessesArray = selectedCategories.map((catId) => ({
-        category: catId,
-        name: businessesDetails[catId]?.name || formData.name + ' ' + catId,
-        rate: Number(businessesDetails[catId]?.rate) || 3500,
-        website: businessesDetails[catId]?.website || '',
-        notes: businessesDetails[catId]?.notes || '',
-      }));
-
-      const user = {
-        name: role === 'couple' 
-          ? formData.name 
-          : (role === 'vendor' ? (businessesArray[0]?.name || formData.name) : formData.name),
-        email: formData.email,
-        role: role,
-        weddingDate: '2027-07-15',
-        location: 'Malibu, CA',
-        budget: 50000,
-        theme: 'Elegant Navy & Gold',
-        onboardingComplete: activeTab === 'login' || role !== 'couple', // Skip onboarding if logging in or not a couple
-        aiCredits: 15,
-        vendorCategory: role === 'vendor' ? selectedCategories[0] : undefined,
-        businesses: role === 'vendor' ? businessesArray : undefined,
-      };
-
-      await AsyncStorage.setItem('wedding_user', JSON.stringify(user));
-      await store.updateUser(user);
-
-      if (activeTab === 'signup' && role === 'couple') {
-        router.replace('/onboarding');
-      } else {
+    try {
+      if (activeTab === 'login') {
+        const result = await api.login(formData.email, formData.password);
+        await store.loadAllData(); // Reload all data from API
+        setIsLoading(false);
         router.replace('/(tabs)');
+      } else {
+        const businessesArray = selectedCategories.map((catId) => ({
+          category: catId,
+          name: businessesDetails[catId]?.name || formData.name + ' ' + catId,
+          rate: Number(businessesDetails[catId]?.rate) || 3500,
+          website: businessesDetails[catId]?.website || '',
+          notes: businessesDetails[catId]?.notes || '',
+        }));
+
+        const registerData = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          role: role,
+          selectedCategories: selectedCategories,
+          businesses: role === 'vendor' ? businessesArray : undefined,
+        };
+
+        const result = await api.register(registerData);
+        await store.loadAllData(); // Reload all data from API
+        setIsLoading(false);
+
+        if (role === 'couple') {
+          router.replace('/onboarding');
+        } else {
+          router.replace('/(tabs)');
+        }
       }
-    }, 1200);
+    } catch (err: any) {
+      setIsLoading(false);
+      Alert.alert('Authentication Failed', err.message || 'An error occurred during authentication.');
+    }
   };
 
   return (
@@ -165,7 +167,7 @@ export default function AuthScreen() {
     >
       <View style={styles.overlay}>
         <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-          <Text style={styles.brand}>ELYSIAN</Text>
+          <Text style={styles.brand}>VND</Text>
           <Text style={styles.tagline}>Elevate Your Wedding Planning</Text>
 
           {/* Tabs */}

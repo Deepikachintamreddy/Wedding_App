@@ -1,5 +1,5 @@
 /**
- * Elysian Wedding Concierge — Mobile Utility Functions
+ * VND Wedding Concierge — Mobile Utility Functions
  */
 
 export function formatDate(date: string | Date): string {

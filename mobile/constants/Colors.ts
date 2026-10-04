@@ -1,4 +1,4 @@
-// Elysian Wedding Concierge — Premium Color Palette
+// VND Wedding Concierge — Premium Color Palette
 
 export default {
   light: {

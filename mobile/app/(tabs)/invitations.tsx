@@ -452,17 +452,17 @@ export default function InvitationsScreen() {
                     {/* Active Tab rendering */}
                     {activeTab === 'invite' && (
                       selectedTpl.id === 't_arch' ? (
-                        <View style={styles.elysianInviteContainer}>
+                        <View style={styles.vndInviteContainer}>
                           {/* Header Arch Banner */}
-                          <View style={styles.elysianHeroSection}>
-                            <Text style={styles.elysianArcText}>YOU'RE CORDIALLY INVITED</Text>
-                            <View style={styles.elysianArchedImageFrame}>
-                              <Image source={COUPLE_PHOTOS[couplePhotoIndex]} style={styles.elysianCouplePhoto} />
+                          <View style={styles.vndHeroSection}>
+                            <Text style={styles.vndArcText}>YOU'RE CORDIALLY INVITED</Text>
+                            <View style={styles.vndArchedImageFrame}>
+                              <Image source={COUPLE_PHOTOS[couplePhotoIndex]} style={styles.vndCouplePhoto} />
                             </View>
                           </View>
 
                           {/* Waveform Section */}
-                          <View style={styles.elysianWaveformSection}>
+                          <View style={styles.vndWaveformSection}>
                             <View style={styles.waveformIcon}>
                               <View style={[styles.waveBar, { height: 10 }]} />
                               <View style={[styles.waveBar, { height: 16 }]} />
@@ -474,18 +474,18 @@ export default function InvitationsScreen() {
                               <View style={[styles.waveBar, { height: 12 }]} />
                               <View style={[styles.waveBar, { height: 8 }]} />
                             </View>
-                            <Text style={styles.elysianWaveformSubtitle}>TO SHARE IN THE CELEBRATION OF</Text>
-                            <Text style={styles.elysianCoupleNames}>{title}</Text>
+                            <Text style={styles.vndWaveformSubtitle}>TO SHARE IN THE CELEBRATION OF</Text>
+                            <Text style={styles.vndCoupleNames}>{title}</Text>
                           </View>
 
                           {/* Arched Date Section */}
-                          <View style={styles.elysianDateSection}>
-                            <View style={styles.elysianDateArchFrame}>
-                              <Text style={styles.elysianJoinUs}>JOIN US ON</Text>
-                              <Text style={styles.elysianDateLarge}>11.20.2026</Text>
-                              <View style={styles.elysianDetailsBlock}>
-                                <Text style={styles.elysianTimeDetails}>{details}</Text>
-                                <Text style={styles.elysianLocationDetails}>{location}</Text>
+                          <View style={styles.vndDateSection}>
+                            <View style={styles.vndDateArchFrame}>
+                              <Text style={styles.vndJoinUs}>JOIN US ON</Text>
+                              <Text style={styles.vndDateLarge}>11.20.2026</Text>
+                              <View style={styles.vndDetailsBlock}>
+                                <Text style={styles.vndTimeDetails}>{details}</Text>
+                                <Text style={styles.vndLocationDetails}>{location}</Text>
                               </View>
                             </View>
                           </View>
@@ -547,14 +547,14 @@ export default function InvitationsScreen() {
                         <View style={[styles.lineDividerShort, { borderBottomColor: selectedTpl.accentColor, alignSelf: 'center', marginVertical: 8 }]}></View>
                         
                         <View style={styles.timelineList}>
-                          <View style={styles.elysianTimelineLine} />
+                          <View style={styles.vndTimelineLine} />
                           {timeline.map((item, idx) => (
                             <View key={idx} style={styles.timelineItemCard}>
-                              <View style={styles.elysianTimelineDot} />
-                              <View style={styles.elysianTimelineContent}>
-                                <Text style={styles.elysianTimelineTime}>{item.time}</Text>
-                                <Text style={[styles.elysianTimelineTitle, { color: selectedTpl.accentColor }]}>{item.title}</Text>
-                                <Text style={styles.elysianTimelineDesc}>{item.description}</Text>
+                              <View style={styles.vndTimelineDot} />
+                              <View style={styles.vndTimelineContent}>
+                                <Text style={styles.vndTimelineTime}>{item.time}</Text>
+                                <Text style={[styles.vndTimelineTitle, { color: selectedTpl.accentColor }]}>{item.title}</Text>
+                                <Text style={styles.vndTimelineDesc}>{item.description}</Text>
                               </View>
                             </View>
                           ))}
@@ -1130,17 +1130,17 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 
-  /* --- ELYSIAN ARCH TEMPLATE STYLES --- */
-  elysianInviteContainer: {
+  /* --- VND ARCH TEMPLATE STYLES --- */
+  vndInviteContainer: {
     width: '100%',
     alignItems: 'center',
   },
-  elysianHeroSection: {
+  vndHeroSection: {
     alignItems: 'center',
     width: '100%',
     marginBottom: 16,
   },
-  elysianArcText: {
+  vndArcText: {
     fontSize: 7.5,
     letterSpacing: 2,
     fontWeight: '700',
@@ -1149,7 +1149,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
   },
-  elysianArchedImageFrame: {
+  vndArchedImageFrame: {
     width: 140,
     height: 190,
     borderTopLeftRadius: 70,
@@ -1158,12 +1158,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(26, 30, 28, 0.15)',
   },
-  elysianCouplePhoto: {
+  vndCouplePhoto: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
   },
-  elysianWaveformSection: {
+  vndWaveformSection: {
     alignItems: 'center',
     width: '100%',
     marginBottom: 16,
@@ -1181,7 +1181,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a1a',
     borderRadius: 1.5,
   },
-  elysianWaveformSubtitle: {
+  vndWaveformSubtitle: {
     fontSize: 7,
     letterSpacing: 1.5,
     fontWeight: '600',
@@ -1189,19 +1189,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-  elysianCoupleNames: {
+  vndCoupleNames: {
     fontSize: 18,
     fontWeight: '400',
     color: '#111111',
     marginTop: 4,
     textAlign: 'center',
   },
-  elysianDateSection: {
+  vndDateSection: {
     width: '100%',
     alignItems: 'center',
     marginBottom: 16,
   },
-  elysianDateArchFrame: {
+  vndDateArchFrame: {
     width: '95%',
     borderWidth: 1,
     borderColor: 'rgba(26, 30, 28, 0.15)',
@@ -1212,30 +1212,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
-  elysianJoinUs: {
+  vndJoinUs: {
     fontSize: 7,
     letterSpacing: 1.5,
     color: '#666666',
     marginBottom: 4,
   },
-  elysianDateLarge: {
+  vndDateLarge: {
     fontSize: 20,
     fontWeight: '700',
     color: '#111111',
     letterSpacing: 0.5,
     marginBottom: 8,
   },
-  elysianDetailsBlock: {
+  vndDetailsBlock: {
     alignItems: 'center',
     gap: 2,
   },
-  elysianTimeDetails: {
+  vndTimeDetails: {
     fontSize: 9,
     color: '#333333',
     textAlign: 'center',
     lineHeight: 12,
   },
-  elysianLocationDetails: {
+  vndLocationDetails: {
     fontSize: 8,
     color: '#666666',
     textAlign: 'center',
@@ -1428,7 +1428,7 @@ const styles = StyleSheet.create({
     gap: 12,
     position: 'relative',
   },
-  elysianTimelineLine: {
+  vndTimelineLine: {
     position: 'absolute',
     top: 4,
     bottom: 4,
@@ -1440,7 +1440,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%',
   },
-  elysianTimelineDot: {
+  vndTimelineDot: {
     position: 'absolute',
     left: -12,
     top: 4,
@@ -1452,19 +1452,19 @@ const styles = StyleSheet.create({
     borderColor: '#faf8f5',
     zIndex: 2,
   },
-  elysianTimelineContent: {
+  vndTimelineContent: {
     gap: 1,
   },
-  elysianTimelineTime: {
+  vndTimelineTime: {
     fontSize: 8,
     fontWeight: '700',
     color: '#666666',
   },
-  elysianTimelineTitle: {
+  vndTimelineTitle: {
     fontSize: 10,
     fontWeight: '600',
   },
-  elysianTimelineDesc: {
+  vndTimelineDesc: {
     fontSize: 8.5,
     color: '#555555',
     lineHeight: 11,

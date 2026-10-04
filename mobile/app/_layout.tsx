@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -7,6 +7,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/components/useColorScheme';
 import { WeddingProvider } from '@/lib/store';
 import { View } from 'react-native';
+import FloatingChatBot from '@/components/FloatingChatBot';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,6 +50,9 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const segments = useSegments();
+  const isAuthOrOnboarding = segments[0] === 'auth' || segments[0] === 'onboarding';
+
   const customTheme = {
     dark: true,
     colors: {
@@ -76,7 +80,9 @@ function RootLayoutNav() {
           <Stack.Screen name="settings" options={{ title: 'Settings', headerTintColor: '#c9a96e', headerStyle: { backgroundColor: '#0d0d1a' }, headerTitleStyle: { color: '#f5f0e8' } }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         </Stack>
+        {!isAuthOrOnboarding && <FloatingChatBot />}
       </View>
     </ThemeProvider>
   );
 }
+

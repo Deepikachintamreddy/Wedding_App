@@ -54,7 +54,6 @@ export default function OnboardingScreen() {
       
       // Simulate generating checklist and budget allocations
       setTimeout(async () => {
-        setIsGenerating(false);
         const user = {
           name: `${formData.partnerA} & ${formData.partnerB}`,
           role: 'couple',
@@ -66,29 +65,14 @@ export default function OnboardingScreen() {
           aiCredits: 15,
         };
 
-        await store.updateUser(user);
+        try {
+          await store.updateUser(user);
+          await store.loadAllData(); // Fetches the newly initialized tasks, budget, vendors etc. from live server
+        } catch (err) {
+          console.error('[Onboarding] Failed to update user profile on backend:', err);
+        }
 
-        // Pre-populate custom budget allocations
-        const totalBudget = Number(formData.budget);
-        const customBudget = {
-          total: totalBudget,
-          categories: [
-            { name: 'Venue', estimated: Math.round(totalBudget * 0.36), actual: Math.round(totalBudget * 0.36), color: '#6366f1' },
-            { name: 'Catering', estimated: Math.round(totalBudget * 0.20), actual: Math.round(totalBudget * 0.20), color: '#f59e0b' },
-            { name: 'Planner', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.09), color: '#e2c992' },
-            { name: 'Photography', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.08), color: '#ec4899' },
-            { name: 'Florals', estimated: Math.round(totalBudget * 0.10), actual: Math.round(totalBudget * 0.10), color: '#10b981' },
-            { name: 'Music', estimated: Math.round(totalBudget * 0.05), actual: Math.round(totalBudget * 0.04), color: '#3b82f6' },
-            { name: 'Attire', estimated: Math.round(totalBudget * 0.08), actual: Math.round(totalBudget * 0.06), color: '#f472b6' },
-            { name: 'Misc', estimated: Math.round(totalBudget * 0.03), actual: Math.round(totalBudget * 0.02), color: '#94a3b8' },
-          ],
-          payments: [
-            { id: 'p_init_1', vendorName: 'Venue Deposit', category: 'Venue', amount: Math.round(totalBudget * 0.18), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Check' },
-            { id: 'p_init_2', vendorName: 'Planner Booking Deposit', category: 'Planner', amount: Math.round(totalBudget * 0.04), date: new Date().toISOString().split('T')[0], status: 'Paid', method: 'Credit Card' },
-          ]
-        };
-
-        await AsyncStorage.setItem('wedding_budget', JSON.stringify(customBudget));
+        setIsGenerating(false);
         router.replace('/(tabs)');
       }, 2000);
     } else {
@@ -105,7 +89,7 @@ export default function OnboardingScreen() {
   return (
     <View style={styles.container}>
       <BackgroundSlideshow />
-      <Text style={styles.brand}>ELYSIAN</Text>
+      <Text style={styles.brand}>VND</Text>
       
       {/* Progress Dots */}
       <View style={styles.progressContainer}>

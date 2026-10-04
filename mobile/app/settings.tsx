@@ -19,7 +19,7 @@ interface SubscriptionPlan {
 const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'free',
-    name: 'Elysian Free',
+    name: 'VND Free',
     price: '$0/mo',
     emoji: '🌱',
     features: ['15 AI Concierge credits', 'Basic checklist builder', 'Budget calculator'],
@@ -111,7 +111,7 @@ export default function SettingsScreen() {
   };
 
   const handleLogout = async () => {
-    await store.updateUser({ onboardingComplete: false });
+    await resetStore();
     router.replace('/auth');
   };
 
@@ -342,7 +342,7 @@ export default function SettingsScreen() {
           <Text style={styles.membershipTitle}>MEMBERSHIP TIER</Text>
           <View style={[styles.membershipBadge, activePlanId === 'pass' ? styles.passBadgeBg : (activePlanId === 'pro' ? styles.proBadgeBg : styles.freeBadgeBg)]}>
             <Text style={styles.membershipBadgeText}>
-              {activePlanId === 'pass' ? '♛ FULL EVENT PASS' : (activePlanId === 'pro' ? '✦ CONCIERGE PRO' : '🌱 ELISE FREE')}
+              {activePlanId === 'pass' ? '♛ FULL EVENT PASS' : (activePlanId === 'pro' ? '✦ CONCIERGE PRO' : '🌱 VND FREE')}
             </Text>
           </View>
         </View>
